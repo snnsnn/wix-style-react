@@ -1,6 +1,7 @@
 import {BaseUniDriver} from 'wix-ui-test-utils/base-driver';
 import {BaseDriver} from 'wix-ui-test-utils/driver-factory';
 import {AvatarDriver} from '../src/Avatar/Avatar.driver';
+import {BadgeDriver} from '../src/Badge/Badge.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -21,7 +22,6 @@ declare namespace VanillaTestkit {
   export const autoCompleteTestkitFactory: any;
   export const autoCompleteCompositeTestkitFactory: any;
   export const avatarTestkitFactory: VanillaUniTestkitFactory<AvatarDriver>;
-  export const badgeTestkitFactory: any;
   export const badgeSelectTestkitFactory: any;
   export const boxTestkitFactory: any;
   export const breadcrumbsTestkitFactory: any;
@@ -114,6 +114,7 @@ declare namespace VanillaTestkit {
   export const messageBoxFunctionalLayoutTestkitFactory: any;
   export const tooltipTestkitFactory: any;
   export const TooltipTestkit: any;
+  export const badgeTestkitFactory: VanillaTestkitFactory<BadgeDriver>;
 }
 
 export = VanillaTestkit;
