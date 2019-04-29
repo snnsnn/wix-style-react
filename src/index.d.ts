@@ -1,5 +1,4 @@
 export {default as AddItem} from './AddItem';
-export {default as Avatar, AvatarProps} from './Avatar';
 export {default as Button} from './Button';
 export {default as Input} from './Input';
 export {default as InputArea} from './InputArea';
@@ -53,7 +52,6 @@ export {default as ImageViewer} from './ImageViewer';
 export {default as PopoverMenu} from './PopoverMenu';
 export {default as FullTextView} from './FullTextView';
 export {default as PopoverMenuItem} from './PopoverMenuItem';
-export {default as Badge} from './Badge';
 export {default as BadgeSelect} from './BadgeSelect';
 export {badgeSelectItemBuilder} from './BadgeSelectItemBuilder';
 export {contactItemBuilder} from './ContactItemBuilder';
@@ -65,7 +63,6 @@ export {default as CounterBadge} from './CounterBadge';
 export {default as FloatingHelper} from './FloatingHelper';
 export {default as FormField} from './FormField';
 export {HBox} from './HBox';
-export {VBox} from './VBox';
 export {default as Heading} from './Heading';
 export {default as Highlighter} from './Highlighter';
 export {default as RichTextArea} from './RichTextArea';
@@ -123,7 +120,9 @@ export interface InjectedFocusableProps {
 
 export type IconElement = ReactElement<any>;
 
-export {default as Avatar, AvatarProps} from '../src/Avatar';
-export {default as Badge, BadgeProps} from '../src/Badge'
+export { default as Avatar, AvatarProps } from './Avatar';
+export { default as Badge, BadgeProps } from './Badge';
+export { default as VBox, VBoxProps } from './VBox';
+
 //   type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 //   type Subtract<T, K extends T> = Pick<T, Exclude<keyof T, keyof K>>;
