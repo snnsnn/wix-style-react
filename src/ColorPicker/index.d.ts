@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-export type ColorPickerProps = any;
-
-declare const ColorPicker: any;
-export default ColorPicker;
-=======
 import WixComponent, {WixComponentProps} from '../BaseComponents/WixComponent';
 import ColorConstructor from 'color';
 
@@ -20,4 +14,3 @@ export interface ColorPickerProps extends WixComponentProps {
 export default class ColorPicker extends WixComponent<ColorPickerProps> {}
 
 export type ColorValue = any; // todo: @types/color doesn't export Color interface
->>>>>>> Add ColorPicker types
