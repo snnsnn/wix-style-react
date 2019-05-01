@@ -4,11 +4,10 @@ import styles from './Carousel.scss';
 import './Carousel.global.scss';
 import ChevronLeftLarge from '../new-icons/ChevronLeftLarge';
 import ChevronRightLarge from '../new-icons/ChevronRightLarge';
-import IconButton from '../IconButton/IconButton';
 import Pagination from './Pagination';
 import Loader from '../Loader';
 import Proportion from '../Proportion';
-import ArrowButton from './ArrowButton';
+import SliderArrow from './SliderArrow';
 import Slider from 'react-slick';
 
 const AUTOPLAY_SPEED = 2000;
@@ -26,12 +25,8 @@ class Carousel extends React.Component {
     super(props);
     this.state = {
       loadedImageCount: 0,
+      sliderSettings: this._resolveSliderSettings(props),
     };
-    // this._slide = throttle(this._slide.bind(this), TRANSITION_SPEED);
-  }
-
-  componentWillMount() {
-    this.sliderSettings = this._resolveSliderSettings(this.props);
   }
 
   _renderImages = images => {
@@ -61,7 +56,6 @@ class Carousel extends React.Component {
   }
 
   _resolveSliderSettings = ({
-    dots,
     infinite,
     autoplay,
     autoplaySpeed,
@@ -70,32 +64,31 @@ class Carousel extends React.Component {
     arrowSkin,
     arrowSize,
   }) => {
-    const PrevButton = ArrowButton({
-      icon: <ChevronLeftLarge />,
-      dataHook: dataHooks.prevButton,
-      arrowSkin,
-      arrowSize,
-    });
-
-    const NextButton = ArrowButton({
-      icon: <ChevronRightLarge />,
-      dataHook: dataHooks.nextButton,
-      arrowSkin,
-      arrowSize,
-    });
-
     return {
       infinite,
       autoplay,
       autoplaySpeed,
       speed,
-      dots,
       initialSlide,
-      lazyLoad: 'progressive',
+      dots: true,
       slidesToShow: 1,
       slidesToScroll: 1,
-      nextArrow: <NextButton />,
-      prevArrow: <PrevButton />,
+      nextArrow: (
+        <SliderArrow
+          arrowSize={arrowSize}
+          arrowSkin={arrowSkin}
+          dataHook={dataHooks.nextButton}
+          icon={<ChevronRightLarge />}
+        />
+      ),
+      prevArrow: (
+        <SliderArrow
+          arrowSize={arrowSize}
+          arrowSkin={arrowSkin}
+          dataHook={dataHooks.prevButton}
+          icon={<ChevronLeftLarge />}
+        />
+      ),
       appendDots: pages => <Pagination>{pages}</Pagination>,
       customPaging: i => (
         <div className={styles.dotNavigator} data-hook={`page-navigation-${i}`}>
@@ -111,14 +104,14 @@ class Carousel extends React.Component {
     return (
       <Proportion
         aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
-        className={styles.imagesContainerLayout}
+        // className={styles.imagesContainerLayout}
       >
         <div data-hook={dataHook} className={styles.carouselContainer}>
           <div
             className={styles.sliderContainer}
             data-is-loading={this._isLoading()}
           >
-            <Slider {...this.sliderSettings}>
+            <Slider {...this.state.sliderSettings}>
               {images ? this._renderImages(images) : null}
             </Slider>
           </div>
@@ -141,14 +134,8 @@ Carousel.propTypes = {
   infinite: PropTypes.bool,
   /** Auto-playing of images */
   autoplay: PropTypes.bool,
-  /** Show dot indicators */
-  dots: PropTypes.bool,
   /** Index of the slide to start on */
   initialSlide: PropTypes.number,
-  /** Arrows buttons skin */
-  arrowSkin: PropTypes.oneOf(['standard', 'inverted', 'light']),
-  /** Arrows buttons sizes */
-  arrowSize: PropTypes.oneOf(['small', 'medium']),
 };
 
 Carousel.defaultProps = {
