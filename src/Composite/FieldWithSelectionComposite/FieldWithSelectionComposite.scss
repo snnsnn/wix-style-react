@@ -2,18 +2,16 @@
 
 .label {
   display: flex;
-  width:100%;
+  width: 100%;
   height: 30px;
 }
 
 $borderColor: $B30;
 
-
 .inputs {
-
   // Selectors
-  $inputField: ">div:first-child";
-  $selectionField: ">div:last-child";
+  $inputField: '>div:first-child';
+  $selectionField: '>div:last-child';
 
   @mixin apply-to-selection-field-border-element {
     &.checkbox {
@@ -23,19 +21,20 @@ $borderColor: $B30;
     }
     &.inputwithoptions,
     &.dropdown {
-      #{$selectionField}>div>div { // Dropdown's <Input> when options not opened
+      #{$selectionField} > div > div {
+        // Dropdown's <Input> when options not opened
         @content;
       }
     }
   }
 
-  display:flex;
+  display: flex;
   align-items: center;
 
   #{$inputField} {
     flex-grow: 1;
     box-sizing: content-box;
-    border-bottom-right-radius:0;
+    border-bottom-right-radius: 0;
     border-top-right-radius: 0;
     min-width: 0;
   }
@@ -70,7 +69,7 @@ $borderColor: $B30;
 
   &.disabled {
     #{$inputField} {
-      border-right:solid 1px $GR20;
+      border-right: solid 1px $D10-30;
     }
   }
 }
@@ -79,12 +78,12 @@ $borderColor: $B30;
   .borderWrapper {
     background: $B50;
     padding: 5px 12px;
-    border-bottom-left-radius:0;
+    border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     box-sizing: content-box;
 
     &.disabled {
-      background: $D70;
+      background: $D10-05;
     }
   }
 }
@@ -93,12 +92,11 @@ $borderColor: $B30;
 // as a generic border theme.
 .borderWrapper {
   border-radius: 6px;
-  border:solid 1px $borderColor;
+  border: solid 1px $borderColor;
   &.error {
-    border:solid $R10 1px;
+    border: solid $R10 1px;
   }
   &.disabled {
-    border:solid 1px $D60;
+    border: solid 1px $D10-30;
   }
 }
-

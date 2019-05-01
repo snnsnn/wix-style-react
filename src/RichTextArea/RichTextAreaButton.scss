@@ -24,7 +24,7 @@
   }
 
   &.disabled {
-    @include Text($weight: normal, $size: medium, $light: true, $secondary: true);
+    color: $D10-30;
   }
 }
 
