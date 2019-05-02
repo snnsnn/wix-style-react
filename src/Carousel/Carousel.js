@@ -21,6 +21,11 @@ const dataHooks = {
   pageNavigation: index => `page-navigation-${index}`,
 };
 
+//ditch react-slick redundant props to prevent proptypes arrows
+const WrappedSliderArrow = ({ currentSlide, slideCount, ...rest }) => (
+  <SliderArrow {...rest} />
+);
+
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
@@ -32,14 +37,25 @@ class Carousel extends React.Component {
 
   _renderImages = images => {
     return images.map((image, index) => (
-      <div key={index} data-hook={dataHooks.imagesContainer}>
-        <img
-          src={image.src}
-          data-hook={dataHooks.carouselImage}
-          className={styles.image}
-          onLoad={() => this._onImageLoad()}
-        />
-      </div>
+      <Proportion aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}>
+        <div
+          key={index}
+          data-hook={dataHooks.imagesContainer}
+          data-is-loading={this._isLoading()}
+        >
+          <img
+            src={image.src}
+            data-hook={dataHooks.carouselImage}
+            className={styles.image}
+            onLoad={() => this._onImageLoad()}
+          />
+        </div>
+        {this._isLoading() && (
+          <div className={styles.loader}>
+            <Loader dataHook="loader" size="small" />
+          </div>
+        )}
+      </Proportion>
     ));
   };
 
@@ -73,15 +89,15 @@ class Carousel extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       nextArrow: (
-        <SliderArrow
+        <WrappedSliderArrow
           arrowSize={arrowSize}
           arrowSkin={arrowSkin}
-          dataHook={dataHooks.nextButton}
+          dataHook={dataHooks.prevButton}
           icon={<ChevronRightLarge />}
         />
       ),
       prevArrow: (
-        <SliderArrow
+        <WrappedSliderArrow
           arrowSize={arrowSize}
           arrowSkin={arrowSkin}
           dataHook={dataHooks.prevButton}
@@ -104,26 +120,11 @@ class Carousel extends React.Component {
     const { dataHook, images } = this.props;
 
     return (
-      <Proportion
-        aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
-        className={styles.imagesContainerLayout}
-      >
-        <div data-hook={dataHook}>
-          <div
-            className={styles.sliderContainer}
-            data-is-loading={this._isLoading()}
-          >
-            <Slider {...this.state.sliderSettings}>
-              {images ? this._renderImages(images) : null}
-            </Slider>
-          </div>
-        </div>
-        {this._isLoading() && (
-          <div className={styles.loader}>
-            <Loader dataHook="loader" size="small" />
-          </div>
-        )}
-      </Proportion>
+      <div className={styles.imagesContainerLayout} data-hook={dataHook}>
+        <Slider {...this.state.sliderSettings}>
+          {images ? this._renderImages(images) : null}
+        </Slider>
+      </div>
     );
   }
 }
