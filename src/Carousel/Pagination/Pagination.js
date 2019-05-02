@@ -4,16 +4,15 @@ import styles from './Pagination.scss';
 import './Pagination.global.scss';
 import PropTypes from 'prop-types';
 
-const Pagination = props => (
-  <div className={classNames(props.className, styles.pagination)}>
-    {React.Children.map(props.children, child => _withDotClass(child))}
+const Pagination = ({ className, pages }) => (
+  <div className={classNames(className, styles.pagination)}>
+    {pages.map(page => _withDotClass(page))}
   </div>
 );
 
-const _withDotClass = child => {
-  const props = { className: classNames(child.props.className, styles.dot) };
-
-  return React.cloneElement(child, props);
+const _withDotClass = comp => {
+  const props = { className: classNames(comp.props.className, styles.dot) };
+  return React.cloneElement(comp, props);
 };
 
 Pagination.propTypes = {

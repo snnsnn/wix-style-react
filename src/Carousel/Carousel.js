@@ -18,6 +18,7 @@ const dataHooks = {
   loader: 'loader',
   prevButton: 'prev-button',
   nextButton: 'next-button',
+  pageNavigation: index => `page-navigation-${index}`,
 };
 
 class Carousel extends React.Component {
@@ -89,9 +90,12 @@ class Carousel extends React.Component {
           icon={<ChevronLeftLarge />}
         />
       ),
-      appendDots: pages => <Pagination>{pages}</Pagination>,
+      appendDots: pages => <Pagination pages={pages} />,
       customPaging: i => (
-        <div className={styles.dotNavigator} data-hook={`page-navigation-${i}`}>
+        <div
+          className={styles.pageNavigation}
+          data-hook={dataHooks.pageNavigation(i)}
+        >
           {i}
         </div>
       ),
@@ -116,11 +120,11 @@ class Carousel extends React.Component {
             </Slider>
           </div>
         </div>
-        {this._isLoading() ? (
+        {this._isLoading() && (
           <div className={styles.loader}>
             <Loader dataHook="loader" size="small" />
           </div>
-        ) : null}
+        )}
       </Proportion>
     );
   }
