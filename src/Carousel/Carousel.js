@@ -58,18 +58,16 @@ class Carousel extends React.Component {
   _resolveSliderSettings = ({
     infinite,
     autoplay,
-    autoplaySpeed,
-    speed,
-    initialSlide,
+    initialSlideIndex,
     arrowSkin,
     arrowSize,
   }) => {
     return {
       infinite,
       autoplay,
-      autoplaySpeed,
-      speed,
-      initialSlide,
+      speed: TRANSITION_SPEED,
+      autoplaySpeed: AUTOPLAY_SPEED,
+      initialSlideIndex,
       dots: true,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -135,16 +133,18 @@ Carousel.propTypes = {
   /** Auto-playing of images */
   autoplay: PropTypes.bool,
   /** Index of the slide to start on */
-  initialSlide: PropTypes.number,
+  initialSlideIndex: PropTypes.number,
+  /** Arrow skin */
+  arrowSkin: PropTypes.oneOf(['standard', 'inverted']),
+  /** Arrow size */
+  arrowSize: PropTypes.oneOf(['medium', 'small']),
 };
 
 Carousel.defaultProps = {
   images: [],
   infinite: true,
   autoplay: false,
-  speed: TRANSITION_SPEED,
-  autoplaySpeed: AUTOPLAY_SPEED,
-  initialSlide: 0,
+  initialSlideIndex: 0,
   arrowSkin: 'standard',
   arrowSize: 'medium',
 };

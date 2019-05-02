@@ -152,6 +152,7 @@ module.exports = {
   },
 
   Carousel: {
+    skipSanityTest: true,
     drivers: ['enzyme'],
   },
 
