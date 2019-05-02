@@ -104,7 +104,7 @@ class Carousel extends React.Component {
     return (
       <Proportion
         aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
-        // className={styles.imagesContainerLayout}
+        className={styles.imagesContainerLayout}
       >
         <div data-hook={dataHook}>
           <div
@@ -149,6 +149,7 @@ Carousel.defaultProps = {
   arrowSkin: 'standard',
   arrowSize: 'medium',
 };
+
 Carousel.displayName = 'Carousel';
 
 export default Carousel;
