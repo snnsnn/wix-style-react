@@ -4,6 +4,8 @@ import IconButton from '../../IconButton/IconButton';
 
 const SliderArrow = arrowProps => {
   // Disregard unnecessary slick arrow props [currentSlide, slideCount]
+  // this is known issue on slick arrows which will trigger error in console
+  // more info: https://github.com/akiran/react-slick/issues/728
   const {
     currentSlide,
     slideCount,
@@ -25,6 +27,7 @@ const SliderArrow = arrowProps => {
 
 SliderArrow.propTypes = {
   dataHook: PropTypes.string,
+  /** Icon to be rendered within the icon button */
   icon: PropTypes.element.isRequired,
 };
 
