@@ -241,7 +241,7 @@ describe('Carousel', () => {
     it('should start the slider at the second image and therefore show the second image', () => {
       const driver = createDriver(
         <Carousel
-          initialSlide={1}
+          initialSlideIndex={1}
           images={[
             { src: 'image1.jpg' },
             { src: 'image2.jpg' },
