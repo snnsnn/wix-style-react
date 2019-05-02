@@ -69,6 +69,7 @@ export default class DatePicker extends WixComponent {
   componentWillUnmount() {
     this._popper.destroy();
     super.componentWillUnmount();
+    window.clearTimeout(this.focusableTimeout);
   }
 
   openCalendar = () => {
@@ -102,7 +103,7 @@ export default class DatePicker extends WixComponent {
        2. After calendar is closed, on next event loop(after focus is fired)  make isDateInputFocusable: focusable
        to allow user to press tab in future and open Calendar
     */
-    setTimeout(() => this.makeInputFocusable());
+    this.focusableTimeout = setTimeout(() => this.makeInputFocusable());
   };
 
   makeInputFocusable = () => this.setState({ isDateInputFocusable: true });
