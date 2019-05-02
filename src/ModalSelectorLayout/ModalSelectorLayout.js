@@ -14,6 +14,17 @@ import Checkbox from '../Checkbox';
 
 import css from './ModalSelectorLayout.scss';
 
+// because lodash debounce is not compatible with jest timeout mocks
+function debounce(fn, wait) {
+  let timeout;
+
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn.apply(context, args), wait);
+  };
+}
+
 const DEFAULT_EMPTY = (
   <div className={css.defaultEmptyStateWrapper}>
     <Text>{"You don't have any items"}</Text>
@@ -113,6 +124,10 @@ export default class ModalSelectorLayout extends WixComponent {
 
     /** Whether to display the search input or not */
     withSearch: bool,
+
+    /** Search debounce in milliseconds */
+    searchDebounceMs: number,
+
     height: string,
 
     /** display checkbox and allow multi selection */
@@ -154,6 +169,15 @@ export default class ModalSelectorLayout extends WixComponent {
     shouldShowNoResultsFoundState: false,
     isEmpty: false,
   };
+
+  constructor(props) {
+    super(props);
+
+    this._onStartSearchDebounced = debounce(
+      this._onStartSearch.bind(this),
+      this.props.searchDebounceMS,
+    );
+  }
 
   render() {
     const {
@@ -297,11 +321,24 @@ export default class ModalSelectorLayout extends WixComponent {
   _updateSearchValue = searchValue =>
     this.setState({
       searchValue,
+    });
+
+  _onSearchChange = e => {
+    this._updateSearchValue(e.target.value);
+
+    if (typeof this.props.searchDebounceMS === 'number') {
+      this._onStartSearchDebounced();
+    } else {
+      this._onStartSearch();
+    }
+  };
+
+  _onStartSearch() {
+    this.setState({
       isSearching: true,
       items: [],
     });
-
-  _onSearchChange = e => this._updateSearchValue(e.target.value);
+  }
 
   _onClear = () => this._updateSearchValue('');
 
