@@ -5,8 +5,9 @@ export interface ContainerProps {
   className?: string;
   stretchVertically?: boolean;
 }
-
 export const Container: React.SFC<ContainerProps>;
+
+export type RawContainerProps = ContainerProps;
 export const RawContainer: React.SFC<ContainerProps>;
 
 export interface RowProps {
@@ -34,5 +35,8 @@ export interface ColProps {
 
 export class Col extends React.Component<ColProps> {}
 
+export interface AutoAdjustedRowProps {}
 export class AutoAdjustedRow extends React.Component {}
+
+export type AutoAdjustedColumnsProps = AutoAdjustedRowProps;
 export type AutoAdjustedColumns = AutoAdjustedRow;

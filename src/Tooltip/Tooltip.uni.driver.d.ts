@@ -1,6 +1,5 @@
-export type TooltipDriver = any;
-import { BaseUniDriver } from 'wix-ui-test-utils/unidriver';
-import { TooltipOldPlacement } from './index';
+import {BaseUniDriver} from "wix-ui-test-utils/unidriver";
+import {TooltipOldPlacement} from ".";
 
 export interface TooltipDriver extends BaseUniDriver {
   focus(): Promise<void>;

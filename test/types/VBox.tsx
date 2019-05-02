@@ -1,5 +1,5 @@
 import * as React from 'react';
-import VBox from '../../src/VBox';
+import {VBox} from '../../src/VBox';
 
 function VBoxWithMandatoryProps() {
   return <VBox />;
