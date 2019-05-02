@@ -16,7 +16,7 @@ export interface TabsProps extends WixComponentProps {
   type?: TabsType;
   sideContent?: React.ReactNode;
   width?: string | number;
-  onClick?(tab: Tab): TabPropTypes.onClick,
+  onClick?(tab: Tab): void;
 }
 
 export type TabsType = '' | 'compact' | 'compactSide' | 'uniformSide' | 'uniformFull';

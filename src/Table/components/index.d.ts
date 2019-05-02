@@ -3,7 +3,7 @@ import { EmptyStateProps } from '../../EmptyState';
 
 export declare const TableToolbarContainer: React.SFC;
 
-export interface TableTitleBar {
+export interface TableTitleBarProps {
   dataHook?: string;
 }
 

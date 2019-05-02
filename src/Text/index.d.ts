@@ -16,5 +16,5 @@ export type TextSize = 'tiny' | 'small' | 'medium';
 export type TextSkin = 'standard' | 'error' | 'success' | 'premium' | 'disabled';
 export type TextWeight = 'thin' | 'normal' | 'bold';
 
-const Text: React.SFC<TextProps>;
+declare const Text: React.SFC<TextProps>;
 export default Text;

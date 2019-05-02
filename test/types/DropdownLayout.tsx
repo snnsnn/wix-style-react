@@ -29,7 +29,7 @@ function DropwnLayoutStandard() {
     width: '240px',
     lineHeight: '22px',
   };
-  
+
   const options = [
     { id: 0, value: 'Option 1' },
     { id: 1, value: 'Option 2' },
@@ -52,14 +52,14 @@ function DropwnLayoutStandard() {
       ),
     },
   ];
-  
+
   const rtlOptions = [
     { id: 0, value: 'אופציה 1' },
     { id: 1, value: 'אופציה 2' },
     { id: 2, value: 'אופציה 3' },
     { id: 3, value: 'אופציה 4' },
   ];
-  
+
   return (
     <div>
       <div style={style}>
@@ -77,11 +77,11 @@ function DropwnLayoutStandard() {
 }
 
 function DropdownLayoutInfiniteScroll() {
-  
+
   const generateOption = id => {
     return { id, value: 'options ' + id };
   };
-  
+
   class ExampleInfiniteScroll extends React.Component<any,any> {
     itemsPerPage = 15;
     total = 300;
@@ -90,14 +90,14 @@ function DropdownLayoutInfiniteScroll() {
       this.loadMore = this.loadMore.bind(this);
       this.state = { hasMore: true, data: [] };
     }
-  
+
     style = {
       display: 'inline-block',
       padding: '0 5px',
       width: '240px',
       lineHeight: '22px',
     };
-  
+
     generateData = () => {
       const newOptions = [];
       for (let i = 0; i < this.itemsPerPage; i++) {
@@ -105,7 +105,7 @@ function DropdownLayoutInfiniteScroll() {
       }
       this.setState({ data: this.state.data.concat(newOptions) });
     };
-  
+
     loadMore() {
       const loadMoreData = () => {
         if (this.state.data.length >= this.total) {
@@ -116,7 +116,7 @@ function DropdownLayoutInfiniteScroll() {
       };
       setTimeout(loadMoreData, 500);
     }
-  
+
     render = () => {
       return (
         <div style={this.style}>
@@ -143,7 +143,7 @@ function DropdownLayoutReactElements() {
     { id: 3, value: <span style={{ color: 'brown' }}>Option 4</span> },
   ];
 
-  return <DropdownLayout visible selectedId={0} options={options} />;  
+  return <DropdownLayout visible selectedId={0} options={options} />;
 }
 
 function DropdownLayoutControlled() {
@@ -153,7 +153,7 @@ function DropdownLayoutControlled() {
     width: '160px',
     lineHeight: '22px',
   };
-  
+
   const options = [
     { id: 'first title', value: 'title', title: true },
     { id: 1, value: 'Option 1' },
@@ -163,21 +163,21 @@ function DropdownLayoutControlled() {
     { id: 'disabled', value: 'Disabled', disabled: true },
     { id: 4, value: 'Option 4' },
   ];
-  
+
   class ControlledExample extends React.Component<any,any> {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state = { selectedId: 1, show: true };
     }
-  
+
     render() {
       const onSelect = option => this.setState({ selectedId: option.id });
       const onClose = () => this.setState({ selectedId: -1 });
-  
+
       const selectedOption = options.find(
         item => item.id === this.state.selectedId,
       );
-  
+
       return (
         <div style={style}>
           {' '}
@@ -205,7 +205,7 @@ function DropdownLayoutCostumStyle() {
     { id: 3, value: 'Option 3' },
     { id: 4, value: 'Option 4' },
   ];
-  
+
   const containerStyles: React.CSSProperties = {
     width: 300,
     display: 'inline-block',
@@ -217,7 +217,7 @@ function DropdownLayoutCostumStyle() {
     boxShadow: '0 0 6px rgba(0, 0, 0, 0.6)',
     padding: '6px 0',
   };
-  
+
   class ControlledExample extends React.Component {
     render() {
       return (
