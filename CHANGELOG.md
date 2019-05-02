@@ -14,6 +14,25 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+
+## Next
+
+### Fixed
+
+- <Input/> - fix prop validation warning when providing updateControlledOnClear [#3341](https://github.com/wix/wix-style-react/pull/3341)
+
+## 6.17.0 - 2019-05-02
+
+### Added
+- `<RichTextInputArea/>` - support removing links by toggling the link button [#3323](https://github.com/wix/wix-style-react/pull/3323)
+- Infra - add type definitions - add Avatar types [#3332](https://github.com/wix/wix-style-react/pull/3332)
+- `<RichTextInputArea/>` - add scrollBehavior polyfill [#3342](https://github.com/wix/wix-style-react/pull/3342)
+
+### Fixed
+
+- `<Page/>` - allow falsy children (for conditional rendering) [#3311](https://github.com/wix/wix-style-react/pull/3311)
+- `<RichTextInputArea/>` - fix list incorrect style [#3337](https://github.com/wix/wix-style-react/pull/3337)
+
 ## 6.16.2 - 2019-04-28
 
 ### Fixed

@@ -209,6 +209,7 @@ module.exports = {
   },
 
   Box: { unidriver: true, testkitPath: '../src/Box/Box.uni.driver' },
+
   Thumbnail: {
     unidriver: true,
     testkitPath: '../src/Thumbnail/Thumbnail.uni.driver',
@@ -223,6 +224,7 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/RichTextInputArea/RichTextInputArea.uni.driver',
   },
+
   NoBorderInput: {},
 
   DateInput: {
