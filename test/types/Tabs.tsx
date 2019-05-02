@@ -10,14 +10,14 @@ async function testkits() {
     wrapper: document.createElement('div'),
   });
 
-  vanilla.clickTabAt(0);
+  await vanilla.clickTabAt(0);
 
   const enzyme = tabsEnzymeTestkitFactory({
     dataHook: 'hoo',
     wrapper: mount(<div/>)
   });
 
-  enzyme.getItemsMaxWidths().forEach(console.log);
+  (await enzyme.getItemsMaxWidths()).forEach(console.log);
 }
 
 function TabsWithMandatoryProps() {

@@ -22,7 +22,7 @@ import {TextDriver} from '../src/Text/Text.driver';
 import {TagDriver} from '../src/Tag/Tag.driver';
 import {ColorPickerDriver} from '../src/ColorPicker/ColorPicker.driver';
 import {CounterBadgeDriver} from '../src/CounterBadge/CounterBadge.driver';
-import {TabsDriver} from '../src/Tabs/Tabs.driver';
+import {TabsDriver} from '../src/Tabs/Tabs.uni.driver';
 import {DatePickerDriver} from '../src/DatePicker/DatePicker.driver';
 import {DropdownBaseDriver} from '../src/DropdownBase/DropdownBase.uni.driver';
 import {LabelDriver} from '../src/Label/Label.driver';

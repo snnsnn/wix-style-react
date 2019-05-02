@@ -78,14 +78,15 @@ function DropwnLayoutStandard() {
 
 function DropdownLayoutInfiniteScroll() {
 
-  const generateOption = id => {
+  const generateOption = (id: string) => {
     return { id, value: 'options ' + id };
   };
 
   class ExampleInfiniteScroll extends React.Component<any,any> {
     itemsPerPage = 15;
     total = 300;
-    constructor(props) {
+
+    constructor(props: any) {
       super(props);
       this.loadMore = this.loadMore.bind(this);
       this.state = { hasMore: true, data: [] };
@@ -165,13 +166,12 @@ function DropdownLayoutControlled() {
   ];
 
   class ControlledExample extends React.Component<any,any> {
-    constructor(props) {
+    constructor(props: any) {
       super(props);
       this.state = { selectedId: 1, show: true };
     }
 
     render() {
-      const onSelect = option => this.setState({ selectedId: option.id });
       const onClose = () => this.setState({ selectedId: -1 });
 
       const selectedOption = options.find(
@@ -185,7 +185,7 @@ function DropdownLayoutControlled() {
           <DropdownLayout
             visible
             options={options}
-            onSelect={onSelect}
+            onSelect={option => this.setState({ selectedId: option.id })}
             selectedId={this.state.selectedId}
             onClose={onClose}
           />

@@ -1,5 +1,4 @@
 import WixComponent, {WixComponentProps} from '../BaseComponents/WixComponent';
-import ColorConstructor from 'color';
 
 export interface ColorPickerProps extends WixComponentProps {
   value: ColorValue;

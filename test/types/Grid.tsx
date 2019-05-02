@@ -25,7 +25,7 @@ function GridBaseExample() {
     </div>
   );
 
-  function text(children) {
+  function text(children: string) {
     return (
       <div
         style={{

@@ -8,7 +8,7 @@ export interface TableProps {
   data?: any[];
   columns: {
     title: React.ReactNode;
-    render(rowData, rowNum): JSX.Element;
+    render(rowData: any, rowNum: number): JSX.Element;
     sortable?: boolean;
     infoTooltipProps?: TooltipProps;
     sortDescending?: boolean;

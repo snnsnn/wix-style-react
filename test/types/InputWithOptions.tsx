@@ -104,7 +104,7 @@ function InputWithOptionsControlled() {
   ];
 
   class ControlledInputWithOptions extends React.Component<any, any> {
-    constructor(props) {
+    constructor(props: any) {
       super(props);
       this.state = {
         value: '',
@@ -113,44 +113,38 @@ function InputWithOptionsControlled() {
     }
 
     render() {
-      const onChange = event => {
-        this.setState({value: event.target.value});
-      };
-
-      const onSelect = option => {
-        const value = option.value;
-        this.setState({
-          value,
-          selectedId: option.id
-        });
-
-        console.log(
-          `Selected option id=${JSON.stringify(option)}, value=${value}`
-        );
-      };
-
-      const onManuallyInput = value => {
-        this.setState({
-          selectedId: -1
-        });
-        console.log(`Manually selected ${value}`);
-      };
-
-      const predicate = element =>
-        this.state.value
-          ? element.value
-              .toLowerCase()
-              .indexOf(this.state.value.toLowerCase()) !== -1
-          : true;
-
       return (
         <InputWithOptions
-          options={options.filter(predicate)}
+          options={
+            options.filter(element =>
+              this.state.value
+                ? element.value
+                .toLowerCase()
+                .indexOf(this.state.value.toLowerCase()) !== -1
+                : true)
+          }
           selectedId={this.state.selectedId}
           value={this.state.value}
-          onChange={onChange}
-          onSelect={onSelect}
-          onManuallyInput={onManuallyInput}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+            this.setState({value: event.target.value});
+          }}
+          onSelect={option => {
+            const value = option.value;
+            this.setState({
+              value,
+              selectedId: option.id
+            });
+
+            console.log(
+              `Selected option id=${JSON.stringify(option)}, value=${value}`
+            );
+          }}
+          onManuallyInput={value => {
+            this.setState({
+              selectedId: -1
+            });
+            console.log(`Manually selected ${value}`);
+          }}
           highlight
         />
       );
