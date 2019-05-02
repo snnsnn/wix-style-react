@@ -1,0 +1,43 @@
+import {BaseUniDriver} from 'wix-ui-test-utils/unidriver';
+import {SyntheticEventData} from 'react-dom/test-utils';
+import {DropdownLayoutDriver} from '../DropdownLayout/DropdownLayout.driver';
+
+export interface CalendarDriver extends BaseUniDriver {
+  close: () => Promise<void>;
+  isVisible: () => Promise<boolean>;
+  getCurrentMonthWithYear: () => Promise<string>;
+  getNthWeekDayName: (n?: number) => Promise<string>;
+  clickOnNthDay: (n?: number) => Promise<void>;
+  clickDay: (date: Date) => Promise<void>;
+  clickOnNthDayOfTheMonth: (n?: number) => Promise<void>;
+  clickOnSelectedDay: () => Promise<void>;
+  clickOnYearDropdown: () => Promise<void>;
+  clickOnMonthDropdown: () => Promise<void>;
+  clickOnNthYear: (n?: number) => Promise<void>;
+  clickOnPrevMonthButton: () => Promise<void>;
+  clickOnNextMonthButton: () => Promise<void>;
+  isHeaderVisible: () => Promise<boolean>;
+  isYearDropdownExists: () => Promise<boolean>;
+  isYearCaptionExists: () => Promise<boolean>;
+  isMonthDropdownExists: () => Promise<boolean>;
+  isMonthCaptionExists: () => Promise<boolean>;
+  getMonthCaption: () => Promise<string>;
+  getMonthDropdownLabel: () => Promise<string>;
+  getSelectedYear: () => Promise<string>;
+  getFocusedDay: () => Promise<string | null>;
+  getFocusedDayElement: () => Promise<HTMLElement | null>;
+  pressLeftArrow: () => Promise<void>;
+  pressRightArrow: () => Promise<void>;
+  getSelectedDay: () => Promise<string>;
+  getWidth: () => Promise<CSSStyleDeclaration['width']>;
+  triggerKeyDown: (params: SyntheticEventData) => Promise<void>;
+  isFocusedDayVisuallyUnfocused: () => Promise<boolean>;
+  containsVisuallyUnfocusedDay: () => Promise<boolean>;
+  isTwoMonthsLayout: () => Promise<boolean>;
+  getMonthDropdownDriver: () => Promise<DropdownLayoutDriver>;
+  getYearDropdownDriver: () => Promise<DropdownLayoutDriver>;
+  getNumOfVisibleMonths: () => Promise<number>;
+  getNumOfSelectedDays: () => Promise<number>;
+  getSelectedDays: () => Promise<Date[]>;
+  mouseClickOutside: () => Promise<void>;
+}

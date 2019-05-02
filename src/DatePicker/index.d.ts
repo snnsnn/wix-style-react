@@ -1,9 +1,10 @@
 import WixComponent, {WixComponentProps} from '../BaseComponents/WixComponent';
 import {CalendarProps, CalendarLocale} from '../Calendar';
+import {InputProps} from '../Input';
 
 export type DatePickerProps = CalendarProps & WixComponentProps & {
   customInput?: React.ReactNode;
-  inputProps?: any; // todo: add once Input types are implemented
+  inputProps?: InputProps;
   dateFormat?: string | ((date: Date) => string);
   disabled?: boolean;
   inputDataHook?: string;

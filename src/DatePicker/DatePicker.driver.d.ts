@@ -1,11 +1,12 @@
 import {BaseDriver} from "wix-ui-test-utils/driver-factory";
-import {CalendarDriver} from "../Calendar/Calendar.driver";
+import {CalendarDriver} from "../Calendar/Calendar.uni.driver";
+import {InputDriver} from "../Input/Input.uni.driver";
 
 export interface DatePickerDriver extends BaseDriver {
     driver: {
         exists: () => boolean,
         open: () => void;
     },
-    inputDriver: any, // todo: add once input types are implemented
+    inputDriver: InputDriver,
     calendarDriver: CalendarDriver
 }

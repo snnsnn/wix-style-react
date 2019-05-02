@@ -1,6 +1,6 @@
 import {BaseDriver} from 'wix-ui-test-utils/driver-factory';
 import {DropdownLayoutDriver} from '../DropdownLayout/DropdownLayout.driver';
-import {InputDriver} from '../Input/Input.driver';
+import {InputDriver} from '../Input/Input.uni.driver';
 import * as ReactTestUtils from 'react-dom/test-utils';
 
 export interface InputWithOptionsDriver extends BaseDriver {

@@ -1,0 +1,76 @@
+import * as ReactTestUtils from 'react-dom/test-utils';
+import {InputSize, InputTheme} from '.';
+import {BaseUniDriver} from 'wix-ui-test-utils/unidriver';
+
+export interface InputDriver extends BaseUniDriver {
+  trigger: (
+    trigger: keyof typeof ReactTestUtils.Simulate,
+    event: ReactTestUtils.SyntheticEventData
+  ) => Promise<void>;
+  focus: (options?: FocusOptions) => Promise<void>;
+  blur: () => Promise<void>;
+  getName: () => Promise<string>;
+  getMaxLength: () => Promise<string>;
+  getType: () => Promise<string>;
+  keyDown: (key: ReactTestUtils.SyntheticEventData['key']) => Promise<void>;
+  click: () => Promise<void>;
+  clickSuffix: () => Promise<void>;
+  clickUnit: () => Promise<void>;
+  clickMagnifyingGlass: () => Promise<void>;
+  clickCustomAffix: () => Promise<void>;
+  clickClear: () => Promise<void>;
+  clickIconAffix: () => Promise<void>;
+  clickMenuArrow: () => Promise<void>;
+  mouseOver: () => Promise<void>;
+  mouseOut: () => Promise<void>;
+  clearText: () => Promise<void>;
+  enterText: (text: string) => Promise<void>;
+  getValue: () => Promise<string>;
+  getPlaceholder: () => Promise<string>;
+  getDefaultValue: () => Promise<string>;
+  getTabIndex: () => Promise<number>;
+  getReadOnly: () => Promise<boolean>;
+  getDisabled: () => Promise<boolean>;
+  getTextOverflow: () => Promise<string>;
+  getAriaLabel: () => Promise<string>;
+  getAriaControls: () => Promise<string>;
+  getAriaDescribedby: () => Promise<string>;
+  getAutocomplete: () => Promise<string>;
+  getRequired: () => Promise<boolean>;
+  hasPrefix: () => Promise<boolean>;
+  hasPrefixClass: () => Promise<boolean>;
+  hasSuffix: () => Promise<boolean>;
+  hasSuffixClass: () => Promise<boolean>;
+  hasSuffixesClass: () => Promise<boolean>;
+  prefixComponentExists: (style: string) => Promise<boolean>;
+  suffixComponentExists: (style: string) => Promise<boolean>;
+  isMenuArrowLast: () => Promise<boolean>;
+  hasExclamation: () => Promise<boolean>;
+  isNarrowError: () => Promise<boolean>;
+  hasHelp: () => Promise<boolean>;
+  hasError: () => Promise<boolean>;
+  getTooltipElement: () => Promise<HTMLElement>;
+  hasLoader: () => Promise<boolean>;
+  getTooltipDataHook: () => Promise<string>;
+  getDataHook: () => Promise<string>;
+  getUnit: () => Promise<string>;
+  getCustomAffix: () => Promise<string>;
+  hasMagnifyingGlass: () => Promise<boolean>;
+  hasMenuArrow: () => Promise<boolean>;
+  hasClearButton: () => Promise<boolean>;
+  isRTL: () => Promise<boolean>;
+  isFocusedStyle: () => Promise<boolean>;
+  isHoveredStyle: () => Promise<boolean>;
+  isDisabled: () => Promise<boolean>;
+  isOfStyle: (style: InputTheme) => Promise<boolean>;
+  isOfSize: (size: InputSize) => Promise<boolean>;
+  isFocus: () => Promise<boolean>;
+  startComposing: () => Promise<void>;
+  endComposing: () => Promise<void>;
+  getCursorLocation: () => Promise<number>;
+  getRootElementClasses: () => Promise<string>;
+  getInputElementClasses: () => Promise<string>;
+  hasRightBorderRadius: () => Promise<boolean>;
+  hasLeftBorderRadius: () => Promise<boolean>;
+  isCustomInput: () => Promise<boolean>;
+}

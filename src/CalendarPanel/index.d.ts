@@ -46,5 +46,4 @@ export type CalendarPanelPresetOption =  {
   selectedDays: SelectedDays;
 } & DropdownLayoutValueOption;
 
-export type RenderPresetFn = (options: {selected: boolean}) => JSX.Element; // todo: should be imported from dropdown layout
 type SelectedDays = Required<CalendarValue>;

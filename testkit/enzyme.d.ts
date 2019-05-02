@@ -6,12 +6,12 @@ import {BadgeDriver} from '../src/Badge/Badge.driver';
 import {BadgeSelectDriver} from '../src/BadgeSelect/BadgeSelect.driver';
 import {BoxDriver} from '../src/Box/Box.uni.driver';
 import {ToggleSwitchDriver} from '../src/ToggleSwitch/ToggleSwitch.driver';
-import {TimeInputDriver} from '../src/TimeInput/TimeInput.driver';
+import {TimeInputDriver} from '../src/TimeInput/TimeInput.uni.driver';
 import {TooltipDriver} from '../src/Tooltip/Tooltip.uni.driver';
-import {BreadcrumbsDriver} from '../src/Breadcrumbs/Breadcrumbs.driver';
+import {BreadcrumbsDriver} from '../src/Breadcrumbs/Breadcrumbs.uni.driver';
 import {ButtonDriver} from '../src/Button/Button.uni.driver';
-import {CalendarDriver} from '../src/Calendar/Calendar.driver';
-import {CalendarPanelDriver} from '../src/CalendarPanel/CalendarPanel.driver';
+import {CalendarDriver} from '../src/Calendar/Calendar.uni.driver';
+import {CalendarPanelDriver} from '../src/CalendarPanel/CalendarPanel.uni.driver';
 import {CalendarPanelFooterDriver} from '../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver';
 import {CardGalleryItemDriver} from '../src/CardGalleryItem/CardGalleryItem.uni.driver';
 import {ThumbnailDriver} from '../src/Thumbnail/Thumbnail.uni.driver';
@@ -21,7 +21,7 @@ import {CircularProgressBarDriver} from '../src/CircularProgressBar/CircularProg
 import {CloseButtonDriver} from '../src/CloseButton/CloseButton.uni.driver';
 import {TextDriver} from '../src/Text/Text.driver';
 import {TagDriver} from '../src/Tag/Tag.driver';
-import {ColorPickerDriver} from '../src/ColorPicker/ColorPicker.driver';
+import {ColorPickerDriver} from '../src/ColorPicker/ColorPicker.uni.driver';
 import {CounterBadgeDriver} from '../src/CounterBadge/CounterBadge.driver';
 import {TabsDriver} from '../src/Tabs/Tabs.uni.driver';
 import {DatePickerDriver} from '../src/DatePicker/DatePicker.driver';
@@ -33,14 +33,14 @@ import {EmptyStateDriver} from '../src/EmptyState/EmptyState.driver';
 import {FilePickerDriver} from '../src/FilePicker/FilePicker.driver';
 import {FloatingHelperDriver} from '../src/FloatingHelper/FloatingHelper.driver';
 import {FloatingNotificationDriver} from '../src/FloatingNotification/FloatingNotification.uni.driver';
-import {FormFieldDriver} from '../src/FormField/FormField.driver';
+import {FormFieldDriver} from '../src/FormField/FormField.uni.driver';
 import {GenericModalLayoutDriver} from '../src/GenericModalLayout/GenericModalLayout.driver';
 import {HeadingDriver} from '../src/Heading/Heading.driver';
 import {HighlighterDriver} from '../src/Highlighter/Highlighter.driver';
 import {IconButtonDriver} from '../src/IconButton/IconButton.uni.driver';
 import {ImageViewerDriver} from '../src/ImageViewer/ImageViewer.driver';
 import {TableActionCellDriver} from '../src/TableActionCell/TableActionCell.driver';
-import {InputDriver} from '../src/Input/Input.driver';
+import {InputDriver} from '../src/Input/Input.uni.driver';
 import {InputAreaDriver} from '../src/InputArea/InputArea.driver';
 import {InputWithOptionsDriver} from '../src/InputWithOptions/InputWithOptions.driver';
 import {LinearProgressBarDriver} from '../src/LinearProgressBar/LinearProgressBar.driver';
@@ -162,15 +162,15 @@ declare namespace EnzymeTestkit {
   export const badgeSelectTestkitFactory: EnzymeTestkitFactory<BadgeSelectDriver>;
   export const boxTestkitFactory: EnzymeUniTestkitFactory<BoxDriver>;
   export const buttonTestkitFactory: EnzymeUniTestkitFactory<ButtonDriver>;
-  export const breadcrumbsTestkitFactory: EnzymeTestkitFactory<BreadcrumbsDriver>;
-  export const calendarTestkitFactory: EnzymeTestkitFactory<CalendarDriver>;
-  export const calendarPanelTestkitFactory: EnzymeTestkitFactory<CalendarPanelDriver>
+  export const breadcrumbsTestkitFactory: EnzymeUniTestkitFactory<BreadcrumbsDriver>;
+  export const calendarTestkitFactory: EnzymeUniTestkitFactory<CalendarDriver>;
+  export const calendarPanelTestkitFactory: EnzymeUniTestkitFactory<CalendarPanelDriver>
   export const calendarPanelFooterTestkitFactory: EnzymeUniTestkitFactory<CalendarPanelFooterDriver>;
   export const cardGalleryItemTestkitFactory: EnzymeUniTestkitFactory<CardGalleryItemDriver>
   export const checkboxTestkitFactory: EnzymeUniTestkitFactory<CheckboxDriver>;
   export const circularProgressBarTestkitFactory: EnzymeTestkitFactory<CircularProgressBarDriver>
   export const closeButtonTestkitFactory: EnzymeUniTestkitFactory<CloseButtonDriver>;
-  export const colorPickerTestkitFactory: EnzymeTestkitFactory<ColorPickerDriver>;
+  export const colorPickerTestkitFactory: EnzymeUniTestkitFactory<ColorPickerDriver>;
   export const counterBadgeTestkitFactory: EnzymeTestkitFactory<CounterBadgeDriver>;
   export const dataTableTestkitFactory: EnzymeTestkitFactory<DataTableDriver>;
   export const datePickerTestkitFactory: EnzymeTestkitFactory<DatePickerDriver>;
@@ -181,13 +181,13 @@ declare namespace EnzymeTestkit {
   export const filePickerTestkitFactory: EnzymeTestkitFactory<FilePickerDriver>;
   export const floatingHelperTestkitFactory: EnzymeTestkitFactory<FloatingHelperDriver>;
   export const floatingNotificationTestkitFactory: EnzymeUniTestkitFactory<FloatingNotificationDriver>;
-  export const formFieldTestkitFactory: EnzymeTestkitFactory<FormFieldDriver>;
+  export const formFieldTestkitFactory: EnzymeUniTestkitFactory<FormFieldDriver>;
   export const genericModalLayoutTestkitFactory: EnzymeTestkitFactory<GenericModalLayoutDriver>;
   export const headingTestkitFactory: EnzymeTestkitFactory<HeadingDriver>;
   export const highlighterTestkitFactory: EnzymeTestkitFactory<HighlighterDriver>;
   export const iconButtonTestkitFactory: EnzymeUniTestkitFactory<IconButtonDriver>;
   export const imageViewerTestkitFactory: EnzymeTestkitFactory<ImageViewerDriver>;
-  export const inputTestkitFactory: EnzymeTestkitFactory<InputDriver>;
+  export const inputTestkitFactory: EnzymeUniTestkitFactory<InputDriver>;
   export const inputAreaTestkitFactory: EnzymeTestkitFactory<InputAreaDriver>;
   export const inputWithOptionsTestkitFactory: EnzymeTestkitFactory<InputWithOptionsDriver>;
   export const labelTestkitFactory: EnzymeTestkitFactory<LabelDriver>;
@@ -201,7 +201,7 @@ declare namespace EnzymeTestkit {
   export const textTestkitFactory: EnzymeTestkitFactory<TextDriver>;
   export const textButtonTestkitFactory: EnzymeUniTestkitFactory<TextButtonDriver>;
   export const thumbnailTestkitFactory: EnzymeUniTestkitFactory<ThumbnailDriver>;
-  export const timeInputTestkitFactory: EnzymeTestkitFactory<TimeInputDriver>;
+  export const timeInputTestkitFactory: EnzymeUniTestkitFactory<TimeInputDriver>;
   export const toggleSwitchTestkitFactory: EnzymeTestkitFactory<ToggleSwitchDriver>;
   export const tooltipTestkitFactory: EnzymeUniTestkitFactory<TooltipDriver>;
 
@@ -256,7 +256,6 @@ declare namespace EnzymeTestkit {
   export const radioButtonTestkitFactory: any;
   export const messageBoxMarketerialLayoutTestkitFactory: any;
   export const messageBoxFunctionalLayoutTestkitFactory: any;
-  export const TooltipTestkit: any;
 }
 
 export = EnzymeTestkit;
