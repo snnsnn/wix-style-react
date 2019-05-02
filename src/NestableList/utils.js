@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 export const getDepth = (item, childrenProperty) => {
   // returns depth of item and children
   let depth = 0;
@@ -24,4 +25,35 @@ export const getValuesByKey = (data, key, childrenProp) => {
   }
 
   return values;
+};
+
+export const removeFromTree = (items, position, childrenProperty) => {
+  const lastIndex = position.length - 1;
+  let itemsRemoveCandidate = items;
+  position.forEach((pos, index) => {
+    if (index === lastIndex) {
+      itemsRemoveCandidate.splice(pos, 1)[0];
+    } else {
+      itemsRemoveCandidate = itemsRemoveCandidate[pos][childrenProperty];
+    }
+  });
+
+  return items;
+};
+
+export const addToTree = (items, item, position, childrenProperty) => {
+  const lastIndex = position.length - 1;
+  let itemsAddCandidate = items;
+  position.forEach((pos, index) => {
+    if (index === lastIndex) {
+      itemsAddCandidate.splice(pos, 0, item);
+    } else {
+      if (!itemsAddCandidate[pos][childrenProperty]) {
+        itemsAddCandidate[pos][childrenProperty] = [];
+      }
+      itemsAddCandidate = itemsAddCandidate[pos][childrenProperty];
+    }
+  });
+
+  return items;
 };

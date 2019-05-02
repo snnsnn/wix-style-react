@@ -15,19 +15,17 @@ const nestableListFactory = ({ element, wrapper }) => {
   if (!isCompositeComponent) {
     console.warn('NestableList factory expect to receive wrapper as composite component(react instance, and not a dom instance)'); // eslint-disable-line
   }
-
-  const backend = isCompositeComponent
-    ? getInstanceOfDraggableProvider(vanillaWrapper)
-        .getManager()
-        .getBackend()
-    : null;
-
+  const manager =
+    isCompositeComponent &&
+    getInstanceOfDraggableProvider(vanillaWrapper).getManager();
+  const backend = manager && manager.getBackend();
+  const monitor = manager && manager.getMonitor();
   return {
     exists: () => !!element,
-    getItemsNodes: () => {
-      return element.querySelectorAll('[data-hook="nestable-item"]');
-    },
-    reorder: ({ removedId, addedId }) => {
+    reorder: ({ removedId, addedId }, offset) => {
+      if (offset) {
+        monitor.getClientOffset = jest.fn(() => offset);
+      }
       if (backend) {
         backend.simulateBeginDrag([
           getInstanceOfDraggableSource(

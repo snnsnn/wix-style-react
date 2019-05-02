@@ -1,28 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import update from 'react-addons-update';
+import { removeFromTree, addToTree } from './utils';
 import pure from 'recompose/pure';
 
 import CustomDragLayer from './DragLayer';
 import Container from './Container';
-
-function createSpliceCommand(position, options = {}) {
-  const command = {};
-  const itemsToInsert = options.itemsToInsert || [];
-  const lastIndex = position.length - 1;
-  let currCommand = command;
-
-  position.forEach((index, i) => {
-    if (i === lastIndex) {
-      currCommand.$splice = [[index, options.numToRemove, ...itemsToInsert]];
-    } else {
-      const nextCommand = {};
-      currCommand[index] = { [options.childrenProperty]: nextCommand };
-      currCommand = nextCommand;
-    }
-  });
-
-  return command;
-}
 
 function replaceNegativeIndex(items, nextPosition, childrenProperty) {
   let currItems = items;
@@ -117,21 +98,13 @@ class NestableList extends Component {
       );
     }
 
-    // remove item from old position
-    const removeItem = createSpliceCommand(prevPosition, {
-      numToRemove: 1,
+    newItems = removeFromTree(newItems, prevPosition, childrenProperty);
+    newItems = addToTree(
+      newItems,
+      dragItem,
+      realNextPosition,
       childrenProperty,
-    });
-
-    // add item to new position
-    const insertItem = createSpliceCommand(realNextPosition, {
-      numToRemove: 0,
-      itemsToInsert: [dragItem],
-      childrenProperty,
-    });
-
-    newItems = update(newItems, removeItem);
-    newItems = update(newItems, insertItem);
+    );
 
     this.setState({ items: newItems });
 
