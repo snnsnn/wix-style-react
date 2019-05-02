@@ -8,6 +8,7 @@ import getContext from 'recompose/getContext';
 import { DragSource, DropTarget } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import itemTypes from './itemTypes';
+import { getValuesByKey } from './utils';
 
 // keep track of horizontal mouse movement
 const mouse = {
@@ -36,7 +37,8 @@ function calculateHandleOffset(handleRect, containerRect) {
 
 const cardSource = {
   isDragging(props, monitor) {
-    return props.id === monitor.getItem().id;
+    const ids = getValuesByKey(monitor.getItem().data, 'id', 'children');
+    return ids.indexOf(props.id) > -1;
   },
   beginDrag(props, monitor, component) {
     const node = findDOMNode(component);
@@ -67,7 +69,6 @@ const cardTarget = {
   drop(props, monitor) {
     // clear mouse position
     mouse.lastX = 0;
-
     if (!monitor.didDrop()) {
       props.dropItem();
     }
@@ -104,8 +105,11 @@ const cardTarget = {
     }
 
     // determine mouse position
-    const clientOffset = monitor.getClientOffset();
-    const initialClientOffset = monitor.getInitialClientOffset();
+    const clientOffset = monitor.getClientOffset() || { x: 0, y: 0 };
+    const initialClientOffset = monitor.getInitialClientOffset() || {
+      x: 0,
+      y: 0,
+    };
 
     const hoverNode = findDOMNode(component);
     // rect for entire component including children
@@ -280,21 +284,31 @@ class Item extends WixComponent {
   }
 }
 
-export default compose(
-  getContext({
-    useDragHandle: PropTypes.bool.isRequired,
-    maxDepth: PropTypes.number.isRequired,
-    threshold: PropTypes.number.isRequired,
-    renderItem: PropTypes.func.isRequired,
-    moveItem: PropTypes.func.isRequired,
-    dropItem: PropTypes.func.isRequired,
-  }),
-  DropTarget(itemTypes.nestedItem, cardTarget, connect => ({
-    connectDropTarget: connect.dropTarget(),
-  })),
-  DragSource(itemTypes.nestedItem, cardSource, (connect, monitor) => ({
+export const DragItemSource = DragSource(
+  itemTypes.nestedItem,
+  cardSource,
+  (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
     isPlaceholder: monitor.isDragging(),
-  })),
+  }),
 )(Item);
+
+export const DropItemTarget = DropTarget(
+  itemTypes.nestedItem,
+  cardTarget,
+  connect => ({
+    connectDropTarget: connect.dropTarget(),
+  }),
+)(DragItemSource);
+
+export const ItemContext = getContext({
+  useDragHandle: PropTypes.bool.isRequired,
+  maxDepth: PropTypes.number.isRequired,
+  threshold: PropTypes.number.isRequired,
+  renderItem: PropTypes.func.isRequired,
+  moveItem: PropTypes.func.isRequired,
+  dropItem: PropTypes.func.isRequired,
+})(DropItemTarget);
+
+export default ItemContext;

@@ -74,10 +74,11 @@ export default class NestableListExample extends React.Component {
             items={this.state.items}
             renderItem={this.renderItem}
             onUpdate={this.handleDrop}
-            maxDepth={3}
+            maxDepth={2}
             threshold={30}
             childrenStyle={stylesExp.children}
             childrenProperty={'children'}
+            isRenderDraggingChildren={false}
           />
         </div>
       </DragDropContextProvider>

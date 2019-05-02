@@ -57,6 +57,7 @@ function getRealNextPosition(prev, next) {
 class NestableList extends Component {
   static defaultProps = {
     items: [],
+    isRenderDraggingChildren: false,
     childrenProperty: 'children',
     childrenStyle: {},
     onUpdate: () => {},
@@ -143,7 +144,12 @@ class NestableList extends Component {
 
   render() {
     const { items } = this.state;
-    const { renderItem, childrenProperty, childrenStyle } = this.props;
+    const {
+      renderItem,
+      childrenProperty,
+      childrenStyle,
+      isRenderDraggingChildren,
+    } = this.props;
 
     return (
       <div>
@@ -155,6 +161,7 @@ class NestableList extends Component {
           topLevel
         />
         <CustomDragLayer
+          isRenderDraggingChildren={isRenderDraggingChildren}
           renderItem={renderItem}
           childrenProperty={childrenProperty}
           childrenStyle={childrenStyle}

@@ -2,23 +2,7 @@ import React, { Component } from 'react';
 import pure from 'recompose/pure';
 
 import Item from './Item';
-
-function getDepth(item, childrenProperty) {
-  // returns depth of item and children
-  let depth = 0;
-
-  if (item[childrenProperty]) {
-    item[childrenProperty].forEach(d => {
-      const tmpDepth = getDepth(d, childrenProperty);
-
-      if (tmpDepth > depth) {
-        depth = tmpDepth;
-      }
-    });
-  }
-
-  return depth + 1;
-}
+import { getDepth } from './utils';
 
 class Container extends Component {
   render() {
