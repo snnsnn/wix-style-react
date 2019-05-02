@@ -131,6 +131,7 @@ class NestableList extends Component {
           parentPosition={[]}
           childrenProperty={childrenProperty}
           childrenStyle={childrenStyle}
+          isRenderDraggingChildren={isRenderDraggingChildren}
           topLevel
         />
         <CustomDragLayer

@@ -11,6 +11,7 @@ class Container extends Component {
       parentPosition,
       childrenProperty,
       childrenStyle,
+      isRenderDraggingChildren,
       topLevel,
     } = this.props;
 
@@ -27,12 +28,14 @@ class Container extends Component {
               item={item}
               index={i}
               siblings={items}
+              isRenderDraggingChildren={isRenderDraggingChildren}
               position={position}
               depth={getDepth(item, childrenProperty)}
             >
               {children && children.length ? (
                 <WrappedContainer
                   items={children}
+                  isRenderDraggingChildren={isRenderDraggingChildren}
                   parentPosition={position}
                   childrenProperty={childrenProperty}
                   childrenStyle={childrenStyle}
