@@ -37,6 +37,7 @@ import {GenericModalLayoutDriver} from '../src/GenericModalLayout/GenericModalLa
 import {HeadingDriver} from '../src/Heading/Heading.driver';
 import {HighlighterDriver} from '../src/Highlighter/Highlighter.driver';
 import {IconButtonDriver} from '../src/IconButton/IconButton.uni.driver';
+import {ImageViewerDriver} from '../src/ImageViewer/ImageViewer.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -176,6 +177,7 @@ declare namespace VanillaTestkit {
   export const headingTestkitFactory: VanillaTestkitFactory<HeadingDriver>;
   export const highlighterTestkitFactory: VanillaTestkitFactory<HighlighterDriver>;
   export const iconButtonTestkitFactory: VanillaUniTestkitFactory<IconButtonDriver>;
+  export const imageViewerTestkitFactory: VanillaTestkitFactory<ImageViewerDriver>;
 
   export const labelTestkitFactory: VanillaTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: VanillaTestkitFactory<TabsDriver>;

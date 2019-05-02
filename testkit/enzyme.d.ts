@@ -38,6 +38,7 @@ import {GenericModalLayoutDriver} from '../src/GenericModalLayout/GenericModalLa
 import {HeadingDriver} from '../src/Heading/Heading.driver';
 import {HighlighterDriver} from '../src/Highlighter/Highlighter.driver';
 import {IconButtonDriver} from '../src/IconButton/IconButton.uni.driver';
+import {ImageViewerDriver} from '../src/ImageViewer/ImageViewer.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -176,6 +177,7 @@ declare namespace EnzymeTestkit {
   export const headingTestkitFactory: EnzymeTestkitFactory<HeadingDriver>;
   export const highlighterTestkitFactory: EnzymeTestkitFactory<HighlighterDriver>;
   export const iconButtonTestkitFactory: EnzymeUniTestkitFactory<IconButtonDriver>;
+  export const imageViewerTestkitFactory: EnzymeTestkitFactory<ImageViewerDriver>;
 
   export const labelTestkitFactory: EnzymeTestkitFactory<LabelDriver>;
   export const tabsTestkitFactory: EnzymeTestkitFactory<TabsDriver>;
