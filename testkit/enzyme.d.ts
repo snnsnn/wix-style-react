@@ -45,6 +45,8 @@ import {InputAreaDriver} from '../src/InputArea/InputArea.driver';
 import {InputWithOptionsDriver} from '../src/InputWithOptions/InputWithOptions.driver';
 import {LinearProgressBarDriver} from '../src/LinearProgressBar/LinearProgressBar.driver';
 import {LoaderDriver} from '../src/Loader/Loader.driver';
+import {DataTableDriver} from '../src/DataTable/DataTable.driver';
+import {TableDriver} from '../src/Table/Table.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -170,6 +172,7 @@ declare namespace EnzymeTestkit {
   export const closeButtonTestkitFactory: EnzymeUniTestkitFactory<CloseButtonDriver>;
   export const colorPickerTestkitFactory: EnzymeTestkitFactory<ColorPickerDriver>;
   export const counterBadgeTestkitFactory: EnzymeTestkitFactory<CounterBadgeDriver>;
+  export const dataTableTestkitFactory: EnzymeTestkitFactory<DataTableDriver>;
   export const datePickerTestkitFactory: EnzymeTestkitFactory<DatePickerDriver>;
   export const dropdownBaseTestkitFactory: EnzymeUniTestkitFactory<DropdownBaseDriver>;
   export const dropdownLayoutTestkitFactory: EnzymeTestkitFactory<DropdownLayoutDriver>;
@@ -191,6 +194,7 @@ declare namespace EnzymeTestkit {
   export const linearProgressBarTestkitFactory: EnzymeTestkitFactory<LinearProgressBarDriver>;
   export const loaderTestkitFactory: EnzymeTestkitFactory<LoaderDriver>;
 
+  export const tableTestkitFactory: EnzymeTestkitFactory<TableDriver>;
   export const tableActionCellTestkitFactory: EnzymeTestkitFactory<TableActionCellDriver>;
   export const tabsTestkitFactory: EnzymeTestkitFactory<TabsDriver>;
   export const tagTestkitFactory: EnzymeTestkitFactory<TagDriver>;
