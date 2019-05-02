@@ -132,7 +132,7 @@ class Carousel extends React.Component {
 
 Carousel.propTypes = {
   dataHook: PropTypes.string,
-  /** Array of strings where each string is a src of an image (in \<img src="your_src" /\>) */
+  /** Array of images object where each object has a "src" key with a value of an image url that will be the image source in \<img src="your_src" /\> */
   images: PropTypes.array.isRequired,
   /** Images loop endlessly */
   infinite: PropTypes.bool,
@@ -148,7 +148,6 @@ Carousel.defaultProps = {
   autoplay: false,
   speed: TRANSITION_SPEED,
   autoplaySpeed: AUTOPLAY_SPEED,
-  dots: true,
   initialSlide: 0,
   arrowSkin: 'standard',
   arrowSize: 'medium',
