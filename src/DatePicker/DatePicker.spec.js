@@ -1,11 +1,7 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
-import { mount } from 'enzyme';
 import isSameDay from 'date-fns/is_same_day';
 
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { datePickerTestkitFactory } from '../../testkit/index';
-import { datePickerTestkitFactory as enzymeDatePickerTestkitFactory } from '../../testkit/enzyme';
 import datePickerDriverFactory from './DatePicker.driver';
 import Input from '../Input';
 import DatePicker from './DatePicker';
@@ -759,44 +755,6 @@ describe('DatePicker', () => {
       );
       expect(inputDriver.hasRightBorderRadius()).toBeFalsy();
       expect(inputDriver.hasLeftBorderRadius()).toBeFalsy();
-    });
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      const div = document.createElement('div');
-      const dataHook = 'dataHook';
-      const wrapper = div.appendChild(
-        ReactTestUtils.renderIntoDocument(
-          <div>
-            <DatePicker onChange={noop} dataHook={dataHook} />
-          </div>,
-        ),
-      );
-      const { driver, calendarDriver, inputDriver } = datePickerTestkitFactory({
-        wrapper,
-        dataHook,
-      });
-
-      expect(driver.exists()).toBe(true);
-      expect(inputDriver.exists()).toBe(true);
-      expect(calendarDriver.isVisible()).toBe(false);
-    });
-  });
-
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      const dataHook = 'dataHook';
-      const wrapper = mount(<DatePicker onChange={noop} dataHook={dataHook} />);
-      const {
-        driver,
-        calendarDriver,
-        inputDriver,
-      } = enzymeDatePickerTestkitFactory({ wrapper, dataHook });
-
-      expect(driver.exists()).toBe(true);
-      expect(inputDriver.exists()).toBe(true);
-      expect(calendarDriver.isVisible()).toBe(false);
     });
   });
 
