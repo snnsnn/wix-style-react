@@ -97,6 +97,7 @@ export const modalSelectorLayoutTestkitFactory = enzymeTestkitFactoryCreator(loa
 export const multiSelectTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MultiSelect/MultiSelect.driver')));
 export const multiSelectCheckboxTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MultiSelectCheckbox/MultiSelectCheckbox.driver')));
 export const multiSelectCompositeTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/MultiSelectComposite/MultiSelectComposite.driver')));
+export const nestableListTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/NestableList/NestableList.driver')));
 export const noBorderInputTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/NoBorderInput/NoBorderInput.driver')));
 export const notificationTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Notification/Notification.driver')));
 export const numberInputTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/NumberInput/NumberInput.uni.driver')));

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import WixComponent from '../BaseComponents/WixComponent';
 import { removeFromTree, addToTree } from './utils';
-import pure from 'recompose/pure';
 
 import CustomDragLayer from './DragLayer';
 import Container from './Container';
@@ -36,7 +36,7 @@ function getRealNextPosition(prev, next) {
   return next;
 }
 
-class NestableList extends Component {
+class NestableList extends WixComponent {
   static defaultProps = {
     items: [],
     isRenderDraggingChildren: false,
