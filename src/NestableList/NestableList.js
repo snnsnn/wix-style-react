@@ -4,6 +4,7 @@ import pure from 'recompose/pure';
 
 import CustomDragLayer from './DragLayer';
 import Container from './Container';
+import withDNDContext from './withDNDContext';
 
 function replaceNegativeIndex(items, nextPosition, childrenProperty) {
   let currItems = items;
@@ -145,4 +146,4 @@ class NestableList extends Component {
   }
 }
 
-export default pure(NestableList);
+export default withDNDContext(NestableList);
