@@ -6,7 +6,6 @@ import DragDropContextProvider from '../DragDropContextProvider';
 const findInstance = (wrapper, cb) => {
   let itemInstance = null;
   ReactTestUtils.findAllInRenderedTree(wrapper, ins => {
-    // ins && ins.props && ins.props.id && console.dir(ins.constructor.name);
     if (cb(ins)) {
       itemInstance = ins;
     }

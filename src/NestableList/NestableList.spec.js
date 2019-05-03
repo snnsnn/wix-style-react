@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-// import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-// import { mount } from 'enzyme';
-
-// import { enzymeTestkitFactoryCreator } from 'wix-ui-test-utils/enzyme';
 
 import TestBackend from '../DragDropContextProvider/TestBackend';
 import DragDropContextProvider from '../DragDropContextProvider';

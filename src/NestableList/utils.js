@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 export const getDepth = (item, childrenProperty) => {
   // returns depth of item and children
   let depth = 0;
@@ -32,7 +31,7 @@ export const removeFromTree = (items, position, childrenProperty) => {
   let itemsRemoveCandidate = items;
   position.forEach((pos, index) => {
     if (index === lastIndex) {
-      itemsRemoveCandidate.splice(pos, 1)[0];
+      itemsRemoveCandidate.splice(pos, 1)[0]; // eslint-disable-line no-unused-expressions
     } else {
       itemsRemoveCandidate = itemsRemoveCandidate[pos][childrenProperty];
     }
@@ -46,7 +45,7 @@ export const addToTree = (items, item, position, childrenProperty) => {
   let itemsAddCandidate = items;
   position.forEach((pos, index) => {
     if (index === lastIndex) {
-      itemsAddCandidate.splice(pos, 0, item);
+      itemsAddCandidate.splice(pos, 0, item); // eslint-disable-line no-unused-expressions
     } else {
       if (!itemsAddCandidate[pos][childrenProperty]) {
         itemsAddCandidate[pos][childrenProperty] = [];
