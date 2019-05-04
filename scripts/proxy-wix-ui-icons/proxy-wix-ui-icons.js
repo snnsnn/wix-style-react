@@ -30,7 +30,7 @@ const proxyWixUiIconsCommon = (moduleName, iconsDir) => {
   /* content of index.js file with named exports of all icons */
   const indexFileContent = prepareIndexFileContentForNamedExport(generalIconsFilesContentMap);
   /* content of index.d.ts file with named exports of all icons */
-  const indexDefinitionFileCOntent = prepareIndexDefinitionFileContentForNamedExport(generalIconsFilesContentMap);
+  const indexDefinitionFileContent = prepareIndexDefinitionFileContentForNamedExport(generalIconsFilesContentMap);
 
   /* here we creating folder where we will put icons files */
   createFolderForIconsOnDisk(iconsDir);
@@ -39,7 +39,7 @@ const proxyWixUiIconsCommon = (moduleName, iconsDir) => {
   writeIconsFilesToFolderOnDisk(generalIconsFilesContentMap, iconsDir);
   writeIconsFilesToFolderOnDisk(systemIconsFilesContentMap, iconsDir, 'system/');
   writeIndexFileToDisk(indexFileContent, iconsDir);
-  writeIndexDefinitionFileToDisk(indexDefinitionFileCOntent, iconsDir);
+  writeIndexDefinitionFileToDisk(indexDefinitionFileContent, iconsDir);
 
   /* as storybook has ../src alias, to make icons workable their, we need to copy them from root to src */
   copyFolderWithIconsToSrcForStorybookOnDisk(iconsDir);
