@@ -1,14 +1,12 @@
 import React, { PropTypes } from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import { findDOMNode } from 'react-dom';
-import shallowCompare from 'react-addons-shallow-compare';
 import shallowEqual from 'shallowequal';
-import compose from 'recompose/compose';
-import getContext from 'recompose/getContext';
 import { DragSource, DropTarget } from 'react-dnd';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 import itemTypes from './itemTypes';
 import { getValuesByKey } from './utils';
+import { NestableListContext } from './NestableListContext';
 
 // keep track of horizontal mouse movement
 const mouse = {
@@ -232,10 +230,6 @@ class Item extends WixComponent {
     });
   }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    return shallowCompare(this, nextProps, nextState, nextContext);
-  }
-
   render() {
     const {
       item,
@@ -275,14 +269,13 @@ class Item extends WixComponent {
       );
     }
 
-    return compose(
-      connectDropTarget,
-      connectDragSource,
-    )(
-      <div data-hook="nestable-item">
-        {renderItem(renderParams)}
-        {renderChildren && children}
-      </div>,
+    return connectDropTarget(
+      connectDragSource(
+        <div data-hook="nestable-item">
+          {renderItem(renderParams)}
+          {renderChildren && children}
+        </div>,
+      ),
     );
   }
 }
@@ -305,13 +298,14 @@ export const DropItemTarget = DropTarget(
   }),
 )(DragItemSource);
 
-export const ItemContext = getContext({
-  useDragHandle: PropTypes.bool.isRequired,
-  maxDepth: PropTypes.number.isRequired,
-  threshold: PropTypes.number.isRequired,
-  renderItem: PropTypes.func.isRequired,
-  moveItem: PropTypes.func.isRequired,
-  dropItem: PropTypes.func.isRequired,
-})(DropItemTarget);
+class ItemWithContext extends WixComponent {
+  render() {
+    return (
+      <NestableListContext.Consumer>
+        {context => <DropItemTarget {...this.props} {...context} />}
+      </NestableListContext.Consumer>
+    );
+  }
+}
 
-export default ItemContext;
+export default ItemWithContext;

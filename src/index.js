@@ -85,6 +85,7 @@ export { default as CircularProgressBar } from './CircularProgressBar';
 export { default as EmptyState } from './EmptyState';
 export { default as DragDropContextProvider } from './DragDropContextProvider';
 export { default as SortableList } from './SortableList';
+export { default as NestableList } from './NestableList';
 export { default as FilePicker } from './FilePicker';
 export {
   Container,

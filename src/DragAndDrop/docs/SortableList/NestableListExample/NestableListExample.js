@@ -20,10 +20,7 @@ export default class NestableListExample extends React.Component {
     ],
   };
 
-  handleDrop = items => {
-    // console.log(args);
-    // const nextItems = [...this.state.items];
-    // nextItems.splice(addedIndex, 0, ...nextItems.splice(removedIndex, 1));
+  onUpdate = items => {
     this.setState({
       items: items,
     });
@@ -73,7 +70,7 @@ export default class NestableListExample extends React.Component {
             useDragHandle
             items={this.state.items}
             renderItem={this.renderItem}
-            onUpdate={this.handleDrop}
+            onUpdate={this.onUpdate}
             maxDepth={2}
             threshold={30}
             childrenStyle={stylesExp.children}

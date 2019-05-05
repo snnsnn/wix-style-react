@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import pure from 'recompose/pure';
-import compose from 'recompose/compose';
 import { DragLayer } from 'react-dnd';
 import itemTypes from './itemTypes';
 
 const layerStyles = {
   position: 'fixed',
   pointerEvents: 'none',
-  zIndex: 100,
   left: 0,
   top: 0,
 };
@@ -31,10 +28,10 @@ function getItemStyles(props, clientRect, handleOffset) {
   };
 }
 
-const noopConnectDragSource = el => el;
+const defaultConnectDragSource = el => el;
 
 class CustomDragLayer extends Component {
-  getChildren = (items, depth) => {
+  renderChildren = (items, depth) => {
     const { renderItem, childrenProperty, childrenStyle } = this.props;
 
     if (!items || !items.length) {
@@ -50,9 +47,9 @@ class CustomDragLayer extends Component {
               isPlaceholder: false,
               isPreview: true,
               depth,
-              connectDragSource: noopConnectDragSource,
+              connectDragSource: defaultConnectDragSource,
             })}
-            {this.getChildren(item[childrenProperty], depth + 1)}
+            {this.renderChildren(item[childrenProperty], depth + 1)}
           </div>
         ))}
       </div>
@@ -83,23 +80,26 @@ class CustomDragLayer extends Component {
             isPlaceholder: false,
             isPreview: true,
             depth: 1,
-            connectDragSource: noopConnectDragSource,
+            connectDragSource: defaultConnectDragSource,
           })}
           {isRenderDraggingChildren &&
-            this.getChildren(item.data[childrenProperty], 2)}
+            this.renderChildren(item.data[childrenProperty], 2)}
         </div>
       </div>
     );
   }
 }
 
-export default compose(
-  DragLayer(monitor => ({
-    item: monitor.getItem(),
-    itemType: monitor.getItemType(),
-    initialOffset: monitor.getInitialSourceClientOffset(),
-    currentOffset: monitor.getSourceClientOffset(),
-    isPlaceholder: monitor.isDragging(),
-  })),
-  pure,
-)(CustomDragLayer);
+class PureDragLayer extends React.PureComponent {
+  render() {
+    return <CustomDragLayer {...this.props} />;
+  }
+}
+
+export default DragLayer(monitor => ({
+  item: monitor.getItem(),
+  itemType: monitor.getItemType(),
+  initialOffset: monitor.getInitialSourceClientOffset(),
+  currentOffset: monitor.getSourceClientOffset(),
+  isPlaceholder: monitor.isDragging(),
+}))(PureDragLayer);

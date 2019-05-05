@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import pure from 'recompose/pure';
 
 import Item from './Item';
 import { getDepth } from './utils';
@@ -49,6 +48,10 @@ class Container extends Component {
   }
 }
 
-const WrappedContainer = pure(Container);
+class WrappedContainer extends React.PureComponent {
+  render() {
+    return <Container {...this.props} />;
+  }
+}
 
 export default WrappedContainer;

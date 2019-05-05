@@ -1,9 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import { removeFromTree, addToTree } from './utils';
+import { polyfill } from 'react-lifecycles-compat';
 
 import CustomDragLayer from './DragLayer';
 import Container from './Container';
+import { NestableListContext } from './NestableListContext';
 import withDNDContext from './withDNDContext';
 
 function replaceNegativeIndex(items, nextPosition, childrenProperty) {
@@ -43,9 +45,6 @@ class NestableList extends WixComponent {
     childrenProperty: 'children',
     childrenStyle: {},
     onUpdate: () => {},
-    renderItem: () => {
-      throw new Error('NestableList: You must supply a renderItem prop.');
-    },
     useDragHandle: false,
     maxDepth: Infinity,
     threshold: 30,
@@ -59,6 +58,15 @@ class NestableList extends WixComponent {
     moveItem: PropTypes.func.isRequired,
     dropItem: PropTypes.func.isRequired,
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.items !== state.items) {
+      return {
+        ...state,
+        items: props.items,
+      };
+    }
+  }
 
   state = {
     items: this.props.items,
@@ -75,12 +83,6 @@ class NestableList extends WixComponent {
       moveItem: this.moveItem,
       dropItem: this.dropItem,
     };
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (newProps.items !== this.state.items) {
-      this.setState({ items: newProps.items });
-    }
   }
 
   moveItem = ({ dragItem, prevPosition, nextPosition }) => {
@@ -123,27 +125,45 @@ class NestableList extends WixComponent {
       childrenProperty,
       childrenStyle,
       isRenderDraggingChildren,
+      useDragHandle,
+      maxDepth,
+      threshold,
     } = this.props;
 
     return (
       <div>
-        <Container
-          items={items}
-          parentPosition={[]}
-          childrenProperty={childrenProperty}
-          childrenStyle={childrenStyle}
-          isRenderDraggingChildren={isRenderDraggingChildren}
-          topLevel
-        />
-        <CustomDragLayer
-          isRenderDraggingChildren={isRenderDraggingChildren}
-          renderItem={renderItem}
-          childrenProperty={childrenProperty}
-          childrenStyle={childrenStyle}
-        />
+        <NestableListContext.Provider
+          value={{
+            useDragHandle,
+            maxDepth,
+            threshold,
+            renderItem,
+            moveItem: this.moveItem,
+            dropItem: this.dropItem,
+          }}
+        >
+          <div>
+            <Container
+              items={items}
+              parentPosition={[]}
+              childrenProperty={childrenProperty}
+              childrenStyle={childrenStyle}
+              isRenderDraggingChildren={isRenderDraggingChildren}
+              topLevel
+            />
+            <CustomDragLayer
+              isRenderDraggingChildren={isRenderDraggingChildren}
+              renderItem={renderItem}
+              childrenProperty={childrenProperty}
+              childrenStyle={childrenStyle}
+            />
+          </div>
+        </NestableListContext.Provider>
       </div>
     );
   }
 }
+
+polyfill(NestableList);
 
 export default withDNDContext(NestableList);
