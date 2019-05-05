@@ -321,8 +321,8 @@ class DropdownBase extends React.PureComponent {
             }}
           >
             <DropdownLayout
-              maxHeightPixals={maxHeight}
               dataHook="dropdown-base-dropdownlayout"
+              maxHeightPixels={maxHeight}
               ref={r => (this._dropdownLayoutRef = r)}
               selectedId={selectedId}
               options={options}
