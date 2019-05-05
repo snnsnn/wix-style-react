@@ -306,6 +306,7 @@ describe('ModalSelectorLayout', () => {
 
       const driver = createDriverWithProps({
         dataSource: paginatedDataSource,
+        withSearch: true,
         searchDebounceMs: 100,
       });
 

@@ -10,6 +10,17 @@ import { StringUtils } from '../utils/StringUtils';
 import styles from './Search.scss';
 import Input from '../Input/Input';
 
+// because lodash debounce is not compatible with jest timeout mocks
+function debounce(fn, wait) {
+  let timeout;
+
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn.apply(context, args), wait);
+  };
+}
+
 /**
  * Search component with suggestions based on input value listed in dropdown
  */
@@ -22,6 +33,8 @@ export default class Search extends WixComponent {
     expandable: PropTypes.bool,
     /** Custom function for filtering options */
     predicate: PropTypes.func,
+    /** onChange debounce in milliseconds */
+    debounceMs: PropTypes.number,
   };
 
   static defaultProps = {
@@ -35,6 +48,11 @@ export default class Search extends WixComponent {
 
     const initialValue = (!this._isControlled && props.defaultValue) || '';
 
+    this._onChangeDebounced = debounce(
+      this._onChangeDebounced,
+      props.debounceMs,
+    );
+
     this.state = {
       inputValue: initialValue,
       collapsed: props.expandable && initialValue === '' && !props.autoFocus,
@@ -45,10 +63,14 @@ export default class Search extends WixComponent {
     return 'value' in this.props && 'onChange' in this.props;
   }
 
-  get _filteredOptions() {
-    const { options, value, predicate } = this.props;
+  get _isDebounced() {
+    return typeof this.props.debounceMs === 'number';
+  }
 
-    const searchText = this._isControlled ? value : this.state.inputValue;
+  get _filteredOptions() {
+    const { options, predicate } = this.props;
+
+    const searchText = this._currentValue();
     if (!searchText || !searchText.length) {
       return options;
     }
@@ -57,18 +79,24 @@ export default class Search extends WixComponent {
   }
 
   _stringFilter = option => {
-    const { value } = this.props;
-    const searchText = this._isControlled ? value : this.state.inputValue;
+    const searchText = this._currentValue();
     return StringUtils.includesCaseInsensitive(option.value, searchText.trim());
   };
 
+  _onChangeDebounced = e => this.props.onChange && this.props.onChange(e);
+
   _onChange = e => {
-    if (this._isControlled) {
+    if (this._isControlled && !this._isDebounced) {
       this.props.onChange(e);
     } else {
       this.setState({
         inputValue: e.target.value,
       });
+    }
+
+    if (this._isDebounced) {
+      // need a copy of the event because of the dobunce
+      this._onChangeDebounced({ target: e.target });
     }
   };
 
@@ -78,7 +106,7 @@ export default class Search extends WixComponent {
 
     const stateChanges = {};
 
-    if (this._isControlled) {
+    if (this._isControlled && !this._isDebounced) {
       stateChanges.inputValue = '';
     }
 
@@ -95,7 +123,7 @@ export default class Search extends WixComponent {
   _currentValue = () => {
     let value;
 
-    if (this._isControlled) {
+    if (this._isControlled && !this._isDebounced) {
       value = this.props.value;
     } else {
       value = this.state.inputValue;

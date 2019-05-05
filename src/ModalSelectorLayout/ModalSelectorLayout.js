@@ -14,17 +14,6 @@ import Checkbox from '../Checkbox';
 
 import css from './ModalSelectorLayout.scss';
 
-// because lodash debounce is not compatible with jest timeout mocks
-function debounce(fn, wait) {
-  let timeout;
-
-  return function(...args) {
-    const context = this;
-    clearTimeout(timeout);
-    timeout = setTimeout(() => fn.apply(context, args), wait);
-  };
-}
-
 const DEFAULT_EMPTY = (
   <div className={css.defaultEmptyStateWrapper}>
     <Text>{"You don't have any items"}</Text>
@@ -170,15 +159,6 @@ export default class ModalSelectorLayout extends WixComponent {
     isEmpty: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    this._onStartSearchDebounced = debounce(
-      this._onStartSearch.bind(this),
-      this.props.searchDebounceMs,
-    );
-  }
-
   render() {
     const {
       title,
@@ -189,6 +169,7 @@ export default class ModalSelectorLayout extends WixComponent {
       noResultsFoundStateFactory,
       withSearch,
       height,
+      searchDebounceMs,
     } = this.props;
 
     const {
@@ -217,9 +198,11 @@ export default class ModalSelectorLayout extends WixComponent {
                 <Search
                   dataHook={dataHooks.search}
                   placeholder={searchPlaceholder}
-                  value={searchValue}
                   onChange={this._onSearchChange}
                   onClear={this._onClear}
+                  {...(searchDebounceMs
+                    ? { debounceMs: searchDebounceMs }
+                    : { value: searchValue })}
                 />
               </div>
             )}
@@ -321,24 +304,11 @@ export default class ModalSelectorLayout extends WixComponent {
   _updateSearchValue = searchValue =>
     this.setState({
       searchValue,
-    });
-
-  _onSearchChange = e => {
-    this._updateSearchValue(e.target.value);
-
-    if (typeof this.props.searchDebounceMs === 'number') {
-      this._onStartSearchDebounced();
-    } else {
-      this._onStartSearch();
-    }
-  };
-
-  _onStartSearch() {
-    this.setState({
       isSearching: true,
       items: [],
     });
-  }
+
+  _onSearchChange = e => this._updateSearchValue(e.target.value);
 
   _onClear = () => this._updateSearchValue('');
 
