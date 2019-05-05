@@ -32,6 +32,8 @@ class DropdownBase extends React.PureComponent {
     minWidth: PropTypes.number,
     /** The maximum width applied to the list */
     maxWidth: PropTypes.number,
+    /** the maximum height applied to the list */
+    maxHeight: PropTypes.number,
 
     /**
      * The target component to be rendered. If a regular node is paseed, it'll be rendered as-is.
@@ -318,6 +320,7 @@ class DropdownBase extends React.PureComponent {
             }}
           >
             <DropdownLayout
+              maxHeightPixals={maxHeight}
               dataHook="dropdown-base-dropdownlayout"
               ref={r => (this._dropdownLayoutRef = r)}
               selectedId={selectedId}
