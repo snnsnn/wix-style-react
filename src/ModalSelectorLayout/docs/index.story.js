@@ -32,7 +32,7 @@ export default {
     itemsPerPage: 4,
     imageSize: 'large',
     withSearch: true,
-    searchDebounceMS: 100,
+    searchDebounceMs: 100,
 
     dataSource: (searchQuery, offset, limit) =>
       new Promise(resolve =>

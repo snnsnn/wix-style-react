@@ -175,7 +175,7 @@ export default class ModalSelectorLayout extends WixComponent {
 
     this._onStartSearchDebounced = debounce(
       this._onStartSearch.bind(this),
-      this.props.searchDebounceMS,
+      this.props.searchDebounceMs,
     );
   }
 
@@ -326,7 +326,7 @@ export default class ModalSelectorLayout extends WixComponent {
   _onSearchChange = e => {
     this._updateSearchValue(e.target.value);
 
-    if (typeof this.props.searchDebounceMS === 'number') {
+    if (typeof this.props.searchDebounceMs === 'number') {
       this._onStartSearchDebounced();
     } else {
       this._onStartSearch();
