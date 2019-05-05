@@ -286,6 +286,7 @@ class DropdownBase extends React.PureComponent {
       options,
       minWidth,
       maxWidth,
+      maxHeight,
     } = this.props;
 
     const { open, selectedId } = this.state;
