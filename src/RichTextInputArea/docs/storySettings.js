@@ -1,9 +1,7 @@
 import { Category } from '../../../stories/storiesHierarchy';
 
 export const storySettings = {
-  kind: Category.WIP,
-  category: Category.WIP,
-
+  category: Category.COMPONENTS,
   storyName: 'RichTextInputArea',
-  dataHook: 'story-rich-text-input-area',
+  dataHook: 'story-richtextinputarea',
 };

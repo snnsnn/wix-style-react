@@ -1,3 +1,4 @@
+
 import React, { PropTypes } from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import { removeFromTree, addToTree } from './utils';
@@ -6,6 +7,7 @@ import { polyfill } from 'react-lifecycles-compat';
 import CustomDragLayer from './DragLayer';
 import Container from './Container';
 import { NestableListContext } from './NestableListContext';
+
 import withDNDContext from './withDNDContext';
 
 function replaceNegativeIndex(items, nextPosition, childrenProperty) {

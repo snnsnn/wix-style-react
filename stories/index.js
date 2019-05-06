@@ -20,15 +20,15 @@ require('../src/Card/docs'); // 2.2 Card Layout
 // 3. Inputs
 require('./TextInput/index.story'); // 3.1. Text Input
 require('./TextArea/index.story'); // 3.2 Text Area
-require('../src/RichTextArea/docs/index.story'); // 3.2b + RichTextArea
+require('./RichTextArea/index.story'); // 3.3 Rich Text Area
 require('./NumberInput/index.story'); // 3.4 NumberInput
-require('./MultiSelect/index.story'); // 3.8 Tags
+require('../src/ColorInput/docs/index.story'); // 3.11 ColorInput
+require('./MultiSelect/index.story'); // 3.12 Tags
 
 // 4. Selection
 require('./Dropdown/DropdownStory'); // 4.1 Dropdown
 require('../src/SegmentedToggle/docs/index.story'); // 4.5 SegmentedToggle
-require('../src/Slider/docs/index.story'); // 4.7 Slider
-require('../src/ColorInput/docs/index.story'); // 4.8 ColorInput
+require('../src/Slider/docs/index.story'); // 4.8 Slider
 
 // 5. Buttons
 require('../src/Button/docs/index.story'); // 5.1 Standard
@@ -94,6 +94,7 @@ require('../src/Layout/docs');
 require('../src/Layout/docs/index.story');
 require('../src/LinearProgressBar/docs/index.story');
 require('../src/Loader/docs/index.story');
+require('../src/MessageBox/FunctionalLayout/docs/index.story');
 require('../src/Modal/docs');
 require('../src/ModalSelectorLayout/docs/index.story');
 require('../src/MultiSelect/docs/index.story');
@@ -108,7 +109,7 @@ require('../src/PopoverMenu/docs/index.story');
 require('../src/Proportion/docs/index.story');
 require('../src/RadioGroup/docs/index.story');
 require('../src/Range/docs');
-require('../src/RichTextArea/docs/api.story');
+require('../src/RichTextInputArea/docs/index.story');
 require('../src/Search/docs/index.story');
 require('../src/SectionHelper/docs/index.story');
 require('../src/SideMenu/docs');
@@ -178,6 +179,5 @@ require('./FieldWithSelectionComposite');
 require('../src/GeneratedTestComponent/docs/index.story');
 require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 
-require('../src/RichTextInputArea/docs/index.story');
 require('../src/NoBorderInput/docs/index.story');
 require('../src/EditableTitle/docs/index.story');

@@ -14,6 +14,64 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 6.17.2 - 2019-05-03
+### Docs
+- `<RichTextInputArea/>` - change RichTextArea docs to use the new component [#3352](https://github.com/wix/wix-style-react/pull/3352)
+
+### Fixed
+- Infra - remove .d.ts files from root when unnecessary in import-path [fix](https://github.com/wix/import-path/pull/8)
+
+## 6.17.1 - 2019-05-02
+### Fixed
+- downgrade internally dependency jscodeshift, which uses babel@6, for compatibility [51dd840e](https://github.com/wix/wix-style-react/commit/51dd840e46c58f6d5f80e8275a93f208ce0f8fe6)
+- `<Input/>` - fix prop validation warning when providing updateControlledOnClear [#3341](https://github.com/wix/wix-style-react/pull/3341)
+- Infra: Remove empty typescript declarations [#3341](https://github.com/wix/wix-style-react/pull/3341)
+
+## 6.17.0 - 2019-05-02
+
+### Added
+- `<RichTextInputArea/>` - support removing links by toggling the link button [#3323](https://github.com/wix/wix-style-react/pull/3323)
+- Infra - add type definitions - add Avatar types [#3332](https://github.com/wix/wix-style-react/pull/3332)
+- `<RichTextInputArea/>` - add scrollBehavior polyfill [#3342](https://github.com/wix/wix-style-react/pull/3342)
+
+### Fixed
+
+- `<Page/>` - allow falsy children (for conditional rendering) [#3311](https://github.com/wix/wix-style-react/pull/3311)
+- `<RichTextInputArea/>` - fix list incorrect style [#3337](https://github.com/wix/wix-style-react/pull/3337)
+
+## 6.16.2 - 2019-04-28
+
+### Fixed
+
+- `Button Family` - Proxy driver from ui-core [#3300](https://github.com/wix/wix-style-react/pull/3300)
+- `<Checkbox/>` - use css-modules hashed class name instead hardcoded string in testkit [#3286](https://github.com/wix/wix-style-react/pull/3286)
+
+## 6.16.1
+
+### Fixed
+
+- `<Tooltip/>` - fix broken upgrade prop for puppeteer & protractor testkits. [#3296](https://github.com/wix/wix-style-react/pull/3296)
+
+
+## 6.16.0
+
+### Added
+
+- `<RichTextInputArea/>` - add `status` & `statusMessage` props [#3281](https://github.com/wix/wix-style-react/pull/3281)
+- `<DropdownLayout/>` - Add onOptionMarked callback [#3155](https://github.com/wix/wix-style-react/pull/3155)
+
+### Changed
+
+- `<Input>` - add `updateControlledOnClear` prop which if provided fixes an error thrown in the console [#3251](https://github.com/wix/wix-style-react/pull/3251)
+- `<ContactItemBuilder/>` - add disable prop [#3248](https://github.com/wix/wix-style-react/pull/3248)
+
+### Deprecated
+
+- `<Page/>` - Add deprecationLog, encouraging consumers to use Page upgrade [#3288](https://github.com/wix/wix-style-react/pull/3288)
+
+### Fixed
+
+- `<Tooltip/>` - make testkit upgrade toggle more specific[#3294](https://github.com/wix/wix-style-react/pull/3294)
 
 ## 6.15.0 - 2019-04-21 
 

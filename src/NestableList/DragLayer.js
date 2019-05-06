@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { DragLayer } from 'react-dnd';
 import itemTypes from './itemTypes';
 

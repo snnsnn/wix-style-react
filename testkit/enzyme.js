@@ -14,13 +14,13 @@ import {
 import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
 import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
 
-export const tooltipTestkitFactory = obj => {
-  const hasUpgrade = obj.wrapper.find('[data-hook="popover-element"]').length;
+export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(
+  tooltipDriverFactory,
+);
 
-  return hasUpgrade
-    ? enzymeUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
-    : enzymeTestkitFactoryCreator(tooltipDriverFactory)(obj);
-};
+export const TooltipTestkit = enzymeUniTestkitFactoryCreator(
+  tooltipNextDriverFactory,
+);
 
 const load = module => {
   const MODULE_META_KEYS = ['__esModule'];
@@ -74,6 +74,7 @@ export const dropdownLayoutTestkitFactory = enzymeTestkitFactoryCreator(load(req
 export const editableSelectorTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/EditableSelector/EditableSelector.driver')));
 export const editableTitleTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/EditableTitle/EditableTitle.uni.driver')));
 export const emptyStateTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/EmptyState/EmptyState.driver')));
+export const errorIndicatorTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/ErrorIndicator/ErrorIndicator.uni.driver')));
 export const filePickerTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/FilePicker/FilePicker.driver')));
 export const floatingHelperTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/FloatingHelper/FloatingHelper.driver')));
 export const floatingNotificationTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/FloatingNotification/FloatingNotification.uni.driver')));

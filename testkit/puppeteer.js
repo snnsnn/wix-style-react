@@ -174,10 +174,13 @@ export const googlePreviewTestkitFactory = puppeteerUniTestkitFactoryCreator(
 import tooltipDriverFactory from '../src/Tooltip/Tooltip.protractor.driver';
 import { tooltipDriverFactory as tooltipNextDriverFactory } from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
 
-export const tooltipTestkitFactory = obj =>
-  obj.wrapper && obj.wrapper.$(`[data-hook="popover-element"]`)
-    ? puppeteerUniTestkitFactoryCreator(tooltipNextDriverFactory)(obj)
-    : puppeteerTestkitFactoryCreator(tooltipDriverFactory)(obj);
+export const tooltipTestkitFactory = puppeteerTestkitFactoryCreator(
+  tooltipDriverFactory,
+);
+
+export const TooltipTestkit = puppeteerUniTestkitFactoryCreator(
+  tooltipNextDriverFactory,
+);
 
 import { notificationUniDriverFactory } from '../src/Notification/Notification.uni.driver';
 
@@ -195,4 +198,10 @@ import { loaderUniDriverFactory } from '../src/Loader/Loader.uni.driver';
 
 export const loaderTestkitFactory = puppeteerUniTestkitFactoryCreator(
   loaderUniDriverFactory,
+);
+
+import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicator.uni.driver';
+
+export const errorIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  errorIndicatorDriverFactory,
 );

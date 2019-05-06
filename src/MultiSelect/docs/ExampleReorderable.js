@@ -1,6 +1,9 @@
-/* eslint-disable no-console */
+/* eslint-disable no-undef */
+
 import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
+import Card from 'wix-style-react/Card';
+import FormField from 'wix-style-react/FormField';
 
 const options = [
   { id: '1', name: 'One', value: 'One' },
@@ -66,4 +69,14 @@ class ExampleReorderable extends React.Component {
   }
 }
 
-export default ExampleReorderable;
+render(
+  <div style={{ width: '600px' }}>
+    <Card>
+      <Card.Content>
+        <FormField label="Reorderable Numbers">
+          <ExampleReorderable />
+        </FormField>
+      </Card.Content>
+    </Card>
+  </div>,
+);

@@ -15,6 +15,7 @@ import RichTextToolbar from './Toolbar/RichTextToolbar';
 import EditorUtilities from './EditorUtilities';
 import { RichTextInputAreaContext } from './RichTextInputAreaContext';
 import { defaultTexts } from './RichTextInputAreaTexts';
+import ErrorIndicator from '../ErrorIndicator';
 
 const decorator = new CompositeDecorator([
   {
@@ -33,14 +34,26 @@ const decorator = new CompositeDecorator([
 
 class RichTextInputArea extends React.PureComponent {
   static displayName = 'RichTextInputArea';
+  static errorStatus = 'error';
 
   static propTypes = {
+    /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
+    /** Initial value to display in the editor */
     initialValue: PropTypes.string,
+    /** Placeholder to display in the editor */
     placeholder: PropTypes.string,
+    /** Disables the editor and toolbar */
     disabled: PropTypes.bool,
+    /** Displays a status indicator */
+    status: PropTypes.oneOf(['error']),
+    /** Text to be shown within the tooltip of the status indicator */
+    statusMessage: PropTypes.string,
+    /** Callback function for changes */
     onChange: PropTypes.func,
+    /** Defines a maximum height for the editor (it grows by default) */
     maxHeight: PropTypes.string,
+    /** Texts to be shown */
     texts: PropTypes.shape({
       toolbarButtons: PropTypes.shape(
         mapValues(defaultTexts.toolbarButtons, () => PropTypes.string),
@@ -55,7 +68,7 @@ class RichTextInputArea extends React.PureComponent {
   };
 
   static defaultProps = {
-    initialValue: '',
+    initialValue: '<p></p>',
     texts: {},
   };
 
@@ -86,8 +99,16 @@ class RichTextInputArea extends React.PureComponent {
   }
 
   render() {
-    const { dataHook, placeholder, disabled, maxHeight } = this.props;
+    const {
+      dataHook,
+      placeholder,
+      disabled,
+      maxHeight,
+      status,
+      statusMessage,
+    } = this.props;
     const isEditorEmpty = EditorUtilities.isEditorEmpty(this.state.editorState);
+    const hasError = !disabled && status === RichTextInputArea.errorStatus;
 
     return (
       <div
@@ -96,6 +117,7 @@ class RichTextInputArea extends React.PureComponent {
           styles.root,
           !isEditorEmpty && styles.hidePlaceholder,
           disabled && styles.disabled,
+          hasError && styles.error,
         )}
         // Using CSS variable instead of applying maxHeight on each child, down to the editor's content
         style={{ '--max-height': maxHeight }}
@@ -122,13 +144,23 @@ class RichTextInputArea extends React.PureComponent {
             onNumberedList={this._setEditorState}
           />
         </RichTextInputAreaContext.Provider>
-        <Editor
-          ref="editor"
-          editorState={this.state.editorState}
-          onChange={this._setEditorState}
-          placeholder={placeholder}
-          readOnly={disabled}
-        />
+        <div className={styles.editorWrapper}>
+          <Editor
+            ref="editor"
+            editorState={this.state.editorState}
+            onChange={this._setEditorState}
+            placeholder={placeholder}
+            readOnly={disabled}
+          />
+          {hasError && (
+            <span className={styles.errorIndicator}>
+              <ErrorIndicator
+                dataHook="richtextarea-error-indicator"
+                errorMessage={statusMessage}
+              />
+            </span>
+          )}
+        </div>
       </div>
     );
   }
@@ -145,6 +177,7 @@ class RichTextInputArea extends React.PureComponent {
 
   _updateContentByValue = value => {
     const blocksFromHtml = convertFromHTML(value);
+
     if (blocksFromHtml.contentBlocks) {
       const content = ContentState.createFromBlockArray(blocksFromHtml);
       const updatedEditorState = EditorState.push(

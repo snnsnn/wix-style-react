@@ -33,6 +33,7 @@ This document summarizes the best practices of how to manage our versions, with 
 2. Make sure the [CHANGELOG](https://github.com/wix/wix-style-react/blob/master/CHANGELOG.md) is updated.
 3. Change `package.json` version according to semver rules.
 4. Create a PR from the branch, wait for the CI builds to pass and merge to master.
+5. Make sure the new version is deployed (the new version should appear [here](https://wix-wix-style-react.surge.sh)).
 5. Announce on #wix-style-react slack channel. If there are new components or features worth mentioning, add it to the slack message.
 
 #### Major release

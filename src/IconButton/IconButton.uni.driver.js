@@ -1,11 +1,17 @@
-import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
-import button from 'wix-ui-core/dist/src/components/button-next/button-next.st.css';
-import { getStylableState } from '../../test/utils/stylable-uni-testkit';
+import { buttonNextDriverFactory } from 'wix-ui-core/drivers/unidriver';
 
 export const iconButtonDriverFactory = base => {
+  const buttonDriver = buttonNextDriverFactory(base);
+
+  // Not using Omit so that AutoDocs will generate properly
   return {
-    ...baseUniDriverFactory(base),
-    isButtonDisabled: async () =>
-      (await getStylableState(base, button, 'disabled')) === 'true',
+    /** returns true if component exists */
+    exists: buttonDriver.exists,
+    /** returns the component element */
+    element: buttonDriver.element,
+    /** click on the element */
+    click: buttonDriver.click,
+    /** returns true if button disabled */
+    isButtonDisabled: buttonDriver.isButtonDisabled,
   };
 };

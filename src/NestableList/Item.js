@@ -7,7 +7,6 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 import itemTypes from './itemTypes';
 import { getValuesByKey } from './utils';
 import { NestableListContext } from './NestableListContext';
-
 // keep track of horizontal mouse movement
 const mouse = {
   lastX: 0,
