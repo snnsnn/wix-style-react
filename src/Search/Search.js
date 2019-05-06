@@ -96,7 +96,7 @@ export default class Search extends WixComponent {
 
     if (this._isDebounced) {
       // need a copy of the event because of the dobunce
-      this._onChangeDebounced({ target: e.target });
+      this._onChangeDebounced({ ...e });
     }
   };
 
