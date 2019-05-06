@@ -11,6 +11,7 @@ const defaultProps = {
 
 class Badge extends React.PureComponent {
   static propTypes = {
+    dataHook: PropTypes.string,
     type: Type,
     skin: Skin,
     size: Size,
@@ -37,6 +38,7 @@ class Badge extends React.PureComponent {
       onClick,
       focusableOnFocus,
       focusableOnBlur,
+      dataHook,
       ...rest
     } = this.props;
 
@@ -50,6 +52,7 @@ class Badge extends React.PureComponent {
 
     return (
       <div
+        {...(dataHook ? { 'data-hook': dataHook } : undefined)}
         onClick={onClick}
         {...focusableProps}
         {...style('root', { clickable: !!onClick, ...rest }, this.props)}
