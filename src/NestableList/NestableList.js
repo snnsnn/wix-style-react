@@ -52,15 +52,6 @@ class NestableList extends WixComponent {
     threshold: 30,
   };
 
-  static childContextTypes = {
-    useDragHandle: PropTypes.bool.isRequired,
-    maxDepth: PropTypes.number.isRequired,
-    threshold: PropTypes.number.isRequired,
-    renderItem: PropTypes.func.isRequired,
-    moveItem: PropTypes.func.isRequired,
-    dropItem: PropTypes.func.isRequired,
-  };
-
   static getDerivedStateFromProps(props, state) {
     if (props.items !== state.items) {
       return {
@@ -73,19 +64,6 @@ class NestableList extends WixComponent {
   state = {
     items: this.props.items,
   };
-
-  getChildContext() {
-    const { useDragHandle, maxDepth, threshold, renderItem } = this.props;
-
-    return {
-      useDragHandle,
-      maxDepth,
-      threshold,
-      renderItem,
-      moveItem: this.moveItem,
-      dropItem: this.dropItem,
-    };
-  }
 
   moveItem = ({ dragItem, prevPosition, nextPosition }) => {
     const { childrenProperty } = this.props;
