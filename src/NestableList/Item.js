@@ -242,7 +242,7 @@ class Item extends WixComponent {
       renderItem,
     } = this.props;
 
-    const renderChildren = !isPlaceholder || isRenderDraggingChildren;
+    const shouldRenderChildren = !isPlaceholder || isRenderDraggingChildren;
 
     // params passed to renderItem callback
     const renderParams = {
@@ -263,7 +263,7 @@ class Item extends WixComponent {
       return connectDropTarget(
         <div data-hook="nestable-item" ref={this._setRootNode}>
           {renderItem(renderParams)}
-          {renderChildren && children}
+          {shouldRenderChildren && children}
         </div>,
       );
     }
@@ -272,7 +272,7 @@ class Item extends WixComponent {
       connectDragSource(
         <div data-hook="nestable-item">
           {renderItem(renderParams)}
-          {renderChildren && children}
+          {shouldRenderChildren && children}
         </div>,
       ),
     );
