@@ -30,7 +30,8 @@ describe('Badge', () => {
     withExamples: true,
   });
 
-  beforeAll(() => browser.get(storyUrl));
+  beforeEach(() => browser.get(storyUrl));
+
   describe('AutoExample', () => {
     beforeEach(async () => {
       await autoExampleDriver.reset();
