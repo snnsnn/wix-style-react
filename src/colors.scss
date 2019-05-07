@@ -76,10 +76,14 @@ $S30: rgba(22, 45, 61, 0.06);
 $S40: rgba(22, 45, 61, 0.18);
 $S50: rgba(255, 255, 255, 0.48);
 
-$Shadow10: 0 2px 1px 0 $S20, 0 0 3px 0 $S10;
-$Shadow20: 0 2px 4px 0 $S10, 0 0 6px 0 $S10;
-$Shadow30: 0 6px 6px 0 $S30, 0 0 18px 0 $S10;
-$Shadow40: 0 8px 8px 0 $S10, 0 3px 24px 0 $S40;
+$Shadow10: 0 2px 1px 0 $S20,
+0 0 3px 0 $S10;
+$Shadow20: 0 2px 4px 0 $S10,
+0 0 6px 0 $S10;
+$Shadow30: 0 6px 6px 0 $S30,
+0 0 18px 0 $S10;
+$Shadow40: 0 8px 8px 0 $S10,
+0 3px 24px 0 $S40;
 
 :export {
   D10: $D10;
@@ -93,6 +97,7 @@ $Shadow40: 0 8px 8px 0 $S10, 0 3px 24px 0 $S40;
   D80: $D80;
 
   D10-30: $D10-30;
+  D80-70: $D80-70;
 
   B00: $B00;
   B05: $B05;

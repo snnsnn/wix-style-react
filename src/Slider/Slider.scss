@@ -61,11 +61,11 @@
 }
 
 :global(.wix-style-react-slider) :global(.rc-slider-disabled .rc-slider-rail) {
-  background-color: $D60;
+  background-color: $D10-10;
 }
 
 :global(.wix-style-react-slider) :global(.rc-slider-disabled .rc-slider-track) {
-  background-color: $D55;
+  background-color: $D10-20;
 }
 
 .markLine {

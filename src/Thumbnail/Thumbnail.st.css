@@ -5,7 +5,12 @@
 
 :import {
   -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
-  -st-named: B10, B20, B30, D55, F00, WHITE;
+  -st-named:
+  B10, B20, B30,
+  D55,
+  D10-30, D80-70, 
+  F00,
+  WHITE;
 }
 
 :vars {
@@ -69,12 +74,12 @@
 }
 
 .root:disabled .selectedIcon {
-  background: value(D55);
+  background: value(D80-70);
 }
 
 .root:disabled .title,
 .root:disabled .description {
-  color: value(D55);
+  color: value(D10-30);
 }
 
 .root:hasBackground {
