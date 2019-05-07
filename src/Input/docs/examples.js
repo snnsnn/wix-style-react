@@ -73,32 +73,20 @@ export const iconAffix = `
 <Layout>
   <Cell>
     <Input
+    size="small"
       prefix={
         <Input.IconAffix>
-          <Date />
+          <DateSmall />
         </Input.IconAffix>
       }
     />
   </Cell>
   <Cell>
     <Input
+      size="small"
       suffix={
         <Input.IconAffix>
-          <Search />
-        </Input.IconAffix>
-      }
-    />
-  </Cell>
-  <Cell>
-    <Input
-      prefix={
-        <Input.IconAffix>
-          <Date />
-        </Input.IconAffix>
-      }
-      suffix={
-        <Input.IconAffix>
-          <Search />
+          <SearchSmall />
         </Input.IconAffix>
       }
     />
@@ -113,6 +101,21 @@ export const iconAffix = `
       suffix={
         <Input.IconAffix>
           <Search />
+        </Input.IconAffix>
+      }
+    />
+  </Cell>
+  <Cell>
+    <Input
+      size="large"
+      prefix={
+        <Input.IconAffix>
+          <ChevronRightLarge/>
+        </Input.IconAffix>
+      }
+      suffix={
+        <Input.IconAffix>
+          <ChevronRightLarge/>
         </Input.IconAffix>
       }
       status="error"

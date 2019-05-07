@@ -1,91 +1,77 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../test/utils/react';
 
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import addItemDriverFactory from './AddItem.driver';
-
-const createDriver = createDriverFactory(addItemDriverFactory);
+import { addItemPrivateDriverFactory } from './tests/AddItem.private.driver';
+import { addItemPrivateUniDriverFactory } from './tests/AddItem.private.uni.driver';
 
 import AddItem from './AddItem';
 
 describe('AddItem', () => {
   const renderAddItem = (props = {}) => <AddItem {...props} />;
 
-  it('should have correct displayName', () => {
-    const wrapper = mount(renderAddItem());
-    expect(wrapper.name()).toEqual('WithFocusable(AddItem)');
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(addItemPrivateDriverFactory));
   });
 
-  describe('`children` prop', () => {
-    const text = 'Add New Item';
-    const child = <div data-hook="child">Hello</div>;
-    it('should render text component when string is passed', () => {
-      const driver = createDriver(renderAddItem({ children: text }));
-      expect(driver.getText()).toEqual(text);
-    });
-
-    it('should render children as component', () => {
-      const wrapper = mount(renderAddItem({ children: child }));
-      expect(wrapper.find(`[data-hook*="child"]`).exists()).toEqual(true);
-    });
-
-    it('should not render text when children is undefined', () => {
-      const driver = createDriver(renderAddItem());
-      expect(driver.textExists()).toEqual(false);
-    });
-
-    it('should not render children as string when theme is `image`', () => {
-      const driver = createDriver(
-        renderAddItem({ children: text, theme: 'image' }),
-      );
-      expect(driver.textExists()).toEqual(false);
-    });
-
-    it('should not render children as component when theme is `image`', () => {
-      const wrapper = mount(renderAddItem({ children: child, theme: 'image' }));
-      expect(wrapper.find(`[data-hook*="child"]`).exists()).toEqual(false);
-    });
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(addItemPrivateUniDriverFactory));
   });
 
-  describe('`onClick` prop', () => {
-    it('should call onClick when clicked', () => {
-      const onClick = jest.fn();
-      const driver = createDriver(renderAddItem({ onClick, theme: 'image' }));
-      driver.click();
-      expect(onClick).toHaveBeenCalled();
-    });
-  });
+  function runTests(render) {
+    afterEach(() => cleanup());
 
-  describe('`disable` prop ', () => {
-    it('should not call onClick when disabled', () => {
-      const onClick = jest.fn();
-      const driver = createDriver(renderAddItem({ onClick, disabled: true }));
-      driver.click();
-      expect(onClick).not.toHaveBeenCalled();
-    });
-  });
+    describe('Props', () => {
+      describe('`children` prop', () => {
+        const text = 'Add New Item';
+        const node = <div>{text}</div>;
+        const nodeString = '<div>Add New Item</div>';
 
-  describe('Icon svg', () => {
-    it('should render', () => {
-      const wrapper = mount(renderAddItem());
-      expect(wrapper.find(`[data-hook*="additem-icon"]`).exists()).toEqual(
-        true,
-      );
-    });
-  });
+        it('should render [when] string is given', async () => {
+          const { driver } = render(renderAddItem({ children: text }));
+          expect(await driver.getText()).toEqual(text);
+        });
 
-  describe('Tooltip', () => {
-    const tooltipContent = 'I am ToolTip';
-    it('should render tooltip with given tooltip content', async () => {
-      const driver = createDriver(renderAddItem({ tooltipContent }));
-      expect(await driver.getTooltipContent()).toEqual(tooltipContent);
+        it('should render [when] node is given', async () => {
+          const { driver } = render(renderAddItem({ children: node }));
+          expect(await driver.getText()).toEqual(nodeString);
+        });
+
+        it('should not render children as string when theme is `image`', async () => {
+          const props = { children: text, theme: 'image' };
+          const { driver } = render(renderAddItem(props));
+          expect(await driver.textExists()).toEqual(false);
+        });
+      });
+
+      describe('`onClick` prop', () => {
+        it('should call onClick when clicked', async () => {
+          const onClick = jest.fn();
+          const { driver } = render(renderAddItem({ onClick }));
+          await driver.click();
+          expect(onClick).toHaveBeenCalled();
+        });
+      });
+
+      describe('`disabled` prop ', () => {
+        it('should not call onClick when disabled', async () => {
+          const onClick = jest.fn();
+          const { driver } = render(renderAddItem({ onClick, disabled: true }));
+          await driver.click();
+          expect(onClick).not.toHaveBeenCalled();
+        });
+      });
     });
 
-    it(`should not render when disabled`, () => {
-      const wrapper = mount(renderAddItem({ tooltipContent, disabled: true }));
-      expect(wrapper.find(`[data-hook*="additem-tooltip"]`).exists()).toEqual(
-        false,
-      );
+    describe('Tooltip', () => {
+      it('should appear [when] `theme` image prop is passed', async () => {
+        const props = { tooltipContent: 'content', theme: 'image' };
+        const { driver } = render(renderAddItem(props));
+        expect(await driver.tooltipElementExists()).toEqual(true);
+      });
     });
-  });
+  }
 });

@@ -227,6 +227,10 @@ Table.propTypes = {
    *  When false then Table would not create a `<div/>` wrapper around it's children.
    *  Useful when using `<Table/>` to wrap a `<Page/>` component, in that case we use the `<Table/>` only as a context provider and it doesn't render anything to the DOM by itself.*/
   withWrapper: PropTypes.bool,
+  /**
+   * A callback function called on each column title click. Signature `onSortClick(colData, colNum)`
+   */
+  onSortClick: PropTypes.func,
 };
 
 // export default Table;

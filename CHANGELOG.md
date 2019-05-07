@@ -14,6 +14,21 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Deprecated
+- `<RichTextArea />` - deprecated component, you should use `<RichTextInputArea/>` instead [#3354](https://github.com/wix/wix-style-react/pull/3354)
+
+## Changed ##
+
+- `<FormField/>` - migrated infoicon's tooltip to next generation tooltip. [#3312)](https://github.com/wix/wix-style-react/pull/3312)
+
+- `<AddItem/>` - migrated tooltip to next generation, improved documentation, added unidriver [#3326](https://github.com/wix/wix-style-react/pull/3326)
+
+## 6.17.3 - 2019-05-03
+### Fixed
+- `<NestableList/>` - Fix bad import of PropTypes [#3359](https://github.com/wix/wix-style-react/pull/3359)
+
 ## 6.17.2 - 2019-05-03
 ### Docs
 - `<RichTextInputArea/>` - change RichTextArea docs to use the new component [#3352](https://github.com/wix/wix-style-react/pull/3352)

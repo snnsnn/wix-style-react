@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import { findDOMNode } from 'react-dom';
 import shallowCompare from 'react-addons-shallow-compare';
