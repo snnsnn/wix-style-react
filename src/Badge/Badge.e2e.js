@@ -62,9 +62,8 @@ describe('Badge', () => {
   });
 
   eyes.it('should not break design', async () => {
-    const dataHook = 'badge-variations';
-    const element = byDataHook(dataHook);
-    await waitForVisibilityOf(element, `Cannot find ${dataHook}`);
-    await scrollToElement(element);
+    const driver = badgeTestkitFactory({ dataHook: 'badge-variations' });
+    await waitForVisibilityOf(driver.element(), 'Cannot find Badge');
+    await scrollToElement(driver.element());
   });
 });
