@@ -59,11 +59,11 @@ describe('Badge', () => {
       await waitForVisibilityOf(driver.element(), 'Cannot find Badge');
       await focusElementInAutoExample(driver.element());
     });
-  });
 
-  eyes.it('should not break design', async () => {
-    const driver = badgeTestkitFactory({ dataHook: 'badge-variations' });
-    await waitForVisibilityOf(driver.element(), 'Cannot find Badge');
-    await scrollToElement(driver.element());
+    eyes.it('should not break design', async () => {
+      const driver = badgeTestkitFactory({ dataHook: 'storybook-badge' });
+      await waitForVisibilityOf(driver.element(), 'Cannot find Badge');
+      await scrollToElement(driver.element());
+    });
   });
 });
