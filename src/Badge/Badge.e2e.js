@@ -2,13 +2,10 @@ import eyes from 'eyes.it';
 import { $, browser, Key } from 'protractor';
 import {
   createStoryUrl,
-  scrollToElement,
   waitForVisibilityOf,
 } from 'wix-ui-test-utils/protractor';
 import { badgeTestkitFactory } from '../../testkit/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
-
-const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
 
 // TODO: move method to protractor-helpers, or to the AutoExampleDriver?
 const focusElementInAutoExample = async element => {
@@ -39,12 +36,6 @@ describe('Badge', () => {
       await autoExampleDriver.reset();
     });
 
-    eyes.it('should display correct content', async () => {
-      const driver = badgeTestkitFactory({ dataHook: 'storybook-badge' });
-      await waitForVisibilityOf(driver.element(), 'Cannot find Badge');
-      expect(await driver.text()).toBe("I'M A BADGE!");
-    });
-
     eyes.it(
       'should not have a focus state when onClick prop is not used',
       async () => {
@@ -60,13 +51,6 @@ describe('Badge', () => {
       await autoExampleDriver.setProps({ onClick: () => true });
 
       const driver = badgeTestkitFactory({ dataHook: 'storybook-badge' });
-      await waitForVisibilityOf(driver.element(), 'Cannot find Badge');
-      await focusElementInAutoExample(driver.element());
-    });
-
-    eyes.it('should not break design', async () => {
-      const dataHook = 'badge-variations';
-      const driver = badgeTestkitFactory({ dataHook });
       await waitForVisibilityOf(driver.element(), 'Cannot find Badge');
       await focusElementInAutoExample(driver.element());
     });
