@@ -279,6 +279,12 @@ export const tagTestkitFactory = protractorTestkitFactoryCreator(
   tagDriverFactory,
 );
 
+import badgeDriverFactory from '../src/Badge/Badge.protractor.driver';
+
+export const badgeTestkitFactory = protractorTestkitFactoryCreator(
+  badgeDriverFactory,
+);
+
 import badgeSelectDriverFactory from '../src/BadgeSelect/BadgeSelect.protractor.driver';
 
 export const badgeSelectTestkitFactory = protractorTestkitFactoryCreator(
@@ -318,7 +324,6 @@ export const proportionTestkitFactory = protractorUniTestkitFactoryCreator(
 // wix-ui-backoffice proxy
 
 export {
-  badgeTestkitFactory,
   stylableCounterBadgeTestkitFactory as counterBadgeTestkitFactory,
   toggleSwitchTestkitFactory,
   labelTestkitFactory,

@@ -1,34 +1,51 @@
-import React, { PropTypes } from 'react';
-import { SKIN, TYPE, SIZE, Type, Skin, Size } from './constants';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { SKIN, TYPE, SIZE } from './constants';
 import style from './Badge.st.css';
-
-const defaultProps = {
-  type: TYPE.solid,
-  skin: SKIN.general,
-  size: SIZE.medium,
-  uppercase: true,
-};
 
 class Badge extends React.PureComponent {
   static propTypes = {
     dataHook: PropTypes.string,
-    type: Type,
-    skin: Skin,
-    size: Size,
+    type: PropTypes.oneOf(['solid', 'outlined', 'transparent']),
+    skin: PropTypes.oneOf([
+      'general',
+      'standard',
+      'danger',
+      'success',
+      'neutral',
+      'warning',
+      'urgent',
+      'neutralLight',
+      'neutralStandard',
+      'neutralSuccess',
+      'neutralDanger',
+      'premium',
+      'warningLight',
+    ]),
+    size: PropTypes.oneOf(['medium', 'small']),
+    /** usually an icon to appear at the beginning of the text */
     prefixIcon: PropTypes.node,
+    /** usually an icon to appear at the end of the text */
     suffixIcon: PropTypes.node,
+    /** callback function called when badge is clicked */
     onClick: PropTypes.func,
+    /** forces an uppercase letters */
     uppercase: PropTypes.bool,
 
     focusableOnFocus: PropTypes.func,
     focusableOnBlur: PropTypes.func,
 
-    /** usually just text to be displayed */
+    /** the text to display in the badge */
     children: PropTypes.node,
   };
   static displayName = 'Badge';
 
-  static defaultProps = defaultProps;
+  static defaultProps = {
+    type: TYPE.solid,
+    skin: SKIN.general,
+    size: SIZE.medium,
+    uppercase: true,
+  };
 
   render() {
     const {
