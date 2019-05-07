@@ -1,14 +1,12 @@
 import eyes from 'eyes.it';
 import { $, browser, Key } from 'protractor';
 import {
-  getStoryUrl,
+  createStoryUrl,
   scrollToElement,
   waitForVisibilityOf,
 } from 'wix-ui-test-utils/protractor';
 import { badgeTestkitFactory } from '../../testkit/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
-
-const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
 
 // TODO: move method to protractor-helpers, or to the AutoExampleDriver?
 const focusElementInAutoExample = async element => {
@@ -26,10 +24,13 @@ const focusElementInAutoExample = async element => {
 };
 
 describe('Badge', () => {
-  const storyUrl = getStoryUrl('Components', 'Badge');
+  const storyUrl = createStoryUrl({
+    kind: 'Components',
+    story: 'Badge',
+    withExamples: true,
+  });
 
-  beforeEach(() => browser.get(storyUrl));
-
+  beforeAll(() => browser.get(storyUrl));
   describe('AutoExample', () => {
     beforeEach(async () => {
       await autoExampleDriver.reset();
