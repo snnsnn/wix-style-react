@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ExampleBadges.scss';
 
-import Badge, { SIZE, SKIN, TYPE } from 'wix-style-react/Badge';
+import Badge, { SIZE, SKIN, TYPE } from '..';
 
 const skins = Object.keys(SKIN);
 const sizes = Object.keys(SIZE);
