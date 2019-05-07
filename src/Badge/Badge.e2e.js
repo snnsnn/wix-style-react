@@ -8,6 +8,8 @@ import {
 import { badgeTestkitFactory } from '../../testkit/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 
+const byDataHook = dataHook => $(`[data-hook="${dataHook}"]`);
+
 // TODO: move method to protractor-helpers, or to the AutoExampleDriver?
 const focusElementInAutoExample = async element => {
   const parentElement = await element.getWebElement().getDriver();
@@ -63,9 +65,10 @@ describe('Badge', () => {
     });
 
     eyes.it('should not break design', async () => {
-      const driver = badgeTestkitFactory({ dataHook: 'badge-variations' });
-      await waitForVisibilityOf(driver.element(), 'Cannot find Badge');
-      await scrollToElement(driver.element());
+      const dataHook = 'badge-variations';
+      const element = byDataHook(dataHook);
+      await waitForVisibilityOf(element, `Cannot find ${dataHook}`);
+      await scrollToElement(element);
     });
   });
 });
