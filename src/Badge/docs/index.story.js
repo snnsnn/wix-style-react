@@ -19,16 +19,7 @@ import {
   title,
 } from 'wix-storybook-utils/dist/src/Sections';
 import allComponents from '../../../stories/utils/allComponents';
-import styles from './ExampleBadges.scss';
 import * as examples from './examples';
-
-const examplesComponents = {
-  SIZE,
-  SKIN,
-  TYPE,
-  styles,
-};
-Object.assign(examplesComponents, allComponents);
 
 const exampleAffixesIcons = [
   {
@@ -43,7 +34,7 @@ const exampleAffixesIcons = [
 
 const code = config =>
   baseCode({
-    components: examplesComponents,
+    components: { ...allComponents, SIZE, SKIN, TYPE },
     compact: true,
     ...config,
   });
@@ -63,29 +54,20 @@ export default {
   },
 
   exampleProps: {
-    skin: Object.keys(SKIN),
-    type: Object.keys(TYPE),
-    size: Object.keys(SIZE),
     prefixIcon: exampleAffixesIcons,
     suffixIcon: exampleAffixesIcons,
     onClick: () => alert('Badge Clicked'),
   },
 
   sections: [
-    header({
-      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
-    }),
-
+    header(),
     tabs([
       tab({
         title: 'Description',
         sections: [
           importExample("import Badge from 'wix-style-react/Badge';"),
-
           divider(),
-
           title('Examples'),
-
           ...[
             {
               title: 'With icon',
@@ -101,7 +83,6 @@ export default {
           ].map(code),
         ],
       }),
-
       ...[
         { title: 'API', sections: [api()] },
         { title: 'Testkit', sections: [testkit()] },
