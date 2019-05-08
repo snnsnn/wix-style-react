@@ -1,5 +1,14 @@
+import React from 'react';
+
 import Carousel from '..';
 import { storySettings } from './storySettings';
+
+const childrenExamples = [
+  {
+    value: [<div>First</div>, <div>Second</div>, <div>Third</div>],
+    label: 'Three nodes',
+  },
+];
 
 const imagesExamples = [
   {
@@ -17,21 +26,25 @@ const imagesExamples = [
           'https://a-static.besthdwallpaper.com/cartoons-garfield-wallpaper-1440x1080-6773_22.jpg',
       },
     ],
-    label: 'three images',
+    label: 'Three images',
   },
 ];
+
 export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
   component: Carousel,
   componentPath: '..',
-  exampleProps: {
-    images: imagesExamples,
-  },
+
   componentProps: {
-    images: imagesExamples[0].value,
+    children: childrenExamples[0].value,
     infinite: true,
     autoplay: false,
     dataHook: storySettings.dataHook,
+  },
+
+  exampleProps: {
+    children: childrenExamples,
+    images: imagesExamples,
   },
 };

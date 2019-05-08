@@ -37,9 +37,11 @@ class Carousel extends React.Component {
 
   _renderImages = images => {
     return images.map((image, index) => (
-      <Proportion aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}>
+      <Proportion
+        key={`${index}${image.src}`}
+        aspectRatio={Proportion.PREDEFINED_RATIOS.landscape}
+      >
         <div
-          key={index}
           data-hook={dataHooks.imagesContainer}
           data-is-loading={this._isLoading()}
         >
@@ -92,7 +94,7 @@ class Carousel extends React.Component {
         <WrappedSliderArrow
           arrowSize={arrowSize}
           arrowSkin={arrowSkin}
-          dataHook={dataHooks.prevButton}
+          dataHook={dataHooks.nextButton}
           icon={<ChevronRightLarge />}
         />
       ),
@@ -117,12 +119,14 @@ class Carousel extends React.Component {
   };
 
   render() {
-    const { dataHook, images } = this.props;
+    const { dataHook, children, images } = this.props;
+    const hasImages = !children && images.length > 0;
 
     return (
       <div className={styles.imagesContainerLayout} data-hook={dataHook}>
         <Slider {...this.state.sliderSettings}>
-          {images ? this._renderImages(images) : null}
+          {children}
+          {hasImages && this._renderImages(images)}
         </Slider>
       </div>
     );
@@ -131,8 +135,10 @@ class Carousel extends React.Component {
 
 Carousel.propTypes = {
   dataHook: PropTypes.string,
+  /** Any element to render inside */
+  children: PropTypes.node,
   /** Array of images object where each object has a "src" key with a value of an image url that will be the image source in \<img src="your_src" /\> */
-  images: PropTypes.array.isRequired,
+  images: PropTypes.array,
   /** Images loop endlessly */
   infinite: PropTypes.bool,
   /** Auto-playing of images */
