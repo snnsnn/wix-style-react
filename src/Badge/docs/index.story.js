@@ -6,6 +6,7 @@ import { storySettings } from './storySettings';
 import ChevronDown from 'wix-ui-icons-common/ChevronDown';
 import ChevronDownSmall from 'wix-ui-icons-common/ChevronDownSmall';
 import ExampleBadgesRaw from '!raw-loader!./ExampleBadges';
+import ExampleBadgeEllipsisRaw from '!raw-loader!./ExampleBadgeEllipsis';
 
 import {
   api,
@@ -81,11 +82,11 @@ export default {
               source: ExampleBadgesRaw,
               autoRender: false,
             },
-            // {
-            //   title: 'Ellipsis',
-            //   source: ExampleBadgeEllipsisRaw,
-            //   autoRender: false,
-            // },
+            {
+              title: 'Ellipsis',
+              source: ExampleBadgeEllipsisRaw,
+              autoRender: false,
+            },
           ].map(code),
         ],
       }),
