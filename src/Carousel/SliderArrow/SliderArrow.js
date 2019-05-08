@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../../IconButton/IconButton';
+import IconButton from '../../IconButton';
+import CloseButton from '../../CloseButton';
 
 const SliderArrow = ({
   dataHook,
@@ -9,11 +10,17 @@ const SliderArrow = ({
   icon,
   ...remainingProps
 }) => {
+  const isStandardSkin = arrowSkin === 'standard';
+
   return (
     <div {...remainingProps} data-hook={dataHook}>
-      <IconButton skin={arrowSkin} size={arrowSize} priority="secondary">
-        {icon}
-      </IconButton>
+      {isStandardSkin ? (
+        <CloseButton size={arrowSize}>{icon}</CloseButton>
+      ) : (
+        <IconButton skin={arrowSkin} size={arrowSize} priority="secondary">
+          {icon}
+        </IconButton>
+      )}
     </div>
   );
 };
