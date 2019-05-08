@@ -136,6 +136,10 @@ describe('Carousel', () => {
         );
         driver.clickPrevious();
         expect(driver.getCurrentImageIndex()).toBe(0);
+        // TODO: Figure out why eventually doesn't work
+        setTimeout(() => {
+          expect(driver.isPrevButtonDisabled()).toBe(true);
+        });
       });
 
       it('should stay on the last image when clicking `next` on the last image', async () => {
@@ -157,7 +161,8 @@ describe('Carousel', () => {
           setTimeout(() => {
             driver.clickNext();
             expect(driver.getCurrentImageIndex()).toBe(2);
-          }, 0);
+            expect(driver.isNextButtonDisabled()).toBe(true);
+          });
         });
       });
     });
