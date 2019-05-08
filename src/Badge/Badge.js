@@ -5,11 +5,16 @@ import style from './Badge.st.css';
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 import ellipsedStyle from '../common/EllipsedTooltip/EllipsedTooltip.st.css';
 import { withEllipsedTooltip } from 'wix-ui-core/dist/src/hocs/EllipsedTooltip';
+import classNames from 'classnames';
+
+const WrapWithEllipsis = withEllipsedTooltip({ showTooltip: true });
 
 class Badge extends React.PureComponent {
   static propTypes = {
     dataHook: PropTypes.string,
+    /** variation of the component strucutre */
     type: PropTypes.oneOf(['solid', 'outlined', 'transparent']),
+    /** color indication of the component */
     skin: PropTypes.oneOf([
       'general',
       'standard',
@@ -25,6 +30,7 @@ class Badge extends React.PureComponent {
       'premium',
       'warningLight',
     ]),
+    /** component size */
     size: PropTypes.oneOf(['medium', 'small']),
     /** usually an icon to appear at the beginning of the text */
     prefixIcon: PropTypes.node,
@@ -50,11 +56,36 @@ class Badge extends React.PureComponent {
     uppercase: true,
   };
 
-  renderText = ({ ...r }) => (
-    <span className={style.text} {...r}>
-      {this.props.children}
-    </span>
-  );
+  getProps = () => {
+    //that's what you pay for using HOCs...
+    const { focusableOnFocus, focusableOnBlur, ...rest } = this.props;
+    return rest;
+  };
+
+  _getFocusableProps = () => {
+    //add focusable hooks only when badge is clickable
+    const { onClick, focusableOnFocus, focusableOnBlur } = this.props;
+    return onClick
+      ? {
+          onFocus: focusableOnFocus,
+          onBlur: focusableOnBlur,
+          tabIndex: 0,
+        }
+      : {};
+  };
+
+  _getText = ({ className, ...extraProps }) => {
+    return (
+      <span className={classNames(style.text, className)} {...extraProps}>
+        {this.getProps().children}
+      </span>
+    );
+  };
+
+  _getContent = () => {
+    const EllipsedBadgeContent = WrapWithEllipsis(this._getText);
+    return <EllipsedBadgeContent {...ellipsedStyle('root', {})} />;
+  };
 
   render() {
     const {
@@ -62,35 +93,20 @@ class Badge extends React.PureComponent {
       prefixIcon,
       suffixIcon,
       onClick,
-      focusableOnFocus,
-      focusableOnBlur,
       dataHook,
       ...rest
-    } = this.props;
-
-    const focusableProps = onClick
-      ? {
-          onFocus: focusableOnFocus,
-          onBlur: focusableOnBlur,
-          tabIndex: 0,
-        }
-      : {};
-
-    const EllipsedText = withEllipsedTooltip({ showTooltip: true })(
-      this.renderText,
-    );
+    } = this.getProps();
 
     return (
       <div
-        {...(dataHook ? { 'data-hook': dataHook } : undefined)}
+        data-hook={dataHook}
         onClick={onClick}
-        {...focusableProps}
-        {...style('root', { clickable: !!onClick, ...rest }, this.props)}
+        {...this._getFocusableProps()}
+        {...style('root', { clickable: !!onClick, ...rest }, this.getProps())}
       >
         {prefixIcon &&
           React.cloneElement(prefixIcon, { className: style.prefix })}
-        <EllipsedText {...ellipsedStyle('root', {}, this.props)} />
-
+        {this._getContent()}
         {suffixIcon &&
           React.cloneElement(suffixIcon, { className: style.suffix })}
       </div>

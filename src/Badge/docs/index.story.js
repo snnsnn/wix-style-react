@@ -79,13 +79,16 @@ export default {
             },
             {
               title: 'Variations',
+              description:
+                'The differnet combinations of skin and variants. Please notice that not all combinations are valid',
               source: ExampleBadgesRaw,
               autoRender: false,
             },
             {
               title: 'Ellipsis',
+              description:
+                'When wrapped in a small container, ellipsis and tooltip will appear',
               source: ExampleBadgeEllipsisRaw,
-              autoRender: false,
             },
           ].map(code),
         ],
