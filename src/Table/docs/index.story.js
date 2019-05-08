@@ -32,6 +32,9 @@ import TableSelectionDisabledExampleRaw from '!raw-loader!./TableSelectionDisabl
 import { TableVirtualizationExample } from './TableVirtualizationExample';
 import TableVirtualizationExampleRaw from '!raw-loader!./TableVirtualizationExample';
 
+import { TableLoaderExample } from './TableLoaderExample';
+import TableLoaderExampleRaw from '!raw-loader!./TableLoaderExample';
+
 const data = [
   { firstName: 'Meghan', lastName: 'Bishop' },
   { firstName: 'Sara', lastName: 'Porter' },
@@ -84,6 +87,11 @@ export default {
         <div className={s.example}>
           <CodeExample title="Typical (With Toolbar)" code={TableExampleRaw}>
             <TableExample />
+          </CodeExample>
+        </div>
+        <div className={s.example}>
+          <CodeExample title="Table Loader" code={TableLoaderExampleRaw}>
+            <TableLoaderExample />
           </CodeExample>
         </div>
         <div className={s.example}>

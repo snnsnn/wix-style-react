@@ -14,6 +14,7 @@ import {
   TableTitleBar,
   TableContent,
   TableEmptyState,
+  TableLoader,
 } from './components';
 
 export function createColumns({ tableProps, bulkSelectionContext }) {
@@ -81,6 +82,7 @@ export class Table extends React.Component {
   static Titlebar = TableTitleBar;
   static Content = TableContent;
   static EmptyState = TableEmptyState;
+  static Loader = TableLoader;
 
   shouldComponentUpdate() {
     // Table is not really a PureComponent
