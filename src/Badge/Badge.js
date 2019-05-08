@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SKIN, TYPE, SIZE } from './constants';
 import style from './Badge.st.css';
+import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 
 class Badge extends React.PureComponent {
   static propTypes = {
@@ -85,4 +86,4 @@ class Badge extends React.PureComponent {
   }
 }
 
-export default Badge;
+export default withFocusable(Badge);
