@@ -85,6 +85,7 @@ export default {
             {
               title: 'Ellipsis',
               source: ExampleBadgeEllipsisRaw,
+              autoRender: false,
             },
           ].map(code),
         ],

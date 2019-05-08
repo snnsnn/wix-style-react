@@ -1,13 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import ExampleBadges from '../docs/ExampleBadges';
-// import ExampleBadgeEllipsis from '../docs/ExampleBadgeEllipsis';
 import Badge from '..';
 
 storiesOf('Badge', module).add('base', () => <Badge>I'M A BADGE!</Badge>);
 storiesOf('Badge', module).add('skins', () => <ExampleBadges />);
 storiesOf('Badge', module).add('focus', () => <FocusBadgeTest />);
-// storiesOf('Badge', module).add('ellipsis', () => <ExampleBadgeEllipsis />);
 
 class FocusBadgeTest extends React.Component {
   componentDidMount() {
