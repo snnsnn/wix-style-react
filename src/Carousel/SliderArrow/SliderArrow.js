@@ -7,6 +7,7 @@ const SliderArrow = ({
   dataHook,
   arrowSize,
   arrowSkin,
+  disabled,
   icon,
   ...remainingProps
 }) => {
@@ -15,9 +16,16 @@ const SliderArrow = ({
   return (
     <div {...remainingProps} data-hook={dataHook}>
       {isStandardSkin ? (
-        <CloseButton size={arrowSize}>{icon}</CloseButton>
+        <CloseButton size={arrowSize} disabled={disabled}>
+          {icon}
+        </CloseButton>
       ) : (
-        <IconButton skin={arrowSkin} size={arrowSize} priority="secondary">
+        <IconButton
+          skin={arrowSkin}
+          size={arrowSize}
+          disabled={disabled}
+          priority="secondary"
+        >
           {icon}
         </IconButton>
       )}
