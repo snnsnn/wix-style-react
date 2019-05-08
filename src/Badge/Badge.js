@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { SKIN, TYPE, SIZE } from './constants';
 import style from './Badge.st.css';
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
+import ellipsedStyle from '../common/EllipsedTooltip/EllipsedTooltip.st.css';
+import { withEllipsedTooltip } from 'wix-ui-core/dist/src/hocs/EllipsedTooltip';
 
 class Badge extends React.PureComponent {
   static propTypes = {
@@ -48,6 +50,12 @@ class Badge extends React.PureComponent {
     uppercase: true,
   };
 
+  renderText = ({ ...r }) => (
+    <span className={style.text} {...r}>
+      {this.props.children}
+    </span>
+  );
+
   render() {
     const {
       children,
@@ -68,6 +76,10 @@ class Badge extends React.PureComponent {
         }
       : {};
 
+    const EllipsedText = withEllipsedTooltip({ showTooltip: true })(
+      this.renderText,
+    );
+
     return (
       <div
         {...(dataHook ? { 'data-hook': dataHook } : undefined)}
@@ -77,7 +89,7 @@ class Badge extends React.PureComponent {
       >
         {prefixIcon &&
           React.cloneElement(prefixIcon, { className: style.prefix })}
-        <span className={style.text}>{children}</span>
+        <EllipsedText {...ellipsedStyle('root', {}, this.props)} />
 
         {suffixIcon &&
           React.cloneElement(suffixIcon, { className: style.suffix })}
