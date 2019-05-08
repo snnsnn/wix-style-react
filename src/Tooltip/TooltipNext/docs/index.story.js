@@ -148,6 +148,12 @@ export default {
               text: 'Tooltip supports two sizes: `small` and `medium`.',
               source: examples.size,
             },
+            {
+              title: 'Disabled Elements',
+              text:
+                'By default disabled elements like `<button>` do not trigger user interactions so a Tooltip will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element like a `span`.',
+              source: examples.disabled,
+            },
           ].map(example),
 
           title('Floating Behaviour'),

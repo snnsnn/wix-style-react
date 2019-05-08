@@ -1,5 +1,5 @@
 import { baseUniDriverFactory, ReactBase } from '../../test/utils/unidriver';
-import { teskitTooltip } from '../Tooltip/Tooltip.uni.driver';
+import { tooltipDriverFactory } from '../Tooltip/TooltipNext/Tooltip.uni.driver';
 import { reactUniDriver } from 'wix-ui-test-utils/vanilla';
 
 export const formFieldUniDriverFactory = base => {
@@ -36,11 +36,11 @@ export const formFieldUniDriverFactory = base => {
       return false;
     },
     getInfoContent: async () => {
-      const tooltipBase = base.$('[data-hook*="formfield-infotooltip"]');
-      return teskitTooltip(
-        tooltipBase,
+      const testkit = tooltipDriverFactory(
+        base.$('[data-hook*="formfield-infotooltip"]'),
         reactUniDriver(document.body),
-      ).hoverAndGetContent();
+      );
+      return await testkit.getTooltipText();
     },
   };
 };

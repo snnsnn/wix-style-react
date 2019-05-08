@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import styles from './ExampleBadges.scss';
 
@@ -18,7 +19,7 @@ const renderBadge = props => (
 const renderTypes = props => types.map(type => renderBadge({ type, ...props }));
 const renderSizes = props => sizes.map(size => renderTypes({ size, ...props }));
 
-export default () => (
+render(
   <div data-hook="badge-variations">
     {skins.map(skin => (
       <div key={skin}>
@@ -30,5 +31,5 @@ export default () => (
         </div>
       </div>
     ))}
-  </div>
+  </div>,
 );

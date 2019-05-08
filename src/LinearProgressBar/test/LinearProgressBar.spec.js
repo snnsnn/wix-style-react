@@ -17,16 +17,22 @@ describe('LinearProgressBar', () => {
       showProgressIndication: true,
     };
 
-    it('should display tooltip text only on hover', () => {
+    it('should display tooltip text', async () => {
       const driver = createDriver(
         <LinearProgressBar {...defaultProps} {...errorProps} />,
       );
       expect(driver.isTooltipShown()).toBe(false);
-      driver.getTooltip().mouseEnter();
+      await driver.getTooltip().mouseEnter();
       expect(driver.isTooltipShown()).toBe(true);
-      expect(driver.getTooltip().getContentElement().innerHTML).toContain(
-        errorProps.errorMessage,
+    });
+
+    it('should display error message', async () => {
+      const driver = createDriver(
+        <LinearProgressBar {...defaultProps} {...errorProps} />,
       );
+      const toolTipErrorMsg = await driver.getTooltipErrorMessage();
+
+      expect(toolTipErrorMsg).toEqual(errorProps.errorMessage);
     });
 
     it('should display error icon', () => {

@@ -58,6 +58,7 @@ class ImageViewer extends WixComponent {
             onClick={onAddImage}
             theme="image"
             dataHook="add-image"
+            tooltipContent={addImageInfo}
             tooltipProps={{ ...tooltipProps, content: addImageInfo }}
           />
         )}

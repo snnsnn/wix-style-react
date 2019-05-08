@@ -17,13 +17,18 @@ const linearProgressBarDriverFactory = ({ element, eventTrigger, wrapper }) => {
   });
   const errorIcon = () => element.querySelector(`[data-hook='error-icon']`);
   const successIcon = () => element.querySelector(`[data-hook='success-icon']`);
+  const getTooltip = () => createTooltipDriver();
 
   return {
     ...coreProgressBarDriver,
-    isTooltipShown: () => createTooltipDriver().isContentElementExists(),
-    getTooltip: () => createTooltipDriver(),
+    isTooltipShown: () => getTooltip().isContentElementExists(),
+    getTooltip,
     isErrorIconShown: () => !!errorIcon(),
     isSuccessIconShown: () => !!successIcon(),
+    getTooltipErrorMessage: async () => {
+      await getTooltip().mouseEnter();
+      return getTooltip().getContentElement().textContent;
+    },
   };
 };
 

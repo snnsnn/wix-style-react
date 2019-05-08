@@ -92,6 +92,13 @@ module.exports = {
 
   RichTextArea: {
     beforeAllHook: () => (window.getSelection = () => ({})),
+    testkitPath: '../src/Deprecated/RichTextArea/RichTextArea.driver',
+  },
+
+  RichTextAreaComposite: {
+    beforeAllHook: () => (window.getSelection = () => ({})),
+    testkitPath:
+      '../src/Deprecated/RichTextAreaComposite/RichTextAreaComposite.driver',
   },
 
   Avatar: { unidriver: true },
@@ -260,5 +267,11 @@ module.exports = {
   ErrorIndicator: {
     unidriver: true,
     testkitPath: '../src/ErrorIndicator/ErrorIndicator.uni.driver',
+  },
+
+  CardSubheader: {
+    unidriver: true,
+    skipSanityTest: true,
+    testkitPath: '../src/Card/Subheader/Subheader.uni.driver',
   },
 };

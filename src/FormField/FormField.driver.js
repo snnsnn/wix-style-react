@@ -1,8 +1,14 @@
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import { tooltipDriverFactory } from 'wix-ui-core/dist/src/components/tooltip/Tooltip.driver';
+import { Simulate } from 'react-dom/test-utils';
 
 const formFieldDriver = ({ element }) => {
   const byHook = hook => element.querySelector(`[data-hook*="${hook}"]`);
   const charactersCounter = () => byHook('formfield-counter');
+
+  const tooltipTestkit = tooltipDriverFactory({
+    element: byHook('formfield-infotooltip'),
+    eventTrigger: Simulate,
+  });
 
   return {
     exists: () => !!element,
@@ -22,10 +28,10 @@ const formFieldDriver = ({ element }) => {
       }
       return false;
     },
-    getInfoContent: () =>
-      tooltipDriverFactory({
-        element: byHook('formfield-infotooltip'),
-      }).hoverAndGetContent(),
+    getInfoContent: () => {
+      tooltipTestkit.mouseEnter();
+      return tooltipTestkit.getContentElement().textContent;
+    },
   };
 };
 

@@ -1,1 +1,4 @@
-export { default } from './RichTextAreaComposite.js';
+// TODO: Remove once the deprecated component is completely removed
+export {
+  default,
+} from '../Deprecated/RichTextAreaComposite/RichTextAreaComposite';

@@ -1,1 +1,0 @@
-export type BreadcrumbsDriver = any;

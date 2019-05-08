@@ -20,7 +20,7 @@ require('../src/Card/docs'); // 2.2 Card Layout
 // 3. Inputs
 require('./TextInput/index.story'); // 3.1. Text Input
 require('./TextArea/index.story'); // 3.2 Text Area
-require('../src/RichTextArea/docs/index.story'); // 3.2b + RichTextArea
+require('./RichTextArea/index.story'); // 3.3 Rich Text Area
 require('./NumberInput/index.story'); // 3.4 NumberInput
 require('../src/ColorInput/docs/index.story'); // 3.11 ColorInput
 require('./MultiSelect/index.story'); // 3.12 Tags
@@ -60,6 +60,7 @@ require('../src/Calendar/docs/index.story');
 require('../src/CalendarPanel/docs/index.story');
 require('../src/CalendarPanelFooter/docs/index.story');
 require('../src/CardGalleryItem/docs/index.story');
+require('../src/Card/Subheader/docs/index.story');
 require('../src/Carousel/docs/index.story');
 require('../src/Checkbox/docs/index.story');
 require('../src/CircularProgressBar/docs/index.story');
@@ -109,7 +110,7 @@ require('../src/PopoverMenu/docs/index.story');
 require('../src/Proportion/docs/index.story');
 require('../src/RadioGroup/docs/index.story');
 require('../src/Range/docs');
-require('../src/RichTextArea/docs/api.story');
+require('../src/RichTextInputArea/docs/index.story');
 require('../src/Search/docs/index.story');
 require('../src/SectionHelper/docs/index.story');
 require('../src/SideMenu/docs');
@@ -166,7 +167,6 @@ require('../src/StatsWidget/docs/testStory'); // 2.7 StatsWidget
 require('../src/SegmentedToggle/docs/testStory'); // 4.5 SegmentedToggle
 require('../src/FloatingNotification/docs/FloatingNotificationTestStory'); // 8.2 FloatingNotification
 require('../src/FormField/docs/testStory');
-require('../src/RichTextArea/docs/testStory');
 require('../src/DropdownLayout/docs/testStory');
 require('../src/InputWithOptions/docs/testStory');
 require('../src/ColorInput/docs/testStory');
@@ -174,11 +174,12 @@ require('../src/DateInput/test/testStories');
 
 // DEPRECATED
 require('./FieldWithSelectionComposite');
+require('./Deprecated/RichTextArea/index.story');
+require('./Deprecated/RichTextArea/testStory');
 
 // The generated test component
 require('../src/GeneratedTestComponent/docs/index.story');
 require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 
-require('../src/RichTextInputArea/docs/index.story');
 require('../src/NoBorderInput/docs/index.story');
 require('../src/EditableTitle/docs/index.story');

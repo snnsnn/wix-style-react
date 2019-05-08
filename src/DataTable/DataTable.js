@@ -201,6 +201,14 @@ class DataTable extends React.Component {
       rowClasses.push(dynamicRowClass(rowData, rowNum));
     }
 
+    if (
+      this.props.selectedRowsIds.includes(
+        rowData.id !== undefined ? rowData.id : rowNum,
+      )
+    ) {
+      rowClasses.push(this.style.selected);
+    }
+
     optionalRowProps.className = classNames(rowClasses);
 
     const key = rowData.id === undefined ? rowNum : rowData.id;
@@ -446,6 +454,7 @@ function validateData(props, propName) {
 DataTable.defaultProps = {
   data: [],
   columns: [],
+  selectedRowsIds: [],
   showHeaderWhenEmpty: false,
   infiniteScroll: false,
   itemsPerPage: 20,
@@ -558,6 +567,10 @@ DataTable.propTypes = {
   virtualizedTableHeight: PropTypes.number,
   /** ++EXPERIMENTAL++ Set virtualized table row height */
   virtualizedLineHeight: PropTypes.number,
+  /** array of selected ids in the table */
+  selectedRowsIds: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  ),
 };
 DataTable.displayName = 'DataTable';
 

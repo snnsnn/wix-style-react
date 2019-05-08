@@ -112,9 +112,9 @@ const interactiveTests = [
           error: true,
           errorMessage: 'some error message',
         },
-        componentDidMount: () => {
+        componentDidMount: async () => {
           const driver = createLinearProgressBarDriver(dataHook);
-          driver.getTooltip().mouseEnter();
+          await driver.getTooltipErrorMessage();
         },
       },
     ],

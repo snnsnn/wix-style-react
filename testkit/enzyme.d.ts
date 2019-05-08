@@ -2,7 +2,6 @@ import {BaseUniDriver} from 'wix-ui-test-utils/base-driver';
 import {BaseDriver} from 'wix-ui-test-utils/driver-factory';
 import {ReactWrapper} from 'enzyme';
 import {AvatarDriver} from '../src/Avatar/Avatar.driver';
-import {AccordionDriver} from '../src/Accordion/Accordion.uni.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (

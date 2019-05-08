@@ -22,7 +22,7 @@ export const addItemTestkitFactory = protractorTestkitFactoryCreator(
   addItemDriverFactory,
 );
 
-import richTextAreaDriverFactory from '../src/RichTextArea/RichTextArea.protractor.driver';
+import richTextAreaDriverFactory from '../src/Deprecated/RichTextArea/RichTextArea.protractor.driver';
 
 export const richTextAreaTestkitFactory = protractorTestkitFactoryCreator(
   richTextAreaDriverFactory,
@@ -483,4 +483,10 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 
 export const errorIndicatorTestkitFactory = protractorUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
+);
+
+import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';
+
+export const subheaderTestkitFactory = protractorUniTestkitFactoryCreator(
+  cardSubheaderDriverFactory,
 );

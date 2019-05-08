@@ -37,14 +37,23 @@ class RichTextInputArea extends React.PureComponent {
   static errorStatus = 'error';
 
   static propTypes = {
+    /** Applied as data-hook HTML attribute that can be used in the tests */
     dataHook: PropTypes.string,
+    /** Initial value to display in the editor */
     initialValue: PropTypes.string,
+    /** Placeholder to display in the editor */
     placeholder: PropTypes.string,
+    /** Disables the editor and toolbar */
     disabled: PropTypes.bool,
-    status: PropTypes.oneOf([RichTextInputArea.errorStatus]),
+    /** Displays a status indicator */
+    status: PropTypes.oneOf(['error']),
+    /** Text to be shown within the tooltip of the status indicator */
     statusMessage: PropTypes.string,
+    /** Callback function for changes */
     onChange: PropTypes.func,
+    /** Defines a maximum height for the editor (it grows by default) */
     maxHeight: PropTypes.string,
+    /** Texts to be shown */
     texts: PropTypes.shape({
       toolbarButtons: PropTypes.shape(
         mapValues(defaultTexts.toolbarButtons, () => PropTypes.string),
@@ -168,6 +177,7 @@ class RichTextInputArea extends React.PureComponent {
 
   _updateContentByValue = value => {
     const blocksFromHtml = convertFromHTML(value);
+
     if (blocksFromHtml.contentBlocks) {
       const content = ContentState.createFromBlockArray(blocksFromHtml);
       const updatedEditorState = EditorState.push(
