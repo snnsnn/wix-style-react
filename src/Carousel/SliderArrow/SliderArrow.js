@@ -9,21 +9,23 @@ const SliderArrow = ({
   arrowSkin,
   disabled,
   icon,
+  className,
   ...remainingProps
 }) => {
   const isStandardSkin = arrowSkin === 'standard';
+  const isDisabled = className.includes('slick-disabled');
 
   return (
-    <div {...remainingProps} data-hook={dataHook}>
+    <div {...remainingProps} data-hook={dataHook} className={className}>
       {isStandardSkin ? (
-        <CloseButton size={arrowSize} disabled={disabled}>
+        <CloseButton size={arrowSize} disabled={isDisabled}>
           {icon}
         </CloseButton>
       ) : (
         <IconButton
           skin={arrowSkin}
           size={arrowSize}
-          disabled={disabled}
+          disabled={isDisabled}
           priority="secondary"
         >
           {icon}
