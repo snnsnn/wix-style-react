@@ -1,82 +1,76 @@
 import React from 'react';
-import { mount } from 'enzyme';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { isEnzymeTestkitExists } from 'wix-ui-test-utils/enzyme';
-import { isTestkitExists } from 'wix-ui-test-utils/vanilla';
+
 import EmptyState from './EmptyState';
 import emptyStateDriverFactory from './EmptyState.driver';
-import { emptyStateTestkitFactory } from '../../testkit';
-import { emptyStateTestkitFactory as enzymeEmptyStateTestkitFactory } from '../../testkit/enzyme';
+
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../test/utils/unit';
+import { emptyStateUniDriverFactory } from './EmptyState.uni.driver';
 
 describe('EmptyState', () => {
-  const createDriver = createDriverFactory(emptyStateDriverFactory);
-
-  const defaultProps = {
-    title: 'My awesome title',
-    subtitle: 'My awesome subtitle',
-  };
-
-  it('should have a title and a subtitle', () => {
-    const driver = createDriver(<EmptyState {...defaultProps} />);
-
-    expect(driver.getTitleText()).toEqual('My awesome title');
-    expect(driver.getSubtitleText()).toEqual('My awesome subtitle');
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(emptyStateDriverFactory));
   });
 
-  it('should have an image', () => {
-    const driver = createDriver(
-      <EmptyState {...defaultProps} image="http://wix.com/some-image.png" />,
-    );
-
-    expect(driver.getImageUrl()).toEqual('http://wix.com/some-image.png');
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(emptyStateUniDriverFactory));
   });
 
-  it('should have a theme', () => {
-    const driver = createDriver(
-      <EmptyState {...defaultProps} theme="page-no-border" />,
-    );
+  function runTests(render) {
+    afterEach(() => cleanup());
 
-    expect(driver.hasTheme('page-no-border')).toBe(true);
-  });
+    const defaultProps = {
+      title: 'My awesome title',
+      subtitle: 'My awesome subtitle',
+    };
 
-  it('should support image passed as a node', () => {
-    const driver = createDriver(
-      <EmptyState {...defaultProps} image={<span>I am the image node</span>} />,
-    );
+    it('should have a title and a subtitle', async () => {
+      const { driver } = render(<EmptyState {...defaultProps} />);
 
-    expect(driver.imageNodeExists()).toEqual(true);
-  });
-
-  it("should render it's children", () => {
-    const driver = createDriver(
-      <EmptyState {...defaultProps}>
-        <button>I am a button!</button>
-      </EmptyState>,
-    );
-
-    expect(driver.childrenContentExists()).toEqual(true);
-  });
-
-  describe('testkit', () => {
-    it('should exist', () => {
-      expect(
-        isTestkitExists(
-          <EmptyState {...defaultProps} />,
-          emptyStateTestkitFactory,
-        ),
-      ).toBe(true);
+      expect(await driver.getTitleText()).toEqual('My awesome title');
+      expect(await driver.getSubtitleText()).toEqual('My awesome subtitle');
     });
-  });
 
-  describe('enzyme testkit', () => {
-    it('should exist', () => {
-      expect(
-        isEnzymeTestkitExists(
-          <EmptyState {...defaultProps} />,
-          enzymeEmptyStateTestkitFactory,
-          mount,
-        ),
-      ).toBe(true);
+    it('should have an image', async () => {
+      const { driver } = render(
+        <EmptyState {...defaultProps} image="http://wix.com/some-image.png" />,
+      );
+
+      expect(await driver.getImageUrl()).toEqual(
+        'http://wix.com/some-image.png',
+      );
     });
-  });
+
+    it('should have a theme', async () => {
+      const { driver } = render(
+        <EmptyState {...defaultProps} theme="page-no-border" />,
+      );
+
+      expect(await driver.hasTheme('page-no-border')).toBe(true);
+    });
+
+    it('should support image passed as a node', async () => {
+      const { driver } = render(
+        <EmptyState
+          {...defaultProps}
+          image={<span>I am the image node</span>}
+        />,
+      );
+
+      expect(await driver.imageNodeExists()).toEqual(true);
+    });
+
+    it("should render it's children", async () => {
+      const { driver } = render(
+        <EmptyState {...defaultProps}>
+          <button>I am a button!</button>
+        </EmptyState>,
+      );
+
+      expect(await driver.childrenContentExists()).toEqual(true);
+    });
+  }
 });
