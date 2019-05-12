@@ -186,3 +186,9 @@ require('../src/GeneratedTestComponent/test/GeneratedTestComponentStories');
 
 require('../src/NoBorderInput/docs/index.story');
 require('../src/EditableTitle/docs/index.story');
+
+// TODO: move to correct position
+require('../src/Sidebar/docs/index.story');
+
+// TODO: move to correct position
+require('../src/Sidebar/test/SidebarStories');

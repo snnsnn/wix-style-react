@@ -221,7 +221,13 @@ export const errorIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(
 import { ListItemActionDriverFactory } from '../src/ListItemAction/ListItemAction.uni.driver';
 
 export const ListItemActionTestkitFactory = puppeteerUniTestkitFactoryCreator(
-  ListItemActionDriverFactory,
+  ListItemActionDriverFactory
+);
+
+import { sidebarDriverFactory } from '../src/Sidebar/Sidebar.uni.driver';
+
+export const sidebarTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  sidebarDriverFactory,
 );
 
 import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';

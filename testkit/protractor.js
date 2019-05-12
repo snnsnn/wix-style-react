@@ -514,6 +514,10 @@ export const subheaderTestkitFactory = protractorUniTestkitFactoryCreator(
 
 import { swatchesDriverFactory } from '../src/Swatches/Swatches.uni.driver';
 
-export const swatchesTestkitFactory = protractorUniTestkitFactoryCreator(
-  swatchesDriverFactory,
+export const swatchesTestkitFactory = protractorUniTestkitFactoryCreator(swatchesDriverFactory)
+
+import { sidebarDriverFactory } from '../src/Sidebar/Sidebar.uni.driver';
+
+export const sidebarTestkitFactory = protractorUniTestkitFactoryCreator(
+  sidebarDriverFactory,
 );

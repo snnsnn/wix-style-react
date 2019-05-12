@@ -122,6 +122,7 @@ export const segmentedToggleTestkitFactory = uniTestkitFactoryCreator(load(requi
 export const selectorTestkitFactory = testkitFactoryCreator(load(require('../src/Selector/Selector.driver')));
 export const sideMenuTestkitFactory = testkitFactoryCreator(load(require('../src/SideMenu/core/SideMenu.driver')));
 export const sideMenuDrillTestkitFactory = testkitFactoryCreator(load(require('../src/SideMenu/DrillView/DrillView.driver')));
+export const sidebarTestkitFactory = uniTestkitFactoryCreator(load(require('../src/Sidebar/Sidebar.uni.driver')));
 export const skeletonTestkitFactory = testkitFactoryCreator(load(require('../src/Skeleton/Skeleton.driver')));
 export const sliderTestkitFactory = testkitFactoryCreator(load(require('../src/Slider/Slider.driver')));
 export const socialPreviewTestkitFactory = uniTestkitFactoryCreator(load(require('../src/SocialPreview/SocialPreview.uni.driver')));
