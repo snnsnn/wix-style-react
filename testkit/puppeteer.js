@@ -206,6 +206,12 @@ export const errorIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
 );
 
+import { sidebarDriverFactory } from '../src/Sidebar/Sidebar.uni.driver';
+
+export const sidebarTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  sidebarDriverFactory,
+);
+
 import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';
 
 export const subheaderTestkitFactory = puppeteerUniTestkitFactoryCreator(

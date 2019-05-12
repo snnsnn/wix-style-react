@@ -495,3 +495,9 @@ import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.
 export const subheaderTestkitFactory = protractorUniTestkitFactoryCreator(
   cardSubheaderDriverFactory,
 );
+
+import { sidebarDriverFactory } from '../src/Sidebar/Sidebar.uni.driver';
+
+export const sidebarTestkitFactory = protractorUniTestkitFactoryCreator(
+  sidebarDriverFactory,
+);

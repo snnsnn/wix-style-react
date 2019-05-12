@@ -1,0 +1,26 @@
+@import "../../common";
+
+.text {
+  text-decoration: none;
+  color: white;
+  padding: 10px 30px 10px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  position: relative;
+  display: block;
+}
+
+.text:hover {
+  background: #2f3249;
+}
+
+.text:active {
+  background-color: $activeLinkBackgroundColor;
+  color: $activeLinkTextColor;
+}
+
+.active {
+  background-color: $activeLinkBackgroundColor;
+  color: $activeLinkTextColor;
+}
+

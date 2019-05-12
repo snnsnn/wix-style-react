@@ -118,6 +118,7 @@ export const segmentedToggleTestkitFactory = enzymeUniTestkitFactoryCreator(load
 export const selectorTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Selector/Selector.driver')));
 export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/SideMenu/core/SideMenu.driver')));
 export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/SideMenu/DrillView/DrillView.driver')));
+export const sidebarTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Sidebar/Sidebar.uni.driver')));
 export const skeletonTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Skeleton/Skeleton.driver')));
 export const sliderTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Slider/Slider.driver')));
 export const socialPreviewTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/SocialPreview/SocialPreview.uni.driver')));
