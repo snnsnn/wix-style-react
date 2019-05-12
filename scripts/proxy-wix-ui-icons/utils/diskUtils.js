@@ -41,11 +41,6 @@ const writeIndexFileToDisk = (indexFileContent, iconsDir) => {
   console.log('\x1b[36m', `"index.js was created`);
 };
 
-const writeIndexDefinitionFileToDisk = (indexDefinitionFileContent, iconsDir) => {
-  createFile('index.d.js', indexDefinitionFileContent, iconsDir + '/');
-  console.log('\x1b[36m', `"index.d.ts was created`);
-};
-
 const readArrayOfFilesInFolderOnDisk = dirname => fs.readdirSync(dirname);
 
 module.exports = {
@@ -53,6 +48,5 @@ module.exports = {
   createFolderForIconsOnDisk,
   writeIconsFilesToFolderOnDisk,
   writeIndexFileToDisk,
-  writeIndexDefinitionFileToDisk,
   readArrayOfFilesInFolderOnDisk
 };
