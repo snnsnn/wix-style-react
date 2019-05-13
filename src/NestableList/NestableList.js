@@ -1,5 +1,4 @@
-
-import React, { PropTypes } from 'react';
+import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import { removeFromTree, addToTree } from './utils';
 import { polyfill } from 'react-lifecycles-compat';
@@ -52,12 +51,9 @@ class NestableList extends WixComponent {
     threshold: 30,
   };
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.items !== state.items) {
-      return {
-        ...state,
-        items: props.items,
-      };
+  componentWillReceiveProps(newProps) {
+    if (newProps.items !== this.state.items) {
+      this.setState({ items: newProps.items });
     }
   }
 
