@@ -1,15 +1,6 @@
 import React from 'react';
 import inputAreaDriverFactory from './InputArea.driver';
 import InputArea from './InputArea';
-import { resolveIn } from '../../test/utils';
-import { inputAreaTestkitFactory, tooltipTestkitFactory } from '../../testkit';
-import { inputAreaTestkitFactory as enzymeInputAreaTestkitFactory } from '../../testkit/enzyme';
-import sinon from 'sinon';
-import {
-  isTestkitExists,
-  isEnzymeTestkitExists,
-} from '../../test/utils/testkit-sanity';
-import { mount } from 'enzyme';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('InputArea', () => {
@@ -359,96 +350,16 @@ describe('InputArea', () => {
         const driver = createDriver(
           <InputAreaForTesting error errorMessage="I'm the error message" />,
         );
-        const dataHook = driver.getTooltipDataHook();
-        const wrapper = driver.getTooltipElement();
-        const tooltipDriver = tooltipTestkitFactory({ wrapper, dataHook });
-
-        return resolveIn(500).then(() => {
-          expect(tooltipDriver.isShown()).toBe(false);
-        });
+        expect(driver.isErrorMessageShown()).toBe(false);
       });
 
       it('should display the tooltip on mouse hover', () => {
         const driver = createDriver(
           <InputAreaForTesting error errorMessage="I'm the error message" />,
         );
-        const dataHook = driver.getTooltipDataHook();
-        const wrapper = driver.getTooltipElement();
-        const tooltipDriver = tooltipTestkitFactory({ wrapper, dataHook });
-        tooltipDriver.mouseEnter();
-
-        return resolveIn(500).then(() => {
-          expect(tooltipDriver.getContent()).toBe("I'm the error message");
-        });
-      });
-
-      it('should call onTooltipShow callback when error tooltip become active', () => {
-        const onTooltipShow = sinon.spy();
-        const driver = createDriver(
-          <InputAreaForTesting
-            error
-            errorMessage="I'm the error message"
-            onTooltipShow={onTooltipShow}
-          />,
-        );
-        const dataHook = driver.getTooltipDataHook();
-        const wrapper = driver.getTooltipElement();
-        const tooltipDriver = tooltipTestkitFactory({ wrapper, dataHook });
-        tooltipDriver.mouseEnter();
-
-        return resolveIn(500).then(() => {
-          expect(onTooltipShow.calledOnce).toBeTruthy();
-        });
+        driver.mouseEnterErrorIndicator();
+        expect(driver.getErrorMessage()).toBe("I'm the error message");
       });
     });
-
-    describe('tooltipPlacement attribute', () => {
-      ['top', 'bottom', 'left', 'right'].forEach(placement => {
-        it(`should have a tooltip positioned to the ${placement}`, () => {
-          const driver = createDriver(
-            <InputAreaForTesting
-              error
-              errorMessage="I'm the error message"
-              tooltipPlacement={placement}
-            />,
-          );
-          const dataHook = driver.getTooltipDataHook();
-          const wrapper = driver.getTooltipElement();
-          const tooltipDriver = tooltipTestkitFactory({ wrapper, dataHook });
-          tooltipDriver.mouseEnter();
-
-          return resolveIn(500).then(() => {
-            expect(tooltipDriver.getPlacement()).toBe(placement);
-          });
-        });
-      });
-    });
-  });
-});
-
-describe('testkit', () => {
-  it('should exist', () => {
-    const value = 'hello';
-    const onChange = () => {};
-    expect(
-      isTestkitExists(
-        <InputArea dataHook="texarea-div" value={value} onChange={onChange} />,
-        inputAreaTestkitFactory,
-      ),
-    ).toBe(true);
-  });
-});
-
-describe('enzyme testkit', () => {
-  it('should exist', () => {
-    const value = 'hello';
-    const onChange = () => {};
-    expect(
-      isEnzymeTestkitExists(
-        <InputArea dataHook="texarea-div" value={value} onChange={onChange} />,
-        enzymeInputAreaTestkitFactory,
-        mount,
-      ),
-    ).toBe(true);
   });
 });

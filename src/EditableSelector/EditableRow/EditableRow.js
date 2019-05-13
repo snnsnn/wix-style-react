@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import WixComponent from '../../BaseComponents/WixComponent';
 import Input from '../../Input';
 import Tooltip from '../../Tooltip';
-import Button from '../../Deprecated/Button';
+import IconButton from '../../IconButton';
 import X from '../../new-icons/X';
 import Check from '../../new-icons/Check';
 import styles from '../EditableSelector.scss';
 
-class EditableRow extends WixComponent {
+class EditableRow extends Component {
   static propTypes = {
     newOption: PropTypes.string,
     onApprove: PropTypes.func,
@@ -23,7 +22,6 @@ class EditableRow extends WixComponent {
   }
 
   componentDidMount() {
-    super.componentDidMount();
     this.input.focus();
   }
 
@@ -36,8 +34,9 @@ class EditableRow extends WixComponent {
   };
 
   render() {
+    const { dataHook } = this.props;
     return (
-      <div data-hook="edit-row-wrapper" className={styles.editableRowContainer}>
+      <div data-hook={dataHook} className={styles.editableRowContainer}>
         <div className={styles.editableRowInputWrap}>
           <Input
             ref={input => (this.input = input)}
@@ -55,27 +54,26 @@ class EditableRow extends WixComponent {
         </div>
 
         <div className={styles.editableRowButtons}>
-          <Tooltip content="Cancel" shouldCloseOnClickOutside theme="dark">
-            <Button
-              onClick={() => this.onCancel()}
-              height="medium"
-              theme="icon-standardsecondary"
+          <Tooltip content="Cancel" upgrade timeout={0}>
+            <IconButton
+              onClick={this.onCancel}
+              size="medium"
+              priority="secondary"
               dataHook="edit-row-cancel-button"
             >
               <X />
-            </Button>
+            </IconButton>
           </Tooltip>
 
-          <Tooltip content="Confirm" shouldCloseOnClickOutside theme="dark">
-            <Button
-              onClick={() => this.onApprove()}
-              height="medium"
-              theme="icon-standard"
+          <Tooltip content="Confirm" upgrade timeout={0}>
+            <IconButton
+              onClick={this.onApprove}
+              size="medium"
               disabled={this.state.newOption.length === 0}
               dataHook="edit-row-approve-button"
             >
               <Check />
-            </Button>
+            </IconButton>
           </Tooltip>
         </div>
       </div>

@@ -333,7 +333,7 @@ InputArea.propTypes = {
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
 
-  /** onShow prop for the error tooltip */
+  /** @deprecated onShow prop for the error tooltip */
   onTooltipShow: PropTypes.func,
 
   /** Placeholder to display */

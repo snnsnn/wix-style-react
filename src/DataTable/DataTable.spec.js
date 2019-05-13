@@ -49,6 +49,16 @@ describe('Table', () => {
         rowDataHook,
       });
 
+      it('should not render the component when no data supplied', async () => {
+        const driver = createDriver(<DataTable {...props} />);
+        expect(await driver.exists()).toEqual(false);
+      });
+
+      it('should render the component when data is supplied', async () => {
+        const driver = createDriver(<DataTable {...defaultProps} />);
+        expect(await driver.exists()).toEqual(true);
+      });
+
       it('should display nothing', async () => {
         const driver = createDriver(<DataTable {...props} />);
         expect(await driver.isDisplayingNothing()).toBeTruthy();

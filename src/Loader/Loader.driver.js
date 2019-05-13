@@ -1,10 +1,15 @@
-import { findByHook, resolveIn, isClassExists } from '../../test/utils';
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import { isClassExists } from '../../test/utils';
+import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit';
 
 const getTextElement = element =>
   element.querySelector(`[data-hook="loader-text"]`);
 
 const loaderDriverFactory = ({ element }) => {
+  const tooltipTestkit = tooltipTestkitFactory({
+    wrapper: element,
+    dataHook: `loader-tooltip`,
+  });
+
   return {
     component: () => element,
     exists: () => !!element,
@@ -41,12 +46,8 @@ const loaderDriverFactory = ({ element }) => {
 
     /** trigger the tooltip and returns the value of the tooltip message (async function) */
     getStatusMessage: () => {
-      const tooltipDriver = tooltipDriverFactory({
-        element: findByHook(element, 'loader-tooltip'),
-      });
-
-      tooltipDriver.mouseEnter();
-      return resolveIn(500).then(() => tooltipDriver.getContent());
+      tooltipTestkit.mouseEnter();
+      return tooltipTestkit.getContentElement().textContent;
     },
   };
 };

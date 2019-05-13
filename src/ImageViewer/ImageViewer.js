@@ -1,118 +1,136 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Delete from 'wix-ui-icons-common/Delete';
 import Replace from 'wix-ui-icons-common/Replace';
 import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
-import classNames from 'classnames';
 
-import style from './ImageViewer.scss';
-import Tooltip from '../Tooltip/Tooltip';
-import Button from '../Deprecated/Button';
-import WixComponent from '../BaseComponents/WixComponent';
+import styles from './ImageViewer.st.css';
+
+import Tooltip from '../Tooltip/TooltipNext/Tooltip';
+import IconButton from '../IconButton';
+
 import AddItem from '../AddItem/AddItem';
 
-const DEFAULT_TOOLTIP_PROPS = {
-  showDelay: 0,
-  hideDelay: 0,
-  align: 'center',
-  placement: 'top',
-  theme: 'dark',
-};
-
-class ImageViewer extends WixComponent {
-  render() {
-    const {
-      imageUrl,
-      onAddImage,
-      onUpdateImage,
-      onRemoveImage,
-      addImageInfo,
-      showUpdateButton,
-      updateImageInfo,
-      removeImageInfo,
-      width,
-      height,
-      error,
-      errorMessage,
-      tooltipPlacement,
-      removeRoundedBorders,
-      className,
-    } = this.props;
-    const classes = classNames(
-      style.container,
-      {
-        [style.hasLogo]: imageUrl,
-        [style.hasError]: error,
-        [style.removeRoundedBorders]: removeRoundedBorders,
-      },
-      className,
-    );
-    const tooltipProps = {
-      ...DEFAULT_TOOLTIP_PROPS,
-      ...this.props.tooltipProps,
-    };
+class ImageViewer extends Component {
+  _renderAddImage = () => {
+    const { imageUrl, onAddImage, addImageInfo, tooltipProps } = this.props;
     return (
-      <div className={classes} style={{ width, height }}>
-        {!imageUrl && (
-          <AddItem
-            onClick={onAddImage}
-            theme="image"
-            dataHook="add-image"
-            tooltipProps={{ ...tooltipProps, content: addImageInfo }}
+      !imageUrl && (
+        <AddItem
+          onClick={onAddImage}
+          theme="image"
+          dataHook="add-image"
+          tooltipContent={addImageInfo}
+          tooltipProps={{ ...tooltipProps, content: addImageInfo }}
+        />
+      )
+    );
+  };
+
+  _renderImage = () => {
+    const { imageUrl, showUpdateButton, removeRoundedBorders } = this.props;
+    return (
+      !!imageUrl && (
+        <div className={styles.imageContainer}>
+          <img
+            data-hook="image-viewer-image"
+            className={styles.image}
+            src={imageUrl}
           />
-        )}
-        {!!imageUrl && (
-          <div className={style.changeLogoContainer}>
-            <div className={style.imageLayout}>
-              <img
-                data-hook="image-viewer-image"
-                className={style.image}
-                src={imageUrl}
-              />
-            </div>
-            <div
-              className={classNames(style.imageBackground, {
-                [style.removeRoundedBorders]: removeRoundedBorders,
-              })}
-            >
-              <div className={style.buttons}>
-                {!!showUpdateButton && (
-                  <Tooltip
-                    dataHook="update-image"
-                    {...tooltipProps}
-                    content={updateImageInfo}
-                  >
-                    <Button onClick={onUpdateImage} theme="icon-whitesecondary">
-                      <Replace size="1.5em" />
-                    </Button>
-                  </Tooltip>
-                )}
-                <Tooltip
-                  dataHook="remove-image"
-                  {...tooltipProps}
-                  content={removeImageInfo}
-                >
-                  <Button theme="icon-whitesecondary" onClick={onRemoveImage}>
-                    <Delete size="1.5em" />
-                  </Button>
-                </Tooltip>
-              </div>
+          <div
+            {...styles(
+              'imageBackground',
+              { removeRadius: removeRoundedBorders },
+              this.props,
+            )}
+          >
+            <div className={styles.buttons}>
+              {showUpdateButton && this._renderUpdateButton()}
+              {this._renderRemoveButton()}
             </div>
           </div>
-        )}
-        {!!error && (
+        </div>
+      )
+    );
+  };
+
+  _renderUpdateButton = () => {
+    const { updateImageInfo, onUpdateImage, tooltipProps } = this.props;
+    return (
+      <Tooltip
+        {...tooltipProps}
+        upgrade
+        timeout={0}
+        dataHook="update-image-tooltip"
+        content={updateImageInfo}
+      >
+        <IconButton
+          dataHook="update-image"
+          onClick={onUpdateImage}
+          skin="light"
+          priority="secondary"
+        >
+          <Replace />
+        </IconButton>
+      </Tooltip>
+    );
+  };
+
+  _renderRemoveButton = () => {
+    const { removeImageInfo, onRemoveImage, tooltipProps } = this.props;
+    return (
+      <Tooltip
+        {...tooltipProps}
+        upgrade
+        timeout={0}
+        dataHook="remove-image-tooltip"
+        content={removeImageInfo}
+      >
+        <IconButton
+          dataHook="remove-image"
+          skin="light"
+          priority="secondary"
+          onClick={onRemoveImage}
+        >
+          <Delete />
+        </IconButton>
+      </Tooltip>
+    );
+  };
+
+  _renderErrorIcon = () => {
+    const { error, errorMessage } = this.props;
+    return (
+      error && (
+        <div className={styles.errorContainer}>
           <Tooltip
-            dataHook="error-tooltip"
-            disabled={!errorMessage}
+            upgrade
             content={errorMessage}
-            {...tooltipProps}
-            placement={tooltipPlacement || tooltipProps.placement}
+            timeout={0}
+            appendTo="window"
+            dataHook="error-image-tooltip"
+            placement="top"
           >
-            <div className={style.exclamation}>
+            <div className={styles.error}>
               <FormFieldError />
             </div>
           </Tooltip>
-        )}
+        </div>
+      )
+    );
+  };
+
+  render() {
+    const { width, height, error, dataHook } = this.props;
+    return (
+      <div
+        {...styles('root', { error }, this.props)}
+        style={{ width, height }}
+        data-hook={dataHook}
+      >
+        {this._renderAddImage()}
+        {this._renderImage()}
+        {this._renderErrorIcon()}
       </div>
     );
   }
@@ -127,9 +145,6 @@ ImageViewer.defaultProps = {
   removeImageInfo: 'Remove',
 };
 
-/* eslint-disable no-unused-vars */
-const { content, ...imageViewerTooltipProps } = Tooltip.propTypes;
-
 ImageViewer.propTypes = {
   /** Image url, blank for not uploaded */
   imageUrl: PropTypes.string,
@@ -143,7 +158,7 @@ ImageViewer.propTypes = {
    */
   tooltipPlacement: PropTypes.string,
   /** Tooltip props, common for all tooltips */
-  tooltipProps: PropTypes.shape(imageViewerTooltipProps),
+  tooltipProps: PropTypes.object,
   /** Show update button */
   showUpdateButton: PropTypes.bool,
   /** Add image click handler */

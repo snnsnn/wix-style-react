@@ -1,1 +1,2 @@
-export { default } from './RichTextArea';
+// TODO: Remove once the deprecated component is completely removed
+export { default } from '../Deprecated/RichTextArea/RichTextArea';

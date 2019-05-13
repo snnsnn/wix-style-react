@@ -94,16 +94,6 @@ const tests = [
       },
     ],
   },
-
-  // {
-  //   describe: '',
-  //   its: [
-  //     {
-  //       it: '',
-  //       props: {},
-  //     },
-  //   ],
-  // },
 ];
 
 tests.forEach(({ describe, its }) => {

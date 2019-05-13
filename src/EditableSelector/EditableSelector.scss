@@ -11,11 +11,11 @@ $rows-margin: 6px;
     background-color: transparent;
   }
 
-  &:hover .optionMenu{
+  &:hover .optionMenu {
     visibility: visible;
   }
 
-  [data-hook="editable-selector-item"] {
+  [data-hook='editable-selector-item'] {
     padding: 0;
     height: initial;
 
@@ -74,6 +74,10 @@ $rows-margin: 6px;
 
 .editableRowButtons {
   display: flex;
-  & > button { margin-right: 12px}
-  & > button:last-child { margin-right: 0}
+  & > * {
+    margin-right: 12px;
+  }
+  & > :last-child {
+    margin-right: 0;
+  }
 }

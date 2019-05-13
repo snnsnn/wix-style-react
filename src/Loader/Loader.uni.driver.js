@@ -1,10 +1,11 @@
-import { baseUniDriverFactory, findByHook } from '../../test/utils/unidriver';
-import { teskitTooltip as tooltipUniDriverFactory } from '../Tooltip/Tooltip.uni.driver';
-import { resolveIn } from '../../test/utils';
+import { baseUniDriverFactory } from '../../test/utils/unidriver';
+import { tooltipDriverFactory } from '../Tooltip/TooltipNext/Tooltip.uni.driver';
 
 const getTextElement = element => element.$(`[data-hook="loader-text"]`);
 
 export const loaderUniDriverFactory = (base, body) => {
+  const tooltipSelector = '[data-hook="loader-tooltip"]';
+  const tooltipTestkit = tooltipDriverFactory(base.$(tooltipSelector), body);
   return {
     ...baseUniDriverFactory(base),
     /** @deprecated Should be private */
@@ -41,13 +42,8 @@ export const loaderUniDriverFactory = (base, body) => {
 
     /** trigger the tooltip and returns the value of the tooltip message (async function) */
     getStatusMessage: () => {
-      const tooltipDriver = tooltipUniDriverFactory(
-        findByHook(base, 'loader-tooltip'),
-        body,
-      );
-
-      tooltipDriver.mouseEnter();
-      return resolveIn(500).then(() => tooltipDriver.getContent());
+      tooltipTestkit.mouseEnter();
+      return tooltipTestkit.getTooltipText();
     },
   };
 };

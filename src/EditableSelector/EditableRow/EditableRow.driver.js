@@ -1,26 +1,25 @@
 import inputDriverFactory from '../../Input/Input.driver';
-import buttonDriverFactory from '../../Deprecated/Button/Button.driver';
 
-const editableRowDriverFactory = ({ element }) => {
+const editableRowDriverFactory = ({ element, eventTrigger }) => {
+  const find = dataHook => element.querySelector(`[data-hook="${dataHook}"]`);
+
   const inputDriver = inputDriverFactory({
-    element: element.querySelector('[data-hook="edit-row-input"]'),
+    element: find('edit-row-input'),
     wrapper: element,
   });
-  const approveBtnDriver = buttonDriverFactory({
-    element: element.querySelector('[data-hook="edit-row-approve-button"]'),
-    wrapper: element,
-  });
-  const cancelBtnDriver = buttonDriverFactory({
-    element: element.querySelector('[data-hook="edit-row-cancel-button"]'),
-    wrapper: element,
-  });
+
+  const approveButton = find('edit-row-approve-button');
+  const cancelButton = find('edit-row-cancel-button');
 
   return {
     exists: () => !!element,
     isInputFocused: () => inputDriver.isFocus(),
-    clickApprove: () => approveBtnDriver.click(),
-    isApproveDisabled: () => approveBtnDriver.isButtonDisabled(),
-    clickCancel: () => cancelBtnDriver.click(),
+    clickApprove: () => eventTrigger.click(approveButton),
+    isApproveDisabled: () => {
+      const disabled = approveButton.getAttribute('aria-disabled');
+      return disabled === 'true';
+    },
+    clickCancel: () => eventTrigger.click(cancelButton),
     getText: () => inputDriver.getValue(),
     setText: text => inputDriver.enterText(text),
     keyDown: keyCode => inputDriver.trigger('keyDown', { keyCode }),

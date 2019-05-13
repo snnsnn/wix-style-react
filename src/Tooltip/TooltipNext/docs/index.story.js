@@ -123,33 +123,6 @@ export default {
 
           divider(),
 
-          title('Examples'),
-
-          ...[
-            {
-              title: 'Plain Example',
-              text: 'Plain example of how to use tooltip.',
-              source: examples.basic,
-            },
-            {
-              title: 'Placement',
-              text:
-                'Tooltips have four standard placements available: `top`, `right`, `bottom`, and `left`. Each standard position center-aligns itself along the appropriate axis and appears outside the target element.',
-              source: examples.placements,
-            },
-            {
-              title: 'Delay',
-              text:
-                'Time in milliseconds to wait before showing or hiding the tooltip. Controlled by props `enterDelay` or `exitDelay`.',
-              source: examples.delay,
-            },
-            {
-              title: 'Size',
-              text: 'Tooltip supports two sizes: `small` and `medium`.',
-              source: examples.size,
-            },
-          ].map(example),
-
           title('Floating Behaviour'),
 
           columns([
@@ -172,6 +145,23 @@ export default {
               subtitle:
                 'Focus target element (TAB) and scroll viewport to see behaviour',
               source: examples.fixed,
+            }),
+          ]),
+
+          title('Accessibility'),
+
+          columns([
+            liveCode({
+              title: 'Focus behaviour',
+              subtitle:
+                'The tooltip content appears on keyboard focus for native focusable html elements like: <button> or <input> or any focusable wix-style-react component.',
+              source: examples.focus,
+            }),
+            liveCode({
+              title: 'ARIA guidelines',
+              subtitle:
+                'The tooltip content is bound to tooltip trigger element by aria-describeby prop. VoiceOver users will get tooltips content information as soon as target element is focused.',
+              source: examples.a11y,
             }),
           ]),
 

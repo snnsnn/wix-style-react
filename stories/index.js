@@ -37,7 +37,7 @@ require('../src/TextButton/docs/index.story'); // 5.3 Text Button
 require('../src/CloseButton/docs/index.story'); // 5.4 Close Button
 
 // 7. Tooltips
-require('../src/Tooltip/TooltipNext/docs/index.story'); // 7.1 Tooltip
+require('./Tooltip/index.story'); // 7.1 Tooltip
 
 // 8. Notification Bars
 require('../src/Notification/docs/index.story');
@@ -60,6 +60,7 @@ require('../src/Calendar/docs/index.story');
 require('../src/CalendarPanel/docs/index.story');
 require('../src/CalendarPanelFooter/docs/index.story');
 require('../src/CardGalleryItem/docs/index.story');
+require('../src/Card/Subheader/docs/index.story');
 require('../src/Carousel/docs/index.story');
 require('../src/Checkbox/docs/index.story');
 require('../src/CircularProgressBar/docs/index.story');
@@ -126,7 +127,7 @@ require('../src/Text/docs/index.story');
 require('../src/Thumbnail/docs/index.story');
 require('../src/TimeInput/docs/index.story');
 require('../src/ToggleSwitch/docs/index.story');
-require('../src/Tooltip/docs/Composite/CompositeStory');
+require('../src/Tooltip/TooltipNext/docs/index.story');
 
 // Styling
 require('../src/Typography/docs/cssClasses.story');
@@ -146,7 +147,6 @@ require('../src/TimeInput/docs/testStory');
 require('../src/Page/docs/PageTestStories'); // Tests/2. Layout/2.5 + Page/
 require('../src/Page/docs/PageTestStoriesDeprecated'); // Tests/2. Layout/2.5 + Page/Deprecated
 require('../src/PageHeader/docs/PageHeaderTestStories'); // Tests/2. Layout/2.5 + PageHeader/
-require('../src/Button/docs/testButton'); // Tests/5. Button/5.1 Button
 require('../src/IconButton/docs/testStory'); // Tests/5. Button/5.2 IconButton
 require('../src/TextButton/docs/testStory'); // Tests/5. Button/5.3 TextButton
 require('../src/CloseButton/docs/testStory'); // Tests/5. Button/5.4 CloseButton
@@ -166,7 +166,6 @@ require('../src/StatsWidget/docs/testStory'); // 2.7 StatsWidget
 require('../src/SegmentedToggle/docs/testStory'); // 4.5 SegmentedToggle
 require('../src/FloatingNotification/docs/FloatingNotificationTestStory'); // 8.2 FloatingNotification
 require('../src/FormField/docs/testStory');
-require('../src/RichTextArea/docs/testStory');
 require('../src/DropdownLayout/docs/testStory');
 require('../src/InputWithOptions/docs/testStory');
 require('../src/ColorInput/docs/testStory');
@@ -174,6 +173,8 @@ require('../src/DateInput/test/testStories');
 
 // DEPRECATED
 require('./FieldWithSelectionComposite');
+require('./Deprecated/RichTextArea/index.story');
+require('./Deprecated/RichTextArea/testStory');
 
 // The generated test component
 require('../src/GeneratedTestComponent/docs/index.story');

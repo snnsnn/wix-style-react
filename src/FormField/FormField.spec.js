@@ -97,21 +97,14 @@ describe('FormField', () => {
 
     describe('`infoContent` icon with tooltip', () => {
       const infoContent = 'hello from tooltip';
-      const tooltipProps = {
-        relative: true,
-        appendToParent: true,
-        showDelay: 0,
-      };
 
       it('should display `infoContent` value in tooltip', async () => {
-        const { driver } = render(
-          renderFormField({ infoContent, tooltipProps }),
-        );
+        const { driver } = render(renderFormField({ infoContent }));
         expect(await driver.getInfoContent()).toBe(infoContent);
       });
 
       describe('given `label`', () => {
-        const props = { label, infoContent, tooltipProps };
+        const props = { label, infoContent };
 
         it('should display `infoContent` value in tooltip', async () => {
           const { driver } = render(renderFormField(props));

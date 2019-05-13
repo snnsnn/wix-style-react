@@ -1,4 +1,4 @@
-import { badgeDriverFactory } from 'wix-ui-backoffice/dist/src/components/Badge/Badge.driver';
+import badgeDriverFactory from '../Badge/Badge.driver';
 
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.driver';
 import popoverDriverFactory from '../Popover/Popover.driver';

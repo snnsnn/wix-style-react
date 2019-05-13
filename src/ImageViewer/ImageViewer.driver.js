@@ -1,60 +1,62 @@
-import buttonDriverFactory from '../Deprecated/Button/Button.driver';
-
 import addItemDriverFactory from '../AddItem/AddItem.driver';
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit';
 
 const imageViewerDriverFactory = ({ element, eventTrigger }) => {
   const addItemDataHook = 'add-image';
   const updateDataHook = 'update-image';
+  const imageDataHook = 'image-viewer-image';
+  const updateTooltipDataHook = 'update-image-tooltip';
+  const removeTooltipDataHook = 'remove-image-tooltip';
+  const errorTooltipDataHook = 'error-image-tooltip';
   const removeDataHook = 'remove-image';
 
   const byHook = dataHook => element.querySelector(`[data-hook="${dataHook}"]`);
-  const image = () => byHook('image-viewer-image');
-  const errorIcon = () => byHook('error-tooltip');
-  const addItem = () => byHook(addItemDataHook);
+
   const addItemDriver = addItemDriverFactory({
     element,
     eventTrigger,
   });
-  const tooltipDriver = addItemDriver.getTooltipDriver();
-  const addItemClick = () =>
-    addItemDriverFactory({
-      element: byHook('add-image'),
-      eventTrigger,
-    }).click();
-  const updateIcon = () => byHook(updateDataHook);
-  const removeIcon = () => byHook(removeDataHook);
-  const updateButton = () =>
-    buttonDriverFactory({ element: byHook(updateDataHook) });
-  const removeButton = () =>
-    buttonDriverFactory({ element: byHook(removeDataHook) });
+
+  const tooltipTestkit = dataHook =>
+    tooltipTestkitFactory({
+      wrapper: element,
+      dataHook,
+    });
+
+  const updateTooltip = tooltipTestkit(updateTooltipDataHook);
+  const removeTooltip = tooltipTestkit(removeTooltipDataHook);
+  const errorTooltip = tooltipTestkit(errorTooltipDataHook);
+  const addItem = addItemDriverFactory({
+    element: byHook('add-image'),
+    eventTrigger,
+  });
 
   return {
-    getAddItemDataHook: () => addItemDataHook,
-    getElement: () => element,
-    getContainerStyles: () => element.getAttribute('style'),
-    getImageUrl: () => image().getAttribute('src'),
-    getErrorTooltipContent: () =>
-      tooltipDriverFactory({
-        element: errorIcon(),
-      }).hoverAndGetContent(),
-    getAddTooltipContent: () => tooltipDriver.hoverAndGetContent(),
-    getUpdateTooltipContent: () =>
-      tooltipDriverFactory({
-        element: updateIcon(),
-      }).hoverAndGetContent(),
-    getRemoveTooltipContent: () =>
-      tooltipDriverFactory({
-        element: removeIcon(),
-      }).hoverAndGetContent(),
-    isAddItemVisible: () => !!addItem(),
-    isImageVisible: () => !!image(),
-    isErrorVisible: () => !!errorIcon(),
-    clickAdd: () => addItemClick(),
-    clickUpdate: () => updateButton().click(),
-    clickRemove: () => removeButton().click(),
-    updateExists: () => updateButton().exists(),
     exists: () => !!element,
+    getElement: () => element,
+    getAddItemDataHook: () => addItemDataHook,
+    getContainerStyles: () => element.getAttribute('style'),
+    getImageUrl: () => byHook(imageDataHook).getAttribute('src'),
+    getErrorTooltipContent: () => {
+      errorTooltip.mouseEnter();
+      return errorTooltip.getContentElement().textContent;
+    },
+    getAddTooltipContent: () => addItemDriver.getTooltipContent(),
+    getUpdateTooltipContent: () => {
+      updateTooltip.mouseEnter();
+      return updateTooltip.getContentElement().textContent;
+    },
+    getRemoveTooltipContent: () => {
+      removeTooltip.mouseEnter();
+      return removeTooltip.getContentElement().textContent;
+    },
+    isAddItemVisible: () => !!byHook(addItemDataHook),
+    isImageVisible: () => !!byHook(imageDataHook),
+    isErrorVisible: () => !!byHook(errorTooltipDataHook),
+    clickAdd: () => addItem.click(),
+    clickUpdate: () => byHook(updateDataHook).click(),
+    clickRemove: () => byHook(removeDataHook).click(),
+    updateExists: () => !!byHook(updateDataHook),
   };
 };
 

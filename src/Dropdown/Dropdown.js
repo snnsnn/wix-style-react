@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import defaultTo from 'lodash/defaultTo';
-import differenceBy from 'lodash/differenceBy';
+import isEqual from 'lodash/isEqual';
+import sortBy from 'lodash/sortBy';
 import { allValidators, extendPropTypes } from '../utils/propTypes';
 
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
@@ -28,7 +29,7 @@ class Dropdown extends InputWithOptions {
   }
 
   static isOptionsEqual(optionsA, optionsB) {
-    return differenceBy(optionsA, optionsB, o => o.id).length === 0;
+    return isEqual(sortBy(optionsA, 'id'), sortBy(optionsB, 'id'));
   }
 
   getSelectedId() {

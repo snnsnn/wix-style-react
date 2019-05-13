@@ -1,64 +1,3 @@
-export const basic = `
-<Layout cols={1} justifyItems="center">
-  <Tooltip upgrade appendTo="window" content="Enter your postal code, so postman can easier send you a mail.">
-    <Text>Hover me</Text>
-  </Tooltip>
-</Layout>
-`;
-
-export const placements = `
-class PlacementExample extends React.Component {
-
-  constructor() {
-    super();
-    this.state = { placement: 0 };
-    this.changeDirection = this.changeDirection.bind(this);
-    this.VALID_PLACEMENTS = [
-      'top',
-      'right',
-      'bottom',
-      'left'
-    ]
-  }
-
-  changeDirection() {
-    this.setState({
-      placement: (this.state.placement + 1) % this.VALID_PLACEMENTS.length,
-    });
-  };
-
-  render() {
-    const placement = this.VALID_PLACEMENTS[this.state.placement];
-    return (
-      <Layout cols={1} justifyItems="center">
-        <Tooltip upgrade content={placement} placement={placement} appendTo="window">
-          <TextButton onClick={this.changeDirection}>Click me to change the placement</TextButton>
-        </Tooltip>
-      </Layout>
-    );
-  }
-}
-`;
-
-export const delay = `
-<Layout cols={1} justifyItems="center">
-  <Tooltip upgrade enterDelay={350} exitDelay={350} appendTo="window" content="Lagging...">
-    <Text>Hover me</Text>
-  </Tooltip>
-</Layout>
-`;
-
-export const size = `
-<Layout cols={2} justifyItems="center">
-  <Tooltip upgrade size="small" appendTo="window" content="Tooltip">
-    <Text>small</Text>
-  </Tooltip>
-  <Tooltip upgrade size="medium" appendTo="window" content="Tooltip">
-    <Text>medium (default)</Text>
-  </Tooltip>
-</Layout>
-`;
-
 export const flip = `
 class TooltipFlip extends React.Component {
 
@@ -217,4 +156,26 @@ class TooltipFixed extends React.Component {
     )
   }
 }
+`;
+
+export const focus = `
+<Layout cols={2} justifyItems="center" alignItems="center">
+  <Tooltip upgrade content="i am tooltip">
+    <button>native</button>
+  </Tooltip>
+  <Tooltip upgrade content="i am tooltip">
+    <TextButton>TextButton</TextButton>
+  </Tooltip>
+</Layout>
+`;
+
+export const a11y = `
+<Layout cols={2} justifyItems="center" alignItems="center">
+<Tooltip upgrade content="i am tooltip" aria-describedby="tooltip:1">
+  <TextButton>tooltip:1</TextButton>
+</Tooltip>
+<Tooltip upgrade content="i am tooltip" aria-describedby="tooltip:2">
+  <TextButton>tooltip:2</TextButton>
+</Tooltip>
+</Layout>
 `;

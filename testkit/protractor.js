@@ -22,7 +22,7 @@ export const addItemTestkitFactory = protractorTestkitFactoryCreator(
   addItemDriverFactory,
 );
 
-import richTextAreaDriverFactory from '../src/RichTextArea/RichTextArea.protractor.driver';
+import richTextAreaDriverFactory from '../src/Deprecated/RichTextArea/RichTextArea.protractor.driver';
 
 export const richTextAreaTestkitFactory = protractorTestkitFactoryCreator(
   richTextAreaDriverFactory,
@@ -279,6 +279,12 @@ export const tagTestkitFactory = protractorTestkitFactoryCreator(
   tagDriverFactory,
 );
 
+import badgeDriverFactory from '../src/Badge/Badge.protractor.driver';
+
+export const badgeTestkitFactory = protractorTestkitFactoryCreator(
+  badgeDriverFactory,
+);
+
 import badgeSelectDriverFactory from '../src/BadgeSelect/BadgeSelect.protractor.driver';
 
 export const badgeSelectTestkitFactory = protractorTestkitFactoryCreator(
@@ -318,7 +324,6 @@ export const proportionTestkitFactory = protractorUniTestkitFactoryCreator(
 // wix-ui-backoffice proxy
 
 export {
-  badgeTestkitFactory,
   stylableCounterBadgeTestkitFactory as counterBadgeTestkitFactory,
   toggleSwitchTestkitFactory,
   labelTestkitFactory,
@@ -483,4 +488,10 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 
 export const errorIndicatorTestkitFactory = protractorUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
+);
+
+import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';
+
+export const subheaderTestkitFactory = protractorUniTestkitFactoryCreator(
+  cardSubheaderDriverFactory,
 );

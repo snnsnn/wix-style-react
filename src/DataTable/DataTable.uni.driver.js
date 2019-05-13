@@ -121,5 +121,6 @@ export const dataTableUniDriverFactory = base => {
       ReactBase(getHeaderCell(index)).click(eventData),
     /** @deprecated Should be private */
     getRowDetails: index => getRowDetails(index).getNative(), // eslint-disable-line no-restricted-properties
+    exists: async () => !(await isDisplayingNothing()),
   };
 };

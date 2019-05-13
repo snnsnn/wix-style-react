@@ -1,3 +1,16 @@
+import * as React from 'react';
+
+export interface InjectedFocusableProps {
+  onBlur?: () => void;
+  onFocus?: () => void;
+}
+
+export type IconElement = React.ReactElement<any>;
+
+export type Omit<T, K extends keyof T> = T extends any
+  ? Pick<T, Exclude<keyof T, K>>
+  : never;
+
 export {default as AddItem} from './AddItem';
 export {default as Avatar, AvatarProps} from './Avatar';
 export {default as Button} from './Button';
@@ -29,7 +42,7 @@ export {default as Loader} from './Loader';
 export {default as DatePicker} from './DatePicker';
 export {default as Calendar} from './Calendar';
 export {default as TimeInput} from './TimeInput';
-export {default as Tooltip} from './Tooltip';
+export {default as Tooltip, TooltipProps} from './Tooltip';
 export {default as Page} from './Page';
 export {default as SectionHelper} from './SectionHelper';
 export {default as PageHeader} from './PageHeader';
@@ -53,8 +66,8 @@ export {default as ImageViewer} from './ImageViewer';
 export {default as PopoverMenu} from './PopoverMenu';
 export {default as FullTextView} from './FullTextView';
 export {default as PopoverMenuItem} from './PopoverMenuItem';
-export {default as Badge} from './Badge';
-export {default as BadgeSelect} from './BadgeSelect';
+export {default as Badge, BadgeProps} from './Badge';
+export {default as BadgeSelect, BadgeSelectProps} from './BadgeSelect';
 export {badgeSelectItemBuilder} from './BadgeSelectItemBuilder';
 export {contactItemBuilder} from './ContactItemBuilder';
 export {default as EditableSelector} from './EditableSelector';
@@ -65,7 +78,7 @@ export {default as CounterBadge} from './CounterBadge';
 export {default as FloatingHelper} from './FloatingHelper';
 export {default as FormField} from './FormField';
 export {HBox} from './HBox';
-export {VBox} from './VBox';
+export {VBox, VBoxProps} from './VBox';
 export {default as Heading} from './Heading';
 export {default as Highlighter} from './Highlighter';
 export {default as RichTextArea} from './RichTextArea';
@@ -101,7 +114,7 @@ export {default as CalendarPanel} from './CalendarPanel';
 export {default as Proportion} from './Proportion';
 export {default as DropdownBase} from './DropdownBase';
 export {default as CalendarPanelFooter} from './CalendarPanelFooter';
-export {default as Box} from './Box';
+export {default as Box, BoxProps} from './Box';
 export {default as Thumbnail} from './Thumbnail';
 export {default as SegmentedToggle} from './SegmentedToggle';
 export {default as FloatingNotification} from './FloatingNotification';

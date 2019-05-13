@@ -2,12 +2,18 @@ import ReactTestUtils from 'react-dom/test-utils';
 
 import styles from './InputArea.scss';
 import { tooltipDataHook } from '../ErrorIndicator/ErrorIndicator';
+import { errorIndicatorDriverFactory } from '../ErrorIndicator/ErrorIndicator.driver';
 
 const inputAreaDriverFactory = ({ element }) => {
   const textAreaElement = element && element.childNodes[0];
   const textArea = element.querySelector('textarea');
   const name = textArea.getAttribute('name');
   const counterSelector = '[data-hook="counter"]';
+  const errorIndicatorSelector = '[data-hook="inputArea-tooltip"]';
+  const errroIndicatorTestkit = () =>
+    errorIndicatorDriverFactory({
+      element: element.querySelector(errorIndicatorSelector),
+    });
 
   return {
     trigger: (trigger, event) =>
@@ -46,6 +52,9 @@ const inputAreaDriverFactory = ({ element }) => {
     // TODO: get the dataHook using the <ErrorIndicator/> driver
     getTooltipDataHook: () => tooltipDataHook,
     getTooltipElement: () => element,
+    isErrorMessageShown: () => errroIndicatorTestkit().isShown(),
+    mouseEnterErrorIndicator: () => errroIndicatorTestkit().mouseEnter(),
+    getErrorMessage: () => errroIndicatorTestkit().getErrorMessage(),
   };
 };
 

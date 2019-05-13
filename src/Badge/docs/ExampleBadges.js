@@ -1,6 +1,5 @@
+/* eslint-disable no-undef */
 import React from 'react';
-import styles from './ExampleBadges.scss';
-
 import Badge, { SIZE, SKIN, TYPE } from 'wix-style-react/Badge';
 
 const skins = Object.keys(SKIN);
@@ -10,7 +9,7 @@ const types = Object.keys(TYPE);
 const typesString = types.join(', ');
 
 const renderBadge = props => (
-  <span className={styles.option}>
+  <span style={{ padding: '5px' }}>
     <Badge {...props}>Some Badge</Badge>
   </span>
 );
@@ -18,17 +17,20 @@ const renderBadge = props => (
 const renderTypes = props => types.map(type => renderBadge({ type, ...props }));
 const renderSizes = props => sizes.map(size => renderTypes({ size, ...props }));
 
-export default () => (
+render(
   <div data-hook="badge-variations">
     {skins.map(skin => (
       <div key={skin}>
         skin: {skin} | sizes: {sizesString} | types: {typesString} | upppercase:
         true, false
-        <div className={styles.wrapper} key={skin}>
+        <div
+          style={{ display: 'flex', alignItems: 'center', padding: '5px' }}
+          key={skin}
+        >
           {renderSizes({ skin })}
           {renderBadge({ uppercase: false, skin })}
         </div>
       </div>
     ))}
-  </div>
+  </div>,
 );

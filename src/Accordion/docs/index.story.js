@@ -16,7 +16,7 @@ import {
 
 import { storySettings } from './storySettings';
 import Accordion from '..';
-import RichTextArea from '../../RichTextArea';
+import RichTextInputArea from '../../RichTextInputArea';
 import { InfoCircle } from '../../new-icons';
 import { buttonTypes } from '../constants';
 
@@ -63,7 +63,7 @@ const exampleItems = [
         buttonType: buttonTypes.button,
         expandLabel: 'Show Editor',
         collapseLabel: 'Hide Editor',
-        children: <RichTextArea />,
+        children: <RichTextInputArea />,
       }),
     ],
   },

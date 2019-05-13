@@ -102,6 +102,28 @@ describe('Dropdown', () => {
       expect(inputDriver.getValue()).toBe('');
     });
 
+    it('should select item with selectedId on async init', () => {
+      const { driver: _driver, rerender } = render(
+        <Dropdown options={[]} selectedId={0} />,
+      );
+      const { inputDriver, dropdownLayoutDriver } = _driver;
+
+      expect(
+        dropdownLayoutDriver.options().some(option => option.isSelected()),
+      ).toBeFalsy();
+      expect(inputDriver.getValue()).toBe('');
+
+      rerender(
+        <Dropdown
+          options={[{ id: 0, value: 'Option 1' }, { id: 1, value: 'Option 2' }]}
+          selectedId={0}
+        />,
+      );
+
+      expect(dropdownLayoutDriver.optionById(0).isSelected()).toBe(true);
+      expect(inputDriver.getValue()).toBe('Option 1');
+    });
+
     describe('PropTypes Validation', () => {
       let consoleErrorSpy;
 

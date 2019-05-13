@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import deprecationLog from '../utils/deprecationLog';
+
 import TooltipNew from './TooltipNext';
 import TooltipOld from './Tooltip';
 
@@ -13,6 +15,13 @@ class Tooltip extends Component {
 
   oldRef = null;
 
+  componentDidMount() {
+    if (!this.props.upgrade) {
+      deprecationLog(
+        'Using "Tooltip" with current API is deprecated. In order to upgrade to the new Tooltip API just use "<Tooltip upgrade/>" and follow "7.1 Tooltip" new API docs. ',
+      );
+    }
+  }
   hide = props => this.oldRef.hide(props);
   show = props => this.oldRef.show(props);
   componentElements = () => this.oldRef.componentElements();

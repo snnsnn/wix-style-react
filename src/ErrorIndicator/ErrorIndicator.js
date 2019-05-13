@@ -4,33 +4,19 @@ import FormFieldError from '../new-icons/system/FormFieldError';
 import Tooltip from '../Tooltip';
 import styles from './ErrorIndicator.scss';
 
-export const tooltipDataHook = 'error-indicator-tooltip';
-
 // This component was exported out of <InputArea/>
 // TODO: Add tests and docs
-const ErrorIndicator = ({
-  dataHook,
-  errorMessage,
-  tooltipPlacement,
-  onTooltipShow,
-}) => (
+const ErrorIndicator = ({ dataHook, errorMessage, tooltipPlacement }) => (
   <div data-hook={dataHook} className={styles.suffix}>
     <Tooltip
-      dataHook={tooltipDataHook}
-      disabled={errorMessage.length === 0}
+      upgrade
+      dataHook="error-indicator-tooltip"
       placement={tooltipPlacement}
-      onShow={onTooltipShow}
-      alignment="center"
-      hideDelay={100}
+      exitDelay={100}
       content={errorMessage}
-      moveBy={{ x: 0, y: -10 }}
-      overlay=""
-      maxWidth="250px"
-      textAlign="left"
-      theme="dark"
-      appendToParent
+      maxWidth={250}
     >
-      <div className={styles.errorIcon}>
+      <div disabled={errorMessage.length === 0} className={styles.errorIcon}>
         <FormFieldError />
       </div>
     </Tooltip>

@@ -1,4 +1,8 @@
-// AutoDocs does not support `export from` syntax
-import { badgeDriverFactory } from 'wix-ui-backoffice/dist/src/components/Badge/Badge.protractor.driver';
+const badgeDriverFactory = component => ({
+  /** returns the component element */
+  element: () => component,
+  /** returns the component text */
+  text: async () => component.getText(),
+});
 
 export default badgeDriverFactory;

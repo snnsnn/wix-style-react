@@ -14,6 +14,42 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## 6.18.0 - 2019-05-13
+
+### Added
+- `<Table/>` - add selected row indication [#3353](https://github.com/wix/wix-style-react/pull/3353)
+- `<Card/>` - add `<Card.Subheader/>` component [#3293](https://github.com/wix/wix-style-react/pull/3293)
+- Infra: add type definitions for Badge, BadgeSelect, Box, Tooltip and VBox [#3349](https://github.com/wix/wix-style-react/pull/3349)
+
+### Deprecated
+- `<RichTextArea />` - deprecated component, you should use `<RichTextInputArea/>` instead [#3354](https://github.com/wix/wix-style-react/pull/3354)
+
+### Changed
+
+- `<FormField/>` - migrated infoicon's tooltip to next generation tooltip. [#3312](https://github.com/wix/wix-style-react/pull/3312)
+- `<AddItem/>` - migrated tooltip to next generation, improved documentation, added unidriver [#3326](https://github.com/wix/wix-style-react/pull/3326)
+- `<Badge/>` - migrate from `wix-ui-backoffice` [#3362](https://github.com/wix/wix-style-react/pull/3362)
+- `<ImageViewer/>` - migrate Tooltip & Button [#3375](https://github.com/wix/wix-style-react/pull/3375)
+- `<Loader/>` - migrate Tooltip. [#3376](https://github.com/wix/wix-style-react/pull/3376)
+- `<ErrorIndicator/>` - migrate Tooltip [#3380](https://github.com/wix/wix-style-react/pull/3380)
+- `<EditableRow/>` - migrate Tooltip, TextLink, Button [#3379](https://github.com/wix/wix-style-react/pull/3379)
+- `<FieldLabelAttributes/>` - migrate Tooltip [#3381](https://github.com/wix/wix-style-react/pull/3381)
+- `<Button/>` - migrate e2e tests to .visual [#3383](https://github.com/wix/wix-style-react/pull/3383)
+- `<NestableList/>` - internal refactors [#3358](https://github.com/wix/wix-style-react/pull/3358)
+
+### Fixed
+- `<Input/>` - make noBorderRadius work on round input [#3357](https://github.com/wix/wix-style-react/pull/3357)
+- `<Dropdown/>` - use more robust compare of prev options to current. [#3388](https://github.com/wix/wix-style-react/pull/3388)
+
+### Docs
+- `<Table/>` document 'onSortClick' function [#3364](https://github.com/wix/wix-style-react/pull/3364)
+- `<Tooltip/>` - split documentation to UX and API parts [#3364](https://github.com/wix/wix-style-react/pull/3384)
+- `<Tooltip/>` - docs API - add a11y examples [#3385](https://github.com/wix/wix-style-react/pull/3385)
+
+## 6.17.3 - 2019-05-03
+### Fixed
+- `<NestableList/>` - Fix bad import of PropTypes [#3359](https://github.com/wix/wix-style-react/pull/3359)
+
 ## 6.17.2 - 2019-05-03
 ### Docs
 - `<RichTextInputArea/>` - change RichTextArea docs to use the new component [#3352](https://github.com/wix/wix-style-react/pull/3352)

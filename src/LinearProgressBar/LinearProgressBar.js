@@ -44,7 +44,7 @@ class LinearProgressBar extends React.PureComponent {
             placement="top"
             content={errorMessage}
           >
-            <FormFieldError data-hook="error-icon" />
+            <FormFieldError data-hook="wsr-error-icon" />
           </Tooltip>
         }
       />

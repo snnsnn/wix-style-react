@@ -1,11 +1,7 @@
 import React from 'react';
 import badgeSelectPrivateDriverFactory from './BadgeSelect.private.driver';
 import BadgeSelect from './BadgeSelect';
-import {
-  SKIN,
-  SIZE,
-  TYPE,
-} from 'wix-ui-backoffice/dist/src/components/Badge/constants';
+import { SKIN, SIZE, TYPE } from '../Badge/constants';
 import { createRendererWithDriver, cleanup } from '../../test/utils/unit';
 
 describe('BadgeSelect', () => {

@@ -1,12 +1,10 @@
-import tooltipDriverFactory from '../Tooltip/Tooltip.driver';
+import { tooltipTestkitFactory } from 'wix-ui-core/dist/src/testkit';
 
 const fieldLabelAttributesDriverFactory = ({ element }) => {
+  const tooltipTestkit = tooltipTestkitFactory({ element, dataHook: 'info' });
   return {
     exists: () => !!element,
-    getTooltipTestKit: () =>
-      tooltipDriverFactory({
-        element: element.querySelector('[data-hook="info"]'),
-      }),
+    getTooltipTestKit: () => tooltipTestkit,
     hasRequired: () =>
       !!element.querySelectorAll('[data-hook="required"]').length,
     hasInfo: () => !!element.querySelectorAll('[data-hook="info"]').length,

@@ -58,7 +58,12 @@ export default {
             { title: 'Error', source: examples.error },
             { title: 'Loader', source: examples.loader },
             { title: 'Affix', source: examples.affix },
-            { title: 'Icon Affix', source: examples.iconAffix },
+            {
+              title: 'Icon Affix',
+              description:
+                "When using icons you should match icon's size to input's` size. For normal sized input use normal icons. For small/large inputs use icons which ends with the proper prefix of Small/Large.",
+              source: examples.iconAffix,
+            },
             { title: 'Sizes', source: examples.sizes },
             { title: 'Rounded', source: examples.rounded },
           ].map(code),

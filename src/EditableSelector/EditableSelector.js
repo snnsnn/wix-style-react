@@ -5,11 +5,11 @@ import Selector from '../Selector';
 import Text from '../Text';
 import Button from '../Button';
 import IconButton from '../IconButton';
+import TextButton from '../TextButton';
 import EditableRow from './EditableRow/EditableRow';
 import styles from './EditableSelector.scss';
 import Add from '../new-icons/Add';
 import Delete from '../new-icons/Delete';
-import TextLink from '../Deprecated/TextLink';
 
 class EditableSelector extends WixComponent {
   static propTypes = {
@@ -139,18 +139,15 @@ class EditableSelector extends WixComponent {
         </div>
         {this.state.addingNewRow && this.renderInput()}
         <div className={styles.newRowButton}>
-          <TextLink
-            underlineStyle="never"
-            onClick={() => this.addNewRow()}
-            dataHook="new-row-button"
+          <TextButton
+            as="a"
+            underline="none"
+            onClick={this.addNewRow}
+            prefixIcon={<Add className={styles.icon} />}
+            dataHook="new-row-button-text"
           >
-            <span className={styles.textLinkWithPrefix}>
-              <Add className={styles.icon} />
-              <span className={styles.text} data-hook="new-row-button-text">
-                {newRowLabel}
-              </span>
-            </span>
-          </TextLink>
+            {newRowLabel}
+          </TextButton>
         </div>
       </div>
     );

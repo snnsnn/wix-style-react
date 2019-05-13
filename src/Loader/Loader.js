@@ -140,12 +140,10 @@ export default class Loader extends WixComponent {
       >
         {statusMessage ? (
           <Tooltip
+            upgrade
+            appendTo="window"
             dataHook="loader-tooltip"
-            placement="top"
-            textAlign="center"
-            alignment="center"
             content={statusMessage}
-            theme="dark"
           >
             {loader}
           </Tooltip>

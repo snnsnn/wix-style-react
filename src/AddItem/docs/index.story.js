@@ -1,110 +1,144 @@
 import React from 'react';
-import CodeExample from 'wix-storybook-utils/CodeExample';
 
 import AddItem from '..';
-import Text from '../../Text';
 
-import VerticalExample from './Examples/VerticalExample';
-import VerticalExampleRaw from '!raw-loader!./Examples/VerticalExample';
+import {
+  header,
+  tabs,
+  tab,
+  description,
+  columns,
+  playground,
+  api,
+  testkit,
+  importExample,
+  divider,
+  code,
+  title,
+} from 'wix-storybook-utils/Sections';
+import * as examples from './examples';
 
-import WithoutActionExample from './Examples/WithoutActionExample';
-import WithoutActionExampleRaw from '!raw-loader!./Examples/WithoutActionExample';
-
-import BreakpointsExample from './Examples/BreakpointsExample';
-import BreakpointsExampleRaw from '!raw-loader!./Examples/BreakpointsExample';
-
-import WithinExample from './Examples/WithinExample';
-import WithinExampleRaw from '!raw-loader!./Examples/WithinExample';
-
-import AddImageExample from './Examples/AddImageExample';
-import AddImageExampleRaw from '!raw-loader!./Examples/AddImageExample';
-import { Container, Col, Row } from '../../Grid';
+import { Layout } from '../../Layout';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
 
 import { storySettings } from './storySettings';
 
-const Cards = (
-  <Container>
-    <Row>
-      <Col span={6}>
-        <CodeExample
-          title="Add item as a vertical card"
-          code={VerticalExampleRaw}
-        >
-          <div
-            style={{ width: '400px', padding: '30px', background: '#F0F4F7' }}
-          >
-            <VerticalExample />
-          </div>
-        </CodeExample>
-      </Col>
-      <Col span={6}>
-        <CodeExample
-          title="Add item without action text"
-          code={WithoutActionExampleRaw}
-        >
-          <div style={{ padding: '30px', background: '#F0F4F7' }}>
-            <WithoutActionExample />
-          </div>
-        </CodeExample>
-      </Col>
-    </Row>
-  </Container>
-);
+import themes from './themes.md';
+import sizes from './sizes.md';
 
-const Breakpoints = (
-  <CodeExample title="Breakpoints" code={BreakpointsExampleRaw}>
-    <BreakpointsExample />
-  </CodeExample>
-);
+const liveCode = config =>
+  code({
+    previewProps: {
+      style: { backgroundColor: '#f0f4f7' },
+    },
+    compact: true,
+    components: baseScope,
+    ...config,
+  });
 
-const Within = (
-  <Container>
-    <Row>
-      <Col span={6}>
-        <CodeExample title="Add item within a card" code={WithinExampleRaw}>
-          <div style={{ padding: '30px', background: '#F0F4F7' }}>
-            <WithinExample />
-          </div>
-        </CodeExample>
-      </Col>
-      <Col span={6}>
-        <CodeExample title="Add image placeholder" code={AddImageExampleRaw}>
-          <div style={{ padding: '30px', background: '#F0F4F7' }}>
-            <AddImageExample />
-          </div>
-        </CodeExample>
-      </Col>
-    </Row>
-  </Container>
-);
-
-const childrenExamples = [
-  {
-    label: 'String',
-    value: 'Add New Item',
-  },
-  {
-    label: 'Component',
-    value: <Text>Add New Item</Text>,
-  },
-];
+const example = ({ source, ...rest }) =>
+  columns([description({ ...rest }), liveCode({ source })]);
 
 export default {
   category: storySettings.kind,
   storyName: storySettings.storyName,
+
   component: AddItem,
   componentPath: '..',
-
   componentProps: {
+    children: 'Add Item',
     theme: 'dashes',
-    dataHook: storySettings.dataHook,
-    children: childrenExamples[0].value,
     alignItems: 'center',
+    dataHook: storySettings.dataHook,
+    tooltipContent: ' tooltip content',
   },
 
   exampleProps: {
-    children: childrenExamples,
+    children: '',
   },
 
-  examples: [Cards, Within, Breakpoints],
+  sections: [
+    header({
+      issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
+      sourceUrl:
+        'https://github.com/wix/wix-style-react/tree/master/src/AddItem/',
+      component: (
+        <Layout gap={0} cols={6}>
+          <div style={{ height: '100px' }}>
+            <AddItem size="small">Add Item</AddItem>
+          </div>
+        </Layout>
+      ),
+    }),
+
+    tabs([
+      tab({
+        title: 'Description',
+        sections: [
+          columns([
+            description(
+              'Add Item is a component used to add new items to an existing items list.',
+            ),
+          ]),
+
+          importExample("import AddItem from 'wix-style-react/AddItem';"),
+
+          divider(),
+
+          columns([
+            description({
+              title: 'Usage',
+              text:
+                'AddItem accepts its string based content through `children` prop.',
+            }),
+          ]),
+
+          divider(),
+
+          title('Examples'),
+
+          ...[
+            {
+              title: 'Plain Example',
+              text: 'AddItem plain usage.',
+              source: examples.plain,
+            },
+            {
+              title: 'Themes',
+              text: themes,
+              source: examples.themes,
+            },
+            {
+              title: 'Theme `plain` Alignment',
+              text:
+                'Different from the rest of the themes, `plain` theme can be aligned to left, right or center in order to maintain visual consistency with the card content.',
+              source: examples.alignItems,
+            },
+            {
+              title: 'Sizes',
+              text: sizes,
+              source: examples.sizes,
+            },
+            {
+              title: 'Content',
+              text:
+                'For sizes `large`, `medium`, `small` users can choose whether to display the textual content or not, but `tiny` size should always be displayed with the textual content.',
+              source: examples.content,
+            },
+            {
+              title: 'States',
+              text: 'AddItem can be disabled.',
+              source: examples.states,
+            },
+          ].map(example),
+        ],
+      }),
+
+      ...[
+        { title: 'API', sections: [api()] },
+        { title: 'Testkit', sections: [testkit()] },
+        { title: 'Playground', sections: [playground()] },
+      ].map(tab),
+    ]),
+  ],
 };

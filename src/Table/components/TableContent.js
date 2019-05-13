@@ -27,6 +27,7 @@ export const TableContent = ({ titleBarVisible, dataHook }) => {
               {bulkSelectionContext => (
                 <DataTable
                   {...dataTableProps}
+                  selectedRowsIds={bulkSelectionContext.getSelectedIds()}
                   columns={createColumns({ tableProps, bulkSelectionContext })}
                 />
               )}

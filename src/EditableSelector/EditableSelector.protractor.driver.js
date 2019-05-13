@@ -17,7 +17,7 @@ const enterText = (component, text) =>
 const editableSelectorDriverFactory = component => ({
   title: () => component.$('[data-hook="editable-selector-title"]').getText(),
   createNewRow: async text => {
-    await component.$('[data-hook="new-row-button"]').click();
+    await component.$('[data-hook="new-row-button-text"]').click();
     await enterText(component, text);
   },
   clickApprove: () =>

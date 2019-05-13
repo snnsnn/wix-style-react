@@ -51,7 +51,7 @@ class FloatingNotification extends React.PureComponent {
     prefixIcon: PropTypes.element,
 
     /** The text content of the notification */
-    text: PropTypes.string,
+    text: PropTypes.node,
   };
 
   static defaultProps = {

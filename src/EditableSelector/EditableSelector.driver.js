@@ -2,7 +2,7 @@ import selectorDriverFactory from '../Selector/Selector.driver';
 import editableRowDriverFactory from './EditableRow/EditableRow.driver';
 import ReactTestUtils from 'react-dom/test-utils';
 
-const editableSelectorDriverFactory = ({ element }) => {
+const editableSelectorDriverFactory = ({ element, eventTrigger }) => {
   const newRowButton = () =>
     element.querySelector('[data-hook="new-row-button-text"]');
   const selectorRowDriver = index =>
@@ -20,6 +20,7 @@ const editableSelectorDriverFactory = ({ element }) => {
     editableRowDriverFactory({
       element: element.querySelector('[data-hook="edit-row-wrapper"]'),
       wrapper: element,
+      eventTrigger,
     });
   const isEditRowActive = () =>
     !!element.querySelectorAll('[data-hook="edit-row-wrapper"]').length;

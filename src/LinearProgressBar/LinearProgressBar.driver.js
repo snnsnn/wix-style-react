@@ -1,12 +1,11 @@
 import { linearProgressBarDriverFactory as coreLinearProgressBarDriverFactory } from 'wix-ui-core/drivers/vanilla';
 import { tooltipDriverFactory } from 'wix-ui-backoffice/dist/src/components/Tooltip/Tooltip.driver';
+import { dataHooks } from './constants';
 
 const linearProgressBarDriverFactory = ({ element, eventTrigger, wrapper }) => {
   const createTooltipDriver = () =>
     tooltipDriverFactory({
-      element: element.querySelector(
-        `[data-hook='linear-progressbar-tooltip']`,
-      ),
+      element: element.querySelector(`[data-hook='${dataHooks.tooltip}']`),
       wrapper,
       eventTrigger,
     });
@@ -15,15 +14,22 @@ const linearProgressBarDriverFactory = ({ element, eventTrigger, wrapper }) => {
     wrapper,
     eventTrigger,
   });
-  const errorIcon = () => element.querySelector(`[data-hook='error-icon']`);
-  const successIcon = () => element.querySelector(`[data-hook='success-icon']`);
+  const errorIcon = () =>
+    element.querySelector(`[data-hook='${dataHooks.errorIcon}']`);
+  const successIcon = () =>
+    element.querySelector(`[data-hook='${dataHooks.successIcon}']`);
+  const getTooltip = () => createTooltipDriver();
 
   return {
     ...coreProgressBarDriver,
-    isTooltipShown: () => createTooltipDriver().isContentElementExists(),
-    getTooltip: () => createTooltipDriver(),
+    isTooltipShown: () => getTooltip().isContentElementExists(),
+    getTooltip,
     isErrorIconShown: () => !!errorIcon(),
     isSuccessIconShown: () => !!successIcon(),
+    getTooltipErrorMessage: async () => {
+      await getTooltip().mouseEnter();
+      return getTooltip().getContentElement().textContent;
+    },
   };
 };
 

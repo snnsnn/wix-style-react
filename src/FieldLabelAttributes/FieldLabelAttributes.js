@@ -21,7 +21,7 @@ class FieldLabelAttributes extends WixComponent {
     if (this.props.info) {
       return React.createElement(Tooltip, {
         ...this.tooltipDefaultProps,
-        appendToParent: this.props.appendToParent,
+        upgrade: true,
         content: this.props.info,
         children: this.infoIcon,
       });
