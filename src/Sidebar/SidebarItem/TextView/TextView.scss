@@ -10,6 +10,20 @@
   display: block;
 }
 
+.disable {
+  opacity: .45;
+  color: white;
+}
+
+.disable:hover {
+  background: none !important;
+}
+
+.disable:active {
+  background: none !important;
+  color: white !important;
+}
+
 .text:hover {
   background: #2f3249;
 }
