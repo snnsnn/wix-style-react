@@ -29,7 +29,15 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    buttonText: 'Hello World!',
+    selectedKey: 'itemKey',
+    classNames: {
+      sideBar: '',
+      content: '',
+      slider: '',
+      sliderOutToLeft: '',
+      sliderInFromLeft: '',
+      sliderInFromRight: '',
+    },
   },
 
   exampleProps: {
@@ -42,7 +50,7 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/Sidebar/',
-      component: <Sidebar buttonText="Click me!" />,
+      component: <Sidebar />,
     }),
 
     tabs([
@@ -53,7 +61,7 @@ export default {
             description({
               title: 'Description',
               text:
-                'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+                'Left sidebar component based on the needs of OS and business manager.',
             }),
           ]),
 
@@ -73,15 +81,9 @@ export default {
 
             code({
               compact: true,
-              source: '<Sidebar buttonText="Hello World!"/>',
+              source: '<Sidebar />',
             }),
           ]),
-
-          code({
-            title: 'Full Interactive Preview',
-            description: 'A non compact version of same code example as above',
-            source: '<Sidebar buttonText="Hello World!"/>',
-          }),
         ],
       }),
 

@@ -9,7 +9,7 @@ export const TextView = props => {
         <div
           className={`${css.text} ${
             context && context.selected() ? css.active : ''
-          }`}
+          } ${props.disable ? css.disable : ''}`}
         >
           {props.children}
         </div>

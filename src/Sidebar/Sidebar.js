@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { SidebarItem } from './SidebarItem/SidebarItem';
 import { PersistentHeader } from './SidebarItem/PersistentHeader';
 import { PersistentFooter } from './SidebarItem/PersistentFooter';
-import css from './main.scss';
+import defaultCss from './main.scss';
 import { SidebarContext } from './SidebarAPI';
 
 /** left sidebar  */
@@ -150,6 +150,7 @@ class Sidebar extends PureComponent {
   }
 
   render() {
+    const css = { ...defaultCss, ...this.props.classNames };
     return (
       <SidebarContext.Provider value={this.sidebarContext}>
         <div className={css.sideBar} data-hook={this.props.dataHook}>
