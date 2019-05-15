@@ -43,6 +43,18 @@ const nestableListFactory = ({ element, wrapper }) => {
         backend.simulateEndDrag();
       }
     },
+    drag: removedId => {
+      if (backend) {
+        backend.simulateBeginDrag([
+          getInstanceOfDraggableSource(
+            vanillaWrapper,
+            removedId,
+          ).getHandlerId(),
+        ]);
+
+        backend.simulateEndDrag();
+      }
+    },
   };
 };
 

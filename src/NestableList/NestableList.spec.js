@@ -78,6 +78,35 @@ describe('NestableList', () => {
     expect(onUpdate).toBeCalledWith([items[1], items[0]]);
   });
 
+  it('should call startDrag and endDrag as part of drag process', () => {
+    const dataHook = 'nestable-list';
+    const items = [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }];
+    const onDragStart = jest.fn();
+    const onDragEnd = jest.fn();
+    const onUpdate = jest.fn();
+    const renderItem = ({ item }) => <div>{item.text}</div>; // eslint-disable-line react/prop-types
+
+    const wrapper = ReactTestUtils.renderIntoDocument(
+      <DragDropContextProvider backend={TestBackend}>
+        <NestableList
+          dataHook={dataHook}
+          items={items}
+          renderItem={renderItem}
+          onUpdate={onUpdate}
+          onDragStart={onDragStart}
+          onDragEnd={onDragEnd}
+          maxDepth={2}
+        />
+      </DragDropContextProvider>,
+    );
+    const driver = nestableListTestkitFactory({ wrapper, dataHook });
+
+    // can't simulate only start of drag or only end of drag
+    driver.drag('1');
+    expect(onDragStart).toBeCalled();
+    expect(onDragEnd).toBeCalled();
+  });
+
   it('should be adding nesting if user moved item horizontally above threshold', () => {
     const dataHook = 'nestable-list';
     const items = [{ id: '1', text: 'item 1' }, { id: '2', text: 'item 2' }];
