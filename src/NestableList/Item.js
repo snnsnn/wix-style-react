@@ -62,7 +62,7 @@ const cardSource = {
       handleOffset,
     };
   },
-  endDrag: (props, monitor, component) => {
+  endDrag: props => {
     props.onDragEnd && props.onDragEnd(props);
   },
 };
