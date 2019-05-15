@@ -1,7 +1,7 @@
 import React from 'react';
-import CardGalleryItem from '.';
+import CardGalleryItem from '..';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
-import cardGalleryItemDriverFactory from './CardGalleryItem.uni.driver';
+import cardGalleryItemDriverFactory from '../CardGalleryItem.uni.driver';
 import ReactTestUtils from 'react-dom/test-utils';
 
 const hover = async driver =>
@@ -28,6 +28,18 @@ describe('CardGalleryItem', () => {
     const driver = createDriver(<CardGalleryItem subtitle="Subtitle" />);
 
     expect(await driver.getSubtitle()).toBe('Subtitle');
+  });
+
+  it('should not render badge by default', async () => {
+    const driver = createDriver(<CardGalleryItem />);
+
+    expect(await driver.getBadgeText()).toBeNull();
+  });
+
+  it('should render badge', async () => {
+    const driver = createDriver(<CardGalleryItem badge={'new item'} />);
+
+    expect(await driver.getBadgeText()).toEqual('new item');
   });
 
   it('should set background image', async () => {

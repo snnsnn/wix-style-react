@@ -14,6 +14,24 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+### Added
+- GoogleMapClient - add session to place details api [#3400]((https://github.com/wix/wix-style-react/pull/3400)
+
+## 6.18.4 - 2019-08-15
+
+### Fixed
+
+- `<NestableList/>` - revert to use `ComponentWillReceiveProps` for compatibility [#3392](https://github.com/wix/wix-style-react/pull/3392)
+- `<Tooltip/>` - fix a mistake where tooltipTestkitFactory exported unidriver types instead of legacy ones. [#3402](https://github.com/wix/wix-style-react/pull/3402)
+- `<ImageViewer/>` - fix testkit methods that uses native click() [#3406](https://github.com/wix/wix-style-react/pull/3406)
+
+## 6.18.3 - 2019-08-14
+
+### Fixed
+
+- `<Badge>` - missing dataHook type in types. [#3398](https://github.com/wix/wix-style-react/pull/3398)
+
 ## 6.18.2 - 2019-08-14
 
 ### Fixed

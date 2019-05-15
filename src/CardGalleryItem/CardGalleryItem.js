@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import Hover from './Hover';
 import Card from '../Card';
+import Badge from '../Badge';
 import Button from '../Button';
 import TextButton from '../TextButton';
 import Text from '../Text';
@@ -57,10 +58,27 @@ class CardGalleryItem extends React.Component {
     },
   };
 
+  _renderBadge(text) {
+    return (
+      <div className={styles.badgeWrapper}>
+        <Badge
+          size="medium"
+          skin="standard"
+          type="solid"
+          uppercase
+          data-hook={'badge'}
+        >
+          {text}
+        </Badge>
+      </div>
+    );
+  }
+
   render() {
     const {
       title,
       subtitle,
+      badge,
       backgroundImageUrl,
       primaryActionProps,
       secondaryActionProps,
@@ -86,6 +104,7 @@ class CardGalleryItem extends React.Component {
             </TextButton>
           </div>
         </div>
+        {badge && this._renderBadge(badge)}
       </div>
     );
 
@@ -96,7 +115,7 @@ class CardGalleryItem extends React.Component {
           onClick={primaryActionProps.onClick}
           data-hook={dataHook}
         >
-          <Card stretchVertically hideOverflow>
+          <Card stretchVertically>
             <Hover
               classNames={animationStyles}
               timeout={200}
@@ -109,7 +128,9 @@ class CardGalleryItem extends React.Component {
                   backgroundImage: `url(${backgroundImageUrl})`,
                 }}
                 data-hook="background-image"
-              />
+              >
+                {badge && this._renderBadge(badge)}
+              </div>
 
               <Card.Divider />
               <div className={styles.footer}>

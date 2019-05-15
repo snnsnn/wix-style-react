@@ -11,6 +11,7 @@ const generateCardGallery = () => {
   return (
     <CardGalleryItem
       title={'Card Title'}
+      badge={'new item'}
       subtitle={'Card subtitle'}
       primaryActionProps={{
         label: 'Button',

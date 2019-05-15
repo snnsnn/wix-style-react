@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Tooltip from '../../src/Tooltip';
-import { tooltipTestkitFactory } from '../../testkit';
-import { tooltipTestkitFactory as tooltipEnzymeTestkitFactory } from '../../testkit/enzyme';
+import { tooltipTestkitFactory, TooltipTestkit } from '../../testkit';
+import { tooltipTestkitFactory as tooltipEnzymeTestkitFactory, TooltipTestkit as EnzymeTooltipTestkit } from '../../testkit/enzyme';
 import { mount } from 'enzyme';
 
 async function testkits() {
@@ -15,7 +15,23 @@ async function testkits() {
     dataHook: 'hi',
     wrapper: mount(<div/>),
   });
-  console.log(await enzyme.getMaxWidth());
+
+  const maxWidth = enzyme.getMaxWidth();
+  console.log(maxWidth && maxWidth.toLowerCase());
+
+  const vanillaUni = TooltipTestkit({
+    dataHook: 'hi',
+    wrapper: document.createElement('div'),
+  });
+
+  vanillaUni.getTooltipText().then(text => text.toLocaleUpperCase());
+
+  const enzymeUni = EnzymeTooltipTestkit({
+    dataHook: 'bala',
+    wrapper: mount(<div/>),
+  });
+
+  enzymeUni.tooltipExists().then(exists => exists.valueOf());
 }
 
 function TooltipNewContentWithMandatoryProps() {

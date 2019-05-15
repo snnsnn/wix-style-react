@@ -9,6 +9,7 @@ export interface BadgeProps extends InjectedFocusableProps {
   suffixIcon?: IconElement;
   onClick?: React.EventHandler<React.MouseEvent<HTMLElement>>;
   uppercase?: boolean;
+  dataHook?: string;
 }
 
 export default class Badge extends React.PureComponent<BadgeProps> {}

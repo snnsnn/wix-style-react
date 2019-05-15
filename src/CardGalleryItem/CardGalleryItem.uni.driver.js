@@ -1,6 +1,7 @@
 import { baseUniDriverFactory } from 'wix-ui-test-utils/base-driver';
 
 const getTitle = base => base.$('[data-hook="title"]');
+const getBadge = base => base.$('[data-hook="badge"]');
 const getPrimaryAction = base => base.$('[data-hook="primary-action"]');
 const getSecondaryAction = base => base.$('[data-hook="secondary-action"]');
 const getHoverComponent = base => base.$('[data-hook="hover-component"]');
@@ -8,6 +9,8 @@ const getHoverComponent = base => base.$('[data-hook="hover-component"]');
 const cardGalleryItemDriverFactory = base => ({
   ...baseUniDriverFactory(base),
   getTitle: () => getTitle(base).text(),
+  getBadgeText: async () =>
+    (await getBadge(base).exists()) ? getBadge(base).text() : null,
   getSubtitle: () => base.$('[data-hook="subtitle"]').text(),
   getBackgroundImageUrl: async () => {
     const style = await base.$('[data-hook="background-image"]').attr('style');

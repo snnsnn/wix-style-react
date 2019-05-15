@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
+import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import { removeFromTree, addToTree } from './utils';
-import { polyfill } from 'react-lifecycles-compat';
 
 import CustomDragLayer from './DragLayer';
 import Container from './Container';
@@ -51,12 +51,13 @@ class NestableList extends WixComponent {
     threshold: 30,
   };
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.items !== state.items) {
-      return {
-        ...state,
-        items: props.items,
-      };
+  // tried to use getDerivedStateFromProps but encounter an issue where the state was
+  // updated internally but props items stayed the same and it caused the new state to be
+  // overriden with the old state
+  // can be done if component is controlled but requires refactor
+  componentWillReceiveProps(newProps) {
+    if (newProps.items !== this.state.items) {
+      this.setState({ items: newProps.items });
     }
   }
 
@@ -142,7 +143,5 @@ class NestableList extends WixComponent {
     );
   }
 }
-
-polyfill(NestableList);
 
 export default withDNDContext(NestableList);

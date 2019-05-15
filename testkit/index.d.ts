@@ -1,6 +1,8 @@
 import {BaseUniDriver} from 'wix-ui-test-utils/base-driver';
 import {BaseDriver} from 'wix-ui-test-utils/driver-factory';
 import {AvatarDriver} from '../src/Avatar/Avatar.driver';
+import {TooltipDriver as TooltipUniDriver} from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
+import {TooltipDriver} from '../src/Tooltip/Tooltip.driver';
 
 declare namespace VanillaTestkit {
   type VanillaTestkitFactory<T extends BaseDriver> = (
@@ -112,8 +114,8 @@ declare namespace VanillaTestkit {
   export const radioButtonTestkitFactory: any;
   export const messageBoxMarketerialLayoutTestkitFactory: any;
   export const messageBoxFunctionalLayoutTestkitFactory: any;
-  export const tooltipTestkitFactory: any;
-  export const TooltipTestkit: any;
+  export const tooltipTestkitFactory: VanillaTestkitFactory<TooltipDriver>;
+  export const TooltipTestkit: VanillaUniTestkitFactory<TooltipUniDriver>;
 }
 
 export = VanillaTestkit;

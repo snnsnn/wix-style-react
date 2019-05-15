@@ -2,7 +2,7 @@
 
 .card {
   background: $D80;
-  border-radius: 8px;
+  border-radius: $cardBorderRadius;
 }
 
 .stretch-vertically {
