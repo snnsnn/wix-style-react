@@ -33,7 +33,12 @@ const defaultConnectDragSource = el => el;
 
 class CustomDragLayer extends Component {
   renderChildren = (items, depth) => {
-    const { renderItem, childrenProperty, childrenStyle } = this.props;
+    const {
+      renderItem,
+      childrenProperty,
+      childrenStyle,
+      itemClass,
+    } = this.props;
 
     if (!items || !items.length) {
       return null;
@@ -42,7 +47,7 @@ class CustomDragLayer extends Component {
     return (
       <div style={childrenStyle}>
         {items.map((item, i) => (
-          <div data-hook="dragging-nestable-item" key={i}>
+          <div className={itemClass} data-hook="dragging-nestable-item" key={i}>
             {renderItem({
               item,
               isPlaceholder: false,
@@ -65,6 +70,7 @@ class CustomDragLayer extends Component {
       isPlaceholder,
       childrenProperty,
       isRenderDraggingChildren,
+      itemClass,
     } = this.props;
 
     if (!isPlaceholder || itemType !== itemTypes.nestedItem) {
@@ -74,6 +80,7 @@ class CustomDragLayer extends Component {
     return (
       <div style={layerStyles}>
         <div
+          className={itemClass}
           style={getItemStyles(this.props, item.clientRect, item.handleOffset)}
         >
           {renderItem({

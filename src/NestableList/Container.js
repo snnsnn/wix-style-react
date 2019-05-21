@@ -12,10 +12,15 @@ class Container extends Component {
       childrenStyle,
       isRenderDraggingChildren,
       topLevel,
+      topContainerClass,
+      containerClass,
+      itemClass,
     } = this.props;
 
+    const className = (topLevel && topContainerClass) || containerClass;
+
     return (
-      <div style={topLevel ? {} : childrenStyle}>
+      <div className={className} style={topLevel ? {} : childrenStyle}>
         {items.map((item, i) => {
           const position = parentPosition.concat([i]);
           const children = item[childrenProperty];
@@ -30,6 +35,7 @@ class Container extends Component {
               isRenderDraggingChildren={isRenderDraggingChildren}
               position={position}
               depth={getDepth(item, childrenProperty)}
+              itemClass={itemClass}
             >
               {children && children.length ? (
                 <WrappedContainer
@@ -38,6 +44,8 @@ class Container extends Component {
                   parentPosition={position}
                   childrenProperty={childrenProperty}
                   childrenStyle={childrenStyle}
+                  itemClass={itemClass}
+                  containerClass={containerClass}
                 />
               ) : null}
             </Item>
