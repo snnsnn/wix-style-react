@@ -42,7 +42,7 @@ class CustomDragLayer extends Component {
     const classes = classNames(
       'nestable-item',
       'dragging-nestable-item',
-      theme.item,
+      theme && theme.item,
     );
 
     return (
@@ -81,7 +81,7 @@ class CustomDragLayer extends Component {
     const classes = classNames(
       'nestable-item',
       'dragging-nestable-item',
-      theme.item,
+      theme && theme.item,
     );
 
     return (

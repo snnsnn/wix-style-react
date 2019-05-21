@@ -297,7 +297,7 @@ class Item extends WixComponent {
       depth: position.length,
     };
 
-    const classes = classNames('nestable-item', theme.item);
+    const classes = classNames('nestable-item', theme && theme.item);
 
     if (useDragHandle) {
       renderParams.connectDragSource = handle => {

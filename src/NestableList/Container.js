@@ -14,8 +14,11 @@ class Container extends Component {
       topLevel,
       theme,
     } = this.props;
+    let containerClass;
+    if (theme) {
+      containerClass = (topLevel && theme.topContainer) || theme.container;
+    }
 
-    const containerClass = (topLevel && theme.topContainer) || theme.container;
     const classes = classNames(
       'nestable-container',
       {
