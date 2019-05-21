@@ -7,6 +7,7 @@ import { getEmptyImage } from 'react-dnd-html5-backend';
 import itemTypes from './itemTypes';
 import { getValuesByKey } from './utils';
 import { NestableListContext } from './NestableListContext';
+import classNames from 'classnames';
 // keep track of horizontal mouse movement
 const mouse = {
   lastX: 0,
@@ -283,7 +284,7 @@ class Item extends WixComponent {
       isRenderDraggingChildren,
       useDragHandle,
       renderItem,
-      itemClass,
+      theme,
     } = this.props;
 
     const shouldRenderChildren = !isPlaceholder || isRenderDraggingChildren;
@@ -296,6 +297,8 @@ class Item extends WixComponent {
       depth: position.length,
     };
 
+    const classes = classNames('nestable-item', theme.item);
+
     if (useDragHandle) {
       renderParams.connectDragSource = handle => {
         const handleWithRef = React.cloneElement(handle, {
@@ -306,7 +309,7 @@ class Item extends WixComponent {
 
       return connectDropTarget(
         <div
-          className={itemClass}
+          className={classes}
           data-hook="nestable-item"
           ref={this._setRootNode}
         >
@@ -318,7 +321,7 @@ class Item extends WixComponent {
 
     return connectDropTarget(
       connectDragSource(
-        <div className={itemClass} data-hook="nestable-item">
+        <div className={classes} data-hook="nestable-item">
           {renderItem(renderParams)}
           {shouldRenderChildren && children}
         </div>,

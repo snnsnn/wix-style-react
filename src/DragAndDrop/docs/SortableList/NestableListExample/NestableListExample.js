@@ -81,9 +81,7 @@ export default class NestableListExample extends React.Component {
         <div className={styles.root}>
           <h3 className={styles.title}>Draggable Area</h3>
           <NestableList
-            itemClass={styles.item}
-            topContainerClass={styles.topContainer}
-            containerClass={styles.container}
+            theme={styles}
             useDragHandle
             items={this.state.items}
             renderItem={this.renderItem}

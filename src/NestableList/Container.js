@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import classNames from 'classnames';
 import Item from './Item';
 import { getDepth } from './utils';
 
@@ -12,15 +12,19 @@ class Container extends Component {
       childrenStyle,
       isRenderDraggingChildren,
       topLevel,
-      topContainerClass,
-      containerClass,
-      itemClass,
+      theme,
     } = this.props;
 
-    const className = (topLevel && topContainerClass) || containerClass;
-
+    const containerClass = (topLevel && theme.topContainer) || theme.container;
+    const classes = classNames(
+      'nestable-container',
+      {
+        'nestable-top-container': topLevel,
+      },
+      containerClass,
+    );
     return (
-      <div className={className} style={topLevel ? {} : childrenStyle}>
+      <div className={classes} style={topLevel ? {} : childrenStyle}>
         {items.map((item, i) => {
           const position = parentPosition.concat([i]);
           const children = item[childrenProperty];
@@ -35,7 +39,7 @@ class Container extends Component {
               isRenderDraggingChildren={isRenderDraggingChildren}
               position={position}
               depth={getDepth(item, childrenProperty)}
-              itemClass={itemClass}
+              theme={theme}
             >
               {children && children.length ? (
                 <WrappedContainer
@@ -44,8 +48,7 @@ class Container extends Component {
                   parentPosition={position}
                   childrenProperty={childrenProperty}
                   childrenStyle={childrenStyle}
-                  itemClass={itemClass}
-                  containerClass={containerClass}
+                  theme={theme}
                 />
               ) : null}
             </Item>
