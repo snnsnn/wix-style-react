@@ -1,5 +1,26 @@
+import React from 'react';
+import {
+  tab,
+  api,
+  title,
+  code as baseCode,
+  importExample,
+  playground,
+  testkit,
+  description,
+} from 'wix-storybook-utils/Sections';
+
 import Carousel from '..';
 import { storySettings } from './storySettings';
+import testkitReadme from './README.TESTKIT.md';
+import { InfoChild, buttonSkinExample, autoplayExample } from './examples';
+import { baseScope } from '../../../stories/utils/LiveCodeExample';
+
+const code = config =>
+  baseCode({
+    components: baseScope,
+    ...config,
+  });
 
 const imagesExamples = [
   {
@@ -17,21 +38,72 @@ const imagesExamples = [
           'https://a-static.besthdwallpaper.com/cartoons-garfield-wallpaper-1440x1080-6773_22.jpg',
       },
     ],
-    label: 'three images',
+    label: 'Three images',
   },
 ];
+
+const childrenExamples = [
+  {
+    value: [
+      <InfoChild text="This is the first information text" />,
+      <InfoChild text="This is the second information text" />,
+      <InfoChild text="This is the third information text" />,
+    ],
+    label: 'Three nodes',
+  },
+];
+
 export default {
   category: storySettings.category,
   storyName: storySettings.storyName,
+
   component: Carousel,
   componentPath: '..',
-  exampleProps: {
-    images: imagesExamples,
-  },
-  componentProps: {
+
+  componentProps: () => ({
     images: imagesExamples[0].value,
     infinite: true,
     autoplay: false,
     dataHook: storySettings.dataHook,
+  }),
+
+  exampleProps: {
+    images: imagesExamples,
+    children: childrenExamples,
   },
+
+  sections: [
+    tab({
+      title: 'Usage',
+      sections: [
+        importExample({
+          source: "import Carousel from 'wix-style-react/Carousel';",
+        }),
+
+        title('Examples'),
+
+        ...[
+          { title: 'Button Skin', source: buttonSkinExample },
+          { title: 'Autoplay', source: autoplayExample },
+        ].map(code),
+      ],
+    }),
+
+    ...[
+      {
+        title: 'API',
+        sections: [api()],
+      },
+
+      {
+        title: 'TestKit',
+        sections: [testkit(), description(testkitReadme)],
+      },
+
+      {
+        title: 'Playground',
+        sections: [playground()],
+      },
+    ].map(tab),
+  ],
 };

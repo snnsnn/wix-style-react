@@ -15,10 +15,64 @@ Types of changes:
 1. **Lab** components and features that are still in a work in progress
 
 ## Next
-### Added
-- GoogleMapClient - add session to place details api [#3400]((https://github.com/wix/wix-style-react/pull/3400)
 
-## 6.18.4 - 2019-08-15
+### Added
+
+- `<Carousel/>` - add `buttonSkin` prop [#3444](https://github.com/wix/wix-style-react/pull/3444)
+
+## 6.21.0 - 2019-05-20
+
+### Added
+
+- `<DropdownLayout/>` - add `markedOption` prop [#3409](https://github.com/wix/wix-style-react/pull/3409)
+
+### Fixed
+
+- `<Search/>` - fix `getDerivedStateFromProps` warning [#3343](https://github.com/wix/wix-style-react/pull/3343)
+- Storybook: fix broken components [#3440](https://github.com/wix/wix-style-react/pull/3440)
+
+## 6.20.0 - 2019-05-20
+
+### Added
+
+- `<Box/>` - add CSS properties to typescript declarations [#3419](https://github.com/wix/wix-style-react/pull/3419)
+- `<NestableList/>` - add `onDragStart` and `onDragEnd` callbacks [#3414](https://github.com/wix/wix-style-react/pull/3414)
+- `<CardGalleryItem/>` - add badge to card gallery item [#3424](https://github.com/wix/wix-style-react/pull/3424)
+- `<Carousel/>` - add `children` prop [#3430](https://github.com/wix/wix-style-react/pull/3430)
+- `<SocialPreview/>` - add ellipsis property to text components [#3309](https://github.com/wix/wix-style-react/pull/3309)
+
+### Changed
+
+- `<CardGalleryItem/>` - title and subtitle are not mandatory [#3411](https://github.com/wix/wix-style-react/pull/3411)
+- `<Carousel/>` - refactor the component to use react-slick [#3415](https://github.com/wix/wix-style-react/pull/3415)
+- `<Carousel/>` - migrate e2e test to visual [#3425](https://github.com/wix/wix-style-react/pull/3425)
+- `<Carousel/>` - improve indicator visual design [#3429](https://github.com/wix/wix-style-react/pull/3429)
+- `<CircularProgressBar/>` - migrate from wix-ui-backoffice [#3405](https://github.com/wix/wix-style-react/pull/3405)
+
+### Fixed
+
+- `<Tooltip/>` - Add instance methods to .d.ts [#3423](https://github.com/wix/wix-style-react/pull/3423) [#3436](https://github.com/wix/wix-style-react/pull/3436)
+
+## 6.19.0 - 2019-05-16
+
+### Added
+
+- GoogleMapClient - add session to place details api [#3400](https://github.com/wix/wix-style-react/pull/3400)
+- `<Tooltip/>` - add disabled prop to disable tooltips trigger behaviour [#3410](https://github.com/wix/wix-style-react/pull/3410)
+- `<Search/>` - add `debounceMs` prop for debouncing onChange calls [#3343](https://github.com/wix/wix-style-react/pull/3343)
+- `<ModalSelectorLayout/>` - add `debounceSearchMs` prop for debouncing search input onChange calls [#3343](https://github.com/wix/wix-style-react/pull/3343)
+- Infra: Add a puppeteer testkit bundle [#3394](https://github.com/wix/wix-style-react/pull/3394)
+- `<Table/>` - support row highlighting [#3356](https://github.com/wix/wix-style-react/pull/3356)
+- `<ListItemAction>` - create new component and dropdown builder [#3371](https://github.com/wix/wix-style-react/pull/3371)
+
+### Fixed
+
+- `<Text/>` - fix classname clash when given through prop [#3378](https://github.com/wix/wix-style-react/pull/3378)
+- `<Card.Subheader/>` - add dataHook [#3408](https://github.com/wix/wix-style-react/pull/3408)
+- `<Badge/>` - fix skin typescript declarations typo [#3412](https://github.com/wix/wix-style-react/pull/3412)
+- `<Avatar/>` - fix typescript declarations [#3413](https://github.com/wix/wix-style-react/pull/3413)
+
+## 6.18.4 - 2019-05-15
 
 ### Fixed
 
@@ -26,13 +80,13 @@ Types of changes:
 - `<Tooltip/>` - fix a mistake where tooltipTestkitFactory exported unidriver types instead of legacy ones. [#3402](https://github.com/wix/wix-style-react/pull/3402)
 - `<ImageViewer/>` - fix testkit methods that uses native click() [#3406](https://github.com/wix/wix-style-react/pull/3406)
 
-## 6.18.3 - 2019-08-14
+## 6.18.3 - 2019-05-14
 
 ### Fixed
 
 - `<Badge>` - missing dataHook type in types. [#3398](https://github.com/wix/wix-style-react/pull/3398)
 
-## 6.18.2 - 2019-08-14
+## 6.18.2 - 2019-05-14
 
 ### Fixed
 

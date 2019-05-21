@@ -2,6 +2,7 @@ import React from 'react';
 
 import CardGalleryItem from 'wix-style-react/CardGalleryItem';
 import { Container, Row, Col } from 'wix-style-react/Grid';
+import Badge from 'wix-style-react/Badge';
 import styles from './ExampleBasic.scss';
 
 const backgroundImageUrl =
@@ -11,7 +12,11 @@ const generateCardGallery = () => {
   return (
     <CardGalleryItem
       title={'Card Title'}
-      badge={'new item'}
+      badge={
+        <Badge size="medium" skin="standard" type="solid" uppercase>
+          sale
+        </Badge>
+      }
       subtitle={'Card subtitle'}
       primaryActionProps={{
         label: 'Button',

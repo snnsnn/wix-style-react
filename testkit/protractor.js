@@ -490,6 +490,12 @@ export const errorIndicatorTestkitFactory = protractorUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
 );
 
+import { ListItemActionDriverFactory } from '../src/ListItemAction/ListItemAction.uni.driver';
+
+export const ListItemActionTestkitFactory = protractorUniTestkitFactoryCreator(
+  ListItemActionDriverFactory,
+);
+
 import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';
 
 export const subheaderTestkitFactory = protractorUniTestkitFactoryCreator(

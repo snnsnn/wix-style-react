@@ -132,6 +132,23 @@ export const dropdownLayoutDriverFactory = base => {
       }
       return textArray;
     },
+    markedOption: async () => {
+      const allOptions = await options();
+      const optionsWithHovered = await Promise.all(
+        allOptions.map(async option => ({
+          option,
+          hovered: await option.hasClass('hovered'),
+        })),
+      );
+      const hoveredOptions = optionsWithHovered
+        .filter(option => option.hovered)
+        .map(option => option.option);
+      return (
+        (hoveredOptions.length &&
+          createOptionDriver(hoveredOptions[0]).content()) ||
+        null
+      );
+    },
     optionsLength,
     /** @deprecated should be private */
     optionsScrollTop: () => ReactBase(optionsElement).prop('scrollTop'),

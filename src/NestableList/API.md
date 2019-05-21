@@ -43,6 +43,8 @@
   | childrenStyle    | object   | -            | -          | Style object applied to nested |
   | childrenProperty | string   | 'children'   | -          | The property on each item which contains an array of children |
   | onUpdate         | func     | -            | -          | A function invoked with the new array of items whenever an item is dropped in a new location |
+  | onDragStart      | func     | -            | -        | A function invoked when drag of item starts, the item's props passed as argument |
+  | onDragEnd        | func     | -            | -          | A function invoked when drag of item ends, the item's props passed as argument |
 
 </details>
 

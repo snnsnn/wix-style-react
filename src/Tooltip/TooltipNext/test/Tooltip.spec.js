@@ -53,4 +53,34 @@ describe('Tooltip', () => {
       expect(await driver.tooltipExists()).toBe(false);
     });
   });
+
+  describe('`disabled` prop', () => {
+    it('should show tooltip on mouse enter [when] not given && children is not disabled', async () => {
+      const kiddo = <Button>Disabled</Button>;
+      const { driver } = render(tooltip({ children: kiddo }));
+      await driver.mouseEnter();
+      expect(await driver.tooltipExists()).toBe(true);
+    });
+
+    it('should not show tooltip on mouse enter [when] given true', async () => {
+      const kiddo = <Button>Disabled</Button>;
+      const { driver } = render(tooltip({ children: kiddo, disabled: true }));
+      await driver.mouseEnter();
+      expect(await driver.tooltipExists()).toBe(false);
+    });
+
+    it('should not show tooltip on mouse enter [when] not given but children is disabled', async () => {
+      const kiddo = <button disabled>Disabled</button>;
+      const { driver } = render(tooltip({ children: kiddo }));
+      await driver.mouseEnter();
+      expect(await driver.tooltipExists()).toBe(false);
+    });
+
+    it('should show tooltip on mouse enter [when] given false && children is disabled', async () => {
+      const kiddo = <button disabled>Disabled</button>;
+      const { driver } = render(tooltip({ children: kiddo, disabled: false }));
+      await driver.mouseEnter();
+      expect(await driver.tooltipExists()).toBe(true);
+    });
+  });
 });

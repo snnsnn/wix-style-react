@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import { findDOMNode } from 'react-dom';
 import shallowEqual from 'shallowequal';
@@ -39,6 +38,8 @@ const cardSource = {
     return ids.indexOf(props.id) > -1;
   },
   beginDrag(props, monitor, component) {
+    props.onDragStart && props.onDragStart(props);
+
     const node = findDOMNode(component);
 
     const clientRect = node.getBoundingClientRect();
@@ -60,6 +61,9 @@ const cardSource = {
       clientRect,
       handleOffset,
     };
+  },
+  endDrag: props => {
+    props.onDragEnd && props.onDragEnd(props);
   },
 };
 

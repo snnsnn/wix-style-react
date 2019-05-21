@@ -501,6 +501,18 @@ describe('Table', () => {
         expect(await driver.getRowsCount()).toBe(8);
       });
     });
+
+    it('should highlight even rows', async () => {
+      const driver = createDriver(
+        <DataTable
+          {...defaultProps}
+          isRowHighlight={(_, rowNum) => rowNum % 2 === 0}
+        />,
+      );
+
+      const classes = (await driver.getRowClasses(0)).sort();
+      expect(classes.includes('highlight')).toEqual(true);
+    });
   }
 
   describe('row keys', () => {

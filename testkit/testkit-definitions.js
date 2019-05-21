@@ -277,4 +277,8 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/Sidebar/Sidebar.uni.driver',
   },
+  ListItemAction: {
+    unidriver: true,
+    testkitPath: '../src/ListItemAction/ListItemAction.uni.driver',
+  },
 };

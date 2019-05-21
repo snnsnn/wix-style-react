@@ -44,6 +44,7 @@ const Text = ({
     tagName,
     {
       ...textProps,
+      'data-hook': dataHook,
       ...style(
         'root',
         {
@@ -63,6 +64,7 @@ const Text = ({
 Text.displayName = 'Text';
 
 Text.propTypes = {
+  dataHook: string,
   /** tag name that will be rendered */
   tagName: string,
 

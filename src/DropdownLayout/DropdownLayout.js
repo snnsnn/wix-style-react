@@ -44,6 +44,7 @@ class DropdownLayout extends WixComponent {
     if (this.props.focusOnSelectedOption) {
       this._focusOnSelectedOption();
     }
+    this._markOptionByProperty(this.props);
   }
 
   _focusOnSelectedOption() {
@@ -359,7 +360,7 @@ class DropdownLayout extends WixComponent {
         data-hook={dataHook}
       >
         {typeof option.value === 'function'
-          ? option.value({ selected })
+          ? option.value({ selected, hovered, disabled })
           : option.value}
       </div>
     );
@@ -373,6 +374,21 @@ class DropdownLayout extends WixComponent {
       [styles.down]: !dropDirectionUp,
     });
     return withArrow && visible ? <div className={arrowClassName} /> : null;
+  }
+
+  _markOptionByProperty(props) {
+    if (this.state.hovered === NOT_HOVERED_INDEX && props.markedOption) {
+      const selectableOptions = props.options.filter(this._isSelectableOption);
+      if (selectableOptions.length) {
+        const idToMark =
+          props.markedOption === true
+            ? selectableOptions[0].id
+            : props.markedOption;
+        this._markOption(
+          this.findIndex(props.options, item => item.id === idToMark),
+        );
+      }
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -398,6 +414,8 @@ class DropdownLayout extends WixComponent {
         ),
       );
     }
+
+    this._markOptionByProperty(nextProps);
   }
 
   findIndex(arr, predicate) {
@@ -481,6 +499,11 @@ DropdownLayout.propTypes = {
   infiniteScroll: PropTypes.bool,
   loadMore: PropTypes.func,
   hasMore: PropTypes.bool,
+  markedOption: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.string,
+    PropTypes.number,
+  ]),
 };
 
 DropdownLayout.defaultProps = {
@@ -494,6 +517,7 @@ DropdownLayout.defaultProps = {
   infiniteScroll: false,
   loadMore: null,
   hasMore: false,
+  markedOption: false,
 };
 
 DropdownLayout.NONE_SELECTED_ID = NOT_HOVERED_INDEX;

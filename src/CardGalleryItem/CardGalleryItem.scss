@@ -10,9 +10,14 @@ $dividerHeight: 1px;
 }
 
 .content, .hoveredContent {
+  height: 100%;
+  border-radius: $cardBorderRadius;
+}
+
+.contentWithFooter, .hoveredContentWithFooter {
   height: calc(100% - #{$footerHeight + $dividerHeight});
-  border-top-right-radius: $cardBorderRadius;
-  border-top-left-radius: $cardBorderRadius;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 .content {

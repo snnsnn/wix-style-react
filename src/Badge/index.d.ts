@@ -26,7 +26,7 @@ export type BadgeSkin =
   | 'urgent'
   | 'neutralStandard'
   | 'neutralSuccess'
-  | 'nutralDanger'
+  | 'neutralDanger'
   | 'premium';
 
 export type BadgeType = 'solid' | 'outlined' | 'transparent';

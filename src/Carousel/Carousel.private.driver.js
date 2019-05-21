@@ -5,10 +5,8 @@ export default ({ element }) => {
   return {
     ...publicDriver({ element }),
     getCurrentImageIndex: () => {
-      const imageContainers = element.querySelectorAll('.imageContainer');
-      for (let i = 0; i < imageContainers.length; i++) {
-        if (imageContainers[i].classList.contains('active')) return i;
-      }
+      const currentSlide = element.querySelector('.slick-current');
+      return Number(currentSlide.dataset.index);
     },
     loadImages: () => {
       element
@@ -24,16 +22,18 @@ export default ({ element }) => {
       ReactTestUtils.Simulate.click(nextButton);
     },
     mouseOver: () => {
-      const imageContainer = element.querySelector(
-        '[data-hook="images-container"]',
-      );
+      const imageContainer = element.querySelector('.slick-current');
       ReactTestUtils.Simulate.mouseOver(imageContainer);
     },
     mouseOut: () => {
-      const imageContainer = element.querySelector(
-        '[data-hook="images-container"]',
-      );
+      const imageContainer = element.querySelector('.slick-current');
       ReactTestUtils.Simulate.mouseOut(imageContainer);
+    },
+    clickPageNavigationDot: index => {
+      const pageNavigator = element.querySelector(
+        `[data-hook="page-navigation-${index}"]`,
+      );
+      ReactTestUtils.Simulate.click(pageNavigator);
     },
   };
 };

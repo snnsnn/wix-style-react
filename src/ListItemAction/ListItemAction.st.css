@@ -1,0 +1,66 @@
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/colors.st.css";
+  -st-named: G30,R30,B10,B50,B40,D10,R10,D55,D80;
+}
+
+
+.root {
+  -st-states:
+    skin(enum(standard, dark, destructive)),
+    disabled;
+  background-color: value(D80);
+  align-items: center;
+}
+
+.root:not(:disabled) {
+  cursor: pointer;
+}
+
+/*.root:not(:disabled):skin(standard):focus-visible .wrapper {*/
+/*  background-color: value(B10);*/
+/*}*/
+
+/*.root:not(:disabled):skin(standard):focus-visible .text, .root:not(:disabled):skin(standard):focus-visible .icon {*/
+/*  color: value(D80);*/
+/*}*/
+
+.root .text {
+  margin-left: 6px;
+}
+
+.root:skin(standard) .text, .root:skin(standard) .icon {
+  color: value(B10)
+}
+
+.root:skin(standard):hover .wrapper {
+  background-color: value(B50);
+}
+
+.root:skin(standard):active .wrapper {
+  background-color: value(B40);
+}
+
+.root:skin(dark) .text, .root:skin(dark) .icon {
+  color: value(D10)
+}
+
+.root:skin(dark):hover .text, .root:skin(dark):hover .icon {
+  color: value(B10)
+}
+
+.root:skin(dark):active .text, .root:skin(dark):active .icon {
+  color: value(B10)
+}
+
+.root:skin(destructive) .text, .root:skin(destructive) .icon {
+  color: value(R10)
+}
+
+.root:disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.root:disabled .text, .root:disabled .icon {
+  color: value(D55)
+}

@@ -8,6 +8,9 @@ import { Table } from '..';
 import { TableExample } from './TableExample';
 import TableExampleRaw from '!raw-loader!./TableExample';
 
+import { TableHighlightRowsExample } from './TableHighlightRowsExample';
+import TableHighlightRowsExampleRaw from '!raw-loader!./TableHighlightRowsExample';
+
 import { TablePageExample } from './TablePageExample';
 import TablePageExampleRaw from '!raw-loader!./TablePageExample';
 
@@ -148,6 +151,14 @@ export default {
             code={TableVirtualizationExampleRaw}
           >
             <TableVirtualizationExample />
+          </CodeExample>
+        </div>
+        <div className={s.example}>
+          <CodeExample
+            title="Table with highlighted rows"
+            code={TableHighlightRowsExampleRaw}
+          >
+            <TableHighlightRowsExample />
           </CodeExample>
         </div>
       </div>

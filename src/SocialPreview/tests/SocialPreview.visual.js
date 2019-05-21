@@ -27,18 +27,17 @@ const tests = [
           <div style={{ width: '340px' }}>{children}</div>
         ),
       },
-      //TODO - The following test is disabled for now as it's not applying ellipsis behavior as expected
-      // {
-      //   it: 'long texts',
-      //   props: {
-      //     title: 'Click me!'.repeat(27),
-      //     description: 'a short description for a site'.repeat(8),
-      //     previewUrl: 'www.site-name.com'.repeat(28),
-      //   },
-      //   componentWrapper: ({ children }) => (
-      //     <div style={{ width: '340px' }}>{children}</div>
-      //   ),
-      // },
+      {
+        it: 'long texts',
+        props: {
+          title: 'Click me!'.repeat(27),
+          description: 'a short description for a site'.repeat(8),
+          previewUrl: 'www.site-name.com'.repeat(28),
+        },
+        componentWrapper: ({ children }) => (
+          <div style={{ width: '340px' }}>{children}</div>
+        ),
+      },
     ],
   },
 ];

@@ -1,7 +1,10 @@
 import * as React from 'react';
-import Tooltip from '../../src/Tooltip';
+import Tooltip, { TooltipOldProps, TooltipNewProps } from '../../src/Tooltip';
 import { tooltipTestkitFactory, TooltipTestkit } from '../../testkit';
-import { tooltipTestkitFactory as tooltipEnzymeTestkitFactory, TooltipTestkit as EnzymeTooltipTestkit } from '../../testkit/enzyme';
+import {
+  tooltipTestkitFactory as tooltipEnzymeTestkitFactory,
+  TooltipTestkit as EnzymeTooltipTestkit,
+} from '../../testkit/enzyme';
 import { mount } from 'enzyme';
 
 async function testkits() {
@@ -13,7 +16,7 @@ async function testkits() {
 
   const enzyme = tooltipEnzymeTestkitFactory({
     dataHook: 'hi',
-    wrapper: mount(<div/>),
+    wrapper: mount(<div />),
   });
 
   const maxWidth = enzyme.getMaxWidth();
@@ -28,10 +31,24 @@ async function testkits() {
 
   const enzymeUni = EnzymeTooltipTestkit({
     dataHook: 'bala',
-    wrapper: mount(<div/>),
+    wrapper: mount(<div />),
   });
 
   enzymeUni.tooltipExists().then(exists => exists.valueOf());
+}
+
+function TooltipOldInstanceMethods() {
+  const wrapper = mount<Tooltip<TooltipOldProps>>(<Tooltip upgrade content="Content"/>);
+  const tooltip = wrapper.instance();
+  tooltip.hide();
+  tooltip.show();
+}
+
+function TooltipNewInstanceMethods() {
+  const wrapper = mount<Tooltip<TooltipNewProps>>(<Tooltip upgrade content="Content"/>);
+  const tooltip = wrapper.instance();
+  tooltip.open();
+  tooltip.close();
 }
 
 function TooltipNewContentWithMandatoryProps() {
@@ -43,58 +60,61 @@ function TooltipOldContentWithMandatoryProps() {
 }
 
 function TooltipNewContentWithAllProps() {
-  return <Tooltip
-    upgrade
-    dataHook="some-data-hook"
-    size="small"
-    appendTo="scrollParent"
-    content="hiiiiiiiii"
-    maxWidth={900}
-    moveBy={{x: 999, y: 1234}}
-    onHide={() => {}}
-    onShow={() => {}}
-    placement="bottom-start"
-    textAlign="start"
-    zIndex={1999}
-  />;
+  return (
+    <Tooltip
+      upgrade
+      disabled={false}
+      dataHook="some-data-hook"
+      size="small"
+      appendTo="scrollParent"
+      content="hiiiiiiiii"
+      maxWidth={900}
+      moveBy={{ x: 999, y: 1234 }}
+      onHide={() => {}}
+      onShow={() => {}}
+      placement="bottom-start"
+      textAlign="start"
+      zIndex={1999}
+    />
+  );
 }
 
 function TooltipOldContentWithAllProps() {
-  return <Tooltip
-    content={<div/>}
-    textAlign="center"
-    placement="left"
-    alignment="left"
-    theme="dark"
-    showDelay={123}
-    hideDelay={321}
-    showTrigger="click"
-    hideTrigger="click"
-    active
-    bounce
-    disabled
-    popover
-    maxWidth={333}
-    minWidth={444}
-    onClickOutside={e => console.log(e)}
-    color="#acacac"
-    lineHeight={123}
-    onShow={() => {
-    }}
-    onHide={() => {
-    }}
-    zIndex={999}
-    appendToParent
-    appendByPredicate={el => false}
-    appendTo={document.createElement('div')}
-    moveBy={{ x: 3 }}
-    moveArrowTo={3}
-    size="normal"
-    shouldCloseOnClickOutside
-    relative
-    padding="0 0 0 0"
-    shouldUpdatePosition
-    showImmediately
-    showArrow
-  />;
+  return (
+    <Tooltip
+      content={<div />}
+      textAlign="center"
+      placement="left"
+      alignment="left"
+      theme="dark"
+      showDelay={123}
+      hideDelay={321}
+      showTrigger="click"
+      hideTrigger="click"
+      active
+      bounce
+      disabled
+      popover
+      maxWidth={333}
+      minWidth={444}
+      onClickOutside={e => console.log(e)}
+      color="#acacac"
+      lineHeight={123}
+      onShow={() => {}}
+      onHide={() => {}}
+      zIndex={999}
+      appendToParent
+      appendByPredicate={el => false}
+      appendTo={document.createElement('div')}
+      moveBy={{ x: 3 }}
+      moveArrowTo={3}
+      size="normal"
+      shouldCloseOnClickOutside
+      relative
+      padding="0 0 0 0"
+      shouldUpdatePosition
+      showImmediately
+      showArrow
+    />
+  );
 }

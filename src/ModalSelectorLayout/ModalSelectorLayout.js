@@ -113,6 +113,10 @@ export default class ModalSelectorLayout extends WixComponent {
 
     /** Whether to display the search input or not */
     withSearch: bool,
+
+    /** Search debounce in milliseconds */
+    searchDebounceMs: number,
+
     height: string,
 
     /** display checkbox and allow multi selection */
@@ -165,6 +169,7 @@ export default class ModalSelectorLayout extends WixComponent {
       noResultsFoundStateFactory,
       withSearch,
       height,
+      searchDebounceMs,
     } = this.props;
 
     const {
@@ -193,9 +198,10 @@ export default class ModalSelectorLayout extends WixComponent {
                 <Search
                   dataHook={dataHooks.search}
                   placeholder={searchPlaceholder}
-                  value={searchValue}
                   onChange={this._onSearchChange}
                   onClear={this._onClear}
+                  debounceMs={searchDebounceMs}
+                  value={searchValue}
                 />
               </div>
             )}

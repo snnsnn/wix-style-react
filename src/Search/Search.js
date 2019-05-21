@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { polyfill } from 'react-lifecycles-compat';
 import isEmpty from 'lodash/isEmpty';
 
 import InputWithOptions from '../InputWithOptions';
@@ -10,10 +11,21 @@ import { StringUtils } from '../utils/StringUtils';
 import styles from './Search.scss';
 import Input from '../Input/Input';
 
+// because lodash debounce is not compatible with jest timeout mocks
+function debounce(fn, wait) {
+  let timeout;
+
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn.apply(context, args), wait);
+  };
+}
+
 /**
  * Search component with suggestions based on input value listed in dropdown
  */
-export default class Search extends WixComponent {
+class Search extends WixComponent {
   static displayName = 'Search';
 
   static propTypes = {
@@ -22,18 +34,26 @@ export default class Search extends WixComponent {
     expandable: PropTypes.bool,
     /** Custom function for filtering options */
     predicate: PropTypes.func,
+    /** onChange debounce in milliseconds */
+    debounceMs: PropTypes.number,
   };
 
   static defaultProps = {
     ...InputWithOptions.defaultProps,
     placeholder: 'Search',
     expandable: false,
+    debounceMs: 0,
+    onChange: () => {},
   };
 
   constructor(props) {
     super(props);
 
-    const initialValue = (!this._isControlled && props.defaultValue) || '';
+    const initialValue = this._getIsControlled()
+      ? props.value
+      : props.defaultValue || '';
+
+    this._onChangeHandler = this._makeOnChange();
 
     this.state = {
       inputValue: initialValue,
@@ -41,35 +61,59 @@ export default class Search extends WixComponent {
     };
   }
 
-  get _isControlled() {
-    return 'value' in this.props && 'onChange' in this.props;
+  static getDerivedStateFromProps(props, state) {
+    const isControlled = 'value' in props && 'onChange' in props;
+
+    return {
+      ...state,
+      inputValue: isControlled ? props.value : state.inputValue,
+    };
   }
 
-  get _filteredOptions() {
-    const { options, value, predicate } = this.props;
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.setState({ inputValue: this.props.value });
+    }
 
-    const searchText = this._isControlled ? value : this.state.inputValue;
+    if (prevProps.debounceMs !== this.props.debounceMs) {
+      this._onChangeHandler = this._makeOnChange();
+    }
+  }
+
+  _makeOnChange = () =>
+    this.props.debounceMs > 0
+      ? debounce(this.props.onChange, this.props.debounceMs)
+      : this.props.onChange;
+
+  _getIsControlled = () => 'value' in this.props && 'onChange' in this.props;
+
+  _getFilteredOptions = () => {
+    const { options, predicate } = this.props;
+
+    const searchText = this._currentValue();
     if (!searchText || !searchText.length) {
       return options;
     }
     const filterFn = predicate || this._stringFilter;
     return options.filter(filterFn);
-  }
+  };
 
   _stringFilter = option => {
-    const { value } = this.props;
-    const searchText = this._isControlled ? value : this.state.inputValue;
+    const searchText = this._currentValue();
     return StringUtils.includesCaseInsensitive(option.value, searchText.trim());
   };
 
   _onChange = e => {
-    if (this._isControlled) {
-      this.props.onChange(e);
-    } else {
-      this.setState({
+    e.persist();
+
+    this.setState(
+      {
         inputValue: e.target.value,
-      });
-    }
+      },
+      () => {
+        this._onChangeHandler(e);
+      },
+    );
   };
 
   _onClear = event => {
@@ -78,7 +122,7 @@ export default class Search extends WixComponent {
 
     const stateChanges = {};
 
-    if (this._isControlled) {
+    if (this._getIsControlled()) {
       stateChanges.inputValue = '';
     }
 
@@ -92,17 +136,7 @@ export default class Search extends WixComponent {
     }
   };
 
-  _currentValue = () => {
-    let value;
-
-    if (this._isControlled) {
-      value = this.props.value;
-    } else {
-      value = this.state.inputValue;
-    }
-
-    return value;
-  };
+  _currentValue = () => this.state.inputValue;
 
   _onBlur = () => {
     const { onBlur } = this.props;
@@ -140,6 +174,8 @@ export default class Search extends WixComponent {
   };
 
   render() {
+    const { defaultValue, ...restProps } = this.props;
+
     const wrapperClasses = classNames({
       [styles.expandableStyles]: this.props.expandable,
       [styles.collapsed]: this.state.collapsed && this.props.expandable,
@@ -153,7 +189,8 @@ export default class Search extends WixComponent {
         onMouseDown={this._onWrapperMouseDown}
       >
         <InputWithOptions
-          {...this.props}
+          {...restProps}
+          value={this.state.inputValue}
           ref={r => (this.searchInput = r)}
           roundInput
           prefix={
@@ -164,7 +201,7 @@ export default class Search extends WixComponent {
           menuArrow={false}
           clearButton
           closeOnSelect
-          options={this._filteredOptions}
+          options={this._getFilteredOptions()}
           onClear={this._onClear}
           onChange={this._onChange}
           onBlur={this._onBlur}
@@ -174,3 +211,5 @@ export default class Search extends WixComponent {
     );
   }
 }
+
+export default polyfill(Search);

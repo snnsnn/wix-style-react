@@ -13,6 +13,7 @@
 | rowDataHook | string or func | - | - | A string data-hook to apply to all table body rows. or a func which calculates the data-hook for each row  - Signature: `(rowData, rowNum) => string`|
 | rowClass | string | - | - | A class to apply to all table body rows |
 | dynamicRowClass | func | - | - | A func that gets row data and returns a class(es) to apply to that specific row |
+| isRowHighlight | func | - | - | A func that gets row data and returns boolean if row is highlighted or not |
 | onRowClick | func | - | - | A callback method to be called on row click. Signature: `onRowClick(rowData, rowNum)` |
 | onMouseEnterRow | func | - | - | A callback method to be called on row mouse enter. Signature: `onMouseEnterRow(rowData, rowNum)` |
 | onMouseLeaveRow | func | - | - | A callback method to be called on row mouse leave. Signature: `onMouseLeaveRow(rowData, rowNum)` |

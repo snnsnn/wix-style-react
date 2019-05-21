@@ -41,6 +41,8 @@ class Tooltip extends React.PureComponent {
     onHide: PropTypes.func,
     /** tooltip content placement in relation to target element */
     placement: PropTypes.string,
+    /** disables tooltip element trigger behaviour */
+    disabled: PropTypes.bool,
     /** sets size of the tooltip */
     size: PropTypes.oneOf(['small', 'medium']),
     /** establishes a relationship between tooltip element and tooltip content for a11y purposes */
@@ -92,9 +94,10 @@ class Tooltip extends React.PureComponent {
       maxWidth,
       size,
       dataHook,
+      disabled,
       ...rest
     } = this.props;
-    const disabled = children.props && children.props.disabled;
+
     return (
       <CoreTooltip
         {...rest}
@@ -103,7 +106,11 @@ class Tooltip extends React.PureComponent {
         content={this._renderContent()}
         hideDelay={exitDelay}
         showDelay={enterDelay}
-        disabled={disabled}
+        disabled={
+          disabled === undefined
+            ? children.props && children.props.disabled
+            : disabled
+        }
         showArrow
       >
         {children}

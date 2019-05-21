@@ -162,6 +162,14 @@ $rowShadow: inset 0 1px 0 0 $D70;
   cursor: pointer;
 }
 
+.highlight {
+  background-color: $B60;
+  td {
+    font-weight: 600;
+    color: $D10;
+  }
+}
+
 .selected {
   box-shadow: inset 2px 0px 0px 0px $B10;
 }

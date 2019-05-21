@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './LinearProgressBar.st.css';
-import { LinearProgressBar as CoreLinearProgressBar } from 'wix-ui-core/linear-progress-bar';
+import { LinearProgressBar as CoreLinearProgressBar } from 'wix-ui-core/dist/src/components/linear-progress-bar';
 import ToggleOn from 'wix-ui-icons-common/system/ToggleOn';
 import FormFieldError from 'wix-ui-icons-common/system/FormFieldError';
 //TODO: convert to WSR Tooltip
