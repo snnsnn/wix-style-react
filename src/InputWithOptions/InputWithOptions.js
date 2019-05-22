@@ -322,6 +322,11 @@ class InputWithOptions extends WixComponent {
 
     const { key } = event;
 
+    if (key === 'Enter') {
+      // Prevent a wrapping form from submitting when hitting Enter
+      event.preventDefault();
+    }
+
     if (key !== 'ArrowDown' && key !== 'ArrowUp') {
       this.setState({ isEditing: true });
     }

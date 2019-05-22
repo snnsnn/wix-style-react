@@ -5,6 +5,7 @@ const driverFactory = component => {
   const dropdownLayoutDriver = dropdownLayoutDriverFactory(
     component.$('[data-hook="dropdown-layout-wrapper"]'),
   );
+
   const input = component.$(`input`);
 
   return {
@@ -16,6 +17,7 @@ const driverFactory = component => {
     /** Check wether the options dropdown is open */
     isOptionsShown: () => dropdownLayoutDriver.getDropdown().isDisplayed(),
     enterText: text => input.clear().sendKeys(text),
+    pressEnter: () => input.sendKeys(protractor.Key.ENTER),
   };
 };
 

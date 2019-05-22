@@ -4,13 +4,13 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
-import { storySettings, testStories } from './storySettings';
+import {
+  storySettings,
+  insideFormStorySettings,
+  testStories,
+} from './storySettings';
 import TestTabSwitches from './tests/TestTabSwitches';
-
-const kind = getTestStoryKind({
-  storyName: storySettings.storyName,
-  category: storySettings.category,
-});
+import TestInsideForm from './tests/TestInsideForm';
 
 const TestContainer = ({ children }) => (
   <div
@@ -27,10 +27,26 @@ const TestContainer = ({ children }) => (
   </div>
 );
 
+const kind = getTestStoryKind({
+  storyName: storySettings.storyName,
+  category: storySettings.category,
+});
+
 storiesOf(kind, module).add(testStories.tabsSwitches, () => (
   <TestContainer>
     <input data-hook="input-for-focus-1" />
     <TestTabSwitches />
     <input data-hook="input-for-focus-2" />
   </TestContainer>
+));
+
+// -------------- //
+
+const insideFormKind = getTestStoryKind({
+  storyName: insideFormStorySettings.storyName,
+  category: insideFormStorySettings.category,
+});
+
+storiesOf(insideFormKind, module).add(testStories.insideForm, () => (
+  <TestInsideForm />
 ));

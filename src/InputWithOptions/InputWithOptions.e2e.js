@@ -2,7 +2,11 @@ import { inputWithOptionsTestkitFactory } from '../../testkit/protractor';
 import { $, browser } from 'protractor';
 import { isFocused, waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
-import { storySettings, testStories } from './docs/storySettings';
+import {
+  storySettings,
+  insideFormStorySettings,
+  testStories,
+} from './docs/storySettings';
 
 describe('InputWithOptions', () => {
   let driver;
@@ -17,18 +21,15 @@ describe('InputWithOptions', () => {
     await browser.get(testStoryUrl);
   };
 
-  beforeEach(async () => {
-    await navigateToTestUrl(testStories.tabsSwitches);
+  const focusOnInputWithOptions = async dataHook => {
+    const firstElement = $(`[data-hook="${dataHook}"]`);
 
-    driver = inputWithOptionsTestkitFactory({
-      dataHook: storySettings.dataHook,
-    });
+    await pressTab();
+    expect(await isFocused(firstElement)).toEqual(true);
 
-    await waitForVisibilityOf(
-      driver.element(),
-      `Cant find ${storySettings.dataHook}`,
-    );
-  });
+    await pressTab();
+    expect(await driver.isFocused()).toEqual(true);
+  };
 
   const pressTab = () =>
     browser
@@ -36,28 +37,71 @@ describe('InputWithOptions', () => {
       .sendKeys(protractor.Key.TAB)
       .perform();
 
-  async function focusOnInputWithOptions() {
-    const firstElement = $(`[data-hook="input-for-focus-1"]`);
+  describe('Component', () => {
+    beforeEach(async () => {
+      await navigateToTestUrl(testStories.tabsSwitches);
 
-    await pressTab();
-    expect(await isFocused(firstElement)).toEqual(true);
+      driver = inputWithOptionsTestkitFactory({
+        dataHook: storySettings.dataHook,
+      });
 
-    await pressTab();
-    expect(await driver.isFocused()).toEqual(true);
-  }
+      await waitForVisibilityOf(
+        driver.element(),
+        `Cant find ${storySettings.dataHook}`,
+      );
 
-  it('should move out focus of input if nothing is pressed / selected', async () => {
-    await focusOnInputWithOptions();
+      await focusOnInputWithOptions('input-for-focus-1');
+    });
 
-    await pressTab();
-    expect(await driver.isFocused()).toEqual(false);
+    it('should move out focus of input if nothing is pressed / selected', async () => {
+      await pressTab();
+      expect(await driver.isFocused()).toEqual(false);
+    });
+
+    it('should move out focus of input when have manual text option', async () => {
+      await driver.enterText('some option');
+      await pressTab();
+      expect(await driver.isFocused()).toEqual(false);
+    });
   });
 
-  it('should move out focus of input when have manual text option', async () => {
-    await focusOnInputWithOptions();
+  describe('Inside a form', () => {
+    const navigateToTestUrl = async testName => {
+      const testStoryUrl = createTestStoryUrl({
+        category: insideFormStorySettings.category,
+        storyName: insideFormStorySettings.storyName,
+        dataHook: insideFormStorySettings.dataHook,
+        testName,
+      });
+      await browser.get(testStoryUrl);
+    };
 
-    await driver.enterText('some option');
-    await pressTab();
-    expect(await driver.isFocused()).toEqual(false);
+    beforeEach(async () => {
+      await navigateToTestUrl(testStories.insideForm);
+
+      driver = inputWithOptionsTestkitFactory({
+        dataHook: insideFormStorySettings.dataHook,
+      });
+
+      await waitForVisibilityOf(
+        driver.element(),
+        `Cant find ${insideFormStorySettings.dataHook}`,
+      );
+    });
+
+    it('should NOT submit the form on Enter key press', async () => {
+      await driver.click();
+      await driver.scrollToElement(0);
+      await driver.selectItemById(0);
+      await driver.pressEnter();
+      await waitFor(1000);
+
+      expect(await driver.element().isPresent()).toBe(true);
+    });
   });
 });
+
+const waitFor = ms =>
+  new Promise(resolve => {
+    setTimeout(resolve || (() => {}), ms);
+  });

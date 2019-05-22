@@ -17,7 +17,7 @@ const driverFactory = component => {
     getDropdown,
     getDropdownItemElement,
     element: () => component,
-    scrollToElement: el => scrollIntoView(getDropdownItemElement(el)),
+    scrollToElement: index => scrollIntoView(getDropdownItemElement(index)),
     getDropdownItem: index => getDropdownItemElement(index).getText(),
     loaderExists: () => getLoader(),
     getDropdownItemsCount: () =>
