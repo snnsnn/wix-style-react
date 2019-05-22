@@ -9,6 +9,7 @@ import TextButton from '../TextButton';
 import Text from '../Text';
 import Heading from '../Heading';
 import Proportion from '../Proportion';
+import DataHooks from './CardGalletyItemDataHooks';
 
 import styles from './CardGalleryItem.scss';
 import animationStyles from './CardGalleryItemAnimation.scss';
@@ -16,6 +17,9 @@ import animationStyles from './CardGalleryItemAnimation.scss';
 class CardGalleryItem extends React.Component {
   static displayName = 'CardGalleryItem';
   static propTypes = {
+    /** Card badge */
+    badge: PropTypes.node,
+
     /** Card title */
     title: PropTypes.node,
 
@@ -57,10 +61,19 @@ class CardGalleryItem extends React.Component {
     },
   };
 
+  _renderBadge(badge) {
+    return (
+      <div className={styles.badgeWrapper} data-hook={DataHooks.badge}>
+        {badge}
+      </div>
+    );
+  }
+
   render() {
     const {
       title,
       subtitle,
+      badge,
       backgroundImageUrl,
       primaryActionProps,
       secondaryActionProps,
@@ -68,10 +81,19 @@ class CardGalleryItem extends React.Component {
       dataHook,
     } = this.props;
 
+    const footerExists = title || subtitle;
+
     const hoveredContent = (
-      <div className={styles.hoveredContent} data-hook="hovered-content">
+      <div
+        className={classNames(styles.hoveredContent, {
+          [styles.hoveredContentWithFooter]: footerExists,
+        })}
+        data-hook={DataHooks.hoverContent}
+      >
         <div className={styles.primaryAction}>
-          <Button dataHook="primary-action">{primaryActionProps.label}</Button>
+          <Button dataHook={DataHooks.primaryAction}>
+            {primaryActionProps.label}
+          </Button>
 
           <div className={styles.secondaryAction}>
             <TextButton
@@ -80,12 +102,13 @@ class CardGalleryItem extends React.Component {
                 secondaryActionProps.onClick(event);
                 event.stopPropagation();
               }}
-              dataHook="secondary-action"
+              dataHook={DataHooks.secondaryAction}
             >
               {secondaryActionProps.label}
             </TextButton>
           </div>
         </div>
+        {badge && this._renderBadge(badge)}
       </div>
     );
 
@@ -96,36 +119,48 @@ class CardGalleryItem extends React.Component {
           onClick={primaryActionProps.onClick}
           data-hook={dataHook}
         >
-          <Card stretchVertically hideOverflow>
+          <Card stretchVertically>
             <Hover
               classNames={animationStyles}
               timeout={200}
               hoveredContent={hoveredContent}
-              dataHook={'hover-component'}
+              dataHook={DataHooks.hoverComponent}
             >
               <div
-                className={styles.content}
+                className={classNames(styles.content, {
+                  [styles.contentWithFooter]: footerExists,
+                })}
                 style={{
                   backgroundImage: `url(${backgroundImageUrl})`,
                 }}
-                data-hook="background-image"
-              />
-
-              <Card.Divider />
-              <div className={styles.footer}>
-                <Heading appearance="H4" ellipsis data-hook="title">
-                  {title}
-                </Heading>
-                <Text
-                  size="small"
-                  weight="thin"
-                  secondary
-                  ellipsis
-                  data-hook="subtitle"
-                >
-                  {subtitle}
-                </Text>
+                data-hook={DataHooks.backgroundImage}
+              >
+                {badge && this._renderBadge(badge)}
               </div>
+
+              {footerExists && (
+                <div>
+                  <Card.Divider />
+                  <div className={styles.footer}>
+                    <Heading
+                      appearance="H4"
+                      ellipsis
+                      data-hook={DataHooks.title}
+                    >
+                      {title}
+                    </Heading>
+                    <Text
+                      size="small"
+                      weight="thin"
+                      secondary
+                      ellipsis
+                      data-hook={DataHooks.subtitle}
+                    >
+                      {subtitle}
+                    </Text>
+                  </div>
+                </div>
+              )}
             </Hover>
           </Card>
         </div>

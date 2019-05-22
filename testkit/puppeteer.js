@@ -66,6 +66,18 @@ export const proportionTestkitFactory = puppeteerUniTestkitFactoryCreator(
   proportionDriverFactory,
 );
 
+import { linearProgressBarDriverFactory } from '../src/LinearProgressBar/LinearProgressBar.uni.driver';
+
+export const linearProgressBarTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  linearProgressBarDriverFactory,
+);
+
+import { circularProgressBarDriverFactory } from '../src/CircularProgressBar/CircularProgressBar.uni.driver';
+
+export const circularProgressBarTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  circularProgressBarDriverFactory,
+);
+
 /*
  * Component generator test component
  */
@@ -204,6 +216,12 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 
 export const errorIndicatorTestkitFactory = puppeteerUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
+);
+
+import { ListItemActionDriverFactory } from '../src/ListItemAction/ListItemAction.uni.driver';
+
+export const ListItemActionTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  ListItemActionDriverFactory,
 );
 
 import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';

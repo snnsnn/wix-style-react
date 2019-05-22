@@ -17,7 +17,7 @@ export const skins = `
 export const custom = `
 <Layout gap={0} justifyItems="center">
   <Box backgroundColor="B20">
-    <CloseButton skin="lightFilled"><Help /></CloseButton>
+    <CloseButton skin="lightFilled"><Icons.Help /></CloseButton>
   </Box>
   <Box backgroundColor="B20">
     <CloseButton skin="lightFilled"/>

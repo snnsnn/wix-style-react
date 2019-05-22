@@ -2,15 +2,15 @@ export const skins = `
 <Layout cols={3} gap={0} justifyItems="center" alignItems="center">
   <Box padding={1} backgroundColor="D80">
     <IconButton>
-      <More />
+      <Icons.More />
     </IconButton>
   </Box>
   <IconButton skin="inverted">
-    <More />
+    <Icons.More />
   </IconButton>
   <Box padding={1} backgroundColor="D10">
     <IconButton skin="light">
-      <More />
+      <Icons.More />
     </IconButton>
   </Box>
 </Layout>
@@ -20,26 +20,26 @@ export const priority = `
 <Layout cols={3} gap={0} justifyItems="center">
   <Box padding={1} backgroundColor="D80">
     <IconButton priority="secondary">
-      <X />
+      <Icons.X />
     </IconButton>
     <IconButton priority="primary">
-      <Check />
+      <Icons.Check />
     </IconButton>
   </Box>
   <Box padding={1}>
     <IconButton priority="secondary" skin="inverted">
-      <X />
+      <Icons.X />
     </IconButton>
     <IconButton priority="primary" >
-      <Check />
+      <Icons.Check />
     </IconButton>
   </Box>
   <Box padding={1} backgroundColor="D10">
     <IconButton priority="secondary" skin="light">
-      <X />
+      <Icons.X />
     </IconButton>
     <IconButton priority="primary" skin="light">
-      <Check />
+      <Icons.Check />
     </IconButton>
   </Box>
 </Layout>
@@ -48,10 +48,10 @@ export const priority = `
 export const size = `
 <Layout cols={2} gap={0} justifyItems="center">
   <IconButton>
-    <More />
+    <Icons.More />
   </IconButton>
   <IconButton size="small">
-    <MoreSmall />
+    <Icons.MoreSmall />
   </IconButton>
 </Layout>
 `;
@@ -59,10 +59,10 @@ export const size = `
 export const disabled = `
 <Layout cols={2} gap={0} justifyItems="center">
   <IconButton>
-    <More />
+    <Icons.More />
   </IconButton>
   <IconButton disabled>
-    <More />
+    <Icons.More />
   </IconButton>
 </Layout>
 `;
@@ -70,10 +70,10 @@ export const disabled = `
 export const custom = `
 <Layout cols={2} gap={0} justifyItems="center">
   <IconButton as="a">
-    <More />
+    <Icons.More />
   </IconButton>
   <IconButton as={Link}  to="/wix">
-    <More />
+    <Icons.More />
   </IconButton>
 </Layout>
 `;

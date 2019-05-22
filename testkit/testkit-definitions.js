@@ -274,4 +274,9 @@ module.exports = {
     skipSanityTest: true,
     testkitPath: '../src/Card/Subheader/Subheader.uni.driver',
   },
+
+  ListItemAction: {
+    unidriver: true,
+    testkitPath: '../src/ListItemAction/ListItemAction.uni.driver',
+  },
 };

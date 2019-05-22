@@ -813,6 +813,34 @@ describe('DropdownLayout', () => {
         });
       });
     });
+
+    describe('option markedOption', () => {
+      const initialOptions = [
+        { id: 0, value: 'a 1' },
+        { id: 1, value: 'a 2' },
+        { id: 2, value: 'a 3' },
+        { id: 3, value: 'a 4' },
+      ];
+
+      it('should not mark any option by default', async () => {
+        const { driver } = render(<DropdownLayout options={initialOptions} />);
+        expect(await driver.markedOption()).toBeFalsy();
+      });
+
+      it('should mark first option when equals true', async () => {
+        const { driver } = render(
+          <DropdownLayout options={initialOptions} markedOption />,
+        );
+        expect(await driver.markedOption()).toBeTruthy();
+      });
+
+      it('should mark second option when providing id', async () => {
+        const { driver } = render(
+          <DropdownLayout options={initialOptions} markedOption={1} />,
+        );
+        expect(await driver.markedOption()).toBe('a 2');
+      });
+    });
   }
 
   // These tests are not driver related, so no need to test them both sync and async

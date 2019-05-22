@@ -18,6 +18,11 @@
   -st-named: shadow30;
 }
 
+:import {
+  -st-from: "wix-ui-core/dist/src/themes/backoffice/text.st.css";
+  -st-named: sizeSmall, weightNormal, sizeTiny;
+}
+
 :vars {
   contentArrowSize: 8px;
 }
@@ -41,9 +46,9 @@
   box-sizing: border-box;
   box-shadow: value(shadow30);
   -webkit-font-smoothing: antialiased;
+  
+  -st-mixin: sizeSmall, weightNormal;
 
-  font-size: 14px;
-  line-height: 18px;
   padding: 12px 24px;
 
   
@@ -59,8 +64,8 @@
   box-shadow: value(shadow30);
   -webkit-font-smoothing: antialiased;
 
-  font-size: 14px;
-  line-height: 18px;
+  -st-mixin: sizeTiny, weightNormal;
+
   padding: 8px 12px 7px 12px;
 
   

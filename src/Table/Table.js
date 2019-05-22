@@ -164,6 +164,8 @@ Table.propTypes = {
   ).isRequired,
   /** A func that gets row data and returns a class(es) to apply to that specific row */
   dynamicRowClass: PropTypes.func,
+  /** A func that gets row data and returns boolean if row is highlighted or not */
+  isRowHighlight: PropTypes.func,
   /** Whether there are more items to be loaded. Event listeners are removed if false. */
   hasMore: PropTypes.bool,
   /** Should we hide the header of the table. */

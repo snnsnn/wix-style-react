@@ -134,24 +134,24 @@ class ProductTable extends React.Component {
             secondaryActions={[
               {
                 text: 'Star',
-                icon: <Star />,
+                icon: <Icons.Star />,
                 onClick: () => window.alert(`Starring ${rowData.name}`),
               },
               {
                 text: 'Download',
-                icon: <Download />,
+                icon: <Icons.Download />,
                 onClick: () =>
                   window.alert(`Downloading ${rowData.name}`),
               },
               {
                 text: 'Duplicate',
-                icon: <Duplicate />,
+                icon: <Icons.Duplicate />,
                 onClick: () =>
                   window.alert(`Duplicating ${rowData.name}`),
               },
               {
                 text: 'Print',
-                icon: <Print />,
+                icon: <Icons.Print />,
                 onClick: () => window.alert(`Printing ${rowData.name}`),
               },
             ]}

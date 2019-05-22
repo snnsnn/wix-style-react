@@ -117,6 +117,13 @@ const dropdownLayoutDriverFactory = ({ element }) => {
     optionsContent: () =>
       values(optionElements.childNodes).map(option => option.textContent),
 
+    markedOption: async () => {
+      const hoveredOption = optionElements.querySelector(`.${styles.hovered}`);
+      return (
+        (hoveredOption && createOptionDriver(hoveredOption).content()) || null
+      );
+    },
+
     optionsLength: () => optionsLength(),
     /** @deprecated should be private */
     optionsScrollTop: () => optionElements.scrollTop,

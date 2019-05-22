@@ -54,8 +54,8 @@ const imageViewerDriverFactory = ({ element, eventTrigger }) => {
     isImageVisible: () => !!byHook(imageDataHook),
     isErrorVisible: () => !!byHook(errorTooltipDataHook),
     clickAdd: () => addItem.click(),
-    clickUpdate: () => byHook(updateDataHook).click(),
-    clickRemove: () => byHook(removeDataHook).click(),
+    clickUpdate: () => eventTrigger.click(byHook(updateDataHook)),
+    clickRemove: () => eventTrigger.click(byHook(removeDataHook)),
     updateExists: () => !!byHook(updateDataHook),
   };
 };

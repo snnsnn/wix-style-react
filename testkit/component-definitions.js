@@ -242,4 +242,10 @@ export default {
       value: '#FFFFFF',
     },
   },
+
+  ListItemAction: {
+    props: {
+      title: 'something',
+    },
+  },
 };

@@ -5,7 +5,8 @@ import {AvatarDriver} from '../src/Avatar/Avatar.driver';
 import {BadgeDriver} from '../src/Badge/Badge.driver';
 import {BadgeSelectDriver} from '../src/BadgeSelect/BadgeSelect.driver';
 import {BoxDriver} from '../src/Box/Box.uni.driver';
-import {TooltipDriver} from '../src/Tooltip/Tooltip.uni.driver';
+import {TooltipDriver as TooltipUniDriver} from '../src/Tooltip/TooltipNext/Tooltip.uni.driver';
+import {TooltipDriver} from '../src/Tooltip/Tooltip.driver';
 
 declare namespace EnzymeTestkit {
   type EnzymeTestkitFactory<T extends BaseDriver> = (
@@ -119,7 +120,8 @@ declare namespace EnzymeTestkit {
   export const radioButtonTestkitFactory: any;
   export const messageBoxMarketerialLayoutTestkitFactory: any;
   export const messageBoxFunctionalLayoutTestkitFactory: any;
-  export const tooltipTestkitFactory: EnzymeUniTestkitFactory<TooltipDriver>;
+  export const tooltipTestkitFactory: EnzymeTestkitFactory<TooltipDriver>;
+  export const TooltipTestkit: EnzymeUniTestkitFactory<TooltipUniDriver>;
 }
 
 export = EnzymeTestkit;

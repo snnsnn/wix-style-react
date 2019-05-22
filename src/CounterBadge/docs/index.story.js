@@ -35,7 +35,7 @@ const counterBadgeSkinExample = `
 const exampleValues = [
   { label: 'Single digit', value: 1 },
   { label: '2 digits', value: 56 },
-  { label: 'Icon', value: '<Hint />' },
+  { label: 'Icon', value: '<Icons.Hint />' },
 ];
 
 const iconValuesExample = `

@@ -159,6 +159,7 @@ class DataTable extends React.Component {
       onMouseLeaveRow,
       rowDataHook,
       dynamicRowClass,
+      isRowHighlight,
       rowDetails,
     } = this.props;
     const rowClasses = [this.props.rowClass];
@@ -199,6 +200,10 @@ class DataTable extends React.Component {
 
     if (dynamicRowClass) {
       rowClasses.push(dynamicRowClass(rowData, rowNum));
+    }
+
+    if (isRowHighlight && isRowHighlight(rowData, rowNum)) {
+      rowClasses.push(this.style.highlight);
     }
 
     if (
@@ -497,6 +502,8 @@ DataTable.propTypes = {
   rowClass: PropTypes.string,
   /** A func that gets row data and returns a class(es) to apply to that specific row */
   dynamicRowClass: PropTypes.func,
+  /** A func that gets row data and returns boolean if row is highlighted or not */
+  isRowHighlight: PropTypes.func,
   /** A callback method to be called on row click. Signature: `onRowClick(rowData, rowNum)` */
   onRowClick: PropTypes.func,
   /** A callback method to be called on row mouse enter. Signature: `onMouseEnterRow(rowData, rowNum)` */

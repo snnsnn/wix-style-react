@@ -328,8 +328,6 @@ export {
   toggleSwitchTestkitFactory,
   labelTestkitFactory,
   floatingHelperTestkitFactory,
-  linearProgressBarTestkitFactory,
-  circularProgressBarTestkitFactory,
 } from 'wix-ui-backoffice/dist/src/testkit/protractor';
 
 // wix-ui-core (unidriver)
@@ -368,6 +366,18 @@ import colorPickerDriverFactory from '../src/ColorPicker/ColorPicker.protractor.
 
 export const colorPickerTestkitFactory = protractorTestkitFactoryCreator(
   colorPickerDriverFactory,
+);
+
+import { linearProgressBarDriverFactory } from '../src/LinearProgressBar/LinearProgressBar.protractor.driver';
+
+export const linearProgressBarTestkitFactory = protractorTestkitFactoryCreator(
+  linearProgressBarDriverFactory,
+);
+
+import circularProgressBarDriverFactory from '../src/CircularProgressBar/CircularProgressBar.protractor.driver';
+
+export const circularProgressBarTestkitFactory = protractorTestkitFactoryCreator(
+  circularProgressBarDriverFactory,
 );
 
 /*
@@ -488,6 +498,12 @@ import { errorIndicatorDriverFactory } from '../src/ErrorIndicator/ErrorIndicato
 
 export const errorIndicatorTestkitFactory = protractorUniTestkitFactoryCreator(
   errorIndicatorDriverFactory,
+);
+
+import { ListItemActionDriverFactory } from '../src/ListItemAction/ListItemAction.uni.driver';
+
+export const ListItemActionTestkitFactory = protractorUniTestkitFactoryCreator(
+  ListItemActionDriverFactory,
 );
 
 import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.driver';

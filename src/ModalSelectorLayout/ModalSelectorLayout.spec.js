@@ -300,6 +300,58 @@ describe('ModalSelectorLayout', () => {
       driver.searchDriver().inputDriver.clickClear();
       expect(driver.searchDriver().inputDriver.getValue()).toBe('');
     });
+
+    it('should postpone the search until the timer if debounce is used', async () => {
+      jest.useFakeTimers();
+
+      const driver = createDriverWithProps({
+        dataSource: paginatedDataSource,
+        withSearch: true,
+        searchDebounceMs: 100,
+      });
+
+      await flushPromises();
+
+      driver.searchDriver().inputDriver.enterText('f');
+      expect(driver.mainLoaderDriver().exists()).toBe(false);
+
+      jest.advanceTimersByTime(50);
+
+      driver.searchDriver().inputDriver.enterText('fo');
+      expect(driver.mainLoaderDriver().exists()).toBe(false);
+
+      jest.advanceTimersByTime(50);
+
+      driver.searchDriver().inputDriver.enterText('foo');
+      expect(driver.mainLoaderDriver().exists()).toBe(false);
+
+      jest.advanceTimersByTime(101);
+
+      expect(driver.mainLoaderDriver().exists()).toBe(true);
+    });
+
+    it('should not postpone the search if debounce is not used', async () => {
+      jest.useFakeTimers();
+
+      const driver = createDriverWithProps({
+        dataSource: paginatedDataSource,
+      });
+
+      await flushPromises();
+
+      driver.searchDriver().inputDriver.enterText('f');
+      expect(driver.mainLoaderDriver().exists()).toBe(true);
+
+      jest.advanceTimersByTime(50);
+
+      driver.searchDriver().inputDriver.enterText('fo');
+      expect(driver.mainLoaderDriver().exists()).toBe(true);
+
+      jest.advanceTimersByTime(50);
+
+      driver.searchDriver().inputDriver.enterText('foo');
+      expect(driver.mainLoaderDriver().exists()).toBe(true);
+    });
   });
 
   describe('pagination', () => {

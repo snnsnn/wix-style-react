@@ -59,8 +59,8 @@ export const sizes = `
 
 export const affixes = `
 <Layout cols={4} gap="10px"> 
-  <Button size="medium" prefixIcon={<Add />}>Prefix</Button>
-  <Button size="small" suffixIcon={<ChevronDownSmall/>}>Suffix</Button>
+  <Button size="medium" prefixIcon={<Icons.Add />}>Prefix</Button>
+  <Button size="small" suffixIcon={<Icons.ChevronDownSmall/>}>Suffix</Button>
 </Layout>
 `;
 

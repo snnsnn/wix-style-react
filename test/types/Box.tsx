@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Box from '../../src/Box';
-import {boxTestkitFactory} from '../../testkit';
-import {boxTestkitFactory as boxEnzymeTestkitFactory} from '../../testkit/enzyme';
-import {mount} from 'enzyme';
+import { boxTestkitFactory } from '../../testkit';
+import { boxTestkitFactory as boxEnzymeTestkitFactory } from '../../testkit/enzyme';
+import { mount } from 'enzyme';
 
 function testkits() {
   const vanilla = boxTestkitFactory({
     dataHook: 'hi',
-    wrapper: document.createElement('div')
+    wrapper: document.createElement('div'),
   });
 
   vanilla.exists();
@@ -15,7 +15,7 @@ function testkits() {
 
   const enzyme = boxEnzymeTestkitFactory({
     dataHook: 'shbem',
-    wrapper: mount(<div />)
+    wrapper: mount(<div />),
   });
 }
 
@@ -27,6 +27,7 @@ function BoxWithAllProps() {
   return (
     <Box
       align="center"
+      className="some-random-classname"
       backgroundColor="red"
       borderBottomColor="red"
       borderColor="red"

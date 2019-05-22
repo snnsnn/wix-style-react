@@ -15,13 +15,16 @@ class Subheader extends PureComponent {
 
     /** suffix node that will be rendered on the right side */
     suffix: node,
+
+    /** data hook */
+    dataHook: string,
   };
 
   render() {
-    const { title, suffix } = this.props;
+    const { title, suffix, dataHook } = this.props;
 
     return (
-      <div className={styles.container}>
+      <div className={styles.container} data-hook={dataHook}>
         <Box verticalAlign="middle" flexGrow={1} overflow="hidden">
           {isString(title) ? (
             <Text ellipsis weight="normal" size="medium" dataHook="title">

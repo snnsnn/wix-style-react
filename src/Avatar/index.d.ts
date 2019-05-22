@@ -3,7 +3,7 @@ import * as React from 'react';
 export interface AvatarProps {
   name?: string;
   text?: string;
-  placeholder?: string;
+  placeholder?: React.ReactNode;
   imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
   ariaLabel?: string;
   title?: string;

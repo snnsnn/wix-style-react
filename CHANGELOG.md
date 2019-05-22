@@ -14,14 +14,112 @@ Types of changes:
 1. **Docs** for documentation changes
 1. **Lab** components and features that are still in a work in progress
 
+## Next
+
+### Added
+
+- `<Carousel/>` - add `buttonSkin` prop [#3444](https://github.com/wix/wix-style-react/pull/3444)
+- `<CirucularProgressBar/>` - add puppeteer driver [#3439](https://github.com/wix/wix-style-react/pull/3439)
+
+### Fixed
+
+- `<MultiSelect/>` - fix padding between `<Tag/>` components [#3434](https://github.com/wix/wix-style-react/pull/3434)
+- `<Carousel/>` - fix missing `matchMedia` polyfill [#3447](https://github.com/wix/wix-style-react/pull/3447)
+
+### Changed
+
+- `<NestableList/>` - add `theme`, `onDragStart` & `onDragEnd` props [#3446](https://github.com/wix/wix-style-react/pull/3446)
+
+## 6.21.0 - 2019-05-20
+
+### Added
+
+- `<DropdownLayout/>` - add `markedOption` prop [#3409](https://github.com/wix/wix-style-react/pull/3409)
+
+### Fixed
+
+- `<Search/>` - fix `getDerivedStateFromProps` warning [#3343](https://github.com/wix/wix-style-react/pull/3343)
+- Storybook: fix broken components [#3440](https://github.com/wix/wix-style-react/pull/3440)
+
+## 6.20.0 - 2019-05-20
+
+### Added
+
+- `<Box/>` - add CSS properties to typescript declarations [#3419](https://github.com/wix/wix-style-react/pull/3419)
+- `<NestableList/>` - add `onDragStart` and `onDragEnd` callbacks [#3414](https://github.com/wix/wix-style-react/pull/3414)
+- `<CardGalleryItem/>` - add badge to card gallery item [#3424](https://github.com/wix/wix-style-react/pull/3424)
+- `<Carousel/>` - add `children` prop [#3430](https://github.com/wix/wix-style-react/pull/3430)
+- `<SocialPreview/>` - add ellipsis property to text components [#3309](https://github.com/wix/wix-style-react/pull/3309)
+
+### Changed
+
+- `<CardGalleryItem/>` - title and subtitle are not mandatory [#3411](https://github.com/wix/wix-style-react/pull/3411)
+- `<Carousel/>` - refactor the component to use react-slick [#3415](https://github.com/wix/wix-style-react/pull/3415)
+- `<Carousel/>` - migrate e2e test to visual [#3425](https://github.com/wix/wix-style-react/pull/3425)
+- `<Carousel/>` - improve indicator visual design [#3429](https://github.com/wix/wix-style-react/pull/3429)
+- `<CircularProgressBar/>` - migrate from wix-ui-backoffice [#3405](https://github.com/wix/wix-style-react/pull/3405)
+
+### Fixed
+
+- `<Tooltip/>` - Add instance methods to .d.ts [#3423](https://github.com/wix/wix-style-react/pull/3423) [#3436](https://github.com/wix/wix-style-react/pull/3436)
+
+## 6.19.0 - 2019-05-16
+
+### Added
+
+- GoogleMapClient - add session to place details api [#3400](https://github.com/wix/wix-style-react/pull/3400)
+- `<Tooltip/>` - add disabled prop to disable tooltips trigger behaviour [#3410](https://github.com/wix/wix-style-react/pull/3410)
+- `<Search/>` - add `debounceMs` prop for debouncing onChange calls [#3343](https://github.com/wix/wix-style-react/pull/3343)
+- `<ModalSelectorLayout/>` - add `debounceSearchMs` prop for debouncing search input onChange calls [#3343](https://github.com/wix/wix-style-react/pull/3343)
+- Infra: Add a puppeteer testkit bundle [#3394](https://github.com/wix/wix-style-react/pull/3394)
+- `<Table/>` - support row highlighting [#3356](https://github.com/wix/wix-style-react/pull/3356)
+- `<ListItemAction>` - create new component and dropdown builder [#3371](https://github.com/wix/wix-style-react/pull/3371)
+
+### Fixed
+
+- `<Text/>` - fix classname clash when given through prop [#3378](https://github.com/wix/wix-style-react/pull/3378)
+- `<Card.Subheader/>` - add dataHook [#3408](https://github.com/wix/wix-style-react/pull/3408)
+- `<Badge/>` - fix skin typescript declarations typo [#3412](https://github.com/wix/wix-style-react/pull/3412)
+- `<Avatar/>` - fix typescript declarations [#3413](https://github.com/wix/wix-style-react/pull/3413)
+
+## 6.18.4 - 2019-05-15
+
+### Fixed
+
+- `<NestableList/>` - revert to use `ComponentWillReceiveProps` for compatibility [#3392](https://github.com/wix/wix-style-react/pull/3392)
+- `<Tooltip/>` - fix a mistake where tooltipTestkitFactory exported unidriver types instead of legacy ones. [#3402](https://github.com/wix/wix-style-react/pull/3402)
+- `<ImageViewer/>` - fix testkit methods that uses native click() [#3406](https://github.com/wix/wix-style-react/pull/3406)
+
+## 6.18.3 - 2019-05-14
+
+### Fixed
+
+- `<Badge>` - missing dataHook type in types. [#3398](https://github.com/wix/wix-style-react/pull/3398)
+
+## 6.18.2 - 2019-05-14
+
+### Fixed
+
+- `<DataTable/>` - Driver - fix exists() function [#3367](https://github.com/wix/wix-style-react/pull/3367)
+- `<Badge/>` - Add missing strings to BadgeSkin type [#3395](https://github.com/wix/wix-style-react/pull/3395)
+- `<Box/>` - Add missing classname to typings [#3396](https://github.com/wix/wix-style-react/pull/3396)
+
+## 6.18.1 - 2019-05-13
+
+### Fixed
+
+- `<Tooltip>`, `<Box>`, `<BadgeSelect>`, `<Badge>` - added multiple tests for types [#3391](https://github.com/wix/wix-style-react/pull/3391)
+
 ## 6.18.0 - 2019-05-13
 
 ### Added
+
 - `<Table/>` - add selected row indication [#3353](https://github.com/wix/wix-style-react/pull/3353)
 - `<Card/>` - add `<Card.Subheader/>` component [#3293](https://github.com/wix/wix-style-react/pull/3293)
 - Infra: add type definitions for Badge, BadgeSelect, Box, Tooltip and VBox [#3349](https://github.com/wix/wix-style-react/pull/3349)
 
 ### Deprecated
+
 - `<RichTextArea />` - deprecated component, you should use `<RichTextInputArea/>` instead [#3354](https://github.com/wix/wix-style-react/pull/3354)
 
 ### Changed
@@ -38,27 +136,36 @@ Types of changes:
 - `<NestableList/>` - internal refactors [#3358](https://github.com/wix/wix-style-react/pull/3358)
 
 ### Fixed
+
 - `<Input/>` - make noBorderRadius work on round input [#3357](https://github.com/wix/wix-style-react/pull/3357)
 - `<Dropdown/>` - use more robust compare of prev options to current. [#3388](https://github.com/wix/wix-style-react/pull/3388)
 
 ### Docs
+
 - `<Table/>` document 'onSortClick' function [#3364](https://github.com/wix/wix-style-react/pull/3364)
 - `<Tooltip/>` - split documentation to UX and API parts [#3364](https://github.com/wix/wix-style-react/pull/3384)
 - `<Tooltip/>` - docs API - add a11y examples [#3385](https://github.com/wix/wix-style-react/pull/3385)
 
 ## 6.17.3 - 2019-05-03
+
 ### Fixed
+
 - `<NestableList/>` - Fix bad import of PropTypes [#3359](https://github.com/wix/wix-style-react/pull/3359)
 
 ## 6.17.2 - 2019-05-03
+
 ### Docs
+
 - `<RichTextInputArea/>` - change RichTextArea docs to use the new component [#3352](https://github.com/wix/wix-style-react/pull/3352)
 
 ### Fixed
+
 - Infra - remove .d.ts files from root when unnecessary in import-path [fix](https://github.com/wix/import-path/pull/8)
 
 ## 6.17.1 - 2019-05-02
+
 ### Fixed
+
 - downgrade internally dependency jscodeshift, which uses babel@6, for compatibility [51dd840e](https://github.com/wix/wix-style-react/commit/51dd840e46c58f6d5f80e8275a93f208ce0f8fe6)
 - `<Input/>` - fix prop validation warning when providing updateControlledOnClear [#3341](https://github.com/wix/wix-style-react/pull/3341)
 - Infra: Remove empty typescript declarations [#3341](https://github.com/wix/wix-style-react/pull/3341)
@@ -66,6 +173,7 @@ Types of changes:
 ## 6.17.0 - 2019-05-02
 
 ### Added
+
 - `<RichTextInputArea/>` - support removing links by toggling the link button [#3323](https://github.com/wix/wix-style-react/pull/3323)
 - Infra - add type definitions - add Avatar types [#3332](https://github.com/wix/wix-style-react/pull/3332)
 - `<RichTextInputArea/>` - add scrollBehavior polyfill [#3342](https://github.com/wix/wix-style-react/pull/3342)
@@ -88,7 +196,6 @@ Types of changes:
 
 - `<Tooltip/>` - fix broken upgrade prop for puppeteer & protractor testkits. [#3296](https://github.com/wix/wix-style-react/pull/3296)
 
-
 ## 6.16.0
 
 ### Added
@@ -109,7 +216,7 @@ Types of changes:
 
 - `<Tooltip/>` - make testkit upgrade toggle more specific[#3294](https://github.com/wix/wix-style-react/pull/3294)
 
-## 6.15.0 - 2019-04-21 
+## 6.15.0 - 2019-04-21
 
 ### Added
 

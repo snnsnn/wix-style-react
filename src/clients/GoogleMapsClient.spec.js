@@ -22,6 +22,24 @@ describe('GoogleMapsClient', () => {
     );
   });
 
+  it('should add session token when placing details', async () => {
+    window.google = new GoogleMapsMock(null, null, {
+      getDetails: (request, callback) => {
+        callback(
+          null,
+          window.google.maps.places.PlacesServiceStatus.ZERO_RESULTS,
+        );
+      },
+    });
+    const client = new GoogleMapsClient();
+    const spy = jest.spyOn(client._placesServices, 'getDetails');
+    await client.placeDetails({ request: { placeId: 'my-id' } });
+    expect(spy).toHaveBeenCalledWith(
+      { placeId: 'my-id', sessionToken: { Pf: 'token' } },
+      expect.any(Function),
+    );
+  });
+
   it('should handle null when autocompleting and getting ZERO_RESULTS', () => {
     window.google = new GoogleMapsMock({
       getPlacePredictions: (request, callback) => {

@@ -33,7 +33,7 @@ function AvatarWithAllProps() {
       color="blue"
       dataHook="sadasd"
       imgProps={{alt: 'asd'}}
-      placeholder="blalbal"
+      placeholder={<span>blalbal</span>}
       text="some text"
       title="some title"
     />

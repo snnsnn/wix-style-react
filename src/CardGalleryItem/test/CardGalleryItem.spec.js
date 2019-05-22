@@ -1,7 +1,8 @@
 import React from 'react';
-import CardGalleryItem from '.';
+import CardGalleryItem from '..';
+import Badge from '../../Badge';
 import { createUniDriverFactory } from 'wix-ui-test-utils/uni-driver-factory';
-import cardGalleryItemDriverFactory from './CardGalleryItem.uni.driver';
+import cardGalleryItemDriverFactory from '../CardGalleryItem.uni.driver';
 import ReactTestUtils from 'react-dom/test-utils';
 
 const hover = async driver =>
@@ -18,16 +19,45 @@ describe('CardGalleryItem', () => {
     expect(await driver.exists()).toBeTruthy();
   });
 
+  it('should not render title by default', async () => {
+    const driver = createDriver(<CardGalleryItem />);
+
+    expect(await driver.getTitle()).toBeNull();
+  });
+
   it('should render title', async () => {
     const driver = createDriver(<CardGalleryItem title="Card" />);
 
     expect(await driver.getTitle()).toBe('Card');
   });
 
+  it('should not render subtitle by default', async () => {
+    const driver = createDriver(<CardGalleryItem />);
+
+    expect(await driver.getSubtitle()).toBeNull();
+  });
+
   it('should render subtitle', async () => {
     const driver = createDriver(<CardGalleryItem subtitle="Subtitle" />);
 
     expect(await driver.getSubtitle()).toBe('Subtitle');
+  });
+
+  it('should not render badge by default', async () => {
+    const driver = createDriver(<CardGalleryItem />);
+
+    expect(await driver.getBadge()).toBeNull();
+  });
+
+  it('should render badge', async () => {
+    const badge = (
+      <Badge size="medium" skin="standard" type="solid" uppercase>
+        sale
+      </Badge>
+    );
+    const driver = createDriver(<CardGalleryItem badge={badge} />);
+
+    expect((await driver.getBadge()).textContent).toEqual('sale');
   });
 
   it('should set background image', async () => {

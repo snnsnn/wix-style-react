@@ -94,6 +94,7 @@ require('../src/Label/docs/index.story');
 require('../src/Layout/docs');
 require('../src/Layout/docs/index.story');
 require('../src/LinearProgressBar/docs/index.story');
+require('../src/ListItemAction/docs/index.story');
 require('../src/Loader/docs/index.story');
 require('../src/MessageBox/FunctionalLayout/docs/index.story');
 require('../src/Modal/docs');

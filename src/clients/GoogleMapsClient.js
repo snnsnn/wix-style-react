@@ -52,6 +52,9 @@ class GoogleMapsClient {
   placeDetails({ request }) {
     return new Promise((resolve, reject) => {
       try {
+        if (this._sessionToken) {
+          request.sessionToken = this._sessionToken;
+        }
         this._placesServices.getDetails(request, (result, status) => {
           if (
             status !== window.google.maps.places.PlacesServiceStatus.OK &&
