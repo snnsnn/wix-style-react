@@ -210,7 +210,8 @@ const cardTarget = {
     // clear mouse position
     mouse.lastX = 0;
     if (!monitor.didDrop()) {
-      props.dropItem();
+      debugger;
+      props.dropItem(monitor.getItem());
     }
   },
   hover(props, monitor, component) {

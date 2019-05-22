@@ -21,7 +21,7 @@
         </div>
     );
     )}
-    onUpdate={(newItems) => {
+    onUpdate={(newItems, item) => {
       this.setState({items: newItems})
     }}
     maxDepth={3}
@@ -43,7 +43,7 @@
   | childrenStyle    | object   | -            | -          | Style object applied to nested |
   | theme            | object   | -            | -          | object of react classes - receiving styles: topContainer, container, item |
   | childrenProperty | string   | 'children'   | -          | The property on each item which contains an array of children |
-  | onUpdate         | func     | -            | -          | A function invoked with the new array of items whenever an item is dropped in a new location |
+  | onUpdate         | func     | -            | -          | A function invoked with the new array of items and the dropped item data whenever an item is dropped in a new location |
   | onDragStart      | func     | -            | -        | A function invoked when drag of item starts, the item's props passed as argument |
   | onDragEnd        | func     | -            | -          | A function invoked when drag of item ends, the item's props passed as argument |
 
