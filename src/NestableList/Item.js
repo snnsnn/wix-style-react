@@ -210,7 +210,6 @@ const cardTarget = {
     // clear mouse position
     mouse.lastX = 0;
     if (!monitor.didDrop()) {
-      debugger;
       props.dropItem(monitor.getItem());
     }
   },

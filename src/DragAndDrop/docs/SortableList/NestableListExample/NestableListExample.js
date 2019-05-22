@@ -31,7 +31,7 @@ export default class NestableListExample extends React.Component {
     ],
   };
 
-  onUpdate = items => {
+  onUpdate = ({ items }) => {
     this.setState({
       items: items,
     });

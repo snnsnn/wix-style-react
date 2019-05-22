@@ -21,8 +21,8 @@
         </div>
     );
     )}
-    onUpdate={(newItems, item) => {
-      this.setState({items: newItems})
+    onUpdate={{items, item}) => {
+      this.setState({items})
     }}
     maxDepth={3}
     threshold={50}

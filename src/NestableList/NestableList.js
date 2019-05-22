@@ -94,7 +94,8 @@ class NestableList extends WixComponent {
   };
 
   dropItem = item => {
-    this.props.onUpdate && this.props.onUpdate(this.state.items, item);
+    this.props.onUpdate &&
+      this.props.onUpdate({ items: this.state.items, item });
   };
 
   onDragStart = itemProps => {
