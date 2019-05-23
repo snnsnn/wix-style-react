@@ -194,7 +194,7 @@ class FormField extends React.Component {
           >
             <Text
               size={labelSize}
-              for={id}
+              htmlFor={id}
               tagName={'label'}
               ellipsis
               data-hook="formfield-label"
