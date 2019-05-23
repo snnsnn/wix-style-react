@@ -192,13 +192,15 @@ class FormField extends React.Component {
               [styles.minLabelHeight]: !children,
             })}
           >
-            <Label
-              appearance="T1"
+            <Text
               size={labelSize}
-              children={label}
               for={id}
+              tagName={'label'}
+              ellipsis
               data-hook="formfield-label"
-            />
+            >
+              {label}
+            </Text>
 
             {required && asterisk}
             {this._renderInfoIcon()}
