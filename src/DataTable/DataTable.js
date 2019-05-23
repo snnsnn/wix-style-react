@@ -43,21 +43,13 @@ class DataTable extends React.Component {
     let isLoadingMore = false;
     if (this.props.infiniteScroll && nextProps.data !== this.props.data) {
       if (nextProps.data instanceof Array && this.props.data instanceof Array) {
-        if (
-          this.props.data.every((elem, index) => {
-            return (
-              nextProps.data.length > index && nextProps.data[index] === elem
-            );
-          })
-        ) {
-          isLoadingMore = true;
-          const lastPage = this.calcLastPage(nextProps);
-          const currentPage =
-            this.state.currentPage < lastPage
-              ? this.state.currentPage + 1
-              : this.state.currentPage;
-          this.setState({ lastPage, currentPage });
-        }
+        isLoadingMore = true;
+        const lastPage = this.calcLastPage(nextProps);
+        const currentPage =
+          this.state.currentPage < lastPage
+            ? this.state.currentPage + 1
+            : this.state.currentPage;
+        this.setState({ lastPage, currentPage });
       }
       if (!isLoadingMore) {
         this.setState(this.createInitialScrollingState(nextProps));
