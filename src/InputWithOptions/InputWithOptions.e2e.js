@@ -7,9 +7,12 @@ import {
   insideFormStorySettings,
   testStories,
 } from './docs/storySettings';
+import privateDriverFactory from './InputWithOptions.private.protractor.driver';
+import { eventually } from '../../test/utils/unit/eventually';
 
 describe('InputWithOptions', () => {
   let driver;
+  let privateDriver;
 
   const navigateToTestUrl = async testName => {
     const testStoryUrl = createTestStoryUrl({
@@ -87,21 +90,16 @@ describe('InputWithOptions', () => {
         driver.element(),
         `Cant find ${insideFormStorySettings.dataHook}`,
       );
+
+      privateDriver = privateDriverFactory(driver.element());
     });
 
     it('should NOT submit the form on Enter key press', async () => {
-      await driver.click();
-      await driver.scrollToElement(0);
-      await driver.selectItemById(0);
-      await driver.pressEnter();
-      await waitFor(1000);
+      await privateDriver.selectOptionAt('0');
 
-      expect(await driver.element().isPresent()).toBe(true);
+      eventually(async () =>
+        expect(await driver.element().isPresent()).toBe(true),
+      );
     });
   });
 });
-
-const waitFor = ms =>
-  new Promise(resolve => {
-    setTimeout(resolve || (() => {}), ms);
-  });

@@ -26,17 +26,12 @@ class TestInsideForm extends React.Component {
         value,
         selectedId: option.id,
       });
-
-      console.log(
-        `Selected option id=${JSON.stringify(option)}, value=${value}`,
-      );
     };
 
-    const onManuallyInput = value => {
+    const onManuallyInput = () => {
       this.setState({
         selectedId: -1,
       });
-      console.log(`Manually selected ${value}`);
     };
 
     return (
