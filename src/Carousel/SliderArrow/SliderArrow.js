@@ -8,11 +8,19 @@ const SliderArrow = ({
   arrowSize = 'medium',
   buttonSkin,
   icon,
+  className,
   ...remainingProps
 }) => {
+  const isDisabled = className.includes('slick-disabled');
+
   return (
-    <div {...remainingProps} data-hook={dataHook}>
-      <IconButton skin={buttonSkin} size={arrowSize} priority="secondary">
+    <div {...remainingProps} data-hook={dataHook} className={className}>
+      <IconButton
+        skin={buttonSkin}
+        size={arrowSize}
+        disabled={isDisabled}
+        priority="secondary"
+      >
         {icon}
       </IconButton>
     </div>
