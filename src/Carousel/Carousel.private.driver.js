@@ -1,13 +1,23 @@
 import ReactTestUtils from 'react-dom/test-utils';
+import { iconButtonTestkitFactory } from 'wix-style-react/dist/testkit';
+
 import { carouselDriverFactory as publicDriver } from './Carousel.driver';
 
 export default ({ element }) => {
+  const arrowButtonDriver = direction =>
+    iconButtonTestkitFactory({
+      wrapper: element,
+      dataHook: `${direction}-button`,
+    });
+
   return {
     ...publicDriver({ element }),
     getCurrentImageIndex: () => {
       const currentSlide = element.querySelector('.slick-current');
       return Number(currentSlide.dataset.index);
     },
+    isPrevButtonDisabled: () => arrowButtonDriver('prev').isButtonDisabled(),
+    isNextButtonDisabled: () => arrowButtonDriver('next').isButtonDisabled(),
     loadImages: () => {
       element
         .querySelectorAll('[data-hook="carousel-img"]')
