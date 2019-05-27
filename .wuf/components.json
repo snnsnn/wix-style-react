@@ -200,6 +200,9 @@
   "LinearProgressBar": {
     "path": "src/LinearProgressBar"
   },
+  "ListItemAction": {
+    "path": "src/ListItemAction"
+  },
   "Loader": {
     "path": "src/Loader"
   },
@@ -283,6 +286,9 @@
   },
   "StatsWidget": {
     "path": "src/StatsWidget"
+  },
+  "Swatches": {
+    "path": "src/Swatches"
   },
   "Table": {
     "path": "src/Table"

@@ -58,6 +58,7 @@
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
     "generate": "wuf generate",
     "postgenerate": "npm run generate-testkit-exports",
+    "pregenerate-testkit-exports": "npm run generate-components-list",
     "generate-test-component": "wuf generate --component-name GeneratedTestComponent",
     "generate-testkit-exports": "node scripts/generate-testkit-exports && npm run generate-enzyme-testkit-exports",
     "generate-enzyme-testkit-exports": "wuf export-testkits --template .wuf/testkits/enzyme.template.js --output testkit/enzyme.js",
