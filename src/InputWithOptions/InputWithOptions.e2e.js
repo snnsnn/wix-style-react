@@ -1,20 +1,21 @@
-import { inputWithOptionsTestkitFactory } from '../../testkit/protractor';
+import inputWithOptionsTestkitFactory from './InputWithOptions.private.protractor.driver';
 import { $, browser } from 'protractor';
-import { isFocused, waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
+import {
+  isFocused,
+  waitForVisibilityOf,
+  protractorTestkitFactoryCreator,
+} from 'wix-ui-test-utils/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 import {
-  storySettings,
+  storySettings as tabKeyFocusStorySettings,
   insideFormStorySettings,
   testStories,
 } from './docs/storySettings';
-import privateDriverFactory from './InputWithOptions.private.protractor.driver';
-import { eventually } from '../../test/utils/unit/eventually';
 
 describe('InputWithOptions', () => {
   let driver;
-  let privateDriver;
 
-  const navigateToTestUrl = async testName => {
+  const navigateToTestUrl = async (testName, storySettings) => {
     const testStoryUrl = createTestStoryUrl({
       category: storySettings.category,
       storyName: storySettings.storyName,
@@ -42,15 +43,18 @@ describe('InputWithOptions', () => {
 
   describe('Component', () => {
     beforeEach(async () => {
-      await navigateToTestUrl(testStories.tabsSwitches);
+      await navigateToTestUrl(
+        testStories.tabKeyFocusSwitch,
+        tabKeyFocusStorySettings,
+      );
 
-      driver = inputWithOptionsTestkitFactory({
-        dataHook: storySettings.dataHook,
+      driver = protractorTestkitFactoryCreator(inputWithOptionsTestkitFactory)({
+        dataHook: tabKeyFocusStorySettings.dataHook,
       });
 
       await waitForVisibilityOf(
         driver.element(),
-        `Cant find ${storySettings.dataHook}`,
+        `Cant find ${tabKeyFocusStorySettings.dataHook}`,
       );
 
       await focusOnInputWithOptions('input-for-focus-1');
@@ -68,21 +72,11 @@ describe('InputWithOptions', () => {
     });
   });
 
-  describe('Inside a form', () => {
-    const navigateToTestUrl = async testName => {
-      const testStoryUrl = createTestStoryUrl({
-        category: insideFormStorySettings.category,
-        storyName: insideFormStorySettings.storyName,
-        dataHook: insideFormStorySettings.dataHook,
-        testName,
-      });
-      await browser.get(testStoryUrl);
-    };
-
+  describe('Inside a wrapping form', () => {
     beforeEach(async () => {
-      await navigateToTestUrl(testStories.insideForm);
+      await navigateToTestUrl(testStories.insideForm, insideFormStorySettings);
 
-      driver = inputWithOptionsTestkitFactory({
+      driver = protractorTestkitFactoryCreator(inputWithOptionsTestkitFactory)({
         dataHook: insideFormStorySettings.dataHook,
       });
 
@@ -90,16 +84,14 @@ describe('InputWithOptions', () => {
         driver.element(),
         `Cant find ${insideFormStorySettings.dataHook}`,
       );
-
-      privateDriver = privateDriverFactory(driver.element());
     });
 
     it('should NOT submit the form on Enter key press', async () => {
-      await privateDriver.selectOptionAt('0');
+      await driver.click();
+      await driver.selectItemById('0');
+      await driver.pressEnter();
 
-      eventually(async () =>
-        expect(await driver.element().isPresent()).toBe(true),
-      );
+      expect(await driver.element().isPresent()).toBe(true);
     });
   });
 });

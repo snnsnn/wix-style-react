@@ -3,7 +3,7 @@ import { Category } from '../../../stories/storiesHierarchy';
 export const storySettings = {
   storyName: 'InputWithOptions',
   category: Category.COMPONENTS,
-  dataHook: 'input-with-options-tabs-switches-test',
+  dataHook: 'tab-key-focus-switch-test',
 };
 
 export const insideFormStorySettings = {
@@ -13,6 +13,6 @@ export const insideFormStorySettings = {
 };
 
 export const testStories = {
-  tabsSwitches: 'Tabs switches',
-  insideForm: 'insideForm',
+  tabKeyFocusSwitch: 'Focus Switch On Tab',
+  insideForm: 'Inside a Form',
 };

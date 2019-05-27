@@ -171,7 +171,11 @@ class InputWithOptions extends WixComponent {
     return (
       <div>
         {dropDirectionUp ? this._renderDropdownLayout() : null}
-        <div data-input-parent className={this.inputClasses()}>
+        <div
+          data-input-parent
+          className={this.inputClasses()}
+          data-hook="input-wrapper"
+        >
           {this.renderInput()}
         </div>
         {!dropDirectionUp ? this._renderDropdownLayout() : null}

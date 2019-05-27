@@ -6,7 +6,7 @@ import { insideFormStorySettings as storySettings } from '../storySettings';
 
 const options = [{ id: '0', value: 'First Option' }];
 
-class TestInsideForm extends React.Component {
+class TestInsideWrapperForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,4 +51,4 @@ class TestInsideForm extends React.Component {
   }
 }
 
-export default TestInsideForm;
+export default TestInsideWrapperForm;

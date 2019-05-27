@@ -1,24 +1,16 @@
-import { dropdownSelector } from './InputWithOptions.protractor.driver';
 import dropdownLayoutDriverFactory from '../DropdownLayout/DropdownLayout.protractor.driver';
 import inputDriverFactory from '../Input/Input.protractor.driver';
 
 export default component => {
-  const dropdown = component.$(dropdownSelector);
-  const dropdownLayoutDriver = dropdownLayoutDriverFactory(dropdown);
+  const dropdownLayoutDriver = dropdownLayoutDriverFactory(component);
+  const inputDriver = inputDriverFactory(component);
 
-  const input = component.$('input');
-  const inputDriver = inputDriverFactory({ element: input });
-
-  const pressEnter = () => input.sendKeys(protractor.Key.ENTER);
+  const pressEnter = () => inputDriver.element().sendKeys(protractor.Key.ENTER);
 
   return {
     ...dropdownLayoutDriver,
+    ...inputDriver,
+    element: () => component,
     pressEnter,
-    selectOptionAt: async index => {
-      await inputDriver.click();
-      await dropdownLayoutDriver.scrollToElement(index);
-      await dropdownLayoutDriver.selectItemById(index);
-      await pressEnter();
-    },
   };
 };
