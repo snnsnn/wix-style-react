@@ -38,17 +38,17 @@
 module.exports = {
   SideMenuDrill: {
     skipSanityTest: true,
-    testkitPath: "../src/SideMenu/DrillView/DrillView.driver"
+    testkitPath: '../src/SideMenu/DrillView/DrillView.driver',
   },
 
   BadgeSelectItemBuilder: { skipSanityTest: true, noTestkit: true },
 
   MultiSelect: {
-    skipSanityTest: true // testkit does not have root `exists` method
+    skipSanityTest: true, // testkit does not have root `exists` method
   },
 
   MultiSelectCheckbox: {
-    skipSanityTest: true // testkit does not have root `exists` method
+    skipSanityTest: true, // testkit does not have root `exists` method
   },
 
   DragAndDrop: { skipSanityTest: true, noTestkit: true },
@@ -58,18 +58,18 @@ module.exports = {
     skipSanityTest: true,
     // TODO: testkit of this component is not following convention.
     // It is used only internally and before automated export was not exported manually
-    noTestkit: true
+    noTestkit: true,
   },
 
   GoogleAddressInput: {
     skipSanityTest: true,
     // TODO: testkit of this component is not following convention.
     // It is used only internally and before automated export was not exported manually
-    noTestkit: true
+    noTestkit: true,
   },
 
   GoogleAddressInputWithLabel: {
-    skipSanityTest: true
+    skipSanityTest: true,
     // TODO: testkit of this component is not following convention.
     // It is used only internally and before automated export was not exported manually
   },
@@ -80,9 +80,9 @@ module.exports = {
   MessageBox: { skipSanityTest: true, noTestkit: true },
 
   Header: {
-    testkitPath: "../src/Card/Header/Header.driver",
+    testkitPath: '../src/Card/Header/Header.driver',
     // TODO: this is actually  Card.Header, but is exported just as header
-    skipSanityTest: true
+    skipSanityTest: true,
   },
 
   Page: { skipSanityTest: true },
@@ -98,209 +98,209 @@ module.exports = {
 
   RichTextArea: {
     beforeAllHook: () => (window.getSelection = () => ({})),
-    testkitPath: "../src/Deprecated/RichTextArea/RichTextArea.driver"
+    testkitPath: '../src/Deprecated/RichTextArea/RichTextArea.driver',
   },
 
   RichTextAreaComposite: {
     beforeAllHook: () => (window.getSelection = () => ({})),
     testkitPath:
-      "../src/Deprecated/RichTextAreaComposite/RichTextAreaComposite.driver"
+      '../src/Deprecated/RichTextAreaComposite/RichTextAreaComposite.driver',
   },
 
   Avatar: { unidriver: true },
 
   TextButton: {
     unidriver: true,
-    testkitPath: "../src/TextButton/TextButton.uni.driver"
+    testkitPath: '../src/TextButton/TextButton.uni.driver',
   },
 
   IconButton: {
     unidriver: true,
     skipSanityTest: true,
-    testkitPath: "../src/IconButton/IconButton.uni.driver"
+    testkitPath: '../src/IconButton/IconButton.uni.driver',
   },
 
   CloseButton: {
     unidriver: true,
-    testkitPath: "../src/CloseButton/CloseButton.uni.driver"
+    testkitPath: '../src/CloseButton/CloseButton.uni.driver',
   },
 
   CardGalleryItem: {
     unidriver: true,
-    testkitPath: "../src/CardGalleryItem/CardGalleryItem.uni.driver"
+    testkitPath: '../src/CardGalleryItem/CardGalleryItem.uni.driver',
   },
 
   SideMenu: {
-    testkitPath: "../src/SideMenu/core/SideMenu.driver"
+    testkitPath: '../src/SideMenu/core/SideMenu.driver',
   },
 
-  Button: { unidriver: true, testkitPath: "../src/Button/Button.uni.driver" },
+  Button: { unidriver: true, testkitPath: '../src/Button/Button.uni.driver' },
 
   CalendarPanelFooter: {
     unidriver: true,
-    testkitPath: "../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver"
+    testkitPath: '../src/CalendarPanelFooter/CalendarPanelFooter.uni.driver',
   },
 
   ContactItemBuilder: { skipSanityTest: true },
 
   Draggable: {
-    testkitPath: "../src/DragAndDrop/Draggable/Draggable.driver",
-    skipSanityTest: true
+    testkitPath: '../src/DragAndDrop/Draggable/Draggable.driver',
+    skipSanityTest: true,
   },
 
   EditableRow: {
-    testkitPath: "../src/EditableSelector/EditableRow/EditableRow.driver",
+    testkitPath: '../src/EditableSelector/EditableRow/EditableRow.driver',
     unidriver: true,
-    skipSanityTest: true
+    skipSanityTest: true,
   },
 
   FieldLabelAttributes: {
-    testkitPath: "../src/FieldLabelAttributes/FieldLabelAttributes.driver",
-    skipSanityTest: true
+    testkitPath: '../src/FieldLabelAttributes/FieldLabelAttributes.driver',
+    skipSanityTest: true,
   },
 
   FieldWithSelectionComposite: {
     testkitPath:
-      "../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver",
-    skipSanityTest: true
+      '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver',
+    skipSanityTest: true,
   },
 
   Carousel: {
-    drivers: ["enzyme"]
+    drivers: ['enzyme'],
   },
 
   Notification: {},
 
   NumberInput: {
     unidriver: true,
-    testkitPath: "../src/NumberInput/NumberInput.uni.driver"
+    testkitPath: '../src/NumberInput/NumberInput.uni.driver',
   },
 
   FloatingNotification: {
     unidriver: true,
-    drivers: ["enzyme"],
-    testkitPath: "../src/FloatingNotification/FloatingNotification.uni.driver"
+    drivers: ['enzyme'],
+    testkitPath: '../src/FloatingNotification/FloatingNotification.uni.driver',
   },
 
   DatePicker: {
-    skipSanityTest: true // testkit does not have root `exists` method
+    skipSanityTest: true, // testkit does not have root `exists` method
   },
 
   Proportion: {
     unidriver: true,
-    drivers: ["enzyme"],
-    testkitPath: "../src/Proportion/Proportion.uni.driver"
+    drivers: ['enzyme'],
+    testkitPath: '../src/Proportion/Proportion.uni.driver',
   },
 
   GeneratedTestComponent: {
     testkitPath:
-      "../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver",
+      '../src/GeneratedTestComponent/GeneratedTestComponent.uni.driver',
     unidriver: true,
-    drivers: ["enzyme"]
+    drivers: ['enzyme'],
   },
 
   DropdownBase: {
     unidriver: true,
-    testkitPath: "../src/DropdownBase/DropdownBase.uni.driver"
+    testkitPath: '../src/DropdownBase/DropdownBase.uni.driver',
   },
 
   RadioButton: {
-    testkitPath: "../src/RadioGroup/RadioButton/RadioButton.driver",
-    skipSanityTest: true
+    testkitPath: '../src/RadioGroup/RadioButton/RadioButton.driver',
+    skipSanityTest: true,
   },
 
   MessageBoxMarketerialLayout: {
     testkitPath:
-      "../src/MessageBox/MarketerialLayout/MessageBoxMarketerialLayout.driver",
-    skipSanityTest: true
+      '../src/MessageBox/MarketerialLayout/MessageBoxMarketerialLayout.driver',
+    skipSanityTest: true,
   },
 
   MessageBoxFunctionalLayout: {
     testkitPath:
-      "../src/MessageBox/FunctionalLayout/MessageBoxFunctionalLayout.driver",
-    skipSanityTest: true
+      '../src/MessageBox/FunctionalLayout/MessageBoxFunctionalLayout.driver',
+    skipSanityTest: true,
   },
 
-  Box: { unidriver: true, testkitPath: "../src/Box/Box.uni.driver" },
+  Box: { unidriver: true, testkitPath: '../src/Box/Box.uni.driver' },
 
   Thumbnail: {
     unidriver: true,
-    testkitPath: "../src/Thumbnail/Thumbnail.uni.driver"
+    testkitPath: '../src/Thumbnail/Thumbnail.uni.driver',
   },
 
   SegmentedToggle: {
     unidriver: true,
-    testkitPath: "../src/SegmentedToggle/SegmentedToggle.uni.driver"
+    testkitPath: '../src/SegmentedToggle/SegmentedToggle.uni.driver',
   },
 
   RichTextInputArea: {
     unidriver: true,
-    testkitPath: "../src/RichTextInputArea/RichTextInputArea.uni.driver"
+    testkitPath: '../src/RichTextInputArea/RichTextInputArea.uni.driver',
   },
 
   NoBorderInput: {},
 
   DateInput: {
     unidriver: true,
-    testkitPath: "../src/DateInput/DateInput.uni.driver"
+    testkitPath: '../src/DateInput/DateInput.uni.driver',
   },
 
   ColorInput: {
     unidriver: true,
-    testkitPath: "../src/ColorInput/ColorInput.uni.driver"
+    testkitPath: '../src/ColorInput/ColorInput.uni.driver',
   },
 
   EditableTitle: {
-    testkitPath: "../src/EditableTitle/EditableTitle.uni.driver",
-    unidriver: true
+    testkitPath: '../src/EditableTitle/EditableTitle.uni.driver',
+    unidriver: true,
   },
 
   GooglePreview: {
     unidriver: true,
-    testkitPath: "../src/GooglePreview/GooglePreview.uni.driver"
+    testkitPath: '../src/GooglePreview/GooglePreview.uni.driver',
   },
 
   Accordion: {
     unidriver: true,
-    testkitPath: "../src/Accordion/Accordion.uni.driver"
+    testkitPath: '../src/Accordion/Accordion.uni.driver',
   },
 
   SocialPreview: {
     unidriver: true,
-    testkitPath: "../src/SocialPreview/SocialPreview.uni.driver"
+    testkitPath: '../src/SocialPreview/SocialPreview.uni.driver',
   },
 
   ErrorIndicator: {
     unidriver: true,
-    testkitPath: "../src/ErrorIndicator/ErrorIndicator.uni.driver"
+    testkitPath: '../src/ErrorIndicator/ErrorIndicator.uni.driver',
   },
 
   CardSubheader: {
     unidriver: true,
     skipSanityTest: true,
-    testkitPath: "../src/Card/Subheader/Subheader.uni.driver"
+    testkitPath: '../src/Card/Subheader/Subheader.uni.driver',
   },
 
   ListItemAction: {
     unidriver: true,
-    testkitPath: "../src/ListItemAction/ListItemAction.uni.driver"
+    testkitPath: '../src/ListItemAction/ListItemAction.uni.driver',
   },
 
   Swatches: {
     unidriver: true,
-    testkitPath: "../src/Swatches/Swatches.uni.driver"
+    testkitPath: '../src/Swatches/Swatches.uni.driver',
   },
 
   SortableList: {
-    testkitPath: "../src/SortableList/SortableList.driver"
+    testkitPath: '../src/SortableList/SortableList.driver',
   },
 
   Selector: {
     unidriver: true,
-    testkitPath: "../src/Selector/Selector.uni.driver"
+    testkitPath: '../src/Selector/Selector.uni.driver',
   },
 
   NestableList: {
-    testkitPath: "../src/NestableList/NestableList.driver"
-  }
+    testkitPath: '../src/NestableList/NestableList.driver',
+  },
 };
