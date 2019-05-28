@@ -14,6 +14,11 @@ const labelPlacements = {
   left: 'left',
 };
 
+const sizeToPixels = {
+  small: 18,
+  medium: 24,
+};
+
 const asterisk = (
   <div
     data-hook="formfield-asterisk"
@@ -116,10 +121,13 @@ class FormField extends React.Component {
   _hasCharCounter = () => typeof this.state.lengthLeft === 'number';
 
   _renderInfoIcon = () => {
-    const { infoContent, infoTooltipProps } = this.props;
+    const { infoContent, infoTooltipProps, labelSize } = this.props;
+    const size = sizeToPixels[labelSize];
+
     return (
       infoContent && (
         <InfoIcon
+          size={size}
           dataHook="formfield-infotooltip"
           className={styles.infoIcon}
           tooltipProps={{
@@ -132,24 +140,22 @@ class FormField extends React.Component {
   };
 
   _renderInlineSuffixes = () => {
-    const { label, required, id, children } = this.props;
+    const { label, labelSize, required, id, children } = this.props;
 
     return (
-      <div
-        data-hook="formfield-inline-suffixes"
-        className={classnames(styles.suffixesInline, {
-          [styles.minLabelHeight]: !children,
-          [styles.inlineWithCharCounter]: this._hasCharCounter(),
-        })}
-      >
-        <Label
-          appearance="T1"
-          children={label}
-          for={id}
-          data-hook="formfield-label"
-        />
-        {required && asterisk}
-        {this._renderInfoIcon()}
+      <div className={styles.labelWrapper}>
+        <div
+          data-hook="formfield-inline-suffixes"
+          className={classnames(styles.suffixesInline, {
+            [styles.minLabelHeight]: !children,
+            [styles.hasLabel]: !!label,
+            [styles.inlineWithCharCounter]: this._hasCharCounter(),
+          })}
+        >
+          {this._renderLabel()}
+          {required && asterisk}
+          {this._renderInfoIcon()}
+        </div>
       </div>
     );
   };
@@ -158,6 +164,22 @@ class FormField extends React.Component {
     label &&
     (labelPlacement === labelPlacements.left ||
       labelPlacement === labelPlacements.right);
+
+  _renderLabel = props => {
+    const { label, labelSize, id } = this.props;
+
+    return (
+      <Text
+        size={labelSize}
+        htmlFor={id}
+        tagName={'label'}
+        data-hook="formfield-label"
+        {...props}
+      >
+        {label}
+      </Text>
+    );
+  };
 
   render() {
     const {
@@ -173,48 +195,42 @@ class FormField extends React.Component {
     } = this.props;
     const { lengthLeft } = this.state;
 
+    const rootClassNames = classnames(styles.root, {
+      [styles.hasLabel]: !!label,
+      [styles.labelFromTop]: labelPlacement === labelPlacements.top,
+      [styles.labelFromLeft]: labelPlacement === labelPlacements.left,
+      [styles.labelFromRight]: labelPlacement === labelPlacements.right,
+      [styles.stretchContent]: stretchContent,
+      [styles.small]: labelSize === 'small',
+      [styles.medium]: labelSize === 'medium',
+    });
+
     return (
-      <div
-        data-hook={dataHook}
-        className={classnames(styles.root, {
-          [styles.labelFromTop]:
-            label && labelPlacement === labelPlacements.top,
-          [styles.labelFromLeft]:
-            label && labelPlacement === labelPlacements.left,
-          [styles.labelFromRight]:
-            label && labelPlacement === labelPlacements.right,
-          [styles.stretchContent]: stretchContent,
-        })}
-      >
+      <div data-hook={dataHook} className={rootClassNames}>
         {label && labelPlacement === labelPlacements.top && (
           <div
             className={classnames(styles.label, {
               [styles.minLabelHeight]: !children,
             })}
           >
-            <Text
-              size={labelSize}
-              htmlFor={id}
-              tagName={'label'}
-              ellipsis
-              data-hook="formfield-label"
-            >
-              {label}
-            </Text>
-
+            {this._renderLabel({
+              ellipsis: true,
+            })}
             {required && asterisk}
             {this._renderInfoIcon()}
-            {this._hasCharCounter() && charactersLeft(lengthLeft)}
+            {labelPlacement === labelPlacements.top &&
+              this._hasCharCounter() &&
+              charactersLeft(lengthLeft)}
           </div>
         )}
 
         {children && (
           <div
             data-hook="formfield-children"
-            className={classnames(styles.children, {
-              [styles.childrenWithInlineSuffixes]:
-                !label || this._hasInlineLabel(label, labelPlacement),
-            })}
+            className={classnames(
+              styles.children,
+              styles.childrenWithInlineSuffixes,
+            )}
           >
             {(!label || labelPlacement !== labelPlacements.top) &&
               this._hasCharCounter() &&

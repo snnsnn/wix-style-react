@@ -1,12 +1,20 @@
 @import '../common.scss';
 
-$suffixHorizontalPadding: 12px;
-$inlineLabelMinHeight: 36px;
+$suffixHorizontalPadding: 6px;
 $childrenMargin: 6px;
+
+$labelMargin: 6px;
+
+$smallSize: 18px;
+$mediumSize: 24px;
 
 .root {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+
+  &.hasLabel {
+    width: 100%;
+  }
 
   &.stretchContent {
     display: flex;
@@ -15,11 +23,25 @@ $childrenMargin: 6px;
       flex-grow: 1;
     }
   }
+
+  flex-direction: row;
+
+  &.labelFromTop.hasLabel {
+    flex-direction: column;
+  }
+
+  &.labelFromTop:not(.hasLabel) {
+    flex-direction: row;
+  }
+
+  &.labelFromLeft,
+  &.labelFromRight {
+    display: inline-flex;
+  }
 }
 
 .children {
-  flex: 0 0 100%;
-  max-width: 100%;
+  align-self: center;
 
   &.childrenWithInlineSuffixes {
     flex: 0 0 auto;
@@ -36,21 +58,56 @@ $childrenMargin: 6px;
   }
 }
 
-.minLabelHeight {
-  min-height: $inlineLabelMinHeight;
-  line-height: $inlineLabelMinHeight;
+.small .minLabelHeight {
+  line-height: $smallSize;
+  min-height: $smallSize;
 }
 
-.labelFromTop {
-  .label {
-    display: flex;
-    align-items: center;
-    flex: 1 0 auto;
+.medium .minLabelHeight {
+  line-height: $mediumSize;
+  min-height: $mediumSize;
+}
+
+.minLabelHeight {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.labelWrapper {
+  display: flex;
+  align-self: center;
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
+
+  & * {
+    align-self: flex-end;
+  }
+}
+
+.labelFromLeft .label,
+.labelFromRight .label {
+  align-self: center;
+}
+
+.labelFromLeft, .labelFromRight {
+  & .label {
     max-width: 100%;
   }
 
+  &.hasLabel .label {
+    max-width: 50%;
+  }
+}
+
+.labelFromTop.hasLabel {
   .children {
     padding-top: $childrenMargin;
+    width: 100%;
   }
 }
 
@@ -68,6 +125,16 @@ $childrenMargin: 6px;
   .childrenWithInlineSuffixes {
     padding-left: $suffixHorizontalPadding;
   }
+}
+
+.root.small .label * {
+  line-height: $smallSize;
+  max-height: $smallSize;
+}
+
+.root.medium .label * {
+  line-height: $mediumSize;
+  max-height: $mediumSize;
 }
 
 @include withRTL {
@@ -92,16 +159,20 @@ $childrenMargin: 6px;
   font-family: $FontLight;
   font-size: 22px;
   margin-left: 6px;
-  margin-top: -4px;
 }
 
 .infoIcon {
+  align-self: center;
   margin-left: 3px;
+  display: inline;
 }
 
 .suffixesInline {
   display: flex;
   align-items: center;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: flex-start;
 
   &.inlineWithCharCounter {
     $charCounterHeight: 18px;

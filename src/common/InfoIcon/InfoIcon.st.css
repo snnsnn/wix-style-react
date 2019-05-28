@@ -7,3 +7,8 @@
   color: value(B10);
   height: 24px;
 }
+
+.tooltip {
+  align-self: center;
+  display: flex;
+}

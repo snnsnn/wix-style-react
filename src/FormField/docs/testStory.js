@@ -77,6 +77,7 @@ storiesOf(kind, module).add(testStories.multipleFormFields, () => (
             <Col span={3}>
               <FormField
                 label="Address"
+                labelSize="small"
                 infoContent="I help you to fill info"
               />
             </Col>
