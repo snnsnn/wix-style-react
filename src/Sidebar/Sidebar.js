@@ -6,7 +6,7 @@ import defaultCss from './main.scss';
 import { SidebarContext } from './SidebarAPI';
 
 /** left sidebar  */
-export class Sidebar extends PureComponent {
+class Sidebar extends PureComponent {
   itemKey2Children = {};
   itemKey2ParenttKey = {};
 

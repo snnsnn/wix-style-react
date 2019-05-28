@@ -34,6 +34,20 @@ export const error = `
 </Layout>
 `;
 
+export const warning = `
+<Layout>
+  <Cell>
+    <Input status="warning"/>
+  </Cell>
+  <Cell>
+    <Input status="warning" forceHover />
+  </Cell>
+  <Cell>
+    <Input status="warning" forceFocus />
+  </Cell>
+</Layout>
+`;
+
 export const loader = `
 <Layout>
   <Cell>
@@ -76,7 +90,7 @@ export const iconAffix = `
     size="small"
       prefix={
         <Input.IconAffix>
-          <DateSmall />
+          <Icons.DateSmall />
         </Input.IconAffix>
       }
     />
@@ -86,7 +100,7 @@ export const iconAffix = `
       size="small"
       suffix={
         <Input.IconAffix>
-          <SearchSmall />
+          <Icons.SearchSmall />
         </Input.IconAffix>
       }
     />
@@ -95,12 +109,12 @@ export const iconAffix = `
     <Input
       prefix={
         <Input.IconAffix>
-          <Date />
+          <Icons.Date />
         </Input.IconAffix>
       }
       suffix={
         <Input.IconAffix>
-          <Search />
+          <Icons.Search />
         </Input.IconAffix>
       }
     />
@@ -110,12 +124,12 @@ export const iconAffix = `
       size="large"
       prefix={
         <Input.IconAffix>
-          <ChevronRightLarge/>
+          <Icons.ChevronRightLarge/>
         </Input.IconAffix>
       }
       suffix={
         <Input.IconAffix>
-          <ChevronRightLarge/>
+          <Icons.ChevronRightLarge/>
         </Input.IconAffix>
       }
       status="error"

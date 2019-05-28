@@ -7,7 +7,6 @@ import {
   columns,
   playground,
   api,
-  testkit,
   importExample,
   divider,
   code,
@@ -189,6 +188,13 @@ export default {
               title: 'Append to: scrollparent',
               subtitle: `If you inspect the content, you'll see it is attached to a new div under the list container.`,
               source: examples.scrollParent,
+            }),
+          ]),
+          columns([
+            liveCode({
+              title: `Append to: (elm) => elm.getAttribute('attribute') === value`,
+              subtitle: `Attach to custom parent element. Pass function that will accept element and return boolean whether given DOM element satisfies the provided testing function.`,
+              source: examples.predicate,
             }),
           ]),
         ],

@@ -10,6 +10,7 @@ import InputLoaderSuffix from './InputLoaderSuffix';
 import Input from './Input';
 
 import styles from './Input.scss';
+import InputWarningSuffix from './InputWarningSuffix';
 
 const isFixVisible = fix => fix.isVisible;
 
@@ -18,6 +19,8 @@ const suffixRules = {
     status === Input.StatusLoading && !disabled,
   inputErrorSuffix: ({ status, disabled }) =>
     status === Input.StatusError && !disabled,
+  inputWarningSuffix: ({ status, disabled }) =>
+    status === Input.StatusWarning && !disabled,
   inputHelpSuffix: ({ help, disabled }) => help && !disabled,
   magnifyingGlass: ({ magnifyingGlass, isClearButtonVisible, error }) =>
     magnifyingGlass && !isClearButtonVisible && !error,
@@ -55,6 +58,19 @@ const InputSuffix = ({
   const error = status === Input.StatusError;
 
   const suffixes = [
+    {
+      component: () => (
+        <InputWarningSuffix
+          theme={theme}
+          focused={focused}
+          narrow={menuArrow}
+          warningMessage={statusMessage}
+          tooltipPlacement={tooltipPlacement}
+          onTooltipShow={onTooltipShow}
+        />
+      ),
+      isVisible: suffixRules.inputWarningSuffix({ status, disabled }),
+    },
     {
       component: () => (
         <ThemedInputErrorSuffix
@@ -177,7 +193,7 @@ InputSuffix.propTypes = {
     'flatdark',
   ]),
   statusMessage: PropTypes.node,
-  status: PropTypes.oneOf(['loading', 'error']),
+  status: PropTypes.oneOf(['loading', 'error', 'warning']),
   disabled: PropTypes.bool,
   help: PropTypes.bool,
   helpMessage: PropTypes.node,

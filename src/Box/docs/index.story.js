@@ -7,17 +7,14 @@ import {
   title,
   description,
   importExample,
-  code,
+  code as baseCode,
 } from 'wix-storybook-utils/Sections';
-import { Image, Hint, More } from 'wix-style-react/new-icons';
 
 import { storySettings } from './storySettings';
 import Box from '..';
-import Text from '../../Text';
-import IconButton from '../../IconButton';
-import Button from '../../Button';
 import propExplanations from './propExplanations';
 import ExampleEventItem from '!raw-loader!./examples/ExampleEventItem';
+import allComponents from '../../../stories/utils/allComponents';
 
 const childrenExamples = [
   {
@@ -70,12 +67,8 @@ const childrenExamples = [
   },
 ];
 
-const propExplanationLiveExample = source =>
-  code({
-    compact: true,
-    source,
-    components: { Box, Button },
-  });
+const code = config =>
+  baseCode({ components: allComponents, compact: true, ...config });
 
 export default {
   category: storySettings.category,
@@ -108,37 +101,33 @@ export default {
           `📦  Box is a wrapper component that provides a way to align, space, resize and style - easily and straightforwardly.`,
         ),
 
-        importExample({
-          source: "import Box from 'wix-style-react/Box';",
-        }),
+        importExample("import Box from 'wix-style-react/Box';"),
 
         // Children
         description(propExplanations.children.description),
-        propExplanationLiveExample(propExplanations.children.example),
+        code({ source: propExplanations.children.example }),
 
         // Alignment
         description(propExplanations.alignment.description),
-        propExplanationLiveExample(propExplanations.alignment.example),
+        code({ source: propExplanations.alignment.example }),
 
         // Spacing
         description(propExplanations.spacing.description),
-        propExplanationLiveExample(propExplanations.spacing.example),
+        code({ source: propExplanations.spacing.example }),
 
         // Sizing
         description(propExplanations.sizing.description),
-        propExplanationLiveExample(propExplanations.sizing.example),
+        code({ source: propExplanations.sizing.example }),
 
         // Styling
         description(propExplanations.styling.description),
-        propExplanationLiveExample(propExplanations.styling.example),
+        code({ source: propExplanations.styling.example }),
 
         title('Examples'),
 
         code({
           title: 'Event Item (multiple boxes)',
-          compact: true,
           source: ExampleEventItem,
-          components: { Box, Image, Text, Hint, IconButton, More, Button },
         }),
       ],
     }),

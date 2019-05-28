@@ -144,6 +144,7 @@ $material-gap: 8px;
     @include ThemeHover($backgroundColor: $B50);
     @include ThemeFocus($borderColor: $B10, $boxShadow: 0 0 0 3px $F00);
     @include ThemeError($borderColor: $paletteR1);
+    @include ThemeWarning($borderColor: $paletteR5);
     @include ThemeDisable(
       $color: $D55,
       $borderColor: $D60,
@@ -163,6 +164,7 @@ $material-gap: 8px;
       $boxShadow: inset 0 0 5px 0 rgba(56, 153, 236, 0.6)
     );
     @include ThemeError($borderColor: $paletteR1);
+    @include ThemeWarning($borderColor: $paletteR5);
     @include ThemeDisable(
       $color: white,
       $borderColor: $GR40,
@@ -180,6 +182,10 @@ $material-gap: 8px;
     @include ThemeError(
       $borderColor: $paletteR1,
       $boxShadow: inset 0px 0px 5px 0px fade($R10, 60%)
+    );
+    @include ThemeWarning(
+      $borderColor: $paletteR5,
+      $boxShadow: inset 0px 0px 5px 0px fade($R70, 60%)
     );
     @include ThemeDisable(
       $color: $D55,
@@ -298,6 +304,16 @@ $material-gap: 8px;
         height: 2px;
       }
     }
+    &.hasWarning {
+      .bar,
+      .input:hover ~ .barBlue,
+      .input.hasHover ~ .barBlue {
+        background-color: #fdb10c;
+        height: 2px;
+      }
+    }
+
+
   }
   &-material {
     border-radius: 0;
@@ -352,6 +368,16 @@ $material-gap: 8px;
         &:before,
         &:after {
           background: $R05;
+        }
+      }
+    }
+
+    &.hasWarning {
+      .bar {
+        background: $R70;
+        &:before,
+        &:after {
+          background: $R70;
         }
       }
     }
@@ -479,6 +505,25 @@ $material-gap: 8px;
 
   > svg {
     color: $paletteR1;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.warningExclamation {
+  margin: 0 $gap;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+
+  &.narrow {
+    margin: 0;
+  }
+
+  > svg {
+    color: $paletteR5;
     width: 18px;
     height: 18px;
   }

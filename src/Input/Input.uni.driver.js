@@ -69,10 +69,12 @@ export const testkit = base => {
       (await reactBaseInput.getStyle())['text-overflow'],
     hasExclamation: async () => await base.$(`.${styles.exclamation}`).exists(),
     hasError: async () => await base.hasClass(styles.hasError),
+    hasWarning: async () => await base.hasClass(styles.hasWarning),
     hasLoader: async () => {
       // There actually should be only 1  element with `.loaderContainer`, this is a component bug that there are actually 2.
       return (await base.$$(`.${styles.loaderContainer}`).count()) > 0;
     },
+
     focus: async () => await reactBaseInput.focus(),
     blur: async () => await reactBaseInput.blur(),
     keyUp: async () => await reactBaseInput.keyup(),

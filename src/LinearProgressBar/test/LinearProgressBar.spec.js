@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import linearProgressBarDriverFactory from '../LinearProgressBar.driver';
 import LinearProgressBar from '../LinearProgressBar';
 import {
@@ -31,7 +31,7 @@ describe('LinearProgressBar', () => {
     afterEach(() => cleanup());
 
     it('should render', async () => {
-      const { driver } = render(createLinearProgressBar());
+      const { driver } = render(createLinearProgressBar({ ...defaultProps }));
       expect(await driver.exists()).toBe(true);
     });
 

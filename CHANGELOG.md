@@ -18,7 +18,39 @@ Types of changes:
 
 ### Added
 
+- UX Foundation (stylable) - stylesheets for colors, gradients, shadows etc. [#3461](https://github.com/wix/wix-style-react/pull/3461)
+- `<Swatches/>` - new component. [#3464](https://github.com/wix/wix-style-react/pull/3464)
+
+### Docs
+
+- `<Slider/>` - split UX & APi stories, update examples description [#3100](https://github.com/wix/wix-style-react/pull/3100)
+- `<Button/>` - fix testkit tab [#3470](https://github.com/wix/wix-style-react/pull/3470)
+
+### Changed
+- listItemActionBuilder - add dataHook [#3432](https://github.com/wix/wix-style-react/pull/3432)
+- `<SegmentedToggle/>` - split UX & API & Migrate Tooltip [#3469](https://github.com/wix/wix-style-react/pull/3469)
+- `<Tooltip/>` - add functionality appendTo: by predicate & documentation [#3472](https://github.com/wix/wix-style-react/pull/3472)
+
+## 6.22.0 - 2019-05-23
+
+### Added
+
+- `<CardGalleryItem/>` - add `settingsMenu` prop [#3437](https://github.com/wix/wix-style-react/pull/3437)
 - `<Carousel/>` - add `buttonSkin` prop [#3444](https://github.com/wix/wix-style-react/pull/3444)
+- `<CirucularProgressBar/>` - add puppeteer driver [#3439](https://github.com/wix/wix-style-react/pull/3439)
+- `<Input/>` - add `warning` status [#3449](https://github.com/wix/wix-style-react/pull/3449)
+- `<Propotion/>`- add getAspectRatio function to testkit [#3451](https://github.com/wix/wix-style-react/pull/3451)
+
+### Fixed
+
+- `<MultiSelect/>` - fix padding between `<Tag/>` components [#3434](https://github.com/wix/wix-style-react/pull/3434)
+- `<Carousel/>` - fix missing `matchMedia` polyfill [#3447](https://github.com/wix/wix-style-react/pull/3447)
+- `<Search/>` - fix non working input in React 16 [#3454](https://github.com/wix/wix-style-react/pull/3454)
+- `<Popover/>` - fix arrow placement [#3462](https://github.com/wix/wix-style-react/pull/3462)
+
+### Changed
+
+- `<NestableList/>` - add `theme`, `onDragStart` & `onDragEnd` props [#3446](https://github.com/wix/wix-style-react/pull/3446)
 
 ## 6.21.0 - 2019-05-20
 

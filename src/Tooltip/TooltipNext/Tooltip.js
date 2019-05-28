@@ -27,8 +27,16 @@ class Tooltip extends React.PureComponent {
     exitDelay: PropTypes.number,
     /** moves tooltip content relative to the parent by x or y */
     moveBy: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
-    /** tooltips content relation to a dom element */
-    appendTo: PropTypes.oneOf(['window', 'scrollParent', 'viewport', 'parent']),
+    /** tooltips content calculation relation to a dom element. Can be either:
+     *  `'window', 'scrollParent', 'viewport', 'parent'`, `element` or
+     * `function` based predicate i.e. (elm) =>
+     *  elm.getAttribute('data-hook') === 'value'
+     */
+    appendTo: PropTypes.oneOfType([
+      PropTypes.oneOf(['window', 'scrollParent', 'viewport', 'parent']),
+      PropTypes.element,
+      PropTypes.func,
+    ]),
     /** whether to enable the flip behaviour. This behaviour is used to flip the Tooltips placement when it starts to overlap the target element. */
     flip: PropTypes.bool,
     /** whether to enable the fixed behaviour. This behaviour is used to keep the Tooltip at it's original placement even when it's being positioned outside the boundary. */

@@ -2,7 +2,7 @@
 <div style={{display: 'flex', flexWrap: 'wrap'}}>
   <div style={{marginRight: '12px', marginBottom: '12px'}}><FloatingNotification
     text="this is some text"
-    prefixIcon={<StatusComplete />}
+    prefixIcon={<Icons.StatusComplete />}
   /></div>
   <div style={{marginRight: '12px', marginBottom: '12px'}}><FloatingNotification
     text="this is some text"
@@ -28,7 +28,7 @@
     showTextButton
     textButtonProps={{ label: 'Trash' }}
     showCloseButton={false}
-    prefixIcon={<StatusComplete />}
+    prefixIcon={<Icons.StatusComplete />}
   /></div>
   <div style={{marginRight: '12px', marginBottom: '12px'}}><FloatingNotification
     text="this is some text"
@@ -36,6 +36,6 @@
     buttonProps={{ label: 'Undo' }}
     showTextButton
     textButtonProps={{ label: 'Trash' }}
-    prefixIcon={<StatusComplete />}
+    prefixIcon={<Icons.StatusComplete />}
   /></div>
 </div>

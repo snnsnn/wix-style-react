@@ -1,84 +1,103 @@
 import React from 'react';
-import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
-import { circularProgressBarDriverFactory } from '../CircularProgressBar.driver';
+import circularProgressBarDriverFactory from '../CircularProgressBar.driver';
 import CircularProgressBar from '../CircularProgressBar';
+import {
+  createRendererWithDriver,
+  createRendererWithUniDriver,
+  cleanup,
+} from '../../../test/utils/react';
+
 import { Size } from '../constants';
+import { circularProgressBarDriverFactory as circularProgressBarUniDriverFactory } from '../CircularProgressBar.uni.driver';
+
+const createCircularProgressBar = (props = {}) => {
+  const dataHook = 'circular-progress-bar';
+  return <CircularProgressBar {...props} dataHook={dataHook} />;
+};
 
 describe('CircularProgressBar', () => {
-  const createDriver = createDriverFactory(circularProgressBarDriverFactory);
   const defaultProps = {
     value: 40,
   };
 
-  describe('on error', () => {
-    const errorProps = {
-      error: true,
-      errorMessage: 'No soup for you',
-      showProgressIndication: true,
-    };
-
-    it('should display tooltip text', async () => {
-      const driver = createDriver(
-        <CircularProgressBar {...defaultProps} {...errorProps} />,
-      );
-      expect(driver.isTooltipShown()).toBe(false);
-      await driver.getTooltip().mouseEnter();
-      expect(driver.isTooltipShown()).toBe(true);
-    });
-
-    it('should display error message', async () => {
-      const driver = createDriver(
-        <CircularProgressBar {...defaultProps} {...errorProps} />,
-      );
-      const toolTipErrorMsg = await driver.getTooltipErrorMessage();
-      expect(toolTipErrorMsg).toEqual(errorProps.errorMessage);
-    });
-
-    it('should display error icon', () => {
-      const driver = createDriver(
-        <CircularProgressBar {...defaultProps} {...errorProps} />,
-      );
-      expect(driver.isErrorIconShown()).toBe(true);
-    });
+  describe('[sync]', () => {
+    runTests(createRendererWithDriver(circularProgressBarDriverFactory));
   });
 
-  describe('on completion', () => {
-    const successProps = {
-      value: 100,
-      showProgressIndication: true,
-    };
-
-    it('should display success icon', () => {
-      const driver = createDriver(<CircularProgressBar {...successProps} />);
-      expect(driver.isSuccessIconShown()).toBe(true);
-    });
+  describe('[async]', () => {
+    runTests(createRendererWithUniDriver(circularProgressBarUniDriverFactory));
   });
 
-  describe('size prop', () => {
-    Object.keys(Size).forEach(size => {
-      it(`should be ${size}`, () => {
-        const driver = createDriver(
-          <CircularProgressBar {...defaultProps} size={size} />,
+  function runTests(render) {
+    afterEach(() => cleanup());
+
+    it('should render', async () => {
+      const { driver } = render(createCircularProgressBar({ ...defaultProps }));
+      expect(await driver.exists()).toBe(true);
+    });
+
+    describe('on error', () => {
+      const errorProps = {
+        error: true,
+        errorMessage: 'No soup for you',
+        showProgressIndication: true,
+      };
+
+      it('should display tooltip text', async () => {
+        const { driver } = render(
+          createCircularProgressBar({ ...defaultProps, ...errorProps }),
         );
-        expect(driver.getSize()).toBe(size);
+        expect(await driver.isTooltipShown()).toBe(false);
+        await driver.getTooltip().mouseEnter();
+        expect(await driver.isTooltipShown()).toBe(true);
+      });
+
+      it('should display error message', async () => {
+        const { driver } = render(
+          createCircularProgressBar({ ...defaultProps, ...errorProps }),
+        );
+        const toolTipErrorMsg = await driver.getTooltipErrorMessage();
+        expect(toolTipErrorMsg).toEqual(errorProps.errorMessage);
+      });
+
+      it('should display error icon', async () => {
+        const { driver } = render(
+          createCircularProgressBar({ ...defaultProps, ...errorProps }),
+        );
+        expect(await driver.isErrorIconShown()).toBe(true);
       });
     });
 
-    it(`should be default ${Size.medium}`, () => {
-      const driver = createDriver(<CircularProgressBar {...defaultProps} />);
-      expect(driver.getSize()).toBe(Size.medium);
+    describe('on completion', () => {
+      const successProps = {
+        value: 100,
+        showProgressIndication: true,
+      };
+
+      it('should display success icon', async () => {
+        const { driver } = render(
+          createCircularProgressBar({ ...successProps }),
+        );
+        expect(await driver.isSuccessIconShown()).toBe(true);
+      });
     });
-  });
 
-  it(`should not throw an error when component isn't rendered`, () => {
-    const driverFactoryWrapper = { createDriver };
-    const isComponentRendered = false;
+    describe('size prop', () => {
+      Object.keys(Size).forEach(size => {
+        it(`should be ${size}`, async () => {
+          const { driver } = render(
+            createCircularProgressBar({ ...defaultProps, size: size }),
+          );
+          expect(await driver.getSize()).toBe(size);
+        });
+      });
 
-    jest.spyOn(driverFactoryWrapper, 'createDriver');
-    driverFactoryWrapper.createDriver(
-      <div>{isComponentRendered && <CircularProgressBar />}</div>,
-    );
-
-    expect(driverFactoryWrapper.createDriver).not.toThrow();
-  });
+      it(`should be default ${Size.medium}`, async () => {
+        const { driver } = render(
+          createCircularProgressBar({ ...defaultProps }),
+        );
+        expect(await driver.getSize()).toBe(Size.medium);
+      });
+    });
+  }
 });

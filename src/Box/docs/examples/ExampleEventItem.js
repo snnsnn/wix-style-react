@@ -3,7 +3,7 @@
 <Box minHeight={200} dataHook="storybook-multiple-boxes-within-box">
   <Box align="center" verticalAlign="middle" width={230} backgroundColor="B40">
     <Box padding={2} color="B25" backgroundColor="B50" borderRadius="50%">
-      <Image />
+      <Icons.Image />
     </Box>
   </Box>
   <Box
@@ -21,12 +21,12 @@
     </Box>
     <Box align="space-between">
       <Box verticalAlign="middle" color="D10">
-        <Hint />
+        <Icons.Hint />
         <Box marginLeft={1}>Event location is TBD</Box>
       </Box>
       <Box align="space-between" verticalAlign="middle" minWidth={115}>
         <IconButton priority="secondary" size="small">
-          <More />
+          <Icons.More />
         </IconButton>
         <Button upgrade priority="secondary" size="small">
           Edit

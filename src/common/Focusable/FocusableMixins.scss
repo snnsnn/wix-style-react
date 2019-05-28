@@ -3,6 +3,7 @@
 $focusBoxShadowWidth: 3px;
 $focusBoxShadow: 0 0 0 $focusBoxShadowWidth $F00;
 $focusBoxErrorShadow: 0 0 0 $focusBoxShadowWidth $R30;
+$focusBoxWarningShadow: 0 0 0 $focusBoxShadowWidth $Y30;
 
 @mixin FocusBox($borderColor: $B10, $boxShadow: $focusBoxShadow) {
 	outline: none;
@@ -14,4 +15,10 @@ $focusBoxErrorShadow: 0 0 0 $focusBoxShadowWidth $R30;
 	outline: none;
 	border-color: $borderColor;
 	box-shadow: $boxShadow;
+}
+
+@mixin FocusBoxWarning($borderColor: $R70, $boxShadow: $focusBoxWarningShadow) {
+  outline: none;
+  border-color: $borderColor;
+  box-shadow: $boxShadow;
 }

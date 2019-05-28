@@ -125,6 +125,7 @@ export const sliderTestkitFactory = enzymeTestkitFactoryCreator(load(require('..
 export const socialPreviewTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/SocialPreview/SocialPreview.uni.driver')));
 export const sortableListTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/SortableList/SortableList.driver')));
 export const statsWidgetTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/StatsWidget/StatsWidget.driver')));
+export const swatchesTestkitFactory = enzymeUniTestkitFactoryCreator(load(require('../src/Swatches/Swatches.uni.driver')));
 export const tableTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Table/Table.driver')));
 export const tableActionCellTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/TableActionCell/TableActionCell.driver')));
 export const tabsTestkitFactory = enzymeTestkitFactoryCreator(load(require('../src/Tabs/Tabs.driver')));

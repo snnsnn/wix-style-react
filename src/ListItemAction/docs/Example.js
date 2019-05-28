@@ -21,7 +21,7 @@
       listItemActionBuilder({
         id: 2,
         title: 'Some very very long long long Name',
-        prefixIcon: <Edit />,
+        prefixIcon: <Icons.Edit />,
       }),
       listItemActionBuilder({
         id: 3,

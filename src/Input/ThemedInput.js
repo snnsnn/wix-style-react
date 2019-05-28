@@ -28,6 +28,7 @@ class ThemedInput extends Input {
     } = this.props;
 
     let hasError = status === Input.StatusError;
+    const hasWarning = status === Input.StatusWarning;
 
     // Check for deprecated fields and use them if provided
     if (error) {
@@ -38,6 +39,7 @@ class ThemedInput extends Input {
       [styles.rtl]: !!rtl,
       [styles.disabled]: disabled,
       [styles.hasError]: hasError,
+      [styles.hasWarning]: hasWarning,
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus,
       [styles.roundInput]: roundInput,

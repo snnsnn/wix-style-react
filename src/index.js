@@ -122,9 +122,10 @@ export { default as EditableTitle } from './EditableTitle';
 export { default as Accordion } from './Accordion';
 export { default as SocialPreview } from './SocialPreview';
 export { default as GooglePreview } from './GooglePreview';
-export { Sidebar } from './Sidebar';
 export {
   default as ListItemAction,
   listItemActionBuilder,
 } from './ListItemAction';
+export { default as Sidebar } from './Sidebar';
 export { default as Subheader } from './Card/Subheader';
+export { default as Swatches } from './Swatches';

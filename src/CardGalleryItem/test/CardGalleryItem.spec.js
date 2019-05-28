@@ -60,6 +60,20 @@ describe('CardGalleryItem', () => {
     expect((await driver.getBadge()).textContent).toEqual('sale');
   });
 
+  it('should not render menu by default', async () => {
+    const driver = createDriver(<CardGalleryItem />);
+
+    expect(await driver.getSettingsMenu()).toBeNull();
+  });
+
+  it('should render menu', async () => {
+    const driver = createDriver(
+      <CardGalleryItem settingsMenu={<div>menu mock</div>} />,
+    );
+
+    expect((await driver.getSettingsMenu()).textContent).toEqual('menu mock');
+  });
+
   it('should set background image', async () => {
     const driver = createDriver(
       <CardGalleryItem backgroundImageUrl="http://test.com/img.png" />,

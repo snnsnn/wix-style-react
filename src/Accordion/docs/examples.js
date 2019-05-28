@@ -23,7 +23,7 @@ export const withButton = `
     {
       title: 'Second Row With Icon',
       children: <Text>${text}</Text>,
-      icon: <InfoCircle />,
+      icon: <Icons.InfoCircle />,
       expandLabel: 'Show More',
       collapseLabel: 'Less',
     },
@@ -59,7 +59,7 @@ export const inCard = `
       [
         {
           title: 'First Item',
-          icon: <InfoCircle />,
+          icon: <Icons.InfoCircle />,
           expandLabel: 'More',
           collapseLabel: 'Less',
           buttonType: 'button',

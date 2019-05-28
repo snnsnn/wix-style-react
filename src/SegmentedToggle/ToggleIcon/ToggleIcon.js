@@ -2,24 +2,36 @@ import React from 'react';
 import { node, bool, string } from 'prop-types';
 import { withFocusable } from 'wix-ui-core/dist/src/hocs/Focusable/FocusableHOC';
 
-import Text from '../../Text';
-import Popover from '../../Popover';
-
+import Tooltip from '../../Tooltip';
 import styles from './ToggleIcon.st.css';
+
+const Icon = ({
+  'data-click': dataClick,
+  selected,
+  onClick,
+  focusableOnFocus,
+  focusableOnBlur,
+  children,
+  ...rest
+}) => (
+  <button
+    {...rest}
+    {...styles('button', { selected }, rest)}
+    data-click={dataClick}
+    data-hook="toggle-icon"
+    onClick={onClick}
+    onFocus={focusableOnFocus}
+    onBlur={focusableOnBlur}
+    type="button"
+  >
+    {children}
+  </button>
+);
+
+const FocusableIcon = withFocusable(Icon);
 
 class ToggleIcon extends React.Component {
   static displayName = 'SegmentedToggle.Icon';
-
-  state = {
-    shown: false,
-  };
-
-  open = () => {
-    const { disabled } = this.props;
-    this.setState({ shown: !disabled });
-  };
-
-  close = () => this.setState({ shown: false });
 
   static propTypes = {
     children: node,
@@ -34,50 +46,36 @@ class ToggleIcon extends React.Component {
       children,
       selected,
       tooltipText,
-      dataHook,
       focusableOnFocus,
       focusableOnBlur,
       onClick,
+      dataHook,
+      'data-click': dataClick,
       ...rest
     } = this.props;
-
-    const { shown } = this.state;
-
     return (
-      <div data-hook={dataHook} className={styles.root}>
-        <Popover
-          showArrow
-          shown={shown}
-          onMouseEnter={() => this.open()}
-          onMouseLeave={() => this.close()}
-          theme="dark"
-          appendTo="parent"
-          placement="top"
-          style={{ width: '100%' }}
+      <Tooltip
+        {...styles('tooltip', {}, rest)}
+        upgrade
+        dataHook={dataHook}
+        appendTo="window"
+        placement="top"
+        content={tooltipText}
+        timeout={0}
+      >
+        <FocusableIcon
+          {...rest}
+          selected={selected}
+          data-click={dataClick}
+          onClick={onClick}
+          onFocus={focusableOnFocus}
+          onBlur={focusableOnBlur}
         >
-          <Popover.Element>
-            <button
-              {...rest}
-              {...styles('button', { selected }, rest)}
-              data-hook="toggle-icon"
-              onClick={onClick}
-              onFocus={focusableOnFocus}
-              onBlur={focusableOnBlur}
-            >
-              {children}
-            </button>
-          </Popover.Element>
-          <Popover.Content>
-            <div className={styles.textWrapper}>
-              <Text light size="small" weight="normal">
-                {tooltipText}
-              </Text>
-            </div>
-          </Popover.Content>
-        </Popover>
-      </div>
+          {children}
+        </FocusableIcon>
+      </Tooltip>
     );
   }
 }
 
-export default withFocusable(ToggleIcon);
+export default ToggleIcon;

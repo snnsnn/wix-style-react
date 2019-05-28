@@ -52,6 +52,7 @@
 
 .root:disabled {
   color: value(D55);
+  cursor: not-allowed;
 }
 
 /* Selected styles */ 
@@ -63,6 +64,7 @@
 
 .root:selected:disabled {
   border-color: value(D55);
+  cursor: not-allowed;
 }
 
 /* Additional classes */

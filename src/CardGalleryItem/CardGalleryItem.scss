@@ -1,6 +1,6 @@
 @import "../common.scss";
 
-$footerHeight: 80px;
+$footerHeight: 90px;
 $dividerHeight: 1px;
 
 .root {
@@ -46,7 +46,7 @@ $dividerHeight: 1px;
   top: 100%;
   display: flex;
   justify-content: center;
-  padding-top: 18px;
+  padding-top: 6px;
 }
 
 .footer {
@@ -61,4 +61,10 @@ $dividerHeight: 1px;
   position: absolute;
   left: -6px;
   top: 24px;
+}
+
+.settingsMenuContainer {
+  position: absolute;
+  top: 18px;
+  right: 18px;
 }

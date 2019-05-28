@@ -8,10 +8,19 @@
   -st-named: F00, B20, B50, D55, D80, D10;
 }
 
-.root {
+:import {
+  -st-from: "../../Tooltip/TooltipNext/Tooltip.st.css";
+  -st-default: Tooltip;
+}
+
+.tooltip {
+  -st-extends: Tooltip;
   width: 100%;
 }
 
+.tooltip::popoverElement {
+  width: 100%;
+}
 .button {
   -st-extends: Focusable;
   -st-states: selected;
@@ -53,6 +62,7 @@
 
 .button:disabled {
   color: value(D55);
+  cursor: not-allowed;
 }
 /* Selected styles */ 
 
@@ -63,6 +73,7 @@
 
 .button:selected:disabled {
   border-color: value(D55);
+  cursor: not-allowed;
 }
 
 /* Additional styles */ 

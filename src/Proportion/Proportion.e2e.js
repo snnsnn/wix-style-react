@@ -5,7 +5,7 @@ import {
 } from 'wix-ui-test-utils/protractor';
 import autoExampleDriver from 'wix-storybook-utils/AutoExampleDriver';
 import { eyesItInstance } from '../../test/utils/eyes-it';
-import { proportionPrivateDriverFactory } from './Proportion.private.uni.driver';
+import { proportionDriverFactory } from './Proportion.uni.driver';
 import { storySettings } from './docs/storySettings';
 import { PREDEFINED_RATIOS } from './ratios';
 
@@ -18,9 +18,9 @@ describe('Proportion', () => {
   });
 
   const createDriver = async (dataHook = storySettings.dataHook) => {
-    const driver = protractorUniTestkitFactoryCreator(
-      proportionPrivateDriverFactory,
-    )({ dataHook });
+    const driver = protractorUniTestkitFactoryCreator(proportionDriverFactory)({
+      dataHook,
+    });
 
     await waitForVisibilityOf(
       await driver.element(),

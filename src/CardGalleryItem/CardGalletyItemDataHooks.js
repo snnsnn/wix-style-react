@@ -7,4 +7,6 @@ export default {
   backgroundImage: 'background-image',
   hoverContent: 'hover-content',
   hoverComponent: 'hover-component',
+  settingsMenu: 'settings-menu',
+  dropdownBaseMenu: 'dropdown-base-menu',
 };

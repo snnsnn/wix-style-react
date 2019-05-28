@@ -8,7 +8,6 @@ export const ListItemActionDriverFactory = base => {
   return {
     ...baseUniDriverFactory(base),
 
-    /** Get the button's text */
     isTitleExists: async () =>
       base.$('[data-hook="list-item-action-title"]').exists(),
     getTitleText: async () =>

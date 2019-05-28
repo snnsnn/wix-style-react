@@ -1,5 +1,3 @@
-import '../../../testkit/polyfills/match-media-register';
-
 import { createPropsArray } from '.';
 
 describe('LiveCodeExample', () => {

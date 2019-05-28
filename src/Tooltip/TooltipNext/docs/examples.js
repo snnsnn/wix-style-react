@@ -123,6 +123,16 @@ export const viewport = `
 </Layout>
 `;
 
+export const predicate = `
+<div data-hook="hello">
+  <Layout cols={1} justifyItems="center">
+    <Tooltip upgrade appendTo={elm => elm.getAttribute('data-hook') === ('hello')} content="Enter your postal code, so postman can easier send you a mail.">
+      <TextButton>Attach custom (By predicate)</TextButton>
+    </Tooltip>
+  </Layout>
+ </div>
+`;
+
 export const scrollParent = `
 class TooltipFixed extends React.Component {
 

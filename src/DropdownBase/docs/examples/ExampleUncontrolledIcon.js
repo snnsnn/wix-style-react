@@ -15,7 +15,7 @@
     {({ open, close }) => {
       return (
         <IconButton skin="inverted" onMouseEnter={open} onMouseLeave={close}>
-          <Date />
+          <Icons.Date />
         </IconButton>
       );
     }}

@@ -31,6 +31,7 @@ const ToggleButton = ({
     disabled={disabled}
     onFocus={focusableOnFocus}
     onBlur={focusableOnBlur}
+    type="button"
   >
     {addPrefix(prefixIcon)}
     <Text

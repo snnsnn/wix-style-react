@@ -281,4 +281,9 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/ListItemAction/ListItemAction.uni.driver',
   },
+
+  Swatches: {
+    unidriver: true,
+    testkitPath: '../src/Swatches/Swatches.uni.driver',
+  },
 };

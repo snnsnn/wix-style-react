@@ -1,5 +1,5 @@
 import * as wsr from '../../src/index';
-import * as icons from 'wix-ui-icons-common';
+import * as Icons from 'wix-ui-icons-common';
 import GeneratedTestComponent from '../../src/GeneratedTestComponent';
 
 /*
@@ -8,6 +8,6 @@ import GeneratedTestComponent from '../../src/GeneratedTestComponent';
  */
 export default {
   ...wsr,
-  ...icons,
+  Icons,
   GeneratedTestComponent,
 };

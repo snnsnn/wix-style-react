@@ -15,7 +15,18 @@ export default class NestableListExample extends React.Component {
       {
         id: 4,
         text: 'Item #4',
-        children: [{ id: 5, text: 'Item #5', children: [] }],
+        children: [
+          {
+            id: 5,
+            text: 'Item #5',
+            children: [
+              {
+                id: 6,
+                text: 'Item #6',
+              },
+            ],
+          },
+        ],
       },
     ],
   };
@@ -45,13 +56,16 @@ export default class NestableListExample extends React.Component {
     connectDragSource,
     item,
   }) => {
-    const classes = classNames(classNames(defaultDndStyles.item, styles.item), {
-      [classNames(
-        defaultDndStyles.itemPlaceholder,
-        styles.placeholder,
-      )]: isPlaceholder,
-      [classNames(defaultDndStyles.itemPreview, styles.preview)]: isPreview,
-    });
+    const classes = classNames(
+      classNames(defaultDndStyles.item, styles.itemCss),
+      {
+        [classNames(
+          defaultDndStyles.itemPlaceholder,
+          styles.placeholder,
+        )]: isPlaceholder,
+        [classNames(defaultDndStyles.itemPreview, styles.preview)]: isPreview,
+      },
+    );
 
     return (
       <div className={classes} data-hook={`item-${item.id}-${depth}`}>
@@ -67,6 +81,7 @@ export default class NestableListExample extends React.Component {
         <div className={styles.root}>
           <h3 className={styles.title}>Draggable Area</h3>
           <NestableList
+            theme={styles}
             useDragHandle
             items={this.state.items}
             renderItem={this.renderItem}

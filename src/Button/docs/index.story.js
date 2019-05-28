@@ -13,7 +13,6 @@ import {
   playground,
   description,
   importExample,
-  testkit,
 } from 'wix-storybook-utils/Sections';
 
 import { Layout } from '../..';
@@ -21,7 +20,8 @@ import Button from '..';
 
 import { baseScope } from '../../../stories/utils/LiveCodeExample';
 import * as examples from './examples';
-import skins from '!raw-loader!./Skins.md';
+import skins from './Skins.md';
+import testkit from './testkit.md';
 
 const Link = ({ children, ...rest }) => <a {...rest}>{children}</a>;
 
@@ -124,7 +124,7 @@ export default {
 
       ...[
         { title: 'API', sections: [api()] },
-        { title: 'Testkit', sections: [testkit({ unidriver: true })] },
+        { title: 'Testkit', sections: [description(testkit)] },
         { title: 'Playground', sections: [playground()] },
       ].map(tab),
     ]),

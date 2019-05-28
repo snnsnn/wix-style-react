@@ -88,6 +88,7 @@ export const listItemActionBuilder = ({
   disabled,
   skin,
   size,
+  dataHook,
 }) => ({
   id,
   disabled,
@@ -96,6 +97,7 @@ export const listItemActionBuilder = ({
     <ListItemAction
       {...props}
       onClick={onClick}
+      dataHook={dataHook}
       title={title}
       prefixIcon={prefixIcon}
       skin={skin}

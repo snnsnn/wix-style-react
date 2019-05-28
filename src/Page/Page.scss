@@ -52,18 +52,18 @@ $minimizedHeaderContainerZIndex: $stickyZIndex + $zIndexLayerStep;
       width: 100%;
       position: relative;
       height: 100%;
-    
+
       .pageHeaderContainer {
         position: relative;
 
         width: 100%;
         margin: 0 auto;
         box-sizing: border-box;
-        
+
         .headerWrapper {
           padding-top: 30px;
           padding-bottom: $headerBottomPadding;
-          
+
           &.minimized {
             box-sizing: content;
             min-height: $minimizedHeaderWrapperMinHeight;
@@ -88,7 +88,7 @@ $minimizedHeaderContainerZIndex: $stickyZIndex + $zIndexLayerStep;
         &.hasTail .headerWrapper.minimized {
           padding-bottom: $minimizedHeaderWrapperWithTailBottomPadding;
         }
-        
+
         .tail {
           background-color: $page-background-color;
         }

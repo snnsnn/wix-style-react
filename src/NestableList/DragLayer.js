@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import classNames from 'classnames';
 import { DragLayer } from 'react-dnd';
 import itemTypes from './itemTypes';
 
@@ -33,16 +33,22 @@ const defaultConnectDragSource = el => el;
 
 class CustomDragLayer extends Component {
   renderChildren = (items, depth) => {
-    const { renderItem, childrenProperty, childrenStyle } = this.props;
+    const { renderItem, childrenProperty, childrenStyle, theme } = this.props;
 
     if (!items || !items.length) {
       return null;
     }
 
+    const classes = classNames(
+      'nestable-item',
+      'dragging-nestable-item',
+      theme && theme.item,
+    );
+
     return (
       <div style={childrenStyle}>
         {items.map((item, i) => (
-          <div data-hook="dragging-nestable-item" key={i}>
+          <div className={classes} data-hook="dragging-nestable-item" key={i}>
             {renderItem({
               item,
               isPlaceholder: false,
@@ -65,15 +71,23 @@ class CustomDragLayer extends Component {
       isPlaceholder,
       childrenProperty,
       isRenderDraggingChildren,
+      theme,
     } = this.props;
 
     if (!isPlaceholder || itemType !== itemTypes.nestedItem) {
       return null;
     }
 
+    const classes = classNames(
+      'nestable-item',
+      'dragging-nestable-item',
+      theme && theme.item,
+    );
+
     return (
       <div style={layerStyles}>
         <div
+          className={classes}
           style={getItemStyles(this.props, item.clientRect, item.handleOffset)}
         >
           {renderItem({

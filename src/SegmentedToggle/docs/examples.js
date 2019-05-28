@@ -42,3 +42,18 @@ export const icon = `
  </Cell>
 </Layout>
 `;
+
+export const disabled = `
+<Layout>
+  <Cell span={6}>
+    <SegmentedToggle defaultSelected="option" disabled>
+      <SegmentedToggle.Button prefixIcon={<LockLocked />} value="option">
+        Option
+      </SegmentedToggle.Button>
+      <SegmentedToggle.Button prefixIcon={<LockLocked />} value="option2">
+        Option
+      </SegmentedToggle.Button>
+    </SegmentedToggle>
+    </Cell>
+</Layout>
+`;

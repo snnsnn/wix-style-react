@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import Page from 'wix-style-react/Page';
 import Button from 'wix-style-react/Button';
@@ -11,7 +12,7 @@ class ExampleGeneralLayout extends React.Component {
   renderHeader() {
     const ActionBar = () => {
       return (
-        <Button withNewIcons prefixIcon={<Add />}>
+        <Button withNewIcons prefixIcon={<Icons.Add />}>
           New Item
         </Button>
       );
@@ -57,7 +58,7 @@ class ExampleGeneralLayout extends React.Component {
                   theme="page"
                   title="You don't have any items yet"
                 >
-                  <TextButton prefixIcon={<Add />}>New Item</TextButton>
+                  <TextButton prefixIcon={<Icons.Add />}>New Item</TextButton>
                 </EmptyState>
               </Col>
             </Row>

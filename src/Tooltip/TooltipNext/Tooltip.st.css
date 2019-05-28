@@ -100,12 +100,12 @@
     display: none;
 }
 .root::popover[data-placement*="right"].root::withArrow {
-  padding-left: calc(value(contentArrowSize) - 2);
+  padding-left: calc(value(contentArrowSize) - 2px);
 }
 
 .root::popover[data-placement*="right"]::arrow {
   transform: rotateZ(135deg);
-  left: calc(value(contentArrowSize) / 2 - 2);
+  left: calc(value(contentArrowSize) / 2 - 2px);
 
   margin-top: value(contentArrowSize);
   margin-bottom: value(contentArrowSize);
@@ -118,12 +118,12 @@
 }
 
 .root::popover[data-placement*="left"].root::withArrow {
-  padding-right: calc(value(contentArrowSize) - 2);
+  padding-right: calc(value(contentArrowSize) - 2px);
 }
 
 .root::popover[data-placement*="left"]::arrow {
   transform: rotateZ(-45deg);
-  right: calc(value(contentArrowSize) / 2 - 2);
+  right: calc(value(contentArrowSize) / 2 - 2px);
 
   margin-top: value(contentArrowSize);
   margin-bottom: value(contentArrowSize);
@@ -136,12 +136,12 @@
 }
 
 .root::popover[data-placement*="top"].root::withArrow {
-  padding-bottom: calc(value(contentArrowSize) - 2);
+  padding-bottom: calc(value(contentArrowSize) - 2px);
 }
 
 .root::popover[data-placement*="top"]::arrow {
   transform: rotateZ(45deg);
-  bottom: calc(value(contentArrowSize) / 2 - 2);
+  bottom: calc(value(contentArrowSize) / 2 - 2px);
 
   margin-left: value(contentArrowSize);
   margin-right: value(contentArrowSize);
@@ -154,12 +154,12 @@
 }
 
 .root::popover[data-placement*="bottom"].root::withArrow {
-  padding-top: calc(value(contentArrowSize) - 2);
+  padding-top: calc(value(contentArrowSize) - 2px);
 }
 
 .root::popover[data-placement*="bottom"]::arrow {
   transform: rotateZ(-135deg);
-  top: calc(value(contentArrowSize) / 2 - 2);
+  top: calc(value(contentArrowSize) / 2 - 2px);
 
   margin-left: value(contentArrowSize);
   margin-right: value(contentArrowSize);

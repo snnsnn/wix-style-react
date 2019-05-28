@@ -283,6 +283,12 @@ describe('Input', () => {
 
         expect(await driver.hasLoader()).toBeTruthy();
       });
+
+      it('should display a warning icon if status is warning', async () => {
+        const { driver } = render(<Input status={'warning'} />);
+
+        expect(await driver.hasWarning()).toBeTruthy();
+      });
     });
 
     describe('help attribute', () => {

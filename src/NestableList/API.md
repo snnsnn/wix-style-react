@@ -41,6 +41,7 @@
   | maxDepth         | number   | Infinity     | -          | Maximum item depth |
   | threshold        | number   | 30           | -          | Distance in pixels the cursor must move horizontally before item changes depth |
   | childrenStyle    | object   | -            | -          | Style object applied to nested |
+  | theme            | object   | -            | -          | object of react classes - receiving styles: topContainer, container, item |
   | childrenProperty | string   | 'children'   | -          | The property on each item which contains an array of children |
   | onUpdate         | func     | -            | -          | A function invoked with the new array of items whenever an item is dropped in a new location |
   | onDragStart      | func     | -            | -        | A function invoked when drag of item starts, the item's props passed as argument |

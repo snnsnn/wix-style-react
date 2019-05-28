@@ -34,7 +34,7 @@ export const iconAffix = `
     <NumberInput
       prefix={
         <Input.IconAffix>
-          <Contrast />
+          <Icons.Contrast />
         </Input.IconAffix>
       }
     />
@@ -43,21 +43,7 @@ export const iconAffix = `
     <NumberInput
       suffix={
         <Input.IconAffix>
-          <Search />
-        </Input.IconAffix>
-      }
-    />
-  </Cell>
-  <Cell>
-    <NumberInput
-      prefix={
-        <Input.IconAffix>
-          <Contrast />
-        </Input.IconAffix>
-      }
-      suffix={
-        <Input.IconAffix>
-          <Search />
+          <Icons.Search />
         </Input.IconAffix>
       }
     />
@@ -66,12 +52,26 @@ export const iconAffix = `
     <NumberInput
       prefix={
         <Input.IconAffix>
-          <Contrast />
+          <Icons.Contrast />
         </Input.IconAffix>
       }
       suffix={
         <Input.IconAffix>
-          <Search />
+          <Icons.Search />
+        </Input.IconAffix>
+      }
+    />
+  </Cell>
+  <Cell>
+    <NumberInput
+      prefix={
+        <Input.IconAffix>
+          <Icons.Contrast />
+        </Input.IconAffix>
+      }
+      suffix={
+        <Input.IconAffix>
+          <Icons.Search />
         </Input.IconAffix>
       }
       status="error"

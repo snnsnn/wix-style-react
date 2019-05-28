@@ -27,8 +27,8 @@ require('./MultiSelect/index.story'); // 3.12 Tags
 
 // 4. Selection
 require('./Dropdown/DropdownStory'); // 4.1 Dropdown
-require('../src/SegmentedToggle/docs/index.story'); // 4.5 SegmentedToggle
-require('../src/Slider/docs/index.story'); // 4.8 Slider
+require('./SegmentedToggle/index.story'); // 4.5 SegmentedToggle
+require('./Slider/index.story'); // 4.8 Slider
 
 // 5. Buttons
 require('../src/Button/docs/index.story'); // 5.1 Standard
@@ -114,11 +114,14 @@ require('../src/Range/docs');
 require('../src/RichTextInputArea/docs/index.story');
 require('../src/Search/docs/index.story');
 require('../src/SectionHelper/docs/index.story');
+require('../src/SegmentedToggle/docs/index.story');
+require('../src/Slider/docs/index.story');
 require('../src/SideMenu/docs');
 require('../src/SideMenu/docs/SideMenu');
 require('../src/Skeleton/docs/index.story');
 require('../src/SocialPreview/docs/index.story.js');
 require('../src/StatsWidget/docs/index.story');
+require('../src/Swatches/docs/index.story');
 require('../src/Table/docs/index.story');
 require('../src/TableActionCell/docs/index.story');
 require('../src/TableToolbar/docs/ToolbarStory');

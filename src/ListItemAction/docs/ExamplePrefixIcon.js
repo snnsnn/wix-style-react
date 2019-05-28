@@ -10,7 +10,7 @@
       listItemActionBuilder({
         id: 1,
         title: 'Prefix Icon',
-        prefixIcon: <Edit />,
+        prefixIcon: <Icons.Edit />,
       }),
     ]}
   />

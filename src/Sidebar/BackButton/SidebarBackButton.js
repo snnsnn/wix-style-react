@@ -7,6 +7,7 @@ export class SidebarBackButton extends Component {
       <SidebarContext.Consumer>
         {context => (
           <div
+            data-hook="sidebar-back-button"
             onClick={e => {
               if (!this.props.disable) {
                 if (this.props.onClick) {

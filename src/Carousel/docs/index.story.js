@@ -7,12 +7,10 @@ import {
   importExample,
   playground,
   testkit,
-  description,
 } from 'wix-storybook-utils/Sections';
 
 import Carousel from '..';
 import { storySettings } from './storySettings';
-import testkitReadme from './README.TESTKIT.md';
 import { InfoChild, buttonSkinExample, autoplayExample } from './examples';
 import { baseScope } from '../../../stories/utils/LiveCodeExample';
 
@@ -97,7 +95,7 @@ export default {
 
       {
         title: 'TestKit',
-        sections: [testkit(), description(testkitReadme)],
+        sections: [testkit()],
       },
 
       {

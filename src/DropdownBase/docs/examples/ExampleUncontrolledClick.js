@@ -14,7 +14,7 @@
   >
     {({ toggle, selectedOption = {} }) => {
       return (
-        <TextButton upgrade skin="dark" suffixIcon={<ChevronDown />} onClick={toggle}>
+        <TextButton upgrade skin="dark" suffixIcon={<Icons.ChevronDown />} onClick={toggle}>
           {selectedOption.value || 'Please choose'}
         </TextButton>
       );

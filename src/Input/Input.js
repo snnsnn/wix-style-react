@@ -21,6 +21,7 @@ class Input extends Component {
   static Group = Group;
 
   static StatusError = 'error';
+  static StatusWarning = 'warning';
   static StatusLoading = 'loading';
 
   state = {
@@ -468,8 +469,12 @@ Input.propTypes = {
   /** when set to true this component is disabled */
   disabled: PropTypes.bool,
 
-  /** Input status - use to display an status indication for the user. for example: 'error' or 'loading' */
-  status: PropTypes.oneOf([Input.StatusError, Input.StatusLoading]),
+  /** Input status - use to display an status indication for the user. for example: 'error', 'warning' or 'loading' */
+  status: PropTypes.oneOf([
+    Input.StatusError,
+    Input.StatusWarning,
+    Input.StatusLoading,
+  ]),
 
   /** The status (error/loading) message to display when hovering the status icon, if not given or empty there will be no tooltip */
   statusMessage: PropTypes.node,

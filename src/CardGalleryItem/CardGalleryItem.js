@@ -45,6 +45,9 @@ class CardGalleryItem extends React.Component {
       onClick: PropTypes.func,
     }).isRequired,
 
+    /** Menu to be displayed on hover */
+    settingsMenu: PropTypes.node,
+
     /** className for root */
     className: PropTypes.string,
 
@@ -69,27 +72,36 @@ class CardGalleryItem extends React.Component {
     );
   }
 
-  render() {
+  _renderFooter(title, subtitle) {
+    return (
+      <div>
+        <Card.Divider />
+        <div className={styles.footer}>
+          <Heading appearance="H3" ellipsis data-hook={DataHooks.title}>
+            {title}
+          </Heading>
+          <Text size="small" secondary ellipsis data-hook={DataHooks.subtitle}>
+            {subtitle}
+          </Text>
+        </div>
+      </div>
+    );
+  }
+
+  _hoveredContent = (footerExists, badge) => {
     const {
-      title,
-      subtitle,
-      badge,
-      backgroundImageUrl,
       primaryActionProps,
       secondaryActionProps,
-      className,
-      dataHook,
+      settingsMenu,
     } = this.props;
-
-    const footerExists = title || subtitle;
-
-    const hoveredContent = (
+    return (
       <div
         className={classNames(styles.hoveredContent, {
           [styles.hoveredContentWithFooter]: footerExists,
         })}
         data-hook={DataHooks.hoverContent}
       >
+        {this._renderSettingsMenu(settingsMenu)}
         <div className={styles.primaryAction}>
           <Button dataHook={DataHooks.primaryAction}>
             {primaryActionProps.label}
@@ -111,7 +123,34 @@ class CardGalleryItem extends React.Component {
         {badge && this._renderBadge(badge)}
       </div>
     );
+  };
 
+  _renderSettingsMenu(settingsMenu) {
+    return (
+      settingsMenu && (
+        <div
+          className={styles.settingsMenuContainer}
+          data-hook={DataHooks.settingsMenu}
+        >
+          {settingsMenu}
+        </div>
+      )
+    );
+  }
+
+  render() {
+    const {
+      title,
+      subtitle,
+      badge,
+      backgroundImageUrl,
+      primaryActionProps,
+      className,
+      dataHook,
+    } = this.props;
+
+    const footerExists = title || subtitle;
+    const hoveredContent = this._hoveredContent(footerExists, badge);
     return (
       <Proportion>
         <div
@@ -138,29 +177,7 @@ class CardGalleryItem extends React.Component {
                 {badge && this._renderBadge(badge)}
               </div>
 
-              {footerExists && (
-                <div>
-                  <Card.Divider />
-                  <div className={styles.footer}>
-                    <Heading
-                      appearance="H4"
-                      ellipsis
-                      data-hook={DataHooks.title}
-                    >
-                      {title}
-                    </Heading>
-                    <Text
-                      size="small"
-                      weight="thin"
-                      secondary
-                      ellipsis
-                      data-hook={DataHooks.subtitle}
-                    >
-                      {subtitle}
-                    </Text>
-                  </div>
-                </div>
-              )}
+              {footerExists && this._renderFooter(title, subtitle)}
             </Hover>
           </Card>
         </div>

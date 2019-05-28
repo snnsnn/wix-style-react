@@ -88,6 +88,7 @@ const inputDriverFactory = ({ element }) => {
     isNarrowError: () => !!element.querySelector(`.${styles.narrow}`),
     hasHelp: () => !!element.querySelector(`.${styles.help}`),
     hasError: () => element.classList.contains(styles.hasError),
+    hasWarning: () => element.classList.contains(styles.hasWarning),
     getTooltipElement: () => element,
     hasLoader: () => element.querySelector(`.loaderContainer`),
     getTooltipDataHook: () => 'input-tooltip',

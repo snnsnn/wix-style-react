@@ -1,7 +1,6 @@
 import React from 'react';
 import { createDriverFactory } from 'wix-ui-test-utils/driver-factory';
 
-import '../../testkit/polyfills/match-media-register';
 import Carousel from './Carousel';
 import carouselDriverFactory from './Carousel.private.driver';
 
