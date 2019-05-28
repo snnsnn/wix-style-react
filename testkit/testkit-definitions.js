@@ -282,8 +282,10 @@ module.exports = {
   Swatches: {
     unidriver: true,
     testkitPath: '../src/Swatches/Swatches.uni.driver',
-  Sidebar: {
-    unidriver: true,
-    testkitPath: '../src/Sidebar/Sidebar.uni.driver',
+
+    Sidebar: {
+      unidriver: true,
+      testkitPath: '../src/Sidebar/Sidebar.uni.driver',
+    },
   },
 };
