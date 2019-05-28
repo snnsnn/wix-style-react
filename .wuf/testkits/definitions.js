@@ -150,7 +150,7 @@ module.exports = {
 
   EditableRow: {
     testkitPath: '../src/EditableSelector/EditableRow/EditableRow.driver',
-    unidriver: true,
+    unidriver: false, // TODO: component has unidriver, but it is exported as legacy driver. Changing it is a breaking change
     skipSanityTest: true,
   },
 
@@ -296,8 +296,8 @@ module.exports = {
   },
 
   Selector: {
-    unidriver: true,
-    testkitPath: '../src/Selector/Selector.uni.driver',
+    unidriver: false, // TODO: component has unidriver, but it is exported as legacy driver. Changing it is a breaking change
+    testkitPath: '../src/Selector/Selector.driver',
   },
 
   NestableList: {
