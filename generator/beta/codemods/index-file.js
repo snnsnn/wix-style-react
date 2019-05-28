@@ -6,7 +6,7 @@ module.exports = (file, api, options) => {
   const { ComponentName } = options;
 
   j(exports[exports.length - 1]).insertAfter(
-    `export { default as ${ComponentName}Beta } from './beta/${ComponentName}';`,
+    `export { default as ${ComponentName} } from './${ComponentName}';`,
   );
 
   return root.toSource();
