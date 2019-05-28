@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import MultiSelect from 'wix-style-react/MultiSelect';
+import MultiSelect from '../../MultiSelect';
 
 const countries = [
   { name: 'Alabama', code: 'AL' },

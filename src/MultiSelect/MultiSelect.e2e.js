@@ -192,6 +192,7 @@ describe('MultiSelect - Focus behaviour', () => {
 
   async function focusOnMultiSelect() {
     const firstElement = $(`[data-hook="input-for-focus-1"]`);
+
     await pressTab();
     expect(await isFocused(firstElement)).toEqual(true);
 
@@ -204,6 +205,7 @@ describe('MultiSelect - Focus behaviour', () => {
 
     await driver.click();
     await driver.hoverItemById('AL');
+
     await pressTab();
     expect(await driver.isFocused()).toEqual(true);
     expect(await driver.isOptionsShown()).toEqual(true);

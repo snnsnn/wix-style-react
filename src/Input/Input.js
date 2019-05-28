@@ -231,7 +231,7 @@ class Input extends Component {
     });
 
     return (
-      <div className={styles.inputWrapper}>
+      <div className={styles.inputWrapper} data-hook="input-wrapper">
         {prefix && (
           <div className={styles.prefix}>
             <InputContext.Provider value={{ ...this.props, inPrefix: true }}>
@@ -405,7 +405,7 @@ class Input extends Component {
     const { customInput: CustomInputComponent, dataRef, ...rest } = props;
     const inputProps = {
       ...(CustomInputComponent
-        ? { 'data-ref': dataRef, ...rest, 'data-hook': 'wsr-custom-input' }
+        ? { 'data-ref': dataRef, ...rest, 'data-hook': 'wsr-input-custom' }
         : { ref: dataRef, ...rest }),
     };
 
