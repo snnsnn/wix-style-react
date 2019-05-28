@@ -57,6 +57,7 @@
     "lint": "yoshi lint --fix",
     "proxy-wix-ui-icons": "node scripts/proxy-wix-ui-icons",
     "generate": "wuf generate",
+    "generate-beta": "wuf generate --templates=/generator/beta/templates/ --codemods=/generator/beta/codemods",
     "postgenerate": "npm run generate-testkit-exports",
     "generate-test-component": "wuf generate --component-name GeneratedTestComponent",
     "generate-testkit-exports": "node scripts/generate-testkit-exports",
@@ -226,7 +227,8 @@
       ]
     },
     "ignore": [
-      "**/scripts/generate-component/**"
+      "**/scripts/generate-component/**",
+      "**/generator/beta/**"
     ]
   },
   "jest": {
