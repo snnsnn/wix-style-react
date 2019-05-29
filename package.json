@@ -229,7 +229,7 @@
       ]
     },
     "ignore": [
-      "**/scripts/generate-component/**"
+      ".wuf/generator/templates/**"
     ]
   },
   "jest": {
@@ -246,7 +246,7 @@
       "<rootDir>/dist/",
       "<rootDir>/node_modules/",
       "<rootDir>/test-runtime/",
-      "<rootDir>/generator"
+      "<rootDir>/.wuf"
     ]
   },
   "eslintConfig": {
