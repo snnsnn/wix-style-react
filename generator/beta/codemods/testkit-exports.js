@@ -40,7 +40,8 @@ module.exports = (file, api, options) => {
 
   root.get().node.program.body.push(
     `import { ${componentName}Driver } from '../src/beta/${ComponentName}/${ComponentName}.uni.driver';
-     export const ${ComponentName}Testkit = ${testkitFactoryMethodName}(${componentName}Driver);`,
+
+export const ${ComponentName}Testkit = ${testkitFactoryMethodName}(${componentName}Driver);`,
   );
 
   return root.toSource();

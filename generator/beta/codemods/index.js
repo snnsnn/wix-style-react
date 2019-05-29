@@ -19,4 +19,14 @@ module.exports = [
     dist: 'testkit/beta/puppeteer.js',
     description: 'Add Puppeteer testkit export',
   },
+  {
+    codemod: 'testkit-exports.js',
+    dist: 'testkit/beta/index.js',
+    description: 'Add ReactTestUtils testkit export',
+  },
+  {
+    codemod: 'testkit-exports.js',
+    dist: 'testkit/beta/enzyme.js',
+    description: 'Add Enzyme testkit export',
+  },
 ];
