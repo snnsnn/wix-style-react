@@ -211,6 +211,7 @@ class DropdownBase extends React.PureComponent {
    * dropdown depending on the pressed key.
    */
   _handleKeyDown = e => {
+    debugger;
     if (this._isControllingOpen()) {
       return;
     }
