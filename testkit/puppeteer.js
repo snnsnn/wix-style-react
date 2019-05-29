@@ -229,3 +229,9 @@ import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.
 export const subheaderTestkitFactory = puppeteerUniTestkitFactoryCreator(
   cardSubheaderDriverFactory,
 );
+
+import { PopoverMenuDriverFactory } from '../src/Beta/PopoverMenu/PopoverMenu.uni.driver';
+
+export const PopoverMenuTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  PopoverMenuDriverFactory,
+);

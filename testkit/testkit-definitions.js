@@ -279,4 +279,9 @@ module.exports = {
     unidriver: true,
     testkitPath: '../src/ListItemAction/ListItemAction.uni.driver',
   },
+
+  PopoverMenu: {
+    unidriver: true,
+    testkitPath: '../src/PopoverMenu/PopoverMenu.uni.driver',
+  },
 };

@@ -127,3 +127,4 @@ export {
   listItemActionBuilder,
 } from './ListItemAction';
 export { default as Subheader } from './Card/Subheader';
+export { default as PopoverMenuBeta } from './Beta/PopoverMenu';

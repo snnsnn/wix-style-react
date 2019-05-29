@@ -511,3 +511,9 @@ import { cardSubheaderDriverFactory } from '../src/Card/Subheader/Subheader.uni.
 export const subheaderTestkitFactory = protractorUniTestkitFactoryCreator(
   cardSubheaderDriverFactory,
 );
+
+import { PopoverMenuDriverFactory } from '../src/Beta/PopoverMenu/PopoverMenu.uni.driver';
+
+export const PopoverMenuTestkitFactory = protractorUniTestkitFactoryCreator(
+  PopoverMenuDriverFactory,
+);
