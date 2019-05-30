@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { listItemActionBuilder } from '../../ListItemAction';
 import DropdownBase from '../../DropdownBase';
 import { placements } from '../../Popover';
+import styles from './PopoverMenu.st.css';
+import style from '../../DropdownBase/DropdownBase.st.css';
+import Popover from '../../DropdownBase/DropdownBase';
 
 /** PopoverMenu */
 class PopoverMenu extends React.PureComponent {
@@ -114,6 +117,7 @@ class PopoverMenu extends React.PureComponent {
     const { appendTo, placement, triggerElement } = this.props;
     return (
       <DropdownBase
+        {...styles('root', {}, this.props)}
         showArrow
         options={this._buildOptions()}
         onSelect={this._onSelect}
