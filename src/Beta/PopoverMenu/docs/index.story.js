@@ -1,18 +1,18 @@
 /* eslint-disable no-console */
 import React from 'react';
 import {
-  header,
-  tabs,
-  tab,
-  description,
-  importExample,
-  title,
-  columns,
-  divider,
-  code as baseCode,
-  playground,
   api,
+  code as baseLiveCode,
+  columns,
+  description,
+  divider,
+  header,
+  importExample,
+  playground,
+  tab,
+  tabs,
   testkit,
+  title,
 } from 'wix-storybook-utils/Sections';
 
 import { storySettings } from '../test/storySettings';
@@ -20,13 +20,51 @@ import allComponents from '../../../../stories/utils/allComponents';
 
 import PopoverMenu from '..';
 import IconButton from '../../../IconButton';
-import TextButton from '../../../TextButton';
 import More from '../../../new-icons/More';
-import ChevronDown from '../../../new-icons/ChevronDown';
 import Edit from '../../../new-icons/Edit';
+import triggerElementExample from './examples/buttonMenuExample';
+import stylesExample from './examples/stylesExample';
+import placementsExample from './examples/placementExample';
 
-const code = config => baseCode({ components: allComponents, ...config });
+const liveCode = config =>
+  baseLiveCode({ components: allComponents, ...config });
+const example = ({ title, text, source }) =>
+  columns({
+    items: [description({ title, text }), liveCode({ compact: true, source })],
+  });
 
+const commonProps = {
+  appendTo: 'window',
+  triggerElement: (
+    <IconButton priority="secondary">
+      <More />
+    </IconButton>
+  ),
+};
+
+const menuItems = [
+  <PopoverMenu.MenuItem
+    text="dark option"
+    onClick={e => console.log(e)}
+    skin="dark"
+    prefixIcon={<Edit />}
+  />,
+  <PopoverMenu.MenuItem
+    text="destructive option"
+    onClick={e => console.log(e)}
+    skin="destructive"
+  />,
+  <PopoverMenu.MenuItem
+    text="small option"
+    onClick={e => console.log(e)}
+    size="small"
+  />,
+  <PopoverMenu.MenuItem
+    text="disabled option"
+    onClick={e => console.log(e)}
+    disabled
+  />,
+];
 export default {
   category: storySettings.category,
   storyName: 'PopoverMenu',
@@ -35,12 +73,12 @@ export default {
   componentPath: '..',
 
   componentProps: {
-    buttonText: 'Hello World!',
+    ...commonProps,
+    children: menuItems,
   },
 
   exampleProps: {
-    // Put here presets of props, for more info:
-    // https://github.com/wix/wix-ui/blob/master/packages/wix-storybook-utils/docs/usage.md#using-list
+    // todo
   },
 
   sections: [
@@ -48,41 +86,7 @@ export default {
       issueUrl: 'https://github.com/wix/wix-style-react/issues/new',
       sourceUrl:
         'https://github.com/wix/wix-style-react/tree/master/src/PopoverMenu/',
-      component: (
-        <PopoverMenu
-          appendTo="window"
-          // triggerElement={
-          //   <TextButton suffixIcon={<ChevronDown />}>Actions</TextButton>
-          // }
-          triggerElement={
-            <IconButton priority="secondary">
-              <More />
-            </IconButton>
-          }
-        >
-          <PopoverMenu.MenuItem
-            text="dark option"
-            onClick={e => console.log(e)}
-            skin="dark"
-            prefixIcon={<Edit />}
-          />
-          <PopoverMenu.MenuItem
-            text="destructive option"
-            onClick={e => console.log(e)}
-            skin="destructive"
-          />
-          <PopoverMenu.MenuItem
-            text="small option"
-            onClick={e => console.log(e)}
-            size="small"
-          />
-          <PopoverMenu.MenuItem
-            text="disabled option"
-            onClick={e => console.log(e)}
-            disabled
-          />
-        </PopoverMenu>
-      ),
+      component: <PopoverMenu {...commonProps}>{menuItems}</PopoverMenu>,
     }),
 
     tabs([
@@ -93,13 +97,13 @@ export default {
             description({
               title: 'Description',
               text:
-                'This line here should briefly describe component in just a sentence or two. It should be short and easy to read.',
+                'PopoverMenu renders a trigger element that when the user click on it, a popup box with menu options appear.',
             }),
           ]),
 
           columns([
             importExample(
-              "import PopoverMenu from 'wix-style-react/PopoverMenu';",
+              "import PopoverMenu from 'wix-style-react/Beta/PopoverMenu';",
             ),
           ]),
 
@@ -107,35 +111,24 @@ export default {
 
           title('Examples'),
 
-          columns([
-            description({
-              title: 'Simple Usagee',
-              text: 'A simple example with compact preview',
-            }),
-
-            code({
-              compact: true,
-              source:
-                '<PopoverMenuBeta triggerElement={<IconButton priority="secondary"><Icons.More /></IconButton>}>\n' +
-                '          <PopoverMenuBeta.MenuItem\n' +
-                '            text="dark option"\n' +
-                '            onClick={e => console.log(e)}\n' +
-                '            skin="dark"\n' +
-                '            prefixIcon={<Icons.Email/>}\n' +
-                '          />\n' +
-                '          <PopoverMenuBeta.MenuItem\n' +
-                '            text="destructive option"\n' +
-                '            onClick={e => console.log(e)}\n' +
-                '            skin="destructive"\n' +
-                '          />\n' +
-                '          <PopoverMenuBeta.MenuItem\n' +
-                '            text="disabled option"\n' +
-                '            onClick={e => console.log(e)}\n' +
-                '            disabled={true}\n' +
-                '          />\n' +
-                '        </PopoverMenuBeta>',
-            }),
-          ]),
+          ...[
+            {
+              title: 'Trigger',
+              text: 'Trigger element can be an icon button or a text button',
+              source: triggerElementExample,
+            },
+            {
+              title: 'Menu item styling',
+              text:
+                'Each menu item can be styled differently with the following props - skin, prefixIcon, text size, disabled',
+              source: stylesExample,
+            },
+            {
+              title: 'Placement',
+              text: 'Menu can be opened in different placements',
+              source: placementsExample,
+            },
+          ].map(example),
         ],
       }),
 

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { listItemActionBuilder } from '../../ListItemAction';
 import DropdownBase from '../../DropdownBase';
+import { placements } from '../../Popover';
 
 /** PopoverMenu */
 class PopoverMenu extends React.PureComponent {
@@ -11,12 +12,6 @@ class PopoverMenu extends React.PureComponent {
     /** The maximum width applied to the list */
     maxWidth: PropTypes.number,
 
-    /** Callback to be called when the popover is shown */
-    onShow: PropTypes.func,
-
-    /** Callback to be called when the popover is hidden */
-    onHide: PropTypes.func,
-
     /** Popover content z-index */
     zIndex: PropTypes.number,
 
@@ -25,6 +20,25 @@ class PopoverMenu extends React.PureComponent {
 
     /** Element to trigger the popover */
     triggerElement: PropTypes.element.isRequired,
+
+    /** The Popover's placement:
+     *  * auto-start
+     *  * auto
+     *  * auto-end
+     *  * top-start
+     *  * top
+     *  * top-end
+     *  * right-start
+     *  * right
+     *  * right-end
+     *  * bottom-end
+     *  * bottom
+     *  * bottom-start
+     *  * left-end
+     *  * left
+     *  * left-start
+     */
+    placement: PropTypes.oneOf(placements),
 
     /**
      * Menu items
@@ -38,10 +52,15 @@ class PopoverMenu extends React.PureComponent {
      *  * />
      */
     children: PropTypes.element.isRequired,
+
+    /** The Popover's appendTo */
+    appendTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   };
 
   static defaultProps = {
     maxWidth: 204,
+    placement: 'bottom',
+    appendTo: 'parent',
   };
 
   _onSelect = e => {
@@ -91,6 +110,7 @@ class PopoverMenu extends React.PureComponent {
           return React.cloneElement(triggerElement, {
             onClick: open,
             dataHook: 'popovermenu-trigger',
+            'data-hook': 'popovermenu-trigger', // supporting native trigger elements
           });
         }}
       </DropdownBase>
