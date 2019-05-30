@@ -34,9 +34,9 @@ const TestContainer = ({ children }) => (
 
 storiesOf(kind, module).add(testStories.tabsSwitches, () => (
   <TestContainer>
-    <input data-hook="input-for-focus-1" />
+    <input />
     <TestTabSwitches />
-    <input data-hook="input-for-focus-2" />
+    <input />
   </TestContainer>
 ));
 

@@ -1,10 +1,6 @@
 import inputWithOptionsTestkitFactory from './InputWithOptions.private.protractor.driver';
 import { $, browser } from 'protractor';
-import {
-  isFocused,
-  waitForVisibilityOf,
-  protractorTestkitFactoryCreator,
-} from 'wix-ui-test-utils/protractor';
+import { isFocused, waitForVisibilityOf } from 'wix-ui-test-utils/protractor';
 import { createTestStoryUrl } from '../../test/utils/storybook-helpers';
 import {
   storySettings,
@@ -16,26 +12,28 @@ describe('InputWithOptions', () => {
   let driver;
 
   describe('Component', () => {
+    const testedComponentDataHook = storySettings.dataHook;
+
     beforeEach(async () => {
-      await navigateToTestUrl(testStories.tabsSwitches);
-      driver = inputWithOptionsTestkitFactory({
-        dataHook: storySettings.dataHook,
-      });
+      await navigateToTestUrl(testStories.tabsSwitches, storySettings);
+      driver = inputWithOptionsTestkitFactory(
+        $(`[data-hook="${testedComponentDataHook}"]`),
+      );
       await waitForVisibilityOf(
         driver.element(),
-        `Cant find ${storySettings.dataHook}`,
+        `Cant find ${testedComponentDataHook}`,
       );
     });
 
     it('should move out focus of input if nothing is pressed / selected', async () => {
-      await focusOnInputWithOptions();
+      await focusOnInputWithOptions(driver);
 
       await pressTab();
       expect(await driver.isFocused()).toEqual(false);
     });
 
     it('should move out focus of input when have manual text option', async () => {
-      await focusOnInputWithOptions();
+      await focusOnInputWithOptions(driver);
 
       await driver.enterText('some option');
       await pressTab();
@@ -49,9 +47,9 @@ describe('InputWithOptions', () => {
         testStories.insideWrappingForm,
         insideFormStorySettings,
       );
-      driver = protractorTestkitFactoryCreator(inputWithOptionsTestkitFactory)({
-        dataHook: insideFormStorySettings.dataHook,
-      });
+      driver = inputWithOptionsTestkitFactory(
+        $(`[data-hook="${insideFormStorySettings.dataHook}"]`),
+      );
       await waitForVisibilityOf(
         driver.element(),
         `Cant find ${insideFormStorySettings.dataHook}`,
@@ -65,7 +63,7 @@ describe('InputWithOptions', () => {
 
       await waitFor(100);
       const wasFormSubmitted =
-        $('[data-hook="was-submitted"]').getText() === 'yes';
+        (await $('[data-hook="was-submitted"]').getText()) === 'yes';
 
       expect(wasFormSubmitted).toBe(false);
     });
@@ -96,11 +94,11 @@ const pressTab = () =>
     .sendKeys(protractor.Key.TAB)
     .perform();
 
-const focusOnInputWithOptions = async (driver, dataHook) => {
-  const firstElement = $(`[data-hook="${dataHook}"]`);
+const focusOnInputWithOptions = async driver => {
+  const firstInput = $$(`input`).get(0);
 
   await pressTab();
-  expect(await isFocused(firstElement)).toEqual(true);
+  expect(await isFocused(firstInput)).toEqual(true);
 
   await pressTab();
   expect(await driver.isFocused()).toEqual(true);
