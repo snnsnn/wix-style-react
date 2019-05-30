@@ -4,6 +4,7 @@ import { PersistentHeader } from './SidebarItem/PersistentHeader';
 import { PersistentFooter } from './SidebarItem/PersistentFooter';
 import defaultCss from './main.scss';
 import { SidebarContext } from './SidebarAPI';
+import classnames from 'classnames';
 
 /** left sidebar  */
 class Sidebar extends PureComponent {
@@ -151,6 +152,13 @@ class Sidebar extends PureComponent {
 
   render() {
     const css = { ...defaultCss, ...this.props.classNames };
+
+    const sliderClasses = classnames({
+      [css.sliderOutToLeft]: this.state.drivenInChildren.length !== 0,
+      [css.sliderInFromLeft]: this.state.drivenInChildren.length === 0,
+      [css.slider]: true,
+    });
+
     return (
       <SidebarContext.Provider value={this.sidebarContext}>
         <div className={css.sideBar} data-hook={this.props.dataHook}>
@@ -167,14 +175,7 @@ class Sidebar extends PureComponent {
                 </div>
               )}
 
-            <div
-              className={`${css.slider} ${
-                this.state.drivenInChildren.length !== 0
-                  ? css.sliderOutToLeft
-                  : css.sliderInFromLeft
-              }`}
-              data-hook={'on-screen-children'}
-            >
+            <div className={sliderClasses} data-hook={'on-screen-children'}>
               {this.state.onScreenChildren}
             </div>
 

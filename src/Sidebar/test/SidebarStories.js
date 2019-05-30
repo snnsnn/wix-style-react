@@ -2,8 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { getTestStoryKind } from '../../../stories/storiesHierarchy';
 import { storySettings } from './storySettings';
-
-import Sidebar from '..';
+import Sidebar from '../index';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import { SidebarBackButton } from '../BackButton/SidebarBackButton';
 import { TextView } from '../SidebarItem/TextView/TextView';
