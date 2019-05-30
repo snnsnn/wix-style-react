@@ -4,8 +4,6 @@ import { listItemActionBuilder } from '../../ListItemAction';
 import DropdownBase from '../../DropdownBase';
 import { placements } from '../../Popover';
 import styles from './PopoverMenu.st.css';
-import style from '../../DropdownBase/DropdownBase.st.css';
-import Popover from '../../DropdownBase/DropdownBase';
 
 /** PopoverMenu */
 class PopoverMenu extends React.PureComponent {
@@ -14,6 +12,9 @@ class PopoverMenu extends React.PureComponent {
   static propTypes = {
     /** The maximum width applied to the list */
     maxWidth: PropTypes.number,
+
+    /** The minimum width applied to the list */
+    minWidth: PropTypes.number,
 
     /** Popover content z-index */
     zIndex: PropTypes.number,
@@ -62,6 +63,7 @@ class PopoverMenu extends React.PureComponent {
 
   static defaultProps = {
     maxWidth: 204,
+    minWidth: 144,
     placement: 'bottom',
     appendTo: 'parent',
   };
@@ -114,7 +116,13 @@ class PopoverMenu extends React.PureComponent {
   };
 
   render() {
-    const { appendTo, placement, triggerElement } = this.props;
+    const {
+      appendTo,
+      placement,
+      triggerElement,
+      minWidth,
+      maxWidth,
+    } = this.props;
     return (
       <DropdownBase
         {...styles('root', {}, this.props)}
@@ -123,6 +131,8 @@ class PopoverMenu extends React.PureComponent {
         onSelect={this._onSelect}
         appendTo={appendTo}
         placement={placement}
+        minWidth={minWidth}
+        maxWidth={maxWidth}
       >
         {({ open }) => {
           return React.cloneElement(triggerElement, {
