@@ -67,9 +67,20 @@ class PopoverMenu extends React.PureComponent {
     this.itemsOnClick.find(({ id }) => id === e.id).onClick();
   };
 
+  _filterChildren = children => {
+    return React.Children.map(children, child => child).filter(
+      child => typeof child !== 'string',
+    );
+  };
+
   _buildOptions = () => {
-    const { children } = this.props;
-    const options = React.Children.map(children, (item, idx) => {
+    const children = this._filterChildren(this.props.children);
+
+    const options = children.map((child, idx) => {
+      if (child.type && child.type.displayName === 'PopoverMenu.Divider') {
+        return { id: idx, divider: true };
+      }
+
       const {
         text,
         onClick,
@@ -77,7 +88,7 @@ class PopoverMenu extends React.PureComponent {
         textSize,
         prefixIcon,
         disabled,
-      } = item.props;
+      } = child.props;
       return {
         id: idx,
         title: text,
@@ -91,9 +102,12 @@ class PopoverMenu extends React.PureComponent {
 
     this.itemsOnClick = options.map(({ id, onClick }) => ({ id, onClick }));
 
-    return options.map(option =>
-      listItemActionBuilder({ ...option, paddingSize: 'small' }),
-    );
+    return options.map(option => {
+      if (option.divider) {
+        return { id: option.id, value: '-' };
+      }
+      return listItemActionBuilder({ ...option, paddingSize: 'small' });
+    });
   };
 
   render() {
@@ -119,5 +133,7 @@ class PopoverMenu extends React.PureComponent {
 }
 
 PopoverMenu.MenuItem = () => ({});
+PopoverMenu.Divider = () => ({});
+PopoverMenu.Divider.displayName = 'PopoverMenu.Divider';
 
 export default PopoverMenu;
