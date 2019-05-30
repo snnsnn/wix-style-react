@@ -310,10 +310,13 @@ class DropdownBase extends React.PureComponent {
       options,
       minWidth,
       maxWidth,
+<<<<<<< HEAD
       fixed,
       flip,
       zIndex,
       moveBy,
+=======
+>>>>>>> revert changes for DropdownBase
     } = this.props;
 
     const { open, selectedId } = this.state;
@@ -332,6 +335,7 @@ class DropdownBase extends React.PureComponent {
         onMouseLeave={this._handlePopoverMouseLeave}
         onClickOutside={this._handleClickOutside}
 <<<<<<< HEAD
+<<<<<<< HEAD
         fixed={fixed}
         flip={flip}
 =======
@@ -340,6 +344,8 @@ class DropdownBase extends React.PureComponent {
         zIndex={zIndex}
         moveBy={moveBy}
 >>>>>>> update popover menu
+=======
+>>>>>>> revert changes for DropdownBase
         {...style(
           'root',
           {
