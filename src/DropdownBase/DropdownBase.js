@@ -103,6 +103,12 @@ class DropdownBase extends React.PureComponent {
      * original placement even when it's being positioned outside the boundary.
      */
     fixed: PropTypes.bool,
+
+    /** Popover content z-index */
+    zIndex: PropTypes.number,
+
+    /** moves popover content relative to the parent by x or y */
+    moveBy: PropTypes.shape({ x: PropTypes.number, y: PropTypes.number }),
   };
 
   static defaultProps = {
@@ -306,6 +312,8 @@ class DropdownBase extends React.PureComponent {
       maxWidth,
       fixed,
       flip,
+      zIndex,
+      moveBy,
     } = this.props;
 
     const { open, selectedId } = this.state;
@@ -323,8 +331,15 @@ class DropdownBase extends React.PureComponent {
         onMouseEnter={this._handlePopoverMouseEnter}
         onMouseLeave={this._handlePopoverMouseLeave}
         onClickOutside={this._handleClickOutside}
+<<<<<<< HEAD
         fixed={fixed}
         flip={flip}
+=======
+        onShow={onShow}
+        onHide={onHide}
+        zIndex={zIndex}
+        moveBy={moveBy}
+>>>>>>> update popover menu
         {...style(
           'root',
           {
