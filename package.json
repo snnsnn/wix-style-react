@@ -26,7 +26,6 @@
   },
   "scripts": {
     "start": "./scripts/npm-start.sh",
-    "precommit": "lint-staged",
     "pretest": "npm run lint && ./scripts/ensure-dist.sh",
     "test": "npm run test:unit && npm run test:eyes-storybook && npm run test:e2e && npm run test:types",
     "test1": "npm run test:unit",
@@ -67,6 +66,11 @@
     "generate-autodocs-registry": "node scripts/generate-autodocs-registry",
     "eyes-storybook-debug": "start-storybook -c ./.storybook-test -p 6007",
     "make-async-spec": "npx jscodeshift -t scripts/unidriver-migration/src/make-async/make-async.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "yoshi": {
     "entry": {
@@ -125,7 +129,7 @@
     "express": "^4.16.4",
     "eyes.it": "^2.0.0",
     "globby": "^8.0.1",
-    "husky": "~0.14.0",
+    "husky": "^2.3.0",
     "identity-obj-proxy": "^3.0.0",
     "import-path": "^1.0.0",
     "jest-yoshi-preset": "^4.1.0-alpha.1",
