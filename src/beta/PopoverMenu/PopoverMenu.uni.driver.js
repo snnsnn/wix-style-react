@@ -2,10 +2,11 @@ import { dropdownBaseDriverFactory } from '../../DropdownBase/DropdownBase.uni.d
 
 export const PopoverMenuDriver = base => {
   const dropdownBaseTestkit = dropdownBaseDriverFactory(base);
+  const getTriggerElement = () => base.$('[data-hook="popovermenu-trigger"]');
 
   return {
-    getTriggerElement: () => base.$('[data-hook="popovermenu-trigger"]'),
     clickAtChild: option => dropdownBaseTestkit.selectOption(option),
     isMenuOpen: () => dropdownBaseTestkit.isDropdownShown(),
+    openMenu: () => getTriggerElement().click(),
   };
 };
