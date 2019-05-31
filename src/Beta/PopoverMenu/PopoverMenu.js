@@ -83,7 +83,7 @@ class PopoverMenu extends React.PureComponent {
 
     const options = children.map((child, idx) => {
       if (child.type && child.type.displayName === 'PopoverMenu.Divider') {
-        return { id: idx, divider: true };
+        return { id: idx, value: child, divider: true, overrideStyle: true };
       }
 
       const {
@@ -109,7 +109,7 @@ class PopoverMenu extends React.PureComponent {
 
     return options.map(option => {
       if (option.divider) {
-        return { id: option.id, value: '-' };
+        return option;
       }
       return listItemActionBuilder({ ...option, paddingSize: 'small' });
     });
@@ -148,7 +148,13 @@ class PopoverMenu extends React.PureComponent {
 
 PopoverMenu.MenuItem = () => ({});
 PopoverMenu.MenuItem.displayName = 'PopoverMenu.MenuItem';
-PopoverMenu.Divider = () => ({});
+
+// temp solution until ListItemDivider is developed.
+PopoverMenu.Divider = () => (
+  <div style={{ padding: '6px 24px 6px 18px' }}>
+    <div className={styles.divider} />
+  </div>
+);
 PopoverMenu.Divider.displayName = 'PopoverMenu.Divider';
 
 export default PopoverMenu;

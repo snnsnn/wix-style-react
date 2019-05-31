@@ -3,6 +3,11 @@
   -st-default: DropdownBase;
 }
 
+:import {
+  -st-from: "../../Foundation/stylable/colors.st.css";
+  -st-named: D60;
+}
+
 .root {
   -st-extends: DropdownBase;
 }
@@ -16,4 +21,10 @@
    */
   width: max-content;
   padding: 10px 0;
+}
+
+
+.divider {
+  width: 100%;
+  border-bottom: 1px solid value(D60);
 }
