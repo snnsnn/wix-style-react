@@ -89,7 +89,7 @@ const wrapper = mount(<ModalExample/>);
 const messageBoxDriver = messageBoxFunctionalLayoutTestkitFactory({wrapper: document.body, dataHook: 'messageBox'});
 ```
 
-### Full example (Using `react-testing-library`)
+### Full example (Using `@testing-library/react`)
 
 > ModalExample.js
 
@@ -139,7 +139,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import eventually from 'wix-eventually';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import ModalExample from './ModalExample';
 import {
   modalTestkitFactory,

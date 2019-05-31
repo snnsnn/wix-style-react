@@ -1,4 +1,4 @@
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import { Simulate } from 'react-dom/test-utils';
 import { reactUniDriver } from 'wix-ui-test-utils/vanilla';
 
@@ -24,12 +24,12 @@ function createRendererBase(createDriver, defaultOptions = {}) {
   };
 }
 /**
- * Creates a `render` function that returns the same object as `react-testing-library`'s render, but
+ * Creates a `render` function that returns the same object as `@testing-library/react`'s render, but
  * with and extra `driver` property.
  *
  * The returned render function arguments:
  * @param [React.Element] jsx a jsx element to render
- * @param [object] options - render-options for react-testing-library. The options may also contain a `dataHook` prop which if provided then the driver would be created with the element which is found by the dataHook. If not provided then it assumes that the rendered root element is the component's root element and it will be used for the driver.
+ * @param [object] options - render-options for @testing-library/react. The options may also contain a `dataHook` prop which if provided then the driver would be created with the element which is found by the dataHook. If not provided then it assumes that the rendered root element is the component's root element and it will be used for the driver.
  */
 export function createRendererWithDriver(driverFactory, defaultOptions = {}) {
   const createDriver = ({ rendered, element }) =>
@@ -42,12 +42,12 @@ export function createRendererWithDriver(driverFactory, defaultOptions = {}) {
 }
 
 /**
- * Creates a `render` function that returns the same object as `react-testing-library`'s render, but
+ * Creates a `render` function that returns the same object as `@testing-library/react`'s render, but
  * with and extra `driver` property which is a Unidriver.
  *
  * The returned render function arguments:
  * @param [React.Element] jsx a jsx element to render
- * @param [object] options - render-options for react-testing-library. The options may also contain a `dataHook` prop which if provided then the driver would be created with the element which is found by the dataHook. If not provided then it assumes that the rendered root element is the component's root element and it will be used for the driver.
+ * @param [object] options - render-options for @testing-library/react. The options may also contain a `dataHook` prop which if provided then the driver would be created with the element which is found by the dataHook. If not provided then it assumes that the rendered root element is the component's root element and it will be used for the driver.
  */
 export function createRendererWithUniDriver(
   driverFactory,
@@ -62,4 +62,4 @@ export function createRendererWithUniDriver(
   return createRendererBase(createDriver, defaultOptions);
 }
 
-export * from 'react-testing-library';
+export * from '@testing-library/react';

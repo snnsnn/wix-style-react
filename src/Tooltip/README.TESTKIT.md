@@ -75,11 +75,11 @@ describe('my description', async () => {
 
 ### Example Plain React
 
-We recommend using `react-testing-library`.
+We recommend using `@testing-library/react`.
 
 ```javascript
   import React from 'react';
-  import {render, cleanup} from 'react-testing-library';
+  import {render, cleanup} from '@testing-library/react';
   import eventually from 'wix-eventually';
   import {tooltipTestkitFactory as tooltipTestkitFactory} from 'wix-style-react/dist/testkit';
 
@@ -133,20 +133,20 @@ const wrapper = mount(<Tooltip content={<Text dataHook="my-text"/>} />);
 const messageBoxDriver = textTestkitFactory({wrapper: document.body, dataHook: 'my-text'});
 ```
 
-> TL;DR (react-testing-library)
+> TL;DR (@testing-library/react)
 
 ```js
 render(<Tooltip content={<Text dataHook="my-text"/>} />);
 const messageBoxDriver = textTestkitFactory({wrapper: document.body, dataHook: 'my-text'});
 ```
 
-### Full example (react-testing-library)
+### Full example (@testing-library/react)
 
 > TooltipExample.spec.js (jest)
 
 ```js
 import React from 'react';
-import { render, cleanup } from 'react-testing-library';
+import { render, cleanup } from '@testing-library/react';
 import eventually from 'wix-eventually';
 import {tooltipTestkitFactory, textTestkitFactory} from 'wix-style-react/dist/testkit';
 
