@@ -22,5 +22,5 @@ const load = module => {
 };
 
 export const PopoverMenuTestkit = uniTestkitFactoryCreator(
-  load(require('../src/beta/PopoverMenu/PopoverMenu.uni.driver')),
+  load(require('../../src/beta/PopoverMenu/PopoverMenu.uni.driver')),
 );

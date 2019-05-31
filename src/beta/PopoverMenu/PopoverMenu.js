@@ -151,10 +151,12 @@ class PopoverMenu extends React.PureComponent {
       flip,
       fixed,
       showArrow,
+      dataHook,
     } = this.props;
     return (
       <DropdownBase
         {...styles('root', {}, this.props)}
+        dataHook={dataHook}
         options={this._buildOptions()}
         onSelect={this._onSelect}
         appendTo={appendTo}
