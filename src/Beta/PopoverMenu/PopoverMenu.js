@@ -69,7 +69,8 @@ class PopoverMenu extends React.PureComponent {
   };
 
   _onSelect = e => {
-    this.itemsOnClick.find(({ id }) => id === e.id).onClick();
+    const onClick = this.itemsOnClick.find(({ id }) => id === e.id).onClick;
+    onClick && onClick();
   };
 
   _filterChildren = children => {

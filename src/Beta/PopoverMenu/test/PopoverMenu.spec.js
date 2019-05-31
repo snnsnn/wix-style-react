@@ -17,22 +17,26 @@ describe('PopoverMenu', () => {
   afterEach(() => {
     cleanup();
   });
+
   const renderPopoverMenu = (props = {}) => (
-    <PopoverMenu dataHook="random" {...props} />
+    <PopoverMenu
+      dataHook="random"
+      triggerElement={
+        <IconButton>
+          <More />
+        </IconButton>
+      }
+      children={<PopoverMenu.MenuItem text="dark option" skin="dark" />}
+      {...props}
+    />
   );
 
   describe('PopoverMenu.Item', () => {
     describe('`onClick` prop', () => {
-      it('[when] given should be called on item click', async () => {
+      it('should be called [when] clicked on one of the childs', async () => {
         const onClick = jest.fn();
-
-        const { driver, debug } = render(
+        const { driver } = render(
           renderPopoverMenu({
-            triggerElement: (
-              <IconButton>
-                <More />
-              </IconButton>
-            ),
             children: (
               <PopoverMenu.MenuItem
                 text="dark option"
@@ -43,8 +47,6 @@ describe('PopoverMenu', () => {
           }),
         );
 
-        // debug();
-
         const triggerElement = await driver.getTriggerElement();
         const iconButtonTestkit = iconButtonDriverFactory(triggerElement);
         await iconButtonTestkit.click();
@@ -53,6 +55,24 @@ describe('PopoverMenu', () => {
 
         await driver.clickAtChild(0);
         expect(onClick).toHaveBeenCalled();
+      });
+
+      it('should not throw errors [when] child is a divider and selected', async () => {
+        const onClick = jest.fn();
+        const { driver } = render(
+          renderPopoverMenu({
+            children: <PopoverMenu.Divider onClick={onClick} />,
+          }),
+        );
+
+        const triggerElement = await driver.getTriggerElement();
+        const iconButtonTestkit = iconButtonDriverFactory(triggerElement);
+        await iconButtonTestkit.click();
+
+        expect(await driver.isMenuOpen()).toBe(true);
+
+        await driver.clickAtChild(0);
+        expect(onClick).not.toHaveBeenCalled();
       });
     });
   });
