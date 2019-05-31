@@ -4,17 +4,16 @@
 }
 
 .root {
-  text-align: center;
   -st-extends: DropdownBase;
-}
-
-.root::popoverContent {
-  min-width: 100px;
 }
 
 .root:withArrow::popover[data-placement*="top"]::popoverContent,
 .root:withArrow::popover[data-placement*="left"]::popoverContent,
 .root:withArrow::popover[data-placement*="right"]::popoverContent,
 .root:withArrow::popover[data-placement*="bottom"]::popoverContent {
+  /* very important rule to make sure that width is defined by the text.
+   * not supported in Edge yet.
+   */
+  width: max-content;
   padding: 10px 0;
 }
