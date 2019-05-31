@@ -27,6 +27,7 @@ import Delete from '../../../new-icons/Delete';
 import triggerElementExample from './examples/buttonMenuExample';
 import stylesExample from './examples/stylesExample';
 import placementsExample from './examples/placementExample';
+import dividerExample from './examples/dividerExample';
 import { placements } from '../../../Popover';
 
 const liveCode = config =>
@@ -126,6 +127,11 @@ export default {
               title: 'Placement',
               text: 'Menu can be opened in different placements',
               source: placementsExample,
+            },
+            {
+              title: 'Divider',
+              text: 'Menu can have a divider between items',
+              source: dividerExample,
             },
           ].map(example),
         ],
