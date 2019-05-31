@@ -9,6 +9,14 @@ import styles from './PopoverMenu.st.css';
 class PopoverMenu extends React.PureComponent {
   static displayName = 'PopoverMenu';
 
+  static MenuItem = () => ({});
+
+  static Divider = () => (
+    <div style={{ padding: '6px 24px 6px 18px' }}>
+      <div className={styles.divider} />
+    </div>
+  );
+
   static propTypes = {
     /** The maximum width applied to the list */
     maxWidth: PropTypes.number,
@@ -169,15 +177,7 @@ class PopoverMenu extends React.PureComponent {
   }
 }
 
-PopoverMenu.MenuItem = () => ({});
 PopoverMenu.MenuItem.displayName = 'PopoverMenu.MenuItem';
-
-// temp solution until ListItemDivider is developed.
-PopoverMenu.Divider = () => (
-  <div style={{ padding: '6px 24px 6px 18px' }}>
-    <div className={styles.divider} />
-  </div>
-);
 PopoverMenu.Divider.displayName = 'PopoverMenu.Divider';
 
 export default PopoverMenu;
