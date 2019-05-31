@@ -16,6 +16,7 @@ const createCircularProgressBar = (props = {}) => {
 };
 
 describe('CircularProgressBar', () => {
+
   const defaultProps = {
     value: 40,
   };
