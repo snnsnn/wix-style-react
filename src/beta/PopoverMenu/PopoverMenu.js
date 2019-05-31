@@ -72,12 +72,12 @@ class PopoverMenu extends React.PureComponent {
      * Whether to enable the flip behaviour. This behaviour is used to flip the `<Popover/>`'s placement
      * when it starts to overlap the target element (`<Popover.Element/>`).
      */
-    flip: PropTypes.boolean,
+    flip: PropTypes.bool,
     /**
      * Whether to enable the fixed behaviour. This behaviour is used to keep the `<Popover/>` at it's
      * original placement even when it's being positioned outside the boundary.
      */
-    fixed: PropTypes.boolean,
+    fixed: PropTypes.bool,
 
     /** Whether to show the Popover's arrow */
     showArrow: PropTypes.bool,

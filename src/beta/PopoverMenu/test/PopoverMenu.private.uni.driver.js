@@ -1,4 +1,4 @@
-import { PopoverMenuDriverFactory as publicDriverFactory } from '../PopoverMenu.uni.driver';
+import { PopoverMenuDriver as publicDriverFactory } from '../PopoverMenu.uni.driver';
 
 export const PopoverMenuPrivateDriver = base => {
   return {
