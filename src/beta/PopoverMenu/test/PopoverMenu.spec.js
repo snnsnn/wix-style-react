@@ -1,15 +1,13 @@
 import React from 'react';
 import {
-  createRendererWithUniDriver,
   cleanup,
+  createRendererWithUniDriver,
 } from '../../../../test/utils/unit';
 
 import PopoverMenu from '../PopoverMenu';
 import { PopoverMenuPrivateDriverFactory } from './PopoverMenu.private.uni.driver';
 import IconButton from '../../../IconButton';
 import More from '../../../new-icons/More';
-
-import { iconButtonDriverFactory } from '../../../IconButton/IconButton.uni.driver';
 
 describe('PopoverMenu', () => {
   const render = createRendererWithUniDriver(PopoverMenuPrivateDriverFactory);
@@ -48,9 +46,7 @@ describe('PopoverMenu', () => {
             }),
           );
 
-          const triggerElement = await driver.getTriggerElement();
-          const iconButtonTestkit = iconButtonDriverFactory(triggerElement);
-          await iconButtonTestkit.click();
+          await driver.openMenu();
 
           expect(await driver.isMenuOpen()).toBe(true);
 
@@ -69,9 +65,7 @@ describe('PopoverMenu', () => {
           }),
         );
 
-        const triggerElement = await driver.getTriggerElement();
-        const iconButtonTestkit = iconButtonDriverFactory(triggerElement);
-        await iconButtonTestkit.click();
+        await driver.openMenu();
 
         expect(await driver.isMenuOpen()).toBe(true);
 
