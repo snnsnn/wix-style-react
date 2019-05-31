@@ -5,6 +5,9 @@ import PopoverMenu from '../PopoverMenu';
 import IconButton from '../../../IconButton';
 import TextButton from '../../../TextButton';
 import More from '../../../new-icons/More';
+import Add from '../../../new-icons/Add';
+import Edit from '../../../new-icons/Edit';
+import Delete from '../../../new-icons/Delete';
 import { PopoverMenuTestkit } from '../../../../testkit/beta';
 
 const interactiveDataHook = 'interactive-popover-menu';
@@ -27,7 +30,7 @@ class InteractiveEyeTest extends React.Component {
   }
 
   render() {
-    const { componentDidMount, ...restProps } = this.props;
+    const { componentDidMount, children } = this.props;
 
     return (
       <div style={{ marginLeft: '300px', marginTop: '100px' }}>
@@ -39,9 +42,7 @@ class InteractiveEyeTest extends React.Component {
             </IconButton>
           }
         >
-          <PopoverMenu.MenuItem text="option 1" onClick={e => console.log(e)} />
-          <PopoverMenu.MenuItem text="option 2" onClick={e => console.log(e)} />
-          <PopoverMenu.MenuItem text="option 3" onClick={e => console.log(e)} />
+          {children}
         </PopoverMenu>
       </div>
     );
@@ -76,13 +77,63 @@ const tests = [
 
 const interactiveTests = [
   {
-    describe: 'show menu',
+    describe: 'menu items',
     its: [
       {
-        it: 'basic',
+        it: 'basic items',
         componentDidMount: async () => {
           const driver = createDriver(interactiveDataHook);
           await driver.openMenu();
+        },
+        props: {
+          children: menuItems,
+        },
+      },
+      {
+        it: 'items with icons',
+        componentDidMount: async () => {
+          const driver = createDriver(interactiveDataHook);
+          await driver.openMenu();
+        },
+        props: {
+          children: [
+            <PopoverMenu.MenuItem
+              text="Add"
+              onClick={e => console.log(e)}
+              prefixIcon={<Add />}
+            />,
+            <PopoverMenu.MenuItem
+              text="Edit"
+              onClick={e => console.log(e)}
+              prefixIcon={<Edit />}
+            />,
+            <PopoverMenu.MenuItem
+              text="Delete"
+              onClick={e => console.log(e)}
+              prefixIcon={<Delete />}
+            />,
+          ],
+        },
+      },
+      {
+        it: 'disabled items',
+        componentDidMount: async () => {
+          const driver = createDriver(interactiveDataHook);
+          await driver.openMenu();
+        },
+        props: {
+          children: [
+            <PopoverMenu.MenuItem
+              text="Add"
+              onClick={e => console.log(e)}
+              disabled
+            />,
+            <PopoverMenu.MenuItem
+              text="Delete"
+              onClick={e => console.log(e)}
+              disabled
+            />,
+          ],
         },
       },
     ],
