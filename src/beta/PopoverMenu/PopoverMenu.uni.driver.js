@@ -1,6 +1,6 @@
 import { dropdownBaseDriverFactory } from '../../DropdownBase/DropdownBase.uni.driver';
 
-export const PopoverMenuDriverFactory = base => {
+export const PopoverMenuDriver = base => {
   const dropdownBaseTestkit = dropdownBaseDriverFactory(base);
 
   return {

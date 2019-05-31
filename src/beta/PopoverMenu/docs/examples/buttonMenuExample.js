@@ -1,39 +1,39 @@
 export default `
     <Layout  cols={2} gap={0} justifyItems="center">
-      <PopoverMenuBeta 
+      <PopoverMenu 
           triggerElement={
               <IconButton priority="secondary"><Icons.More /></IconButton>
       }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="option 1" 
           onClick={e => console.log(e)} 
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="option 2" 
           onClick={e => console.log(e)} 
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="option 3" 
           onClick={e => console.log(e)} 
         />
 
-    </PopoverMenuBeta>
-    <PopoverMenuBeta 
+    </PopoverMenu>
+    <PopoverMenu 
           triggerElement={
               <TextButton priority="secondary">Actions</TextButton>
       }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="option 1" 
           onClick={e => console.log(e)} 
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="option 2" 
           onClick={e => console.log(e)} 
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="option 3" 
           onClick={e => console.log(e)} 
         />
-    </PopoverMenuBeta>  
+    </PopoverMenu>  
   </Layout>
 `;

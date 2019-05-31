@@ -1,87 +1,87 @@
 export default `
     <Layout cols={4} gap={0} justifyItems="center">
-      <PopoverMenuBeta 
+      <PopoverMenu 
         placement="top"
         triggerElement={
             <IconButton priority="secondary"><Icons.More /></IconButton>
       }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Add" 
           onClick={e => console.log(e)} 
           prefixIcon={<Icons.Add/>}
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Edit" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Edit/>}           
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Delete" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Delete/>}           
         />
-    </PopoverMenuBeta>
-      <PopoverMenuBeta 
+    </PopoverMenu>
+      <PopoverMenu 
         triggerElement={
             <IconButton priority="secondary"><Icons.More /></IconButton>
       }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Add" 
           onClick={e => console.log(e)} 
           prefixIcon={<Icons.Add/>}
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Edit" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Edit/>}           
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Delete" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Delete/>}           
         />
-    </PopoverMenuBeta>
-      <PopoverMenuBeta 
+    </PopoverMenu>
+      <PopoverMenu 
         placement="left"
         triggerElement={
             <IconButton priority="secondary"><Icons.More /></IconButton>
       }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Add" 
           onClick={e => console.log(e)} 
           prefixIcon={<Icons.Add/>}
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Edit" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Edit/>}           
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Delete" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Delete/>}           
         />
-    </PopoverMenuBeta>
-      <PopoverMenuBeta 
+    </PopoverMenu>
+      <PopoverMenu 
         placement="right"
         triggerElement={
             <IconButton priority="secondary"><Icons.More /></IconButton>
       }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Add" 
           onClick={e => console.log(e)} 
           prefixIcon={<Icons.Add/>}
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Edit" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Edit/>}           
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Delete" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Delete/>}           
         />
-    </PopoverMenuBeta>            
+    </PopoverMenu>            
   </Layout>
 `;

@@ -1,40 +1,40 @@
 export default `
     <Layout cols={1} gap={0} justifyItems="center">
-      <PopoverMenuBeta 
+      <PopoverMenu 
           triggerElement={
               <IconButton priority="secondary"><Icons.More /></IconButton>
       }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Add" 
           onClick={e => console.log(e)} 
           prefixIcon={<Icons.Add/>}
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Edit" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Edit/>}           
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Delete" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Delete/>}           
         />
-        <PopoverMenuBeta.Divider/>
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.Divider/>
+        <PopoverMenu.MenuItem 
           text="Add" 
           onClick={e => console.log(e)} 
           prefixIcon={<Icons.Add/>}
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
         text="Delete" 
         onClick={e => console.log(e)}
         prefixIcon={<Icons.Delete/>}           
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Delete" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Delete/>}           
         />                         
-    </PopoverMenuBeta>    
+    </PopoverMenu>    
   </Layout>
 `;

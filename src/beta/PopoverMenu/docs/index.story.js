@@ -31,10 +31,10 @@ import dividerExample from './examples/dividerExample';
 import { placements } from '../../../Popover';
 
 const liveCode = config =>
-  baseLiveCode({ components: allComponents, ...config });
-const example = ({ title, text, source }) =>
+  baseLiveCode({ components: { ...allComponents, PopoverMenu }, ...config });
+const example = ({ source, ...rest }) =>
   columns({
-    items: [description({ title, text }), liveCode({ compact: true, source })],
+    items: [description(rest), liveCode({ compact: true, source })],
   });
 
 const commonProps = {

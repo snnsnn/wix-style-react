@@ -128,4 +128,4 @@ export {
 } from './ListItemAction';
 export { default as Subheader } from './Card/Subheader';
 export { default as Swatches } from './Swatches';
-export { default as PopoverMenuBeta } from './Beta/PopoverMenu';
+export { default as PopoverMenuBeta } from './beta/PopoverMenu';

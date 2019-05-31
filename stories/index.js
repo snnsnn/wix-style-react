@@ -188,7 +188,4 @@ require('../src/NoBorderInput/docs/index.story');
 require('../src/EditableTitle/docs/index.story');
 
 // TODO: move to correct position
-require('../src/Beta/PopoverMenu/docs/index.story');
-
-// TODO: move to correct position
-require('../src/Beta/PopoverMenu/test/PopoverMenuStories');
+require('../src/beta/PopoverMenu/docs/index.story');

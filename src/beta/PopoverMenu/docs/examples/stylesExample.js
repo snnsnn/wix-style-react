@@ -1,65 +1,65 @@
 export default `
     <Layout cols={3} gap={0} justifyItems="center">
-      <PopoverMenuBeta 
+      <PopoverMenu 
           triggerElement={
               <IconButton priority="secondary"><Icons.More /></IconButton>
       }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Add" 
           onClick={e => console.log(e)} 
           prefixIcon={<Icons.Add/>}
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Edit" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Edit/>}           
         />
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="Delete" 
           onClick={e => console.log(e)}
           prefixIcon={<Icons.Delete/>}           
         />
-    </PopoverMenuBeta>
-    <PopoverMenuBeta 
+    </PopoverMenu>
+    <PopoverMenu 
         triggerElement={
             <IconButton priority="secondary"><Icons.More /></IconButton>
     }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="default dark skin" 
           onClick={e => console.log(e)} 
         />     
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="destructive skin" 
           onClick={e => console.log(e)} 
           skin="destructive"
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="disabled option" 
           disabled
         />         
-    </PopoverMenuBeta>  
-    <PopoverMenuBeta 
+    </PopoverMenu>  
+    <PopoverMenu 
         triggerElement={
             <IconButton priority="secondary"><Icons.More /></IconButton>
     }> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="small size"
           textSize= "small" 
           onClick={e => console.log(e)} 
         />     
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="small size"
           textSize= "small"
           onClick={e => console.log(e)} 
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="normal size" 
           onClick={e => console.log(e)}
         /> 
-        <PopoverMenuBeta.MenuItem 
+        <PopoverMenu.MenuItem 
           text="normal size" 
           onClick={e => console.log(e)}
         />                     
-    </PopoverMenuBeta>      
+    </PopoverMenu>      
   </Layout>
 `;

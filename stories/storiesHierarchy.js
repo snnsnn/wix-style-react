@@ -19,6 +19,7 @@ export const Category = {
   PICKERS_AND_SELECTORS: '11. Pickers and Selectors',
   OTHER: '12. Other',
   COMPONENTS: 'Components',
+  BETA: 'BETA',
   STYLING: 'Styling',
   WIP: 'WIP',
   TESTS: 'Tests',
