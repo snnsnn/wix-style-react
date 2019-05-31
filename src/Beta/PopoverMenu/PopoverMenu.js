@@ -147,6 +147,7 @@ class PopoverMenu extends React.PureComponent {
 }
 
 PopoverMenu.MenuItem = () => ({});
+PopoverMenu.MenuItem.displayName = 'PopoverMenu.MenuItem';
 PopoverMenu.Divider = () => ({});
 PopoverMenu.Divider.displayName = 'PopoverMenu.Divider';
 

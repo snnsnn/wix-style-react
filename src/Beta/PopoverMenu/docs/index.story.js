@@ -21,10 +21,13 @@ import allComponents from '../../../../stories/utils/allComponents';
 import PopoverMenu from '..';
 import IconButton from '../../../IconButton';
 import More from '../../../new-icons/More';
+import Add from '../../../new-icons/Add';
 import Edit from '../../../new-icons/Edit';
+import Delete from '../../../new-icons/Delete';
 import triggerElementExample from './examples/buttonMenuExample';
 import stylesExample from './examples/stylesExample';
 import placementsExample from './examples/placementExample';
+import { placements } from '../../../Popover';
 
 const liveCode = config =>
   baseLiveCode({ components: allComponents, ...config });
@@ -44,25 +47,19 @@ const commonProps = {
 
 const menuItems = [
   <PopoverMenu.MenuItem
-    text="dark option"
+    text="Add"
     onClick={e => console.log(e)}
-    skin="dark"
+    prefixIcon={<Add />}
+  />,
+  <PopoverMenu.MenuItem
+    text="Edit"
+    onClick={e => console.log(e)}
     prefixIcon={<Edit />}
   />,
   <PopoverMenu.MenuItem
-    text="destructive option"
+    text="Delete"
     onClick={e => console.log(e)}
-    skin="destructive"
-  />,
-  <PopoverMenu.MenuItem
-    text="small option"
-    onClick={e => console.log(e)}
-    size="small"
-  />,
-  <PopoverMenu.MenuItem
-    text="disabled option"
-    onClick={e => console.log(e)}
-    disabled
+    prefixIcon={<Delete />}
   />,
 ];
 export default {
@@ -71,14 +68,16 @@ export default {
 
   component: PopoverMenu,
   componentPath: '..',
-
   componentProps: {
     ...commonProps,
-    children: menuItems,
+    children: [...menuItems],
   },
 
   exampleProps: {
-    // todo
+    placement: placements.map(placement => ({
+      label: placement,
+      value: placement,
+    })),
   },
 
   sections: [
