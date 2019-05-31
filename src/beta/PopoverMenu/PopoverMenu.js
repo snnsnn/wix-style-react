@@ -59,6 +59,20 @@ class PopoverMenu extends React.PureComponent {
 
     /** The Popover's appendTo */
     appendTo: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+
+    /**
+     * Whether to enable the flip behaviour. This behaviour is used to flip the `<Popover/>`'s placement
+     * when it starts to overlap the target element (`<Popover.Element/>`).
+     */
+    flip: PropTypes.boolean,
+    /**
+     * Whether to enable the fixed behaviour. This behaviour is used to keep the `<Popover/>` at it's
+     * original placement even when it's being positioned outside the boundary.
+     */
+    fixed: PropTypes.boolean,
+
+    /** Whether to show the Popover's arrow */
+    showArrow: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -66,6 +80,9 @@ class PopoverMenu extends React.PureComponent {
     minWidth: 144,
     placement: 'bottom',
     appendTo: 'parent',
+    fixed: true,
+    flip: true,
+    showArrow: true,
   };
 
   _onSelect = e => {
@@ -123,17 +140,22 @@ class PopoverMenu extends React.PureComponent {
       triggerElement,
       minWidth,
       maxWidth,
+      flip,
+      fixed,
+      showArrow,
     } = this.props;
     return (
       <DropdownBase
         {...styles('root', {}, this.props)}
-        showArrow
         options={this._buildOptions()}
         onSelect={this._onSelect}
         appendTo={appendTo}
         placement={placement}
         minWidth={minWidth}
         maxWidth={maxWidth}
+        flip={flip}
+        fixed={fixed}
+        showArrow={showArrow}
       >
         {({ open }) => {
           return React.cloneElement(triggerElement, {
