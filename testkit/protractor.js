@@ -517,9 +517,3 @@ import { swatchesDriverFactory } from '../src/Swatches/Swatches.uni.driver';
 export const swatchesTestkitFactory = protractorUniTestkitFactoryCreator(
   swatchesDriverFactory,
 );
-
-import { PopoverMenuDriverFactory } from '../src/Beta/PopoverMenu/PopoverMenu.uni.driver';
-
-export const PopoverMenuTestkitFactory = protractorUniTestkitFactoryCreator(
-  PopoverMenuDriverFactory,
-);
