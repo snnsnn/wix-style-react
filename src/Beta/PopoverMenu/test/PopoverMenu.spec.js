@@ -31,33 +31,37 @@ describe('PopoverMenu', () => {
     />
   );
 
-  describe('PopoverMenu.Item', () => {
-    describe('`onClick` prop', () => {
-      it('should be called [when] clicked on one of the childs', async () => {
-        const onClick = jest.fn();
-        const { driver } = render(
-          renderPopoverMenu({
-            children: (
-              <PopoverMenu.MenuItem
-                text="dark option"
-                onClick={onClick}
-                skin="dark"
-              />
-            ),
-          }),
-        );
+  describe('`children` prop', () => {
+    describe('PopoverMenu.Item', () => {
+      describe('`onClick` prop', () => {
+        it('should be called [when] clicked on one of the childs', async () => {
+          const onClick = jest.fn();
+          const { driver } = render(
+            renderPopoverMenu({
+              children: (
+                <PopoverMenu.MenuItem
+                  text="dark option"
+                  onClick={onClick}
+                  skin="dark"
+                />
+              ),
+            }),
+          );
 
-        const triggerElement = await driver.getTriggerElement();
-        const iconButtonTestkit = iconButtonDriverFactory(triggerElement);
-        await iconButtonTestkit.click();
+          const triggerElement = await driver.getTriggerElement();
+          const iconButtonTestkit = iconButtonDriverFactory(triggerElement);
+          await iconButtonTestkit.click();
 
-        expect(await driver.isMenuOpen()).toBe(true);
+          expect(await driver.isMenuOpen()).toBe(true);
 
-        await driver.clickAtChild(0);
-        expect(onClick).toHaveBeenCalled();
+          await driver.clickAtChild(0);
+          expect(onClick).toHaveBeenCalled();
+        });
       });
+    });
 
-      it('should not throw errors [when] child is a divider and selected', async () => {
+    describe('PopoverMenu.Divider', () => {
+      it('should not throw errors [when] selected', async () => {
         const onClick = jest.fn();
         const { driver } = render(
           renderPopoverMenu({
@@ -72,6 +76,7 @@ describe('PopoverMenu', () => {
         expect(await driver.isMenuOpen()).toBe(true);
 
         await driver.clickAtChild(0);
+
         expect(onClick).not.toHaveBeenCalled();
       });
     });
