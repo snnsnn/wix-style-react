@@ -12,9 +12,9 @@
 
 1. Every component has test file with `spec.js` extension, for example: `ComponentName.spec.js`.
 
-1. Every component has a driver (read about [them here](./TEST_DRIVERS.md)). Naming convention is `ComponentName.driver.js`
+1. Every component has a driver (read about [them here](./TEST_DRIVERS_GUIDELINES.md)). Naming convention is `ComponentName.driver.js`
 
-### Example
+### Writing a test
 
 ```js
 import React from 'react';
@@ -27,69 +27,25 @@ describe('Checkbox', () => {
   it('should be unchecked and not disabled by default', () => {
     const driver = createDriver(<Checkbox/>);
     expect(driver.isChecked()).toBeFalsy();
-    expect(driver.isDisabled()).toBeFalsy();
   });
 });
 ```
 
-### Visual Testing - new generation
+### Visual Testing
 
 1. Visual testing implmementation becomes trivial using a new and simple methodology of Applitools' Visual Grid. [Read about it here](./VISUAL_TESTING.md)
 
-### Browser (E2E) Tests
+### Browser Testsing
 
-#### What Do We Test
+1. These tests are intended to use anything that needs real browser API (e.g. position calculations, hovering, styling).
 
-1. **Visual Testing:** Visual regression tests are done with [`eyes`](https://github.com/wix/eyes.it) (powered by applitools).
-1. **Browser API:** Anything that needs real browser API (e.g. position calculations, hovering, styling).
+1. Tests run with [`protractor`](http://www.protractortest.org/#/) which uses chrome browser.
 
-#### The Tests
+1. some components have a test file with `e2e.js` extension, for example: `ComponentName.e2e.js`.
 
-Tests run with [`protractor`](http://www.protractortest.org/#/) which uses chrome browser.
+1. Every component has a driver . Legacy driver name convention is `ComponentName.protractor.driver.js`, but the best-practice is to write a UniDriver. (read about [them here](./TEST_DRIVERS_GUIDELINES.md))
 
-1. **Test File:** Every component has test file with `e2e.js` extension, for example: `ComponentName.e2e.js`.
-1. **Driver File:** Every component has a driver . Legacy driver name convention is `ComponentName.protractor.driver.js`, but the best-practice is to write a UniDriver. (read about [them here](./TEST_DRIVERS.md))
-
-#### Visual Testing
-
-1. Every test uses `eyes.it()` to automatically capture screenshots at the beginning and end of test. (See `eyes.it`](https://github.com/wix/eyes.it) for full API)
-
-1. Use `eyes.checkWindow()` to capture a screenshot explicitly.
-
-```js
-import {eyesItInstance} from '../../test/utils/eyes-it';
-
-const eyes = new eyesItInstance();
-
-eyes.it('should test something with screenshot diff', async () => {
-  expect(await assert).toEqual(expectation);
-});
-
-eyes.it('should test something with a screenshot on demand', async () => {
-  // do some manipulation, for example scroll
-  await eyes.checkWindow('after scrolling');
-  // do other manipulations
-});
-```
-
-#### Test Pages
-
-1. **AutoExample Story:** Every component has corresponding documentation story (e.g. `stories/ComponentName/index.story.js`) in the Storybook. You may run the e2e test against the story's AutoExample (aka Playground), or the story examples.
-1. **Test Stories:** You may create a dedicated test story page and add it to the `Tests` category in the storybook. Use:
-
-```js
-import {getTestStoryKind} from '../storyHierarchy';
-
-const kind = getTestStoryKind({category: 'Layout', storyName: 'Cell'});
-storiesOf(kind, module)
-  .add('1. Test Page #1', () =>
-    <div>
-      My Test Page
-    </div>
-  );
-```
-
-#### See also
+1. You may create a dedicated test story page and add it to the `Tests` category in the storybook.
 
 1. See [Writing E2E Tests](./WRITING_E2E_TESTS.md)
 
@@ -112,9 +68,19 @@ storiesOf(kind, module)
 1. In watch mode, you can use `jest`'s interactive mode, for example, press `p` in your command line and type the name of the test:
 <img src="https://raw.githubusercontent.com/wix/wix-style-react/master/docs/assets/jest-interactive.png" alt="Interactive Jest Preview" width="600">
 
+### Running visual tests
+
+#### Single run
+
+`npm run test:eyes-storybook`
+
+#### Debugging
+
+`npm run eyes-storybook-debug`
+
 ### Running browser tests
 
-#### Single Run
+#### Single run
 
 `npm run build && npm run test:e2e`
 

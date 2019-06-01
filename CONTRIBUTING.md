@@ -27,7 +27,7 @@ If you run it for the first time, it will build and run `npm run storybook`.
 
 For components testing and best practices [Read here](./docs/contribution/TESTING.md)
 
-For components test drivers and TestKits [Read here](./docs/contribution/TEST_DRIVERS.md)
+For components test drivers and TestKits [Read here](./docs/contribution/TEST_DRIVERS_GUIDELINES.md)
 
 ## Styling
 

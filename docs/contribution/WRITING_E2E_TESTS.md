@@ -76,3 +76,24 @@ eyes.it('Sizes', async () => {
   });
 });
 ```
+
+## Visual tests using `eyes.it`
+**Please avoid from creating new eyes.it if not needed as they are slow and can be achieved using the Visual Grid solution described**
+
+1. Many test uses `eyes.it()` and `eyes.checkWindow()` to capture screenshots for visual testing. (See `eyes.it`](https://github.com/wix/eyes.it) for full API). 
+
+```js
+import {eyesItInstance} from '../../test/utils/eyes-it';
+
+const eyes = new eyesItInstance();
+
+eyes.it('should test something with screenshot diff', async () => {
+  expect(await assert).toEqual(expectation);
+});
+
+eyes.it('should test something with a screenshot on demand', async () => {
+  // do some manipulation, for example scroll
+  await eyes.checkWindow('after scrolling');
+  // do other manipulations
+});
+```
