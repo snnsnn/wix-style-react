@@ -103,6 +103,10 @@ The above actions can be exposed in a private driver to unit-test the component,
 
 1. The only case where a getter method would return an element is to retrieve element from a render slot. Apart from that, never return an element.
 
+```js
+<Button prefixIcon={<Pencil/>}/>
+```
+
 1. If you write a boolean driver method (e.g. `isDisabled()`), remember to test it both ways (when it's `true` and also `false`).
 
 ## Exposed Testkits
